@@ -187,6 +187,22 @@ section h2 {
     color: var(--color-gold);
     font-weight: bold;
 }
+.toggle-anggota {
+    background-color: var(--color-maroon);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.toggle-anggota:hover {
+    background-color: #a00000;
+    box-shadow: 0 0 10px rgba(128, 0, 0, 0.5);
+
 
 .gallery-item:hover {
     transform: translateY(-8px);
