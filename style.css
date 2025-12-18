@@ -83,7 +83,7 @@ nav a:hover {
 .logo-sekolah {
     height: clamp(60px, 10vw, 90px);
     width: auto;
-    margin-right: -20px;
+    margin-right: -30px;
     margin-left: 20px;
 }
 
@@ -207,6 +207,7 @@ footer {
     color: #666;
     font-size: 0.8em;
 }
+
 
 
 
