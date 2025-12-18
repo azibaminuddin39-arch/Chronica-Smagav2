@@ -76,7 +76,7 @@ nav a:hover {
 .logo-org {
     height: clamp(100px, 15vw, 160px); 
     width: auto;
-    margin-right: -20px;
+    margin-right: 20px;
     margin-left: 
 }
 
@@ -205,4 +205,5 @@ footer {
     color: #666;
     font-size: 0.8em;
 }
+
 
