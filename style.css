@@ -25,11 +25,10 @@ body {
 }
 
 /* ============================ */
-/* 2. HEADER & NAVIGASI         */
+/* 2. HEADER & NAV-MENU (BARU)  */
 /* ============================ */
 header {
     position: relative;
-    /* PERBAIKAN: Memisahkan warna cadangan dan background image agar GIF muncul */
     background-color: var(--color-bg-main); 
     background-image: 
         linear-gradient(rgba(0, 0, 0, 0.65), rgba(96, 0, 0, 0.5)), 
@@ -37,56 +36,109 @@ header {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    /* Blend mode diubah ke screen atau overlay jika GIF ingin terlihat lebih terang */
-    background-blend-mode: normal; 
-    padding: 120px 20px 80px 20px;
+    padding: 140px 20px 80px 20px;
     text-align: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
     z-index: 1;
 }
 
-nav {
+/* Container Navigasi Pojok Kanan */
+.nav-container {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    display: flex;
-    gap: 10px;
-    z-index: 10; /* Pastikan navigasi di atas GIF */
+    top: 30px;
+    right: 30px;
+    z-index: 100;
 }
 
-nav a {
+/* Tombol Garis 3 (Hamburger) */
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 35px;
+    height: 25px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.hamburger span {
+    width: 35px;
+    height: 4px;
+    background-color: var(--color-gold);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+/* Animasi Hamburger ke X saat Aktif */
+.hamburger.is-active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+.hamburger.is-active span:nth-child(2) {
+    opacity: 0;
+}
+.hamburger.is-active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Menu Dropdown */
+.nav-menu {
+    position: absolute;
+    top: 45px;
+    right: 0;
+    background-color: rgba(20, 0, 0, 0.95); /* Maroon sangat gelap */
+    list-style: none;
+    padding: 15px 0;
+    border-radius: 10px;
+    border: 1px solid var(--color-maroon);
+    display: none; /* Sembunyi awal */
+    flex-direction: column;
+    min-width: 180px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+}
+
+.nav-menu.active {
+    display: flex;
+    animation: fadeInDown 0.3s ease forwards;
+}
+
+.nav-menu li a {
     color: white;
     text-decoration: none;
-    font-size: 0.85em;
+    padding: 12px 25px;
+    display: block;
+    font-size: 0.95em;
     font-weight: bold;
     text-transform: uppercase;
-    padding: 8px 15px;
-    border-radius: 4px;
-    transition: 0.3s ease;
-    background: rgba(0,0,0,0.3); /* Latar navigasi agar terbaca di atas GIF */
+    transition: 0.3s;
 }
 
-nav a:hover {
+.nav-menu li a:hover {
     color: var(--color-gold);
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* ============================ */
-/* 3. LOGO & TEKS               */
+/* 3. BRANDING (LOGO & TEKS)    */
 /* ============================ */
 .header-brand-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: clamp(15px, 4vw, 40px);
-    margin-bottom: 20px;
 }
 
 .logo-side {
-    height: clamp(60px, 12vw, 120px);
+    height: clamp(60px, 12vw, 130px);
     width: auto;
     object-fit: contain;
-    filter: drop-shadow(0 0 10px rgba(0,0,0,0.5)); /* Agar logo menonjol di atas GIF */
+    filter: drop-shadow(0 0 15px rgba(0,0,0,0.6));
 }
 
 .text-container {
@@ -95,22 +147,22 @@ nav a:hover {
 
 header h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2em, 7vw, 4em);
+    font-size: clamp(2.2em, 7vw, 4.5em);
     letter-spacing: 3px;
     color: white;
-    margin: 0;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.8); /* Shadow agar teks jelas */
+    line-height: 1;
+    text-shadow: 3px 3px 15px rgba(0,0,0,0.9);
 }
 
 header p {
     color: var(--color-gold);
     font-weight: 600;
-    font-size: clamp(1em, 2vw, 1.5em);
-    text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
+    font-size: clamp(1em, 2.5vw, 1.6em);
+    margin-top: 10px;
 }
 
 /* ============================ */
-/* 4. MAIN & SECTIONS           */
+/* 4. CONTENT SECTIONS          */
 /* ============================ */
 main {
     padding: 20px;
@@ -119,101 +171,122 @@ main {
 }
 
 section {
-    margin-bottom: 40px;
-    padding: 25px;
+    margin-bottom: 50px;
+    padding: 35px;
     background-color: var(--color-bg-section);
-    border-radius: 12px;
-    border-left: 6px solid var(--color-gold);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    border-radius: 15px;
+    border-left: 8px solid var(--color-gold);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 section h2 {
     color: var(--color-gold);
-    margin-bottom: 20px;
-    border-bottom: 1px solid #333;
-    padding-bottom: 10px;
+    margin-bottom: 25px;
+    font-family: 'Playfair Display', serif;
+    font-size: 2em;
+    border-bottom: 2px solid var(--color-maroon);
+    display: inline-block;
+    padding-bottom: 5px;
 }
 
 .struktur-list li {
     background: #252525;
-    padding: 12px;
-    margin-bottom: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
     border-radius: 8px;
-    border-left: 4px solid var(--color-maroon);
+    border-left: 5px solid var(--color-maroon);
     list-style: none;
-    color: #fff;
+    transition: 0.3s;
+}
+
+.struktur-list li:hover {
+    background: #2c2c2c;
+    transform: translateX(10px);
 }
 
 /* ============================ */
-/* 5. DIVISI & TOMBOL           */
+/* 5. DIVISI & BUTTONS          */
 /* ============================ */
 .divisi-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
 }
 
 .divisi-box {
     background: #252525;
-    padding: 20px;
-    border-radius: 10px;
-    border-top: 5px solid var(--color-gold);
+    padding: 25px;
+    border-radius: 12px;
+    border-top: 6px solid var(--color-gold);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
 .toggle-anggota {
     background-color: var(--color-maroon) !important;
     color: white !important;
     border: none;
-    padding: 10px 18px;
-    border-radius: 6px;
+    padding: 12px 20px;
+    border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
-    margin-top: 15px;
-    transition: 0.3s;
+    margin-top: 20px;
+    width: 100%;
+    transition: all 0.3s ease;
 }
 
 .toggle-anggota:hover {
-    background-color: #a00000 !important;
+    background-color: #900000 !important;
+    letter-spacing: 1px;
+}
+
+.anggota-list {
+    margin-top: 15px;
+    padding: 15px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 8px;
 }
 
 /* ============================ */
-/* 6. GALERI                    */
+/* 6. GALLERY & FOOTER          */
 /* ============================ */
 .gallery-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
 }
 
 .gallery-item img {
     width: 100%;
     height: 250px;
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: 10px;
+    transition: 0.4s;
+    border: 2px solid #333;
 }
 
-/* ============================ */
-/* 7. RESPONSIF MOBILE          */
-/* ============================ */
-@media (max-width: 768px) {
-    header { padding: 80px 15px 40px 15px; }
-
-    nav {
-        position: static;
-        justify-content: center;
-        margin-bottom: 30px;
-        flex-wrap: wrap;
-    }
-
-    .header-brand-wrapper {
-        gap: 10px;
-    }
+.gallery-item img:hover {
+    transform: scale(1.03);
+    border-color: var(--color-gold);
 }
 
 footer {
     text-align: center;
-    padding: 40px;
-    background: #000;
-    color: #666;
-    font-size: 0.85em;
+    padding: 50px 20px;
+    background: #080808;
+    color: #888;
+    border-top: 1px solid #222;
+}
+
+/* ============================ */
+/* 7. RESPONSIVE                */
+/* ============================ */
+@media (max-width: 600px) {
+    .header-brand-wrapper {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    header { padding: 120px 15px 60px 15px; }
+
+    .nav-container { top: 20px; right: 20px; }
 }
