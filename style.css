@@ -8,10 +8,10 @@
 }
 
 :root {
-    --color-maroon: #600000; /* Maroon gelap yang elegan */
+    --color-maroon: #600000;
     --color-gold: #FFD700;
-    --color-bg-main: #000000; /* Latar belakang utama Hitam */
-    --color-bg-section: #1a1a1a; /* Hitam keabuan untuk kotak konten */
+    --color-bg-main: #000000;
+    --color-bg-section: #1a1a1a;
     --text-primary: #e0e0e0;
 }
 
@@ -29,14 +29,20 @@ body {
 /* ============================ */
 header {
     position: relative;
-    /* Gradien Maroon ke Hitam agar gambar GIF menyatu */
-    background: linear-gradient(rgba(0, 0, 0, 0.8), var(--color-maroon)), url('wqeqwe.gif');
+    /* PERBAIKAN: Memisahkan warna cadangan dan background image agar GIF muncul */
+    background-color: var(--color-bg-main); 
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.65), rgba(96, 0, 0, 0.5)), 
+        url('wqeqwe.gif');
     background-size: cover;
     background-position: center;
-    background-blend-mode: multiply; /* Mencampur warna maroon dengan GIF */
-    padding: 100px 20px 60px 20px;
+    background-repeat: no-repeat;
+    /* Blend mode diubah ke screen atau overlay jika GIF ingin terlihat lebih terang */
+    background-blend-mode: normal; 
+    padding: 120px 20px 80px 20px;
     text-align: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+    z-index: 1;
 }
 
 nav {
@@ -45,6 +51,7 @@ nav {
     right: 20px;
     display: flex;
     gap: 10px;
+    z-index: 10; /* Pastikan navigasi di atas GIF */
 }
 
 nav a {
@@ -56,6 +63,7 @@ nav a {
     padding: 8px 15px;
     border-radius: 4px;
     transition: 0.3s ease;
+    background: rgba(0,0,0,0.3); /* Latar navigasi agar terbaca di atas GIF */
 }
 
 nav a:hover {
@@ -64,7 +72,7 @@ nav a:hover {
 }
 
 /* ============================ */
-/* 3. LOGO & TEKS (REVISI POSISI) */
+/* 3. LOGO & TEKS               */
 /* ============================ */
 .header-brand-wrapper {
     display: flex;
@@ -72,18 +80,13 @@ nav a:hover {
     align-items: center;
     gap: clamp(15px, 4vw, 40px);
     margin-bottom: 20px;
-    flex-wrap: nowrap; /* Menjaga logo tetap di samping teks di layar lebar */
 }
 
 .logo-side {
-    height: clamp(60px, 12vw, 130px);
+    height: clamp(60px, 12vw, 120px);
     width: auto;
     object-fit: contain;
-    transition: transform 0.3s ease;
-}
-
-.logo-side:hover {
-    transform: scale(1.1);
+    filter: drop-shadow(0 0 10px rgba(0,0,0,0.5)); /* Agar logo menonjol di atas GIF */
 }
 
 .text-container {
@@ -92,16 +95,18 @@ nav a:hover {
 
 header h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(1.8em, 6vw, 3.5em);
-    letter-spacing: 2px;
+    font-size: clamp(2em, 7vw, 4em);
+    letter-spacing: 3px;
     color: white;
     margin: 0;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.8); /* Shadow agar teks jelas */
 }
 
 header p {
     color: var(--color-gold);
-    font-weight: 500;
-    font-size: clamp(0.9em, 2vw, 1.2em);
+    font-weight: 600;
+    font-size: clamp(1em, 2vw, 1.5em);
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
 }
 
 /* ============================ */
@@ -116,10 +121,10 @@ main {
 section {
     margin-bottom: 40px;
     padding: 25px;
-    background-color: var(--color-bg-section); /* Mengembalikan warna kotak hitam */
+    background-color: var(--color-bg-section);
     border-radius: 12px;
     border-left: 6px solid var(--color-gold);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
 }
 
 section h2 {
@@ -130,7 +135,7 @@ section h2 {
 }
 
 .struktur-list li {
-    background: #252525; /* Hitam lebih terang dari section */
+    background: #252525;
     padding: 12px;
     margin-bottom: 8px;
     border-radius: 8px;
@@ -153,11 +158,6 @@ section h2 {
     padding: 20px;
     border-radius: 10px;
     border-top: 5px solid var(--color-gold);
-    transition: transform 0.3s;
-}
-
-.divisi-box:hover {
-    transform: translateY(-5px);
 }
 
 .toggle-anggota {
@@ -168,7 +168,7 @@ section h2 {
     border-radius: 6px;
     cursor: pointer;
     font-weight: bold;
-    margin: 15px 0;
+    margin-top: 15px;
     transition: 0.3s;
 }
 
@@ -190,23 +190,23 @@ section h2 {
     height: 250px;
     object-fit: cover;
     border-radius: 8px;
-    border: 2px solid #333;
 }
 
 /* ============================ */
 /* 7. RESPONSIF MOBILE          */
 /* ============================ */
 @media (max-width: 768px) {
-    header { padding: 60px 15px 40px 15px; }
+    header { padding: 80px 15px 40px 15px; }
 
     nav {
         position: static;
         justify-content: center;
         margin-bottom: 30px;
+        flex-wrap: wrap;
     }
 
     .header-brand-wrapper {
-        gap: 15px;
+        gap: 10px;
     }
 }
 
