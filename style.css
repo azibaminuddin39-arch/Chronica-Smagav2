@@ -38,7 +38,7 @@ body {
 }
 .fab-instagram:hover { transform: scale(1.1) rotate(5deg); }
 
-/* --- HEADER & BRANDING (ASPEK RASIO 16:9) --- */
+/* --- HEADER & BRANDING --- */
 header {
     position: relative;
     width: 100%;
@@ -80,7 +80,7 @@ header {
     text-shadow: 1px 1px 5px rgba(0,0,0,0.8); 
 }
 
-/* --- NAVIGASI DENGAN EFEK KACA --- */
+/* --- NAVIGASI --- */
 .nav-container { position: absolute; top: 25px; right: 25px; z-index: 2000; }
 .hamburger { display: flex; flex-direction: column; gap: 6px; background: none; border: none; cursor: pointer; }
 .hamburger span { width: 35px; height: 4px; background: var(--color-gold); border-radius: 2px; }
@@ -98,7 +98,7 @@ header {
 .nav-menu.active { display: flex; }
 .nav-menu a { color: white; text-decoration: none; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.1); }
 
-/* --- SECTIONS DENGAN EFEK KACA --- */
+/* --- SECTIONS --- */
 main { max-width: 1200px; margin: 0 auto; padding: 20px; }
 section { 
     margin-bottom: 60px; padding: 40px; 
@@ -144,13 +144,18 @@ h2 {
     background: rgba(120, 0, 0, 0.6); 
     border-color: rgba(255, 215, 0, 0.6);
 }
+
+/* JABATAN PENGURUS INTI: GLOW EMAS */
 .card-maroon h4 { 
     color: var(--color-gold); 
     margin-bottom: 10px; 
-    font-size: 0.85em; 
+    font-size: 0.9em; 
     text-transform: uppercase; 
     border-bottom: 1px solid rgba(255,215,0,0.2);
     padding-bottom: 5px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.7), 0 0 20px rgba(255, 215, 0, 0.3);
 }
 .card-maroon p { color: white; font-weight: bold; font-size: 1.1em; }
 
@@ -178,7 +183,7 @@ h2 {
     font-family: 'Playfair Display', serif;
 }
 
-/* NAMA KETUA: PUTIH DENGAN WHITE GLOW */
+/* NAMA KETUA DIVISI: PUTIH DENGAN GLOW PUTIH */
 .leader { 
     color: #ffffff !important; 
     font-weight: 800;
@@ -187,15 +192,7 @@ h2 {
     text-transform: uppercase;
     font-size: 0.95rem;
     letter-spacing: 1px;
-    /* Glow Putih untuk Nama */
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.2);
-}
-
-/* Jika Anda ingin label "Ketua:" tetap Kuning di HTML (misalnya menggunakan <span>) */
-/* Anda bisa menggunakan class ini jika struktur HTML-nya dipisah */
-.leader span {
-    color: var(--color-gold);
-    text-shadow: none;
 }
 
 /* LIST ANGGOTA: PUTIH BERSIH */
@@ -243,7 +240,7 @@ h2 {
 .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: var(--color-maroon); color: white; border: 1px solid var(--color-gold); width: 45px; height: 45px; cursor: pointer; border-radius: 50%; z-index: 10; }
 .prev { left: 15px; } .next { right: 15px; }
 
-/* --- FOOTER / COPYRIGHT --- */
+/* --- FOOTER --- */
 footer {
     width: 100%;
     padding: 30px 20px;
@@ -254,7 +251,7 @@ footer {
 }
 footer p { color: #888; font-size: 0.9rem; letter-spacing: 0.5px; }
 
-/* --- RESPONSIVE OPTIMIZATION --- */
+/* --- RESPONSIVE --- */
 @media (min-width: 851px) {
     .header-brand-wrapper { flex-direction: row; gap: 50px; }
     .logo-desktop-only { display: block; height: 160px; filter: drop-shadow(0 0 10px black); }
