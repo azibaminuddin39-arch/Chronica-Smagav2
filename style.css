@@ -4,10 +4,10 @@
     --color-maroon: #600000;
     --color-gold: #FFD700;
     --color-bg-main: #000000;
-    --color-bg-section: rgba(26, 26, 26, 0.6); /* Transparan untuk efek kaca */
+    --color-bg-section: rgba(26, 26, 26, 0.6); 
     --text-primary: #e0e0e0;
     --glass-border: rgba(255, 215, 0, 0.2);
-    --glass-blur: blur(12px);
+    --glass-blur: blur(15px); /* Sedikit ditingkatkan secara global */
 }
 body { 
     font-family: 'Montserrat', sans-serif; 
@@ -87,7 +87,7 @@ header {
 
 .nav-menu {
     position: absolute; top: 50px; right: 0; 
-    background: rgba(60, 0, 0, 0.7); /* Maroon Glass */
+    background: rgba(60, 0, 0, 0.75); 
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
     list-style: none; padding: 15px; border-radius: 12px; 
@@ -112,28 +112,41 @@ section {
 }
 h2 { color: var(--color-gold); margin-bottom: 40px; font-family: 'Playfair Display', serif; font-size: 2.2em; text-align: center; }
 
-/* --- PENGURUS INTI (CARD MAROON GLASS) --- */
+/* --- PENGURUS INTI (CARD MAROON - EXTRA BLUR) --- */
 .silsilah-row { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; }
 .card-maroon { 
-    background: rgba(96, 0, 0, 0.5); /* Maroon Transparan */
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 215, 0, 0.4); 
-    border-radius: 12px; padding: 20px; text-align: center; 
+    background: rgba(96, 0, 0, 0.45); /* Lebih transparan agar blur terasa */
+    backdrop-filter: blur(25px); /* Blur ekstra kuat */
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 215, 0, 0.35); 
+    border-radius: 15px; 
+    padding: 25px 20px; 
+    text-align: center; 
     min-width: 220px; flex: 1; max-width: 300px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    transition: transform 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    transition: all 0.4s ease;
 }
-.card-maroon:hover { transform: translateY(-5px); background: rgba(96, 0, 0, 0.7); }
-.card-maroon h4 { color: var(--color-gold); margin-bottom: 8px; font-size: 0.9em; text-transform: uppercase; border-bottom: 1px solid rgba(255,215,0,0.2); }
-.card-maroon p { color: white; font-weight: bold; }
+.card-maroon:hover { 
+    transform: translateY(-8px); 
+    background: rgba(120, 0, 0, 0.6); 
+    border-color: rgba(255, 215, 0, 0.6);
+}
+.card-maroon h4 { 
+    color: var(--color-gold); 
+    margin-bottom: 10px; 
+    font-size: 0.85em; 
+    text-transform: uppercase; 
+    border-bottom: 1px solid rgba(255,215,0,0.2);
+    padding-bottom: 5px;
+}
+.card-maroon p { color: white; font-weight: bold; font-size: 1.1em; }
 
 /* --- DIVISI GLASS BOX --- */
 .divisi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
 .divisi-box { 
     background: rgba(255, 255, 255, 0.05); 
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     padding: 25px; border-radius: 15px; 
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-top: 5px solid var(--color-gold); 
