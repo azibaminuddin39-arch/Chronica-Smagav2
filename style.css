@@ -68,40 +68,36 @@ header {
     width: 100%;
 }
 
-/* --- LOGO SHINING & FLOATING EFFECT --- */
+/* --- LOGO SHINING EFFECT (FLOATING OFF) --- */
 .logo-desktop-only, .logo-mini { 
     position: relative;
     filter: drop-shadow(0 0 8px rgba(0,0,0,0.8));
-    animation: floatLogo 4s ease-in-out infinite; /* Animasi melayang */
-    overflow: hidden; /* Penting untuk efek kilatan */
+    /* Animasi floatLogo dimatikan sesuai permintaan */
+    overflow: hidden;
+    display: inline-block;
 }
 
-/* Efek Kilatan Cahaya (Shine) */
-.logo-desktop-only::before, .logo-mini::before {
+/* Efek Kilatan Cahaya (Shine) Diperkuat */
+.logo-desktop-only::after, .logo-mini::after {
     content: "";
     position: absolute;
-    top: 0;
+    top: -50%;
     left: -150%;
-    width: 50%;
-    height: 100%;
+    width: 60%; /* Kilatan lebih lebar */
+    height: 200%;
     background: linear-gradient(
         to right, 
         transparent, 
-        rgba(255, 255, 255, 0.4), 
+        rgba(255, 255, 255, 0.8), /* Intensitas diperkuat ke 0.8 */
         transparent
     );
-    transform: skewX(-25deg);
-    animation: shineLogo 3s infinite;
+    transform: rotate(30deg);
+    animation: shineEffect 3.5s infinite; /* Gerakan periodik */
 }
 
-@keyframes floatLogo {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-}
-
-@keyframes shineLogo {
+@keyframes shineEffect {
     0% { left: -150%; }
-    30% { left: 150%; }
+    20% { left: 150%; }
     100% { left: 150%; }
 }
 
