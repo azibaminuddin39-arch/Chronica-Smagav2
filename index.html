@@ -28,12 +28,14 @@
         </nav>
 
         <div class="header-brand-wrapper">
-            <img src="logo_sekolah.png" alt="Logo Sekolah" class="logo-side">
+            <img src="logo_sekolah.png" alt="Logo Sekolah" class="logo-side logo-sekolah">
+            
             <div class="text-container">
                 <h1>CHRONICA</h1>
                 <p>Jurnalistik SMAN 3 Banjarbaru</p>
             </div>
-            <img src="logo_organisasi.png" alt="Logo Organisasi" class="logo-side">
+
+            <img src="logo_organisasi.png" alt="Logo Organisasi" class="logo-side logo-organisasi">
         </div>
     </header>
 
@@ -171,37 +173,6 @@
         <p>&copy; 2025 CHRONICA Jurnalistik SMAN 3 Banjarbaru.</p>
     </footer>
 
-    <script>
-        // Logika Hamburger Menu
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('nav-menu');
-
-        hamburger.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            // Opsional: Animasi tombol menjadi X
-            hamburger.classList.toggle('is-active');
-        });
-
-        // Menutup menu otomatis saat link diklik
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // Logika Tombol Lihat Anggota
-        document.querySelectorAll('.toggle-anggota').forEach(button => {
-            button.addEventListener('click', function() {
-                const list = this.nextElementSibling;
-                if (list.style.display === "none") {
-                    list.style.display = "block";
-                    this.textContent = "Sembunyikan Anggota";
-                } else {
-                    list.style.display = "none";
-                    this.textContent = "Lihat Anggota";
-                }
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
