@@ -1,17 +1,16 @@
 /* RESET & VARIABLES */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-    --color-maroon: #4b0000; /* Maroon Utama */
-    --color-maroon-bright: #600000;
+    --color-maroon: #4b0000;
+    --color-box-maroon: rgba(75, 0, 0, 0.8); /* Box Maroon Glass */
     --color-accent: #e0e0e0; /* Silver Platinum */
-    --color-blue-accent: #0088ff; /* Electric Blue */
-    --color-bg-section: rgba(75, 0, 0, 0.75); /* Box Warna Merah Maroon */
-    --text-primary: #e0e0e0; /* Semua Text Silver */
+    --color-blue-accent: #0088ff; 
+    --text-primary: #e0e0e0; /* Teks Silver */
     --glass-border: rgba(255, 255, 255, 0.15);
     --glass-blur: blur(25px);
 }
 
-/* --- ANIMASI BACKGROUND APPLE MUSIC STYLE --- */
+/* --- ANIMASI BACKGROUND & NOISE --- */
 @keyframes appleMusicGradient {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
@@ -20,7 +19,6 @@
 
 body { 
     font-family: 'Montserrat', sans-serif; 
-    /* GRADASI: Silver Gelap, Maroon, Biru Malam, dan Deep Onyx */
     background: linear-gradient(-45deg, #2c2c2c, #4b0000, #000814, #1a1a1a);
     background-size: 400% 400%;
     animation: appleMusicGradient 20s ease infinite;
@@ -31,53 +29,15 @@ body {
     position: relative;
 }
 
-/* --- EFEK GRAIN/NOISE HALUS --- */
 body::before {
     content: "";
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    opacity: 0.04;
-    pointer-events: none;
-    z-index: 1;
+    opacity: 0.04; pointer-events: none; z-index: 1;
 }
 
-/* --- TOMBOL SOSIAL MEDIA MELAYANG --- */
-@keyframes floatIcon {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-12px); }
-}
-
-.fab-instagram, .fab-whatsapp {
-    position: fixed;
-    bottom: 25px;
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    z-index: 3000;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.6);
-    text-decoration: none;
-    animation: floatIcon 3s ease-in-out infinite;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-}
-
-.fab-instagram {
-    right: 25px;
-    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-    font-size: 28px;
-}
-
-.fab-whatsapp {
-    right: 95px;
-    background: #25D366;
-    font-size: 30px;
-}
-
-/* --- HEADER & BRANDING --- */
+/* --- HEADER --- */
 header {
     position: relative;
     width: 100%;
@@ -85,7 +45,6 @@ header {
     background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,15,30,0.5)), url('wqeqwe.gif');
     background-size: cover; 
     background-position: center;
-    background-repeat: no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -95,10 +54,11 @@ header {
     z-index: 2;
 }
 
+/* --- LOGO SHINE --- */
 .logo-desktop-only, .logo-mini { 
     position: relative;
-    filter: drop-shadow(0 0 15px rgba(255,255,255,0.2));
     overflow: hidden;
+    filter: drop-shadow(0 0 15px rgba(255,255,255,0.2));
 }
 
 .logo-desktop-only::after, .logo-mini::after {
@@ -116,97 +76,93 @@ header {
     100% { left: 150%; }
 }
 
-.text-container h1 { 
-    font-family: 'Playfair Display', serif; 
-    font-size: 2.5em; 
-    color: var(--text-primary); /* Silver */
-    letter-spacing: 3px; 
-    text-shadow: 0 0 20px rgba(255,255,255,0.2); 
-}
-
-/* --- NAVIGASI --- */
-.hamburger span { width: 35px; height: 4px; background: var(--text-primary); border-radius: 2px; }
-
-.nav-menu {
-    position: absolute; top: 50px; right: 0; 
-    background: rgba(44, 0, 0, 0.9); /* Maroon Menu */
-    backdrop-filter: var(--glass-blur);
-    border: 1px solid var(--glass-border);
-    display: none; flex-direction: column; min-width: 180px;
-    border-radius: 12px;
-}
-.nav-menu.active { display: flex; }
-.nav-menu a { color: var(--text-primary); text-decoration: none; padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-
-/* --- SECTIONS (MODERN MAROON GLASS) --- */
+/* --- MAIN CONTENT & SECTIONS --- */
 main { max-width: 1200px; margin: 0 auto; padding: 20px; position: relative; z-index: 5; }
+
 section { 
     margin-bottom: 60px; padding: 40px; 
-    background: var(--color-bg-section); /* Merah Maroon Box */
-    backdrop-filter: blur(30px) saturate(150%);
-    -webkit-backdrop-filter: blur(30px) saturate(150%);
+    background: var(--color-box-maroon); /* Box Maroon */
+    backdrop-filter: var(--glass-blur);
     border-radius: 24px; 
     border: 1px solid var(--glass-border);
-    border-left: 8px solid var(--color-accent); /* Aksen Silver di Kiri */
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    border-left: 8px solid var(--color-accent); /* Aksen Silver */
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5);
 }
 
 h2 { 
-    color: var(--text-primary); /* Silver */
+    color: var(--text-primary); 
     margin-bottom: 40px; 
     font-family: 'Playfair Display', serif; 
     font-size: 2.2em; 
     text-align: center; 
 }
 
-/* --- CARDS PENGURUS (DEEP MAROON) --- */
+/* --- PENGURUS INTI (FIXED LAYOUT) --- */
+.silsilah-row { 
+    display: flex; 
+    justify-content: center; 
+    gap: 20px; 
+    flex-wrap: wrap; 
+}
+
 .card-maroon { 
-    background: rgba(60, 0, 0, 0.6) !important; 
-    backdrop-filter: blur(10px);
+    background: rgba(40, 0, 0, 0.6) !important; 
     border: 1px solid rgba(255, 255, 255, 0.1); 
-    border-radius: 18px; padding: 25px 20px; 
+    border-radius: 18px; padding: 25px; 
     text-align: center;
-    transition: all 0.4s ease;
-}
-.card-maroon:hover { 
-    transform: translateY(-10px); 
-    border-color: var(--color-blue-accent);
-    background: rgba(90, 0, 0, 0.8) !important;
+    flex: 1;
+    min-width: 250px;
+    max-width: 300px;
+    transition: 0.3s;
 }
 
-.card-maroon h4 { color: var(--color-blue-accent); font-weight: 800; }
-.card-maroon p { color: var(--text-primary); } /* Nama Silver */
+.card-maroon:hover { transform: translateY(-10px); background: rgba(80, 0, 0, 0.8) !important; }
+.card-maroon h4 { color: var(--color-blue-accent); text-transform: uppercase; font-weight: 800; }
 
-/* --- DIVISI BOX --- */
+/* --- DIVISI GRID (FIXED LAYOUT) --- */
+.divisi-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 25px; 
+}
+
 .divisi-box { 
-    background: rgba(100, 0, 0, 0.3); /* Maroon Transparan */
-    backdrop-filter: blur(15px);
+    background: rgba(120, 0, 0, 0.2); 
     padding: 25px; border-radius: 20px; 
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
     border-top: 5px solid var(--color-accent); /* Aksen Silver Atas */
 }
 
-.leader { color: var(--text-primary) !important; }
-.leader span { color: var(--color-blue-accent); }
+/* --- SLIDER --- */
+.slider-container { position: relative; max-width: 900px; margin: 0 auto; overflow: hidden; border-radius: 20px; }
+.slider-wrapper { display: flex; transition: transform 0.6s cubic-bezier(0.45, 0, 0.55, 1); }
+.slider-item { min-width: 100%; }
+.slider-item img { width: 100%; height: 450px; object-fit: cover; }
 
+/* --- BUTTONS --- */
 .toggle-btn { 
     width: 100%; padding: 12px; background: rgba(0, 136, 255, 0.1); 
     color: var(--text-primary); border: 1px solid var(--text-primary); 
-    border-radius: 12px; cursor: pointer;
+    border-radius: 12px; cursor: pointer; transition: 0.3s;
 }
 .toggle-btn:hover { background: var(--text-primary); color: #000; }
 
 /* --- FOOTER --- */
 footer { 
     padding: 50px 20px; 
-    background: rgba(20, 0, 0, 0.95); /* Deep Maroon */
+    background: rgba(20, 0, 0, 0.95); 
     text-align: center; 
-    border-top: 1px solid rgba(255,255,255,0.05); 
+    border-top: 1px solid rgba(255,255,255,0.1); 
 }
-footer p { color: var(--text-primary); opacity: 0.8; }
 
 /* --- RESPONSIVE --- */
+@media (min-width: 851px) {
+    .header-brand-wrapper { flex-direction: row; gap: 50px; }
+    .logo-desktop-only { display: block; height: 160px; }
+}
+
 @media (max-width: 850px) {
     .text-container h1 { font-size: 1.8em; }
-    section { padding: 30px 20px; border-radius: 15px; }
+    section { padding: 30px 20px; }
+    .card-maroon { max-width: 100%; }
 }
