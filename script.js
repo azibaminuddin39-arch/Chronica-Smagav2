@@ -1,50 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Logika Menu Hamburger
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('nav-menu');
-
-    if (hamburger) {
-        hamburger.addEventListener('click', (e) => {
-            e.stopPropagation(); // Mencegah klik menyebar
-            navMenu.classList.toggle('active');
-        });
-    }
-
-    // Menutup menu jika mengklik di mana saja di luar menu
-    document.addEventListener('click', () => {
-        if (navMenu && navMenu.classList.contains('active')) {
-            navMenu.classList.remove('active');
-        }
+    // Navigasi
+    const hb = document.getElementById('hamburger');
+    const menu = document.getElementById('nav-menu');
+    hb.addEventListener('click', (e) => {
+        e.stopPropagation();
+        menu.classList.toggle('active');
     });
 
-    // 2. Logika Slider Gambar
-    const wrapper = document.getElementById('slider-wrapper');
-    const slides = document.querySelectorAll('.slider-item');
-    const nextBtn = document.getElementById('nextBtn');
-    const prevBtn = document.getElementById('prevBtn');
-
-    if (wrapper && slides.length > 0) {
-        let index = 0;
-        const total = slides.length;
-
-        const updateSlider = () => {
-            wrapper.style.transform = `translateX(${-index * 100}%)`;
-        };
-
-        nextBtn.addEventListener('click', () => {
-            index = (index + 1) % total;
-            updateSlider();
+    // Toggle Anggota
+    const btns = document.querySelectorAll('.toggle-btn');
+    btns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const list = this.nextElementSibling;
+            const isOpen = list.style.display === 'block';
+            list.style.display = isOpen ? 'none' : 'block';
+            this.textContent = isOpen ? 'Lihat Anggota' : 'Sembunyikan Anggota';
         });
+    });
 
-        prevBtn.addEventListener('click', () => {
-            index = (index - 1 + total) % total;
-            updateSlider();
-        });
-
-        // Auto slide setiap 5 detik
-        setInterval(() => {
-            index = (index + 1) % total;
-            updateSlider();
-        }, 5000);
-    }
+    document.addEventListener('click', () => menu.classList.remove('active'));
 });
