@@ -55,10 +55,10 @@ header {
     text-align: center;
 }
 
-/* --- KHUSUS HALAMAN BERITA (NEW) --- */
+/* --- KHUSUS HALAMAN BERITA --- */
 .page-berita header {
-    /* Silahkan ganti 'LB_2.gif' dengan nama file GIF berita Anda */
-    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('berita-bg.gif') !important;
+    /* Menggunakan file LB_2.gif khusus untuk halaman berita */
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('LB_2.gif') !important;
 }
 
 .header-brand-wrapper {
@@ -283,4 +283,3 @@ footer p { color: #888; font-size: 0.9rem; letter-spacing: 0.5px; }
     section { padding: 25px 15px; }
     footer p { font-size: 0.8rem; }
 }
-
