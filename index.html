@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CHRONICA - Jurnalistik SMAN 3 Banjarbaru</title>
+    <title>CHRONICA - SMAN 3 Banjarbaru</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <a href="https://www.instagram.com/chronica.smaga" target="_blank" class="fab-instagram" aria-label="Instagram">
+    <a href="https://www.instagram.com/chronica.smaga" target="_blank" class="fab-instagram" aria-label="Instagram Chronica">
         <i class="fab fa-instagram"></i>
     </a>
 
     <header>
         <nav class="nav-container">
-            <button class="hamburger" id="hamburger">
+            <button class="hamburger" id="hamburger" aria-label="Buka Menu">
                 <span></span><span></span><span></span>
             </button>
             <ul class="nav-menu" id="nav-menu">
@@ -40,23 +41,22 @@
     <main>
         <section id="visi-misi">
             <h2>Visi & Misi</h2>
-            <div class="visi-content">
-                <p class="visi-text">"Menjadi wadah jurnalistik yang inspiratif dan berintegritas, merekam cerita-cerita inspiratif dan merefleksikan semangat solidaritas antara divisi."</p>
-                <hr class="divider">
+            <div class="visi-inner">
+                <p class="visi-text">"Menjadi wadah jurnalistik yang inspiratif dan berintegritas, merekam cerita-cerita inspiratif dan merefleksikan semangat solidaritas antara divisi, serta menjadi referensi bagi masyarakat dalam memahami isu-isu terkini."</p>
                 <div class="misi-tujuan-grid">
                     <div class="info-box">
                         <h3>Misi</h3>
                         <ul>
-                            <li>Merekam cerita inspiratif.</li>
-                            <li>Meningkatkan kualitas skill.</li>
-                            <li>Menjaga solidaritas.</li>
+                            <li>Merekam cerita inspiratif dari lingkungan sekolah.</li>
+                            <li>Meningkatkan kualitas skill penulisan dan media.</li>
+                            <li>Menjaga kekeluargaan antar divisi internal.</li>
                         </ul>
                     </div>
                     <div class="info-box">
                         <h3>Tujuan</h3>
                         <ul>
-                            <li>Wadah potensi siswa.</li>
-                            <li>Integritas tinggi.</li>
+                            <li>Wadah pengembangan potensi jurnalistik siswa.</li>
+                            <li>Media informasi terpercaya di SMAN 3.</li>
                         </ul>
                     </div>
                 </div>
@@ -65,28 +65,37 @@
 
         <section id="organisasi">
             <h2>Pengurus Inti</h2>
-            <div class="org-container">
+            <div class="org-layout">
                 <div class="org-row">
-                    <div class="card card-white"><h4>Pembina</h4><p>Dr. Sarifah Triana M.Pd</p></div>
+                    <div class="card-putih">
+                        <h4>Pembina</h4>
+                        <p>Dr. Sarifah Triana M.Pd</p>
+                    </div>
                 </div>
                 <div class="org-row">
-                    <div class="card card-white"><h4>Ketua</h4><p>Nourma Yunita</p></div>
-                    <div class="card card-white"><h4>Wakil Ketua</h4><p>Awan Putra Ramadhan</p></div>
-                    <div class="card card-white"><h4>Sekretaris 1</h4><p>Azib Aminuddin</p></div>
+                    <div class="card-putih"><h4>Ketua</h4><p>Nourma Yunita</p></div>
+                    <div class="card-putih"><h4>Wakil Ketua</h4><p>Awan Putra Ramadhan</p></div>
+                    <div class="card-putih"><h4>Sekretaris 1</h4><p>Azib Aminuddin</p></div>
                 </div>
                 <div class="org-row">
-                    <div class="card card-white"><h4>Sekretaris 2</h4><p>Alexandra Octoriza R.s</p></div>
-                    <div class="card card-white"><h4>Bendahara</h4><p>Kamila Atiqa Manulang</p></div>
+                    <div class="card-putih"><h4>Sekretaris 2</h4><p>Alexandra Octoriza R.s</p></div>
+                    <div class="card-putih"><h4>Bendahara</h4><p>Kamila Atiqa Manulang</p></div>
                 </div>
             </div>
         </section>
 
         <section id="kegiatan">
-            <h2>Kegiatan</h2>
+            <h2>Kegiatan Jurnalistik</h2>
             <div class="slider-container">
                 <div class="slider-wrapper" id="slider-wrapper">
-                    <div class="slider-item"><img src="foto1.jpg" alt="1"><div class="slider-desc">Liputan</div></div>
-                    <div class="slider-item"><img src="foto2.jpg" alt="2"><div class="slider-desc">Workshop</div></div>
+                    <div class="slider-item">
+                        <img src="foto1.jpg" alt="Kegiatan 1">
+                        <div class="slider-desc">Workshop Jurnalistik</div>
+                    </div>
+                    <div class="slider-item">
+                        <img src="foto2.jpg" alt="Kegiatan 2">
+                        <div class="slider-desc">Liputan Acara Sekolah</div>
+                    </div>
                 </div>
                 <button class="slider-btn prev" id="prevBtn">&#10094;</button>
                 <button class="slider-btn next" id="nextBtn">&#10095;</button>
@@ -95,7 +104,7 @@
     </main>
 
     <footer>
-        <p>&copy; 2025 CHRONICA SMAN 3 Banjarbaru.</p>
+        <p>&copy; 2025 CHRONICA Jurnalistik SMAN 3 Banjarbaru.</p>
     </footer>
 
     <script src="script.js"></script>
