@@ -43,6 +43,7 @@ header {
     position: relative;
     width: 100%;
     aspect-ratio: 16 / 9; 
+    /* Default Background (Index/Home) */
     background-image: linear-gradient(rgba(0,0,0,0.6), rgba(96,0,0,0.4)), url('wqeqwe.gif');
     background-size: cover; 
     background-position: center;
@@ -52,6 +53,12 @@ header {
     justify-content: center;
     padding: 20px;
     text-align: center;
+}
+
+/* --- KHUSUS HALAMAN BERITA (NEW) --- */
+.page-berita header {
+    /* Silahkan ganti 'berita-bg.gif' dengan nama file GIF berita Anda */
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('berita-bg.gif') !important;
 }
 
 .header-brand-wrapper {
@@ -193,6 +200,13 @@ h2 {
     font-size: 0.95rem;
     letter-spacing: 1px;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* Mengatur label 'Ketua:' tetap Gold jika dibungkus span */
+.leader span {
+    color: var(--color-gold);
+    text-shadow: none;
+    margin-right: 5px;
 }
 
 /* LIST ANGGOTA: PUTIH BERSIH */
