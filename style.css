@@ -43,7 +43,6 @@ header {
     position: relative;
     width: 100%;
     aspect-ratio: 16 / 9; 
-    /* Default Background (Index/Home) */
     background-image: linear-gradient(rgba(0,0,0,0.6), rgba(96,0,0,0.4)), url('wqeqwe.gif');
     background-size: cover; 
     background-position: center;
@@ -57,7 +56,6 @@ header {
 
 /* --- KHUSUS HALAMAN BERITA --- */
 .page-berita header {
-    /* Menggunakan file LB_2.gif khusus untuk halaman berita */
     background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('LB_2.gif') !important;
 }
 
@@ -70,9 +68,46 @@ header {
     width: 100%;
 }
 
+/* --- LOGO SHINING & FLOATING EFFECT --- */
+.logo-desktop-only, .logo-mini { 
+    position: relative;
+    filter: drop-shadow(0 0 8px rgba(0,0,0,0.8));
+    animation: floatLogo 4s ease-in-out infinite; /* Animasi melayang */
+    overflow: hidden; /* Penting untuk efek kilatan */
+}
+
+/* Efek Kilatan Cahaya (Shine) */
+.logo-desktop-only::before, .logo-mini::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        to right, 
+        transparent, 
+        rgba(255, 255, 255, 0.4), 
+        transparent
+    );
+    transform: skewX(-25deg);
+    animation: shineLogo 3s infinite;
+}
+
+@keyframes floatLogo {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+@keyframes shineLogo {
+    0% { left: -150%; }
+    30% { left: 150%; }
+    100% { left: 150%; }
+}
+
 .logo-desktop-only { display: none; } 
 .logo-group-mobile { display: flex; gap: 15px; margin-bottom: 10px; }
-.logo-mini { height: 70px; filter: drop-shadow(0 0 5px black); }
+.logo-mini { height: 70px; }
 
 .text-container h1 { 
     font-family: 'Playfair Display', serif; 
@@ -126,123 +161,52 @@ h2 {
     text-align: center; 
 }
 
-/* --- PENGURUS INTI (CARD MAROON) --- */
-.silsilah-row { 
-    display: flex; 
-    justify-content: center; 
-    gap: 20px; 
-    flex-wrap: wrap; 
-    margin-bottom: 20px; 
-}
+/* --- PENGURUS INTI --- */
+.silsilah-row { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; }
 .card-maroon { 
     background: rgba(96, 0, 0, 0.45); 
     backdrop-filter: blur(25px); 
     -webkit-backdrop-filter: blur(25px);
     border: 1px solid rgba(255, 215, 0, 0.35); 
-    border-radius: 15px; 
-    padding: 25px 20px; 
-    text-align: center; 
-    min-width: 220px; flex: 1; max-width: 300px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    border-radius: 15px; padding: 25px 20px; 
+    text-align: center; min-width: 220px; flex: 1; max-width: 300px;
     transition: all 0.4s ease;
 }
-.card-maroon:hover { 
-    transform: translateY(-8px); 
-    background: rgba(120, 0, 0, 0.6); 
-    border-color: rgba(255, 215, 0, 0.6);
-}
+.card-maroon:hover { transform: translateY(-8px); border-color: var(--color-gold); }
 
-/* JABATAN PENGURUS INTI: GLOW EMAS */
 .card-maroon h4 { 
     color: var(--color-gold); 
     margin-bottom: 10px; 
     font-size: 0.9em; 
     text-transform: uppercase; 
-    border-bottom: 1px solid rgba(255,215,0,0.2);
-    padding-bottom: 5px;
     font-weight: 800;
-    letter-spacing: 1.5px;
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.7), 0 0 20px rgba(255, 215, 0, 0.3);
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
 }
-.card-maroon p { color: white; font-weight: bold; font-size: 1.1em; }
 
-/* --- DIVISI GLASS BOX --- */
-.divisi-grid { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-    gap: 25px; 
-    justify-content: center; 
-}
+/* --- DIVISI BOX --- */
+.divisi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
 .divisi-box { 
     background: rgba(255, 255, 255, 0.05); 
     backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    padding: 25px; 
-    border-radius: 15px; 
+    padding: 25px; border-radius: 15px; 
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-top: 5px solid var(--color-gold); 
     text-align: center; 
 }
 
-.divisi-box h3 {
-    color: var(--color-gold);
-    margin-bottom: 15px;
-    font-family: 'Playfair Display', serif;
-}
-
-/* NAMA KETUA DIVISI: PUTIH DENGAN GLOW PUTIH */
 .leader { 
     color: #ffffff !important; 
     font-weight: 800;
-    margin-bottom: 12px;
-    display: block;
-    text-transform: uppercase;
-    font-size: 0.95rem;
-    letter-spacing: 1px;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.2);
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
 }
+.leader span { color: var(--color-gold); text-shadow: none; }
 
-/* Mengatur label 'Ketua:' tetap Gold jika dibungkus span */
-.leader span {
-    color: var(--color-gold);
-    text-shadow: none;
-    margin-right: 5px;
-}
-
-/* LIST ANGGOTA: PUTIH BERSIH */
-.anggota-list { 
-    display: none; 
-    margin-top: 15px; 
-    padding-left: 0; 
-    list-style: none; 
-    color: #ffffff !important; 
-    border-top: 1px solid rgba(255, 215, 0, 0.2); 
-    padding-top: 15px;
-}
-
-.anggota-list li {
-    padding: 6px 0;
-    font-size: 0.9rem;
-    transition: all 0.2s ease;
-    opacity: 0.9;
-}
-
-.anggota-list li:hover {
-    color: var(--color-gold);
-    opacity: 1;
-    transform: translateX(5px);
-}
+.anggota-list { display: none; margin-top: 15px; list-style: none; color: white; }
 
 .toggle-btn { 
-    width: 100%; 
-    padding: 10px; 
-    background: var(--color-maroon); 
-    color: white; 
-    border: 1px solid var(--color-gold); 
-    border-radius: 8px; 
-    cursor: pointer; 
-    font-weight: bold; 
-    margin-top: 15px; 
+    width: 100%; padding: 10px; background: var(--color-maroon); 
+    color: white; border: 1px solid var(--color-gold); 
+    border-radius: 8px; cursor: pointer; font-weight: bold; 
 }
 
 /* --- SLIDER --- */
@@ -255,31 +219,18 @@ h2 {
 .prev { left: 15px; } .next { right: 15px; }
 
 /* --- FOOTER --- */
-footer {
-    width: 100%;
-    padding: 30px 20px;
-    background: #0a0a0a;
-    text-align: center;
-    border-top: 1px solid rgba(255, 215, 0, 0.1);
-    margin-top: 40px;
-}
-footer p { color: #888; font-size: 0.9rem; letter-spacing: 0.5px; }
+footer { padding: 30px; background: #0a0a0a; text-align: center; border-top: 1px solid rgba(255,215,0,0.1); }
 
 /* --- RESPONSIVE --- */
 @media (min-width: 851px) {
     .header-brand-wrapper { flex-direction: row; gap: 50px; }
-    .logo-desktop-only { display: block; height: 160px; filter: drop-shadow(0 0 10px black); }
+    .logo-desktop-only { display: block; height: 160px; }
     .logo-group-mobile { display: none; }
     .text-container h1 { font-size: 3.5em; }
-    .header-brand-wrapper img:nth-of-type(1) { order: 1; }
-    .text-container { order: 2; }
-    .header-brand-wrapper img:nth-of-type(2) { order: 3; }
 }
 
 @media (max-width: 850px) {
-    header { aspect-ratio: 16 / 9; padding: 10px; }
+    header { aspect-ratio: 16 / 9; }
     .text-container h1 { font-size: 1.8em; }
     .logo-mini { height: 60px; }
-    section { padding: 25px 15px; }
-    footer p { font-size: 0.8rem; }
 }
