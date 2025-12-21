@@ -198,7 +198,6 @@ header {
 main { max-width: 1200px; margin: 0 auto; padding: 20px; }
 section { 
     margin-bottom: 60px; padding: 40px; 
-    /* Kontras ditingkatkan agar bintang di belakang terlihat estetik */
     background: rgba(15, 15, 15, 0.7); 
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
@@ -208,12 +207,20 @@ section {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
-h2 { 
-    color: var(--color-silver); 
+/* --- JUDUL: STRUKTUR ORGANISASI, VISI & MISI (MAROON GLOW) --- */
+h2, .visi-misi-title { 
+    color: #800000; 
     margin-bottom: 40px; 
     font-family: 'Playfair Display', serif; 
-    font-size: 2.2em; 
+    font-size: 2.8em; 
     text-align: center; 
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-weight: 900;
+    text-shadow: 
+        0 0 10px rgba(128, 0, 0, 0.9), 
+        0 0 20px rgba(128, 0, 0, 0.7), 
+        0 0 40px rgba(128, 0, 0, 0.5);
 }
 
 /* --- PENGURUS INTI --- */
