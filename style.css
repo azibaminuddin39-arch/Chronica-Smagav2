@@ -25,7 +25,7 @@ body {
 }
 
 /* ============================ */
-/* 2. HEADER & NAV-MENU (BARU)  */
+/* 2. HEADER & NAV-MENU         */
 /* ============================ */
 header {
     position: relative;
@@ -42,7 +42,6 @@ header {
     z-index: 1;
 }
 
-/* Container Navigasi Pojok Kanan */
 .nav-container {
     position: absolute;
     top: 30px;
@@ -50,7 +49,6 @@ header {
     z-index: 100;
 }
 
-/* Tombol Garis 3 (Hamburger) */
 .hamburger {
     display: flex;
     flex-direction: column;
@@ -71,28 +69,20 @@ header {
     transition: all 0.3s ease;
 }
 
-/* Animasi Hamburger ke X saat Aktif */
-.hamburger.is-active span:nth-child(1) {
-    transform: translateY(9px) rotate(45deg);
-}
-.hamburger.is-active span:nth-child(2) {
-    opacity: 0;
-}
-.hamburger.is-active span:nth-child(3) {
-    transform: translateY(-9px) rotate(-45deg);
-}
+.hamburger.is-active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+.hamburger.is-active span:nth-child(2) { opacity: 0; }
+.hamburger.is-active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
-/* Menu Dropdown */
 .nav-menu {
     position: absolute;
     top: 45px;
     right: 0;
-    background-color: rgba(20, 0, 0, 0.95); /* Maroon sangat gelap */
+    background-color: rgba(20, 0, 0, 0.95);
     list-style: none;
     padding: 15px 0;
     border-radius: 10px;
     border: 1px solid var(--color-maroon);
-    display: none; /* Sembunyi awal */
+    display: none;
     flex-direction: column;
     min-width: 180px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.8);
@@ -134,11 +124,25 @@ header {
     gap: clamp(15px, 4vw, 40px);
 }
 
+/* Base setting untuk kedua logo */
 .logo-side {
-    height: clamp(60px, 12vw, 130px);
     width: auto;
     object-fit: contain;
     filter: drop-shadow(0 0 15px rgba(0,0,0,0.6));
+    transition: transform 0.3s ease;
+}
+
+/* Ukuran Terpisah: Silakan ubah angka di bawah untuk mengatur besar masing-masing */
+.logo-sekolah {
+    height: clamp(80px, 15vw, 150px); 
+}
+
+.logo-organisasi {
+    height: clamp(80px, 15vw, 150px); 
+}
+
+.logo-side:hover {
+    transform: scale(1.05);
 }
 
 .text-container {
@@ -280,13 +284,23 @@ footer {
 /* ============================ */
 /* 7. RESPONSIVE                */
 /* ============================ */
+@media (max-width: 768px) {
+    .header-brand-wrapper {
+        flex-direction: row; /* Tetap berjejer di tablet */
+        gap: 15px;
+    }
+    
+    .logo-sekolah, .logo-organisasi {
+        height: clamp(60px, 12vw, 100px);
+    }
+}
+
 @media (max-width: 600px) {
     .header-brand-wrapper {
-        flex-direction: column;
+        flex-direction: column; /* Menumpuk di HP agar rapi */
         gap: 20px;
     }
     
     header { padding: 120px 15px 60px 15px; }
-
     .nav-container { top: 20px; right: 20px; }
 }
