@@ -1,243 +1,271 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CHRONICA - Jurnalistik SMAN 3 Banjarbaru</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap');
-    </style>
-</head>
-<body>
+/* RESET & VARIABLES */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+    --color-maroon: #600000;
+    --color-gold: #FFD700;
+    --color-bg-main: #000000;
+    --color-bg-section: rgba(26, 26, 26, 0.6); 
+    --text-primary: #e0e0e0;
+    --glass-border: rgba(255, 215, 0, 0.2);
+    --glass-blur: blur(15px);
+}
+body { 
+    font-family: 'Montserrat', sans-serif; 
+    background: var(--color-bg-main); 
+    color: var(--text-primary); 
+    line-height: 1.6; 
+    overflow-x: hidden; 
+}
 
-    <a href="https://www.instagram.com/chronicasmaga_" target="_blank" class="fab-instagram" aria-label="Instagram Chronica">
-        <i class="fab fa-instagram"></i>
-    </a>
+/* --- TOMBOL INSTAGRAM MELAYANG --- */
+.fab-instagram {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 55px;
+    height: 55px;
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 28px;
+    z-index: 3000;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.6);
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+.fab-instagram:hover { transform: scale(1.1) rotate(5deg); }
 
-    <header>
-        <nav class="nav-container">
-            <button class="hamburger" id="hamburger" aria-label="Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-menu" id="nav-menu">
-                <li><a href="#visi-misi">Visi & Misi</a></li>
-                <li><a href="#organisasi">Struktur</a></li>
-                <li><a href="berita.html">Berita</a></li>
-                <li><a href="#kegiatan">Kegiatan</a></li>
-            </ul>
-        </nav>
+/* --- HEADER & BRANDING --- */
+header {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9; 
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(96,0,0,0.4)), url('wqeqwe.gif');
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+}
 
-        <div class="header-brand-wrapper">
-            <img src="Logo_1.png" alt="Logo Sekolah" class="logo-desktop-only">
-            
-            <div class="logo-group-mobile">
-                <img src="Logo_1.png" alt="Logo Sekolah" class="logo-mini">
-                <img src="Logo_2.png" alt="Logo Organisasi" class="logo-mini">
-            </div>
+.header-brand-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+}
 
-            <div class="text-container">
-                <h1>CHRONICA</h1>
-                <p>Jurnalistik SMAN 3 Banjarbaru</p>
-            </div>
+.logo-desktop-only { display: none; } 
+.logo-group-mobile { display: flex; gap: 15px; margin-bottom: 10px; }
+.logo-mini { height: 70px; filter: drop-shadow(0 0 5px black); }
 
-            <img src="Logo_2.png" alt="Logo Organisasi" class="logo-desktop-only">
-        </div>
-    </header>
+.text-container h1 { 
+    font-family: 'Playfair Display', serif; 
+    font-size: 2.5em; 
+    color: white; 
+    letter-spacing: 2px; 
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.8); 
+}
+.text-container p { 
+    color: var(--color-gold); 
+    font-weight: bold; 
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.8); 
+}
 
-    <main>
-        <section id="visi-misi">
-            <div class="visi-container">
-                <h2>Visi & Misi</h2>
-                <p class="visi-text">"Menjadi wadah jurnalistik yang inspiratif dan berintegritas, merekam cerita-cerita inspiratif dan merefleksikan semangat solidaritas antara divisi, serta menjadi referensi bagi masyarakat dalam memahami isu-isu terkini."</p>
-                <hr class="divider">
-             
-                <div class="misi-tujuan-grid">
-                    <div class="misi-box">
-                        <h3>Misi</h3>
-                        <ol>
-                            <li><strong>Merekam Cerita:</strong> Mengabadikan cerita-cerita inspiratif dari masyarakat.</li>
-                            <li><strong>Kualitas:</strong> Meningkatkan kualitas penulisan dan skill anggota.</li>
-                            <li><strong>Solidaritas:</strong> Meningkatkan kekeluargaan antar anggota Chronica.</li>
-                            <li><strong>Inovasi:</strong> Mengembangkan ide kreatif dalam konten media.</li>
-                            <li><strong>Referensi:</strong> Menjadi sumber informasi tepercaya bagi sekolah.</li>
-                        </ol>
-                  
-                    </div>
-                    <div class="tujuan-box">
-                       <h3>Tujuan</h3>
-                        <ul>
-                            <li>Meningkatkan kepedulian masyarakat terhadap isu terkini.</li>
-                            <li>Mengembangkan potensi jurnalistik siswa.</li>
-                            <li>Mempererat hubungan antar divisi internal.</li>
-                            <li>Menjadi wadah inspiratif yang berintegritas tinggi.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="organisasi">
-            <h2>STRUKTUR ORGANISASI</h2>
-            
-            <div class="silsilah-container">
-                <h3 class="sub-title-white" style="text-align: center; margin-bottom: 30px; color: white;">PENGURUS INTI</h3>
-                
-                <div class="silsilah-row">
-                    <div class="card-maroon">
-                        <h4>Pembina</h4>
-                        <p>Dr. Sarifah Triana M.Pd</p>
-                    </div>
-                </div>
-                
-                <div class="silsilah-row">
-                    <div class="card-maroon">
-                        <h4>Ketua</h4>
-                        <p>Nourma Yunita</p>
-                    </div>
-                    <div class="card-maroon">
-                        <h4>Wakil Ketua</h4>
-                        <p>Awan Putra Ramadhan</p>
-                    </div>
-                    <div class="card-maroon">
-                        <h4>Sekretaris 1</h4>
-                        <p>Azib Aminuddin</p>
-                    </div>
-                </div>
-                
-                <div class="silsilah-row">
-                    <div class="card-maroon">
-                        <h4>Sekretaris 2</h4>
-                        <p>Alexandra Octoriza R.s</p>
-                    </div>
-                    <div class="card-maroon">
-                        <h4>Bendahara</h4>
-                        <p>Kamila Atiqa Manulang</p>
-                    </div>
-                </div>
-            </div>
+/* --- NAVIGASI --- */
+.nav-container { position: absolute; top: 25px; right: 25px; z-index: 2000; }
+.hamburger { display: flex; flex-direction: column; gap: 6px; background: none; border: none; cursor: pointer; }
+.hamburger span { width: 35px; height: 4px; background: var(--color-gold); border-radius: 2px; }
 
-            <hr class="divider-light" style="margin: 50px 0; opacity: 0.2;">
+.nav-menu {
+    position: absolute; top: 50px; right: 0; 
+    background: rgba(60, 0, 0, 0.75); 
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    list-style: none; padding: 15px; border-radius: 12px; 
+    border: 1px solid var(--glass-border);
+    display: none; flex-direction: column; min-width: 180px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+.nav-menu.active { display: flex; }
+.nav-menu a { color: white; text-decoration: none; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.1); }
 
-            <div class="divisi-container">
-                <h3 class="sub-title-white" style="text-align: center; margin-bottom: 30px; color: white;">DIVISI JURNALISTIK</h3>
-                
-                <div class="divisi-grid">
-                    <div class="divisi-box">
-                        <h3>Fotografi</h3>
-                        <p class="leader">Ketua: Ridhani Pasya XI.10</p>
-                        <button class="toggle-btn">Lihat Anggota</button>
-                        <ul class="anggota-list">
-                            <li>Moreno Akbar Dhiaulhaq X.9</li>
-                            <li>M.Syarif X.3</li>
-                            <li>M.Riyad XI.6</li>
-                            <li>Jozuno Adalardi Rozali XII.6</li>
-                        </ul>
-                    </div>
+/* --- SECTIONS --- */
+main { max-width: 1200px; margin: 0 auto; padding: 20px; }
+section { 
+    margin-bottom: 60px; padding: 40px; 
+    background: var(--color-bg-section); 
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-radius: 20px; 
+    border: 1px solid var(--glass-border);
+    border-left: 8px solid var(--color-gold);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
 
-                    <div class="divisi-box">
-                        <h3>Penulis</h3>
-                        <p class="leader">Ketua: Arden Sasragam XI.7</p>
-                        <button class="toggle-btn">Lihat Anggota</button>
-                        <ul class="anggota-list">
-                            <li>Salma Hera XI.9</li>
-                            <li>Auliya Nisa XI.10</li>
-                            <li>Gina Syarofa XI.9</li>
-                            <li>Salma XII.2</li>
-                        </ul>
-                    </div>
+h2 { 
+    color: var(--color-gold); 
+    margin-bottom: 40px; 
+    font-family: 'Playfair Display', serif; 
+    font-size: 2.2em; 
+    text-align: center; 
+}
 
-                    <div class="divisi-box">
-                        <h3>Desain</h3>
-                        <p class="leader">Ketua: Agustinus Rehan Sentaso XI.7</p>
-                        <button class="toggle-btn">Lihat Anggota</button>
-                        <ul class="anggota-list">
-                            <li>Afdhi Lay Shihaf XI.4</li>
-                            <li>Sekar Ratu Nindita X.3</li>
-                            <li>Finsha Etiko NurRasya X.10</li>
-                            <li>Keisya Namira Putri XI.5</li>
-                            <li>M.Ziddan Fiqqi XII.1</li>
-                            <li>Fitria Arisandy XII.4 </li>
-                        </ul>
-                    </div>
+/* --- PENGURUS INTI (CARD MAROON) --- */
+.silsilah-row { 
+    display: flex; 
+    justify-content: center; 
+    gap: 20px; 
+    flex-wrap: wrap; 
+    margin-bottom: 20px; 
+}
+.card-maroon { 
+    background: rgba(96, 0, 0, 0.45); 
+    backdrop-filter: blur(25px); 
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 215, 0, 0.35); 
+    border-radius: 15px; 
+    padding: 25px 20px; 
+    text-align: center; 
+    min-width: 220px; flex: 1; max-width: 300px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    transition: all 0.4s ease;
+}
+.card-maroon:hover { 
+    transform: translateY(-8px); 
+    background: rgba(120, 0, 0, 0.6); 
+    border-color: rgba(255, 215, 0, 0.6);
+}
 
-                    <div class="divisi-box">
-                        <h3>Editing</h3>
-                        <p class="leader">Ketua: M.Dafa Khabir XI.10</p>
-                        <button class="toggle-btn">Lihat Anggota</button>
-                        <ul class="anggota-list">
-                            <li>Fredysca Maritza Febiananda X.7</li>
-                        </ul>
-                    </div>
+/* JABATAN PENGURUS INTI: GLOW EMAS */
+.card-maroon h4 { 
+    color: var(--color-gold); 
+    margin-bottom: 10px; 
+    font-size: 0.9em; 
+    text-transform: uppercase; 
+    border-bottom: 1px solid rgba(255,215,0,0.2);
+    padding-bottom: 5px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.7), 0 0 20px rgba(255, 215, 0, 0.3);
+}
+.card-maroon p { color: white; font-weight: bold; font-size: 1.1em; }
 
-                    <div class="divisi-box">
-                        <h3>Videografi</h3>
-                        <p class="leader">Ketua: M.Rakha Maulana XI.8</p>
-                        <button class="toggle-btn">Lihat Anggota</button>
-                        <ul class="anggota-list">
-                            <li>Nabila Najwa Ul Husna XI.7</li>
-                            <li>Ghiyas Arislan X.3</li>
-                            <li>Linda Talisa Putri X.3</li>
-                        </ul>
-                    </div>
+/* --- DIVISI GLASS BOX --- */
+.divisi-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 25px; 
+    justify-content: center; 
+}
+.divisi-box { 
+    background: rgba(255, 255, 255, 0.05); 
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 25px; 
+    border-radius: 15px; 
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 5px solid var(--color-gold); 
+    text-align: center; 
+}
 
-                    <div class="divisi-box">
-                        <h3>Reporter</h3>
-                        <p class="leader">Ketua: Aisyah Rahma Kuswadi XI.9</p>
-                        <button class="toggle-btn">Lihat Anggota</button>
-                        <ul class="anggota-list">
-                            <li>Maulida Nadira XI.8</li>
-                            <li>Maysyarah XI.7</li>
-                            <li>Mira AlMunarah X.1</li>
-                            <li>Nadiya Husna X.2</li>
-                            <li>Nur Shifa Astalia XII.1</li>
-                        </ul>
-                    </div>
+.divisi-box h3 {
+    color: var(--color-gold);
+    margin-bottom: 15px;
+    font-family: 'Playfair Display', serif;
+}
 
-                    <div class="divisi-box">
-                        <h3>Ide Kreatif</h3>
-                        <p class="leader">Ketua: M. Rezi Farisi XI.7</p>
-                        <button class="toggle-btn">Lihat Anggota</button>
-                        <ul class="anggota-list">
-                            <li>Indie Arya Wardana XI.7</li>
-                            <li>Ludia XI.10</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
+/* NAMA KETUA DIVISI: PUTIH DENGAN GLOW PUTIH */
+.leader { 
+    color: #ffffff !important; 
+    font-weight: 800;
+    margin-bottom: 12px;
+    display: block;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.2);
+}
 
-        <section id="kegiatan">
-            <h2>KEGIATAN JURNALISTIK</h2>
-            <div class="slider-container">
-                <div class="slider-wrapper" id="slider-wrapper">
-                    <div class="slider-item">
-                        <img src="foto1.jpg" alt="Liputan">
-                        <div class="slider-desc">Liputan Acara Sekolah</div>
-                    </div>
-                    <div class="slider-item">
-                        <img src="foto2.jpg" alt="Rapat">
-                        <div class="slider-desc">Rapat Evaluasi Mingguan</div>
-                    </div>
-                    <div class="slider-item">
-                        <img src="foto3.jpg" alt="Workshop">
-                        <div class="slider-desc">Pelatihan Jurnalistik</div>
-                    </div>
-                </div>
-                <button class="slider-btn prev" id="prevBtn" aria-label="Slide Sebelumnya">&#10094;</button>
-                <button class="slider-btn next" id="nextBtn" aria-label="Slide Selanjutnya">&#10095;</button>
-            </div>
-        </section>
-    </main>
+/* LIST ANGGOTA: PUTIH BERSIH */
+.anggota-list { 
+    display: none; 
+    margin-top: 15px; 
+    padding-left: 0; 
+    list-style: none; 
+    color: #ffffff !important; 
+    border-top: 1px solid rgba(255, 215, 0, 0.2); 
+    padding-top: 15px;
+}
 
-    <footer class="footer-simple">
-        <p>&copy; 2025 CHRONICA Jurnalistik SMAN 3 Banjarbaru. All Rights Reserved.</p>
-    </footer>
+.anggota-list li {
+    padding: 6px 0;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    opacity: 0.9;
+}
 
-    <script src="script.js"></script>
-</body>
-</html>
+.anggota-list li:hover {
+    color: var(--color-gold);
+    opacity: 1;
+    transform: translateX(5px);
+}
 
+.toggle-btn { 
+    width: 100%; 
+    padding: 10px; 
+    background: var(--color-maroon); 
+    color: white; 
+    border: 1px solid var(--color-gold); 
+    border-radius: 8px; 
+    cursor: pointer; 
+    font-weight: bold; 
+    margin-top: 15px; 
+}
+
+/* --- SLIDER --- */
+.slider-container { position: relative; max-width: 900px; margin: 0 auto; overflow: hidden; border-radius: 15px; border: 2px solid var(--color-maroon); }
+.slider-wrapper { display: flex; transition: transform 0.5s ease; }
+.slider-item { min-width: 100%; position: relative; }
+.slider-item img { width: 100%; height: 450px; object-fit: cover; }
+.slider-desc { position: absolute; bottom: 0; width: 100%; background: rgba(0,0,0,0.8); color: var(--color-gold); padding: 15px; text-align: center; }
+.slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: var(--color-maroon); color: white; border: 1px solid var(--color-gold); width: 45px; height: 45px; cursor: pointer; border-radius: 50%; z-index: 10; }
+.prev { left: 15px; } .next { right: 15px; }
+
+/* --- FOOTER --- */
+footer {
+    width: 100%;
+    padding: 30px 20px;
+    background: #0a0a0a;
+    text-align: center;
+    border-top: 1px solid rgba(255, 215, 0, 0.1);
+    margin-top: 40px;
+}
+footer p { color: #888; font-size: 0.9rem; letter-spacing: 0.5px; }
+
+/* --- RESPONSIVE --- */
+@media (min-width: 851px) {
+    .header-brand-wrapper { flex-direction: row; gap: 50px; }
+    .logo-desktop-only { display: block; height: 160px; filter: drop-shadow(0 0 10px black); }
+    .logo-group-mobile { display: none; }
+    .text-container h1 { font-size: 3.5em; }
+    .header-brand-wrapper img:nth-of-type(1) { order: 1; }
+    .text-container { order: 2; }
+    .header-brand-wrapper img:nth-of-type(2) { order: 3; }
+}
+
+@media (max-width: 850px) {
+    header { aspect-ratio: 16 / 9; padding: 10px; }
+    .text-container h1 { font-size: 1.8em; }
+    .logo-mini { height: 60px; }
+    section { padding: 25px 15px; }
+    footer p { font-size: 0.8rem; }
+}
