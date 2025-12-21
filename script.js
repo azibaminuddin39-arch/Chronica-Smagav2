@@ -1,79 +1,78 @@
 /**
- * 1. FUNGSI HAMBURGER MENU (GARIS 3)
+ * CHRONICA - Jurnalistik SMAN 3 Banjarbaru
+ * Script untuk interaksi menu navigasi dan toggle daftar anggota.
  */
-function setupHamburgerMenu() {
+
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // 1. PENGATURAN MENU HAMBURGER
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
 
     if (hamburger && navMenu) {
-        hamburger.addEventListener('click', () => {
-            // Toggle class active untuk memunculkan menu
-            navMenu.classList.toggle('active');
-            // Toggle class is-active untuk animasi garis menjadi X
+        // Toggle menu saat tombol hamburger diklik
+        hamburger.addEventListener('click', (e) => {
+            e.stopPropagation(); // Mencegah event bubbling ke dokumen
             hamburger.classList.toggle('is-active');
+            navMenu.classList.toggle('active');
         });
 
-        // Menutup menu otomatis saat salah satu link diklik
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
+        // Menutup menu jika mengklik di luar area menu/hamburger
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
                 hamburger.classList.remove('is-active');
-            });
-        });
-
-        // Menutup menu jika pengguna mengklik di luar area menu
-        document.addEventListener('click', (event) => {
-            const isClickInside = hamburger.contains(event.target) || navMenu.contains(event.target);
-            if (!isClickInside) {
                 navMenu.classList.remove('active');
-                hamburger.classList.remove('is-active');
             }
         });
-    }
-}
 
-/**
- * 2. FUNGSI MENAMPILKAN/MENYEMBUNYIKAN DETAIL DIVISI
- */
-function setupDivisiToggles() {
+        // Menutup menu secara otomatis saat salah satu link navigasi diklik
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('is-active');
+                navMenu.classList.remove('active');
+            });
+        });
+    }
+
+    // 2. PENGATURAN TOGGLE DAFTAR ANGGOTA (DIVISI)
     const toggleButtons = document.querySelectorAll('.toggle-anggota');
 
     toggleButtons.forEach(button => {
         button.addEventListener('click', function() {
-            const anggotaList = this.nextElementSibling;
+            // Mengambil elemen daftar anggota yang berada tepat setelah tombol
+            const list = this.nextElementSibling;
+            
+            // Cek status tampilan saat ini
+            const isOpen = list.style.display === 'block';
 
-            if (anggotaList.style.display === 'none' || anggotaList.style.display === '') {
-                anggotaList.style.display = 'block';
+            if (!isOpen) {
+                // Tampilkan daftar
+                list.style.display = 'block';
+                list.style.animation = 'fadeInDown 0.3s ease forwards';
                 this.textContent = 'Sembunyikan Anggota';
-                // Animasi sederhana saat muncul
-                anggotaList.style.animation = 'fadeIn 0.4s ease';
+                this.classList.add('active');
             } else {
-                anggotaList.style.display = 'none';
+                // Sembunyikan daftar
+                list.style.display = 'none';
                 this.textContent = 'Lihat Anggota';
+                this.classList.remove('active');
             }
         });
     });
-}
 
-/**
- * 3. FUNGSI DARK MODE (OPSIONAL - Jika Anda ingin menambah tombol toggle nantinya)
- */
-function checkTheme() {
-    if (localStorage.getItem('theme') === 'dark') {
-        document.body.classList.add('dark-mode');
-    }
-}
+    // 3. FUNGSI SCROLL HALUS (SMOOTH SCROLL) UNTUK NAVIGASI
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
 
-/**
- * EKSEKUSI SAAT DOKUMEN SELESAI DIMUAT
- */
-document.addEventListener('DOMContentLoaded', () => {
-    // Jalankan pengecekan tema
-    checkTheme();
-
-    // Jalankan fungsi hamburger menu
-    setupHamburgerMenu();
-
-    // Jalankan fungsi toggle anggota
-    setupDivisiToggles();
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80, // Offset agar tidak tertutup header
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
 });
