@@ -57,7 +57,7 @@ header {
 
 /* --- KHUSUS HALAMAN BERITA (NEW) --- */
 .page-berita header {
-    /* Silahkan ganti 'berita-bg.gif' dengan nama file GIF berita Anda */
+    /* Silahkan ganti 'LB_2.gif' dengan nama file GIF berita Anda */
     background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('berita-bg.gif') !important;
 }
 
@@ -283,3 +283,4 @@ footer p { color: #888; font-size: 0.9rem; letter-spacing: 0.5px; }
     section { padding: 25px 15px; }
     footer p { font-size: 0.8rem; }
 }
+
