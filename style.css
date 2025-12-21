@@ -356,3 +356,14 @@ section:first-of-type {
     .fab-instagram { right: 20px !important; bottom: 20px !important; }
     .fab-whatsapp { right: 20px !important; bottom: 85px !important; }
 }
+
+/* MENGHILANGKAN HIGHLIGHT BIRU SAAT DIKLIK */
+.hamburger, 
+.nav-menu a, 
+.toggle-btn, 
+.fab-instagram, 
+.fab-whatsapp,
+.slider-btn {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
