@@ -328,7 +328,7 @@ header {
         url('LB_2.gif') !important;
 }
 
-/* Membuat box pertama (Visi Misi) menyatu naik ke atas header */
+/* Membuat box pertama menyatu naik ke atas header */
 section:first-of-type {
     margin-top: -80px;
     position: relative;
@@ -349,7 +349,7 @@ section:first-of-type {
 
 .fab-whatsapp {
     right: 25px !important;
-    bottom: 95px !important; /* Posisi di atas Instagram (25px + 55px ikon + 15px jarak) */
+    bottom: 95px !important; /* Posisi di atas Instagram */
 }
 
 @media (max-width: 850px) {
@@ -363,7 +363,8 @@ section:first-of-type {
 .toggle-btn, 
 .fab-instagram, 
 .fab-whatsapp,
-.slider-btn {
+.slider-btn,
+.back-link { /* Menghilangkan blink pada tombol kembali di berita.html */
     -webkit-tap-highlight-color: transparent;
     outline: none;
 }
