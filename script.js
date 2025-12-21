@@ -36,8 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const nextSlide = () => { index = (index + 1) % total; update(); };
         const prevSlide = () => { index = (index - 1 + total) % total; update(); };
         
-        let timer = setInterval(nextSlide, 3000);
-        const resetTimer = () => { clearInterval(timer); timer = setInterval(nextSlide, 3000); };
+        let timer = setInterval(nextSlide, 3500);
+        const resetTimer = () => { clearInterval(timer); timer = setInterval(nextSlide, 3500); };
 
         nextBtn.addEventListener('click', () => { nextSlide(); resetTimer(); });
         prevBtn.addEventListener('click', () => { prevSlide(); resetTimer(); });
