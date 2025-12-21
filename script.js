@@ -1,16 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Navigasi & Hamburger
+    // Menu Hamburger
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
     if(hamburger) {
         hamburger.addEventListener('click', (e) => {
             e.stopPropagation();
-            hamburger.classList.toggle('is-active');
             navMenu.classList.toggle('active');
         });
     }
 
-    // Toggle Anggota
+    // Toggle Anggota Divisi
     const buttons = document.querySelectorAll('.toggle-anggota');
     buttons.forEach(btn => {
         btn.addEventListener('click', function() {
@@ -21,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Slider Perbaikan
+    // Slider Logic
     const wrapper = document.getElementById('slider-wrapper');
     const nextBtn = document.getElementById('nextBtn');
     const prevBtn = document.getElementById('prevBtn');
