@@ -12,22 +12,18 @@ document.addEventListener('DOMContentLoaded', () => {
         navMenu.classList.remove('active');
     });
 
-    // 2. Toggle Anggota
+    // 2. Toggle Anggota Divisi
     const buttons = document.querySelectorAll('.toggle-anggota');
     buttons.forEach(btn => {
         btn.addEventListener('click', function() {
             const list = this.nextElementSibling;
-            if (list.style.display === 'none' || list.style.display === '') {
-                list.style.display = 'block';
-                this.textContent = 'Sembunyikan Anggota';
-            } else {
-                list.style.display = 'none';
-                this.textContent = 'Lihat Anggota';
-            }
+            const isHidden = list.style.display === 'none' || list.style.display === '';
+            list.style.display = isHidden ? 'block' : 'none';
+            this.textContent = isHidden ? 'Sembunyikan Anggota' : 'Lihat Anggota';
         });
     });
 
-    // 3. Slider
+    // 3. Auto Slider Kegiatan
     const wrapper = document.getElementById('slider-wrapper');
     const slides = document.querySelectorAll('.slider-item');
     const nextBtn = document.getElementById('nextBtn');
@@ -35,12 +31,16 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (wrapper && slides.length > 0) {
         let index = 0;
-        let autoSlide = setInterval(() => { index = (index + 1) % slides.length; updateSlider(); }, 3000);
+        const total = slides.length;
+        
+        const move = () => { wrapper.style.transform = `translateX(${-index * 100}%)`; };
+        const next = () => { index = (index + 1) % total; move(); };
+        const prev = () => { index = (index - 1 + total) % total; move(); };
+        
+        let timer = setInterval(next, 3000);
+        const reset = () => { clearInterval(timer); timer = setInterval(next, 3000); };
 
-        function updateSlider() { wrapper.style.transform = `translateX(${-index * 100}%)`; }
-        function resetTimer() { clearInterval(autoSlide); autoSlide = setInterval(() => { index = (index + 1) % slides.length; updateSlider(); }, 3000); }
-
-        nextBtn.addEventListener('click', () => { index = (index + 1) % slides.length; updateSlider(); resetTimer(); });
-        prevBtn.addEventListener('click', () => { index = (index - 1 + slides.length) % slides.length; updateSlider(); resetTimer(); });
+        nextBtn.addEventListener('click', () => { next(); reset(); });
+        prevBtn.addEventListener('click', () => { prev(); reset(); });
     }
 });
