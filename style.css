@@ -96,24 +96,25 @@ header {
 }
 
 /* ============================ */
-/* 3. BRANDING (DESKTOP MODE)   */
+/* 3. BRANDING (MODE DESKTOP)   */
 /* ============================ */
 .header-brand-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: clamp(20px, 4vw, 50px);
-    max-width: 1200px;
+    gap: clamp(30px, 5vw, 60px);
+    max-width: 1400px;
     margin: 0 auto;
 }
 
-/* Sembunyikan grup logo mobile di desktop */
+/* Sembunyikan grup mobile saat di desktop */
 .logo-group-mobile {
     display: none;
 }
 
-.logo-side {
-    height: clamp(100px, 15vw, 180px);
+/* Pengaturan Logo Desktop */
+.logo-desktop-only {
+    height: clamp(100px, 15vw, 170px);
     width: auto;
     object-fit: contain;
     filter: drop-shadow(0 0 15px rgba(0,0,0,0.6));
@@ -122,6 +123,7 @@ header {
 
 .text-container {
     text-align: center;
+    flex-shrink: 0;
 }
 
 header h1 {
@@ -174,6 +176,18 @@ section {
     border-radius: 8px;
     cursor: pointer;
     margin-top: 15px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.toggle-anggota:hover {
+    background-color: #800000 !important;
+}
+
+.anggota-list {
+    margin-top: 15px;
+    padding-left: 20px;
+    list-style-type: disc;
 }
 
 /* ============================ */
@@ -182,7 +196,7 @@ section {
 
 @media (max-width: 850px) {
     header {
-        padding: 70px 20px 40px 20px;
+        padding: 80px 20px 40px 20px;
         text-align: left;
     }
 
@@ -192,8 +206,8 @@ section {
     }
 
     /* Sembunyikan logo individual desktop */
-    .header-brand-wrapper > .logo-side {
-        display: none;
+    .logo-desktop-only {
+        display: none !important;
     }
 
     /* Munculkan grup logo mobile di pojok kiri */
@@ -201,25 +215,36 @@ section {
         display: flex;
         gap: 10px;
         align-items: center;
+        flex-shrink: 0;
     }
 
-    .logo-group-mobile .logo-side {
+    .logo-group-mobile .logo-mini {
         display: block;
         height: 60px; /* Ukuran pas untuk mobile */
+        width: auto;
     }
 
     .text-container {
         text-align: left;
     }
 
-    header h1 { font-size: 1.7em; }
-    header p { font-size: 0.85em; margin-top: 2px; }
+    header h1 { 
+        font-size: 1.8em; 
+        text-align: left;
+    }
+    
+    header p { 
+        font-size: 0.9em; 
+        margin-top: 5px; 
+        text-align: left;
+    }
 
     .nav-container { top: 20px; right: 20px; }
 }
 
 @media (max-width: 480px) {
-    .logo-group-mobile .logo-side { height: 50px; }
-    header h1 { font-size: 1.4em; }
-    header { padding-top: 60px; }
+    header { padding-top: 70px; }
+    .logo-group-mobile .logo-mini { height: 50px; }
+    header h1 { font-size: 1.5em; }
+    header p { font-size: 0.8em; }
 }
