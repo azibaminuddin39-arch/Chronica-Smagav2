@@ -1,20 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Navigasi Hamburger
+    // 1. Hamburger Menu
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
-
     hamburger.addEventListener('click', (e) => {
         e.stopPropagation();
         hamburger.classList.toggle('is-active');
         navMenu.classList.toggle('active');
     });
-
     document.addEventListener('click', () => {
         hamburger.classList.remove('is-active');
         navMenu.classList.remove('active');
     });
 
-    // 2. Toggle Anggota Divisi
+    // 2. Toggle Anggota
     const buttons = document.querySelectorAll('.toggle-anggota');
     buttons.forEach(btn => {
         btn.addEventListener('click', function() {
@@ -29,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 3. Auto Slider Kegiatan
+    // 3. Slider
     const wrapper = document.getElementById('slider-wrapper');
     const slides = document.querySelectorAll('.slider-item');
     const nextBtn = document.getElementById('nextBtn');
@@ -37,35 +35,12 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (wrapper && slides.length > 0) {
         let index = 0;
-        let autoSlide = setInterval(showNextSlide, 3000);
+        let autoSlide = setInterval(() => { index = (index + 1) % slides.length; updateSlider(); }, 3000);
 
-        function showNextSlide() {
-            index = (index + 1) % slides.length;
-            updateSlider();
-        }
+        function updateSlider() { wrapper.style.transform = `translateX(${-index * 100}%)`; }
+        function resetTimer() { clearInterval(autoSlide); autoSlide = setInterval(() => { index = (index + 1) % slides.length; updateSlider(); }, 3000); }
 
-        function showPrevSlide() {
-            index = (index - 1 + slides.length) % slides.length;
-            updateSlider();
-        }
-
-        function updateSlider() {
-            wrapper.style.transform = `translateX(${-index * 100}%)`;
-        }
-
-        nextBtn.addEventListener('click', () => {
-            showNextSlide();
-            resetTimer();
-        });
-
-        prevBtn.addEventListener('click', () => {
-            showPrevSlide();
-            resetTimer();
-        });
-
-        function resetTimer() {
-            clearInterval(autoSlide);
-            autoSlide = setInterval(showNextSlide, 3000);
-        }
+        nextBtn.addEventListener('click', () => { index = (index + 1) % slides.length; updateSlider(); resetTimer(); });
+        prevBtn.addEventListener('click', () => { index = (index - 1 + slides.length) % slides.length; updateSlider(); resetTimer(); });
     }
 });
