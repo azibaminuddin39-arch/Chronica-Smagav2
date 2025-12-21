@@ -1,12 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Navigasi
+    // Navigasi & Hamburger
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
-    hamburger.addEventListener('click', (e) => {
-        e.stopPropagation();
-        hamburger.classList.toggle('is-active');
-        navMenu.classList.toggle('active');
-    });
+    if(hamburger) {
+        hamburger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            hamburger.classList.toggle('is-active');
+            navMenu.classList.toggle('active');
+        });
+    }
 
     // Toggle Anggota
     const buttons = document.querySelectorAll('.toggle-anggota');
@@ -21,24 +23,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Slider Perbaikan
     const wrapper = document.getElementById('slider-wrapper');
-    const slides = document.querySelectorAll('.slider-item');
     const nextBtn = document.getElementById('nextBtn');
     const prevBtn = document.getElementById('prevBtn');
+    const slides = document.querySelectorAll('.slider-item');
 
     if (wrapper && slides.length > 0) {
         let index = 0;
         const total = slides.length;
         const update = () => wrapper.style.transform = `translateX(${-index * 100}%)`;
         
-        const nextSlide = () => { index = (index + 1) % total; update(); };
-        const prevSlide = () => { index = (index - 1 + total) % total; update(); };
-
-        nextBtn.addEventListener('click', nextSlide);
-        prevBtn.addEventListener('click', prevSlide);
+        nextBtn.addEventListener('click', () => { index = (index + 1) % total; update(); });
+        prevBtn.addEventListener('click', () => { index = (index - 1 + total) % total; update(); });
         
-        let auto = setInterval(nextSlide, 4000);
+        let autoSlide = setInterval(() => { index = (index + 1) % total; update(); }, 4000);
         [nextBtn, prevBtn].forEach(b => b.addEventListener('click', () => {
-            clearInterval(auto); auto = setInterval(nextSlide, 4000);
+            clearInterval(autoSlide); autoSlide = setInterval(() => { index = (index + 1) % total; update(); }, 4000);
         }));
     }
 });
