@@ -8,11 +8,11 @@
     --color-bg-section: rgba(26, 26, 26, 0.6); 
     --text-primary: #e0e0e0;
     --text-white: #ffffff;   
-    --glass-border: rgba(255, 255, 255, 0.1); /* Diubah ke putih transparan agar lebih iPhone */
+    --glass-border: rgba(255, 255, 255, 0.12); /* Dioptimalkan untuk iPhone Glass */
     --glass-blur: blur(25px); 
 }
 
-/* --- ANIMASI BACKGROUND (FOKUS HITAM) --- */
+/* --- ANIMASI BACKGROUND (DOMINAN HITAM) --- */
 @keyframes fluidSilver {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
@@ -26,7 +26,7 @@
 
 body { 
     font-family: 'Montserrat', sans-serif; 
-    /* Gradasi difokuskan ke Hitam dan Abu-abu sangat gelap */
+    /* Fokus pada gradasi Hitam Pekat */
     background: linear-gradient(-45deg, #000000, #0a0a0a, #1a1a1a, #000000);
     background-size: 200% 200%; 
     animation: fluidSilver 8s ease-in-out infinite; 
@@ -96,7 +96,6 @@ header {
     align-items: center;
     justify-content: center;
     padding: 20px;
-    text-align: center;
 }
 
 .text-container h1 { 
@@ -107,7 +106,7 @@ header {
     text-shadow: 2px 2px 10px rgba(0,0,0,0.8); 
 }
 
-/* --- NAVIGASI GLASS --- */
+/* --- NAVIGASI (IPHONE GLASS STYLE) --- */
 .nav-menu {
     position: absolute; top: 50px; right: 0; 
     background: rgba(255, 255, 255, 0.05); 
@@ -120,7 +119,7 @@ header {
 }
 .nav-menu.active { display: flex; }
 
-/* --- SECTIONS (IPHONE GLASS) --- */
+/* --- SECTIONS (IPHONE GLASS STYLE) --- */
 main { max-width: 1200px; margin: 0 auto; padding: 20px; }
 section { 
     margin-bottom: 60px; padding: 40px; 
@@ -134,7 +133,7 @@ section {
 }
 
 /* --- JUDUL TANPA GLOW (STRUKTUR, VISI MISI, JURNALISTIK, BERITA) --- */
-h2, .visi-misi-title, .title-struktur, .title-kegiatan, .title-berita { 
+h2, .visi-misi-title, .title-kegiatan, .title-berita { 
     color: var(--text-white); 
     margin-bottom: 40px; 
     font-family: 'Playfair Display', serif; 
@@ -143,13 +142,13 @@ h2, .visi-misi-title, .title-struktur, .title-kegiatan, .title-berita {
     text-transform: uppercase;
     letter-spacing: 4px;
     font-weight: 900;
-    text-shadow: none !important; /* Glow dihapus total */
+    text-shadow: none !important; /* Hapus Glow Sesuai Permintaan */
 }
 
-/* Warna khusus maroon solid untuk judul Struktur */
-.title-struktur { color: var(--color-maroon); }
+/* Khusus judul STRUKTUR ORGANISASI tetap Maroon tapi tanpa glow */
+h2:first-of-type, section:first-of-type h2 { color: var(--color-maroon); }
 
-/* --- CARDS & BOXES --- */
+/* --- PENGURUS INTI (GLASS CARDS) --- */
 .card-maroon { 
     background: rgba(255, 255, 255, 0.04) !important; 
     backdrop-filter: blur(15px); 
@@ -162,9 +161,10 @@ h2, .visi-misi-title, .title-struktur, .title-kegiatan, .title-berita {
 .card-maroon h4 { 
     color: var(--color-silver); 
     text-transform: uppercase; 
-    text-shadow: none;
+    text-shadow: none; /* Hapus glow pada jabatan */
 }
 
+/* --- DIVISI BOX (GLASS STYLE) --- */
 .divisi-box { 
     background: rgba(255, 255, 255, 0.02); 
     backdrop-filter: blur(15px);
