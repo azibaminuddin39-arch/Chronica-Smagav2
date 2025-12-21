@@ -4,20 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CHRONICA - Jurnalistik SMAN 3 Banjarbaru</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap');
+    </style>
 </head>
 <body>
 
-    <a href="https://www.instagram.com/chronica.smaga" target="_blank" class="fab-instagram">
-        <i class="fab fa-instagram"></i>
-    </a>
-
     <header>
         <nav class="nav-container">
-            <button class="hamburger" id="hamburger">
-                <span></span><span></span><span></span>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="#visi-misi">Visi & Misi</a></li>
@@ -27,101 +26,195 @@
             </ul>
         </nav>
 
-        <div class="header-content">
-            <div class="logo-group">
-                <img src="logo-sekolah.png" alt="Logo Sekolah" class="sub-logo">
-                <img src="Logo_2.png" alt="Logo Chronica" class="main-logo">
+        <div class="header-brand-wrapper">
+            <img src="Logo_1.png" alt="Logo Sekolah" class="logo-desktop-only">
+            <div class="logo-group-mobile">
+                <img src="Logo_1.png" alt="Logo Sekolah" class="logo-mini">
+                <img src="Logo_2.png" alt="Logo Organisasi" class="logo-mini">
             </div>
             <div class="text-container">
                 <h1>CHRONICA</h1>
                 <p>Jurnalistik SMAN 3 Banjarbaru</p>
             </div>
+            <img src="Logo_2.png" alt="Logo Organisasi" class="logo-desktop-only">
         </div>
     </header>
 
     <main>
         <section id="visi-misi">
-            <h2>Visi & Misi</h2>
-            <div class="visi-inner">
-                <p class="visi-text">"Menjadi wadah jurnalistik yang inspiratif dan berintegritas, merekam cerita-cerita inspiratif dan merefleksikan semangat solidaritas antara divisi."</p>
+            <div class="visi-container">
+                <h2>Visi & Misi</h2>
+                <p class="visi-text">"Menjadi wadah jurnalistik yang inspiratif dan berintegritas, merekam cerita-cerita inspiratif dan merefleksikan semangat solidaritas antara divisi, serta menjadi referensi bagi masyarakat dalam memahami isu-isu terkini."</p>
+                <hr class="divider">
                 <div class="misi-tujuan-grid">
-                    <div class="info-box">
+                    <div class="misi-box">
                         <h3>Misi</h3>
-                        <ul>
-                            <li>Merekam cerita inspiratif masyarakat.</li>
-                            <li>Meningkatkan kualitas skill anggota.</li>
-                            <li>Menjaga solidaritas antar divisi.</li>
-                        </ul>
+                        <ol>
+                            <li><strong>Merekam Cerita:</strong> Mengabadikan cerita-cerita inspiratif dari masyarakat.</li>
+                            <li><strong>Kualitas:</strong> Meningkatkan kualitas penulisan dan skill anggota.</li>
+                            <li><strong>Solidaritas:</strong> Meningkatkan kekeluargaan antar anggota Chronica.</li>
+                            <li><strong>Inovasi:</strong> Mengembangkan ide kreatif dalam konten media.</li>
+                            <li><strong>Referensi:</strong> Menjadi sumber informasi tepercaya bagi sekolah.</li>
+                        </ol>
                     </div>
-                    <div class="info-box">
+                    <div class="tujuan-box">
                         <h3>Tujuan</h3>
                         <ul>
-                            <li>Wadah potensi siswa.</li>
-                            <li>Integritas tinggi.</li>
+                            <li>Meningkatkan kepedulian masyarakat terhadap isu terkini.</li>
+                            <li>Mengembangkan potensi jurnalistik siswa.</li>
+                            <li>Mempererat hubungan antar divisi internal.</li>
+                            <li>Menjadi wadah inspiratif yang berintegritas tinggi.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="organisasi">
+            <h2>Struktur Organisasi</h2>
+            <div class="silsilah-container">
+                <h3 class="sub-title sub-title-white">Pengurus Inti</h3>
+                <div class="silsilah-row central">
+                    <div class="silsilah-card pembina">
+                        <h4>Pembina</h4>
+                        <p>Dr. Sarifah Triana M.Pd</p>
+                    </div>
+                </div>
+                <div class="silsilah-row">
+                    <div class="silsilah-card">
+                        <h4>Ketua</h4>
+                        <p>Nourma Yunita</p>
+                    </div>
+                    <div class="silsilah-card">
+                        <h4>Wakil Ketua</h4>
+                        <p>Awan Putra Ramadhan</p>
+                    </div>
+                    <div class="silsilah-card">
+                        <h4>Sekretaris 1</h4>
+                        <p>Azib Aminuddin</p>
+                    </div>
+                </div>
+                <div class="silsilah-row">
+                    <div class="silsilah-card">
+                        <h4>Sekretaris 2</h4>
+                        <p>Alexandra Octoriza R.s</p>
+                    </div>
+                    <div class="silsilah-card">
+                        <h4>Bendahara</h4>
+                        <p>Kamila Atiqa Manulang</p>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="divider-light">
+
+            <div class="divisi-container">
+                <h3 class="sub-title sub-title-white">Divisi Jurnalistik</h3>
+                <div class="divisi-grid">
+                    <div class="divisi-box">
+                        <h3>1. Fotografi</h3>
+                        <p class="leader">Ketua: Ridhani Pasya XI.10</p>
+                        <button class="toggle-anggota">Lihat Anggota</button>
+                        <ul class="anggota-list" style="display: none;">
+                            <li>Moreno Akbar Dhiaulhaq X.9</li>
+                            <li>M.Syarif X.3</li>
+                            <li>M.Riyad XI.6</li>
+                            <li>Jozuno Adalardi Rozali XII.6</li>
+                        </ul>
+                    </div>
+                    <div class="divisi-box">
+                        <h3>2. Penulis</h3>
+                        <p class="leader">Ketua: Arden Sasragam XI.7</p>
+                        <button class="toggle-anggota">Lihat Anggota</button>
+                        <ul class="anggota-list" style="display: none;">
+                            <li>Salma Hera XI.9</li>
+                            <li>Auliya Nisa XI.10</li>
+                            <li>Gina Syarofa XI.9</li>
+                            <li>Salma XII.2</li>
+                        </ul>
+                    </div>
+                    <div class="divisi-box">
+                        <h3>3. Desain</h3>
+                        <p class="leader">Ketua: Agustinus Rehan Sentaso XI.7</p>
+                        <button class="toggle-anggota">Lihat Anggota</button>
+                        <ul class="anggota-list" style="display: none;">
+                            <li>Afdhi Lay Shihaf XI.4</li>
+                            <li>Sekar Ratu Nindita X.3</li>
+                            <li>Finsha Etiko NurRasya X.10</li>
+                            <li>Keisya Namira Putri XI.5</li>
+                            <li>M.Ziddan Fiqqi XII.1</li>
+                            <li>Fitria Arisandy XII.4 </li>
+                        </ul>
+                    </div>
+                    <div class="divisi-box">
+                        <h3>4. Editing</h3>
+                        <p class="leader">Ketua: M.Dafa Khabir XI.10</p>
+                        <button class="toggle-anggota">Lihat Anggota</button>
+                        <ul class="anggota-list" style="display: none;">
+                            <li>Fredysca Maritza Febiananda X.7</li>
+                        </ul>
+                    </div>
+                    <div class="divisi-box">
+                        <h3>5. Videografi</h3>
+                        <p class="leader">Ketua: M.Rakha Maulana XI.8</p>
+                        <button class="toggle-anggota">Lihat Anggota</button>
+                        <ul class="anggota-list" style="display: none;">
+                            <li>Nabila Najwa Ul Husna XI.7</li>
+                            <li>Ghiyas Arislan X.3</li>
+                            <li>Linda Talisa Putri X-3</li>
+                        </ul>
+                    </div>
+                    <div class="divisi-box">
+                        <h3>6. Reporter</h3>
+                        <p class="leader">Ketua: Aisyah Rahma Kuswadi XI.9</p>
+                        <button class="toggle-anggota">Lihat Anggota</button>
+                        <ul class="anggota-list" style="display: none;">
+                            <li>Maulida Nadira XI.8</li>
+                            <li>Maysyarah XI.7</li>
+                            <li>Mira AlMunarah X.1</li>
+                            <li>Nadiya Husna X.2</li>
+                            <li>Nur Shifa Astalia XII.1</li>
+                        </ul>
+                    </div>
+                    <div class="divisi-box">
+                        <h3>7. Ide Kreatif</h3>
+                        <p class="leader">Ketua: M. Rezi Farisi XI.7</p>
+                        <button class="toggle-anggota">Lihat Anggota</button>
+                        <ul class="anggota-list" style="display: none;">
+                            <li>Indie Arya Wardana XI.7</li>
+                            <li>Ludia XI.10</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="organisasi">
-            <h2>Pengurus Inti</h2>
-            <div class="org-layout">
-                <div class="org-row">
-                    <div class="card-putih"><h4>Pembina</h4><p>Dr. Sarifah Triana M.Pd</p></div>
+        <section id="kegiatan">
+            <h2>Kegiatan Jurnalistik</h2>
+            <div class="slider-container">
+                <div class="slider-wrapper" id="slider-wrapper">
+                    <div class="slider-item">
+                        <img src="foto1.jpg" alt="Liputan">
+                        <div class="slider-desc">Liputan Acara Sekolah</div>
+                    </div>
+                    <div class="slider-item">
+                        <img src="foto2.jpg" alt="Rapat">
+                        <div class="slider-desc">Rapat Evaluasi Mingguan</div>
+                    </div>
+                    <div class="slider-item">
+                        <img src="foto3.jpg" alt="Workshop">
+                        <div class="slider-desc">Pelatihan Jurnalistik</div>
+                    </div>
                 </div>
-                <div class="org-row">
-                    <div class="card-putih"><h4>Ketua</h4><p>Nourma Yunita</p></div>
-                    <div class="card-putih"><h4>Wakil Ketua</h4><p>Awan Putra Ramadhan</p></div>
-                    <div class="card-putih"><h4>Sekretaris 1</h4><p>Azib Aminuddin</p></div>
-                </div>
-                <div class="org-row">
-                    <div class="card-putih"><h4>Sekretaris 2</h4><p>Alexandra Octoriza R.s</p></div>
-                    <div class="card-putih"><h4>Bendahara</h4><p>Kamila Atiqa Manulang</p></div>
-                </div>
-            </div>
-
-            <h2 style="margin-top: 50px;">Divisi Jurnalistik</h2>
-            <div class="divisi-grid">
-                <div class="divisi-box">
-                    <h3>Fotografi</h3>
-                    <p class="leader">Ketua: Ridhani Pasya</p>
-                    <button class="toggle-btn">Lihat Anggota</button>
-                    <ul class="anggota-list">
-                        <li>Moreno Akbar Dhiaulhaq</li>
-                        <li>M. Syarif</li>
-                        <li>M. Riyad</li>
-                    </ul>
-                </div>
-                <div class="divisi-box">
-                    <h3>Penulis</h3>
-                    <p class="leader">Ketua: Arden Sasragam</p>
-                    <button class="toggle-btn">Lihat Anggota</button>
-                    <ul class="anggota-list">
-                        <li>Salma Hera</li>
-                        <li>Auliya Nisa</li>
-                    </ul>
-                </div>
-                <div class="divisi-box">
-                    <h3>Desain</h3>
-                    <p class="leader">Ketua: Agustinus Rehan</p>
-                    <button class="toggle-btn">Lihat Anggota</button>
-                    <ul class="anggota-list">
-                        <li>Afdhi Lay Shihaf</li>
-                        <li>Sekar Ratu Nindita</li>
-                    </ul>
-                </div>
-                <div class="divisi-box">
-                    <h3>Editing</h3>
-                    <p class="leader">Ketua: M. Dafa Khabir</p>
-                    <button class="toggle-btn">Lihat Anggota</button>
-                    <ul class="anggota-list">
-                        <li>Fredysca Maritza</li>
-                    </ul>
-                </div>
+                <button class="slider-btn prev" id="prevBtn">&#10094;</button>
+                <button class="slider-btn next" id="nextBtn">&#10095;</button>
             </div>
         </section>
     </main>
+
+    <footer>
+        <p>&copy; 2025 CHRONICA Jurnalistik SMAN 3 Banjarbaru.</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
