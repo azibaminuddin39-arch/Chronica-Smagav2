@@ -1,22 +1,44 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Navigasi
-    const hb = document.getElementById('hamburger');
-    const menu = document.getElementById('nav-menu');
-    hb.addEventListener('click', (e) => {
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    hamburger.addEventListener('click', (e) => {
         e.stopPropagation();
-        menu.classList.toggle('active');
+        hamburger.classList.toggle('is-active');
+        navMenu.classList.toggle('active');
     });
 
     // Toggle Anggota
-    const btns = document.querySelectorAll('.toggle-btn');
-    btns.forEach(btn => {
+    const buttons = document.querySelectorAll('.toggle-anggota');
+    buttons.forEach(btn => {
         btn.addEventListener('click', function() {
             const list = this.nextElementSibling;
-            const isOpen = list.style.display === 'block';
-            list.style.display = isOpen ? 'none' : 'block';
-            this.textContent = isOpen ? 'Lihat Anggota' : 'Sembunyikan Anggota';
+            const isHidden = list.style.display === 'none' || list.style.display === '';
+            list.style.display = isHidden ? 'block' : 'none';
+            this.textContent = isHidden ? 'Sembunyikan Anggota' : 'Lihat Anggota';
         });
     });
 
-    document.addEventListener('click', () => menu.classList.remove('active'));
+    // Slider Perbaikan
+    const wrapper = document.getElementById('slider-wrapper');
+    const slides = document.querySelectorAll('.slider-item');
+    const nextBtn = document.getElementById('nextBtn');
+    const prevBtn = document.getElementById('prevBtn');
+
+    if (wrapper && slides.length > 0) {
+        let index = 0;
+        const total = slides.length;
+        const update = () => wrapper.style.transform = `translateX(${-index * 100}%)`;
+        
+        const nextSlide = () => { index = (index + 1) % total; update(); };
+        const prevSlide = () => { index = (index - 1 + total) % total; update(); };
+
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+        
+        let auto = setInterval(nextSlide, 4000);
+        [nextBtn, prevBtn].forEach(b => b.addEventListener('click', () => {
+            clearInterval(auto); auto = setInterval(nextSlide, 4000);
+        }));
+    }
 });
