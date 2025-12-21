@@ -6,12 +6,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (hamburger && navMenu) {
         hamburger.addEventListener('click', (e) => {
             e.stopPropagation();
-            // Menambah kelas active pada menu dan hamburger
+            // Toggle kelas active untuk memunculkan/menyembunyikan menu
             navMenu.classList.toggle('active');
             hamburger.classList.toggle('is-active');
         });
 
-        // Menutup menu saat mengklik di luar area navigasi
+        // Menutup menu secara otomatis jika pengguna mengklik di luar area menu
         document.addEventListener('click', (e) => {
             if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
                 navMenu.classList.remove('active');
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Menutup menu saat salah satu link navigasi diklik
+        // Menutup menu setelah pengguna memilih salah satu link navigasi
         const navLinks = document.querySelectorAll('.nav-menu a');
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
@@ -30,20 +30,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- 2. LOGIKA TOGGLE ANGGOTA DIVISI ---
-    // Mendukung dua varian class yang mungkin digunakan: .toggle-anggota atau .toggle-btn
-    const toggleButtons = document.querySelectorAll('.toggle-anggota, .toggle-btn');
+    // Mencari semua tombol dengan class .toggle-btn atau .toggle-anggota
+    const toggleButtons = document.querySelectorAll('.toggle-btn, .toggle-anggota');
     
     toggleButtons.forEach(btn => {
         btn.addEventListener('click', function() {
-            const list = this.nextElementSibling; // Mengambil elemen <ul> setelah button
+            // Mengambil elemen daftar (ul) yang tepat berada di bawah tombol
+            const list = this.nextElementSibling; 
             const isHidden = list.style.display === 'none' || list.style.display === '';
             
-            // Animasi sederhana dan perubahan tampilan
+            // Toggle tampilan daftar anggota
             list.style.display = isHidden ? 'block' : 'none';
+            
+            // Update teks tombol sesuai status
             this.textContent = isHidden ? 'Sembunyikan Anggota' : 'Lihat Anggota';
             
-            // Memberikan sedikit feedback warna saat dibuka
-            this.style.background = isHidden ? '#800000' : '#600000';
+            // Memberikan feedback visual warna saat tombol aktif (Maroon Terang/Gelap)
+            this.style.backgroundColor = isHidden ? '#800000' : '#600000';
         });
     });
 
@@ -57,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let index = 0;
         const total = slides.length;
         
+        // Fungsi untuk menggeser wrapper slider
         const updateSlider = () => {
             wrapper.style.transform = `translateX(${-index * 100}%)`;
         };
@@ -71,18 +75,22 @@ document.addEventListener('DOMContentLoaded', () => {
             updateSlider();
         };
 
-        // Event listener tombol manual
-        if (nextBtn) nextBtn.addEventListener('click', () => {
-            nextSlide();
-            resetAutoSlide();
-        });
+        // Event listener untuk navigasi manual panah
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                nextSlide();
+                resetAutoSlide(); // Reset timer agar tidak double geser
+            });
+        }
         
-        if (prevBtn) prevBtn.addEventListener('click', () => {
-            prevSlide();
-            resetAutoSlide();
-        });
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                prevSlide();
+                resetAutoSlide();
+            });
+        }
 
-        // Auto Slide setiap 5 detik
+        // Jalankan slide otomatis setiap 5 detik
         let autoSlideInterval = setInterval(nextSlide, 5000);
 
         function resetAutoSlide() {
