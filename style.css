@@ -1,4 +1,3 @@
-/* RESET & VARS */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
     --color-maroon: #600000;
@@ -33,6 +32,18 @@ header {
 .nav-menu.active { display: flex; }
 .nav-menu a { color: white; text-decoration: none; padding: 10px; display: block; border-bottom: 1px solid #333; }
 
+/* FAB INSTAGRAM */
+.fab-instagram {
+    position: fixed; bottom: 30px; right: 30px;
+    width: 60px; height: 60px;
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    text-decoration: none; color: white; font-size: 30px; z-index: 999;
+    box-shadow: 0 0 20px rgba(214, 36, 159, 0.5); border: 2px solid rgba(255, 255, 255, 0.2);
+    transition: 0.3s ease;
+}
+.fab-instagram:hover { transform: scale(1.1) rotate(5deg); box-shadow: 0 0 30px rgba(214, 36, 159, 0.8); }
+
 /* MAIN LAYOUT */
 main { max-width: 1200px; margin: 0 auto; padding: 20px; }
 section { 
@@ -41,24 +52,22 @@ section {
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 h2 { color: var(--color-gold); margin-bottom: 40px; font-family: 'Playfair Display', serif; font-size: 2.5em; text-align: center; }
-.sub-title { text-align: center; margin-bottom: 30px; font-size: 1.6em; font-weight: bold; text-transform: uppercase; }
-.sub-title-white { color: white; }
-.divider-light { border: 0; height: 1px; background: rgba(255, 215, 0, 0.2); margin: 60px 0; }
+.sub-title-white { color: white; text-align: center; margin-bottom: 30px; font-size: 1.6em; text-transform: uppercase; }
 
 /* ORGANISASI */
 .silsilah-row { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; }
 .silsilah-card { 
     background: var(--color-maroon); border: 2px solid var(--color-gold); 
-    border-radius: 10px; padding: 20px; text-align: center; min-width: 200px; flex: 1; max-width: 250px;
+    border-radius: 10px; padding: 20px; text-align: center; flex: 1; max-width: 250px;
 }
 .silsilah-card h4 { color: var(--color-gold); margin-bottom: 8px; font-weight: bold; }
 .silsilah-card p { color: white; font-size: 0.95em; }
 
 .divisi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
 .divisi-box { background: #222; padding: 25px; border-radius: 15px; border-top: 5px solid var(--color-gold); }
-.toggle-anggota { width: 100%; padding: 12px; background: var(--color-maroon); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 15px; }
+.toggle-anggota { width: 100%; padding: 12px; background: var(--color-maroon); color: white; border: none; cursor: pointer; border-radius: 8px; font-weight: bold; margin-top: 15px; }
 
-/* SLIDER - PERBAIKAN */
+/* SLIDER */
 .slider-container { position: relative; max-width: 900px; margin: 40px auto; overflow: hidden; border-radius: 15px; border: 2px solid var(--color-maroon); }
 .slider-wrapper { display: flex; transition: transform 0.5s ease-in-out; width: 100%; }
 .slider-item { min-width: 100%; position: relative; }
@@ -72,8 +81,7 @@ footer { text-align: center; padding: 50px; color: #666; }
 @media (max-width: 850px) {
     .logo-desktop-only { display: none !important; }
     .logo-group-mobile { display: flex; gap: 10px; }
-    .logo-mini { height: 60px; }
     .text-container h1 { font-size: 1.8em; }
-    section { padding: 30px 20px; }
     .slider-item img { height: 250px; }
+    .fab-instagram { width: 50px; height: 50px; bottom: 20px; right: 20px; font-size: 25px; }
 }
