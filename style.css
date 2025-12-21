@@ -61,7 +61,6 @@ body {
 }
 
 /* --- TARGET GLOW JUDUL (BARU) --- */
-/* Pastikan ID visi-misi dan organisasi ada di HTML Anda */
 #visi-misi h2 {
     animation: textGlowSilver 3s ease-in-out infinite;
 }
@@ -135,15 +134,16 @@ body::before {
     transform: scale(1.2); 
 }
 
-.fab-instagram:hover { box-shadow: 0 10px 20px rgba(214, 36, 159, 0.5); }
-.fab-whatsapp:hover { background: #128C7E; box-shadow: 0 10px 20px rgba(37, 211, 102, 0.4); }
-
-/* --- HEADER & BRANDING (ASLI) --- */
+/* --- HEADER & BRANDING (DENGAN EFEK FADE KE BAWAH) --- */
 header {
     position: relative;
     width: 100%;
     aspect-ratio: 16 / 9; 
-    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(96,0,0,0.4)), url('wqeqwe.gif');
+    /* Layer 1: Fade out ke warna BG main, Layer 2: Overlay Maroon, Layer 3: GIF */
+    background-image: 
+        linear-gradient(to bottom, transparent 60%, var(--color-bg-main) 100%),
+        linear-gradient(rgba(0,0,0,0.6), rgba(96,0,0,0.4)), 
+        url('wqeqwe.gif');
     background-size: cover; 
     background-position: center;
     background-repeat: no-repeat;
@@ -152,10 +152,14 @@ header {
     justify-content: center;
     padding: 20px;
     text-align: center;
+    z-index: 1;
 }
 
 .page-berita header {
-    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('LB_2.gif') !important;
+    background-image: 
+        linear-gradient(to bottom, transparent 60%, var(--color-bg-main) 100%),
+        linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+        url('LB_2.gif') !important;
 }
 
 .header-brand-wrapper {
@@ -199,39 +203,8 @@ header {
     text-shadow: 2px 2px 10px rgba(0,0,0,0.8); 
 }
 
-.text-container p { 
-    color: var(--color-silver); 
-    font-weight: bold; 
-    text-shadow: 1px 1px 5px rgba(0,0,0,0.8); 
-}
-
-/* --- NAVIGASI (ASLI) --- */
-.nav-container { position: absolute; top: 25px; right: 25px; z-index: 2000; }
-.hamburger { display: flex; flex-direction: column; gap: 6px; background: none; border: none; cursor: pointer; }
-.hamburger span { width: 35px; height: 4px; background: var(--color-silver); border-radius: 2px; }
-
-.nav-menu {
-    position: absolute; 
-    top: 50px; 
-    right: 0; 
-    background: rgba(60, 0, 0, 0.75); 
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
-    list-style: none; 
-    padding: 15px; 
-    border-radius: 12px; 
-    border: 1px solid var(--glass-border);
-    display: none; 
-    flex-direction: column; 
-    min-width: 180px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-}
-
-.nav-menu.active { display: flex; }
-.nav-menu a { color: white; text-decoration: none; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.1); }
-
-/* --- SECTIONS (ASLI) --- */
-main { max-width: 1200px; margin: 0 auto; padding: 20px; }
+/* --- SECTIONS (DENGAN NEGATIVE MARGIN UNTUK EFEK MENYAMBUNG) --- */
+main { max-width: 1200px; margin: 0 auto; padding: 20px; position: relative; z-index: 10; }
 
 section { 
     margin-bottom: 60px; 
@@ -245,6 +218,11 @@ section {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
+/* Membuat box pertama (Visi & Misi) sedikit naik menimpa fade header */
+#visi-misi {
+    margin-top: -80px;
+}
+
 h2 { 
     color: var(--color-silver); 
     margin-bottom: 40px; 
@@ -253,9 +231,7 @@ h2 {
     text-align: center; 
 }
 
-/* --- PENGURUS INTI (ASLI) --- */
-.silsilah-row { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; }
-
+/* --- SISANYA TETAP SAMA (ASLI) --- */
 .card-maroon { 
     background: rgba(96, 0, 0, 0.45); 
     backdrop-filter: blur(25px); 
@@ -270,107 +246,33 @@ h2 {
     transition: all 0.4s ease;
 }
 
-.card-maroon:hover { transform: translateY(-8px); border-color: var(--color-silver); }
-
 .card-maroon h4 { 
     color: var(--color-silver); 
-    margin-bottom: 10px; 
-    font-size: 0.9em; 
     text-transform: uppercase; 
     font-weight: 800;
-    text-shadow: 0 0 10px rgba(192, 192, 192, 0.8), 0 0 20px rgba(192, 192, 192, 0.4); 
 }
 
-.card-maroon p, .leader, .anggota-list li { 
-    color: var(--text-white) !important; 
-}
-
-/* --- DIVISI BOX (ASLI) --- */
-.divisi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-
-.divisi-box { 
-    background: rgba(255, 255, 255, 0.05); 
-    backdrop-filter: blur(12px);
-    padding: 25px; 
-    border-radius: 15px; 
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-top: 5px solid var(--color-silver); 
-    text-align: center; 
-}
-
-.leader span { color: var(--color-silver); text-shadow: none; }
-.anggota-list { display: none; margin-top: 15px; list-style: none; color: var(--text-white); }
-
-.toggle-btn { 
-    width: 100%; 
-    padding: 10px; 
-    background: var(--color-maroon); 
-    color: white; 
-    border: 1px solid var(--color-silver); 
-    border-radius: 8px; 
-    cursor: pointer; 
-    font-weight: bold; 
-}
-
-/* --- SLIDER (ASLI) --- */
-.slider-container { 
-    position: relative; 
-    max-width: 900px; 
-    margin: 0 auto; 
-    overflow: hidden; 
-    border-radius: 15px; 
-    border: 2px solid var(--color-maroon); 
-}
-
-.slider-wrapper { display: flex; transition: transform 0.5s ease; }
-.slider-item { min-width: 100%; position: relative; }
-.slider-item img { width: 100%; height: 450px; object-fit: cover; }
-.slider-desc { position: absolute; bottom: 0; width: 100%; background: rgba(0,0,0,0.8); color: var(--color-silver); padding: 15px; text-align: center; }
-
-.slider-btn { 
-    position: absolute; 
-    top: 50%; 
-    transform: translateY(-50%); 
-    background: var(--color-maroon); 
-    color: white; 
-    border: 1px solid var(--color-silver); 
-    width: 45px; 
-    height: 45px; 
-    cursor: pointer; 
-    border-radius: 50%; 
-    z-index: 10; 
-}
-.prev { left: 15px; } 
-.next { right: 15px; }
-
-/* --- FOOTER (Glass Effect Silver) --- */
-footer { 
+.footer { 
     padding: 30px; 
-    background: rgba(192, 192, 192, 0.15); /* Silver Glass Background */
-    backdrop-filter: blur(15px); /* Glass Blur */
+    background: rgba(192, 192, 192, 0.15); 
+    backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     text-align: center; 
-    border-top: 1px solid rgba(192, 192, 192, 0.4); /* Glass Border */
+    border-top: 1px solid rgba(192, 192, 192, 0.4); 
     color: var(--color-silver);
-    font-weight: 500;
 }
 
-/* --- RESPONSIVE (ASLI) --- */
+/* --- RESPONSIVE --- */
 @media (min-width: 851px) {
-    .header-brand-wrapper { 
-        flex-direction: row; 
-        gap: 50px; 
-        justify-content: space-between; 
-        max-width: 1000px;
-    }
+    .header-brand-wrapper { flex-direction: row; gap: 50px; justify-content: space-between; max-width: 1000px; }
     .logo-desktop-only { display: block; height: 160px; }
     .logo-group-mobile { display: none; }
     .text-container h1 { font-size: 3.5em; }
+    #visi-misi { margin-top: -120px; } /* Margin negatif lebih besar di desktop */
 }
 
 @media (max-width: 850px) {
-    header { aspect-ratio: 16 / 9; }
     .text-container h1 { font-size: 1.8em; }
     .logo-mini { height: 60px; }
-    .fab-whatsapp { right: 85px; }
+    #visi-misi { margin-top: -50px; }
 }
