@@ -32,15 +32,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (wrapper && slides.length > 0) {
         let index = 0;
         const total = slides.length;
+        const update = () => { wrapper.style.transform = `translateX(${-index * 100}%)`; };
+        const nextSlide = () => { index = (index + 1) % total; update(); };
+        const prevSlide = () => { index = (index - 1 + total) % total; update(); };
         
-        const move = () => { wrapper.style.transform = `translateX(${-index * 100}%)`; };
-        const next = () => { index = (index + 1) % total; move(); };
-        const prev = () => { index = (index - 1 + total) % total; move(); };
-        
-        let timer = setInterval(next, 3000);
-        const reset = () => { clearInterval(timer); timer = setInterval(next, 3000); };
+        let timer = setInterval(nextSlide, 3000);
+        const resetTimer = () => { clearInterval(timer); timer = setInterval(nextSlide, 3000); };
 
-        nextBtn.addEventListener('click', () => { next(); reset(); });
-        prevBtn.addEventListener('click', () => { prev(); reset(); });
+        nextBtn.addEventListener('click', () => { nextSlide(); resetTimer(); });
+        prevBtn.addEventListener('click', () => { prevSlide(); resetTimer(); });
     }
 });
