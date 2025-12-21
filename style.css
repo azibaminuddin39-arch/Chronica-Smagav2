@@ -43,12 +43,12 @@
 /* ANIMASI GLOW TEKS (BARU) */
 @keyframes textGlowSilver {
     0%, 100% { text-shadow: 0 0 10px rgba(192, 192, 192, 0.4), 0 0 20px rgba(192, 192, 192, 0.2); }
-    50% { text-shadow: 0 0 20px rgba(192, 192, 192, 0.8), 0 0 30px rgba(192, 192, 192, 0.4); }
+    50% { text-shadow: 0 0 20px rgba(192, 192, 192, 0.8), 0 0 35px rgba(192, 192, 192, 0.4); }
 }
 
 @keyframes textGlowMaroon {
     0%, 100% { text-shadow: 0 0 10px rgba(96, 0, 0, 0.4), 0 0 20px rgba(96, 0, 0, 0.2); }
-    50% { text-shadow: 0 0 20px rgba(96, 0, 0, 0.8), 0 0 30px rgba(96, 0, 0, 0.4); }
+    50% { text-shadow: 0 0 20px rgba(96, 0, 0, 0.8), 0 0 35px rgba(96, 0, 0, 0.4); }
 }
 
 body { 
@@ -61,12 +61,14 @@ body {
 }
 
 /* --- TARGET GLOW JUDUL (BARU) --- */
+/* Pastikan ID visi-misi dan organisasi ada di HTML Anda */
 #visi-misi h2 {
     animation: textGlowSilver 3s ease-in-out infinite;
 }
 
 #organisasi h2 {
     animation: textGlowMaroon 3s ease-in-out infinite;
+    color: var(--color-maroon) !important;
 }
 
 /* LAPISAN GLOW LATAR BELAKANG */
@@ -341,12 +343,16 @@ h2 {
 .prev { left: 15px; } 
 .next { right: 15px; }
 
-/* --- FOOTER (ASLI) --- */
+/* --- FOOTER (Glass Effect Silver) --- */
 footer { 
     padding: 30px; 
-    background: #0a0a0a; 
+    background: rgba(192, 192, 192, 0.15); /* Silver Glass Background */
+    backdrop-filter: blur(15px); /* Glass Blur */
+    -webkit-backdrop-filter: blur(15px);
     text-align: center; 
-    border-top: 1px solid rgba(192, 192, 192, 0.1); 
+    border-top: 1px solid rgba(192, 192, 192, 0.4); /* Glass Border */
+    color: var(--color-silver);
+    font-weight: 500;
 }
 
 /* --- RESPONSIVE (ASLI) --- */
