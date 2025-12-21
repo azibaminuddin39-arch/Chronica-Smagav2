@@ -17,7 +17,12 @@ body {
     overflow-x: hidden; 
 }
 
-/* --- TOMBOL INSTAGRAM MELAYANG --- */
+/* --- TOMBOL INSTAGRAM MELAYANG (FLOAT ANIMATION) --- */
+@keyframes floatInstagram {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(5deg); }
+}
+
 .fab-instagram {
     position: fixed;
     bottom: 25px;
@@ -34,9 +39,16 @@ body {
     z-index: 3000;
     box-shadow: 0 6px 15px rgba(0,0,0,0.6);
     text-decoration: none;
-    transition: transform 0.3s ease;
+    /* Animasi melayang khusus IG */
+    animation: floatInstagram 3s ease-in-out infinite;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.fab-instagram:hover { transform: scale(1.1) rotate(5deg); }
+
+.fab-instagram:hover { 
+    animation-play-state: paused; /* Berhenti melayang saat kursor di atasnya */
+    transform: scale(1.2); 
+    box-shadow: 0 10px 20px rgba(214, 36, 159, 0.5);
+}
 
 /* --- HEADER & BRANDING --- */
 header {
@@ -68,11 +80,10 @@ header {
     width: 100%;
 }
 
-/* --- LOGO SHINING EFFECT (FLOATING OFF) --- */
+/* --- LOGO SHINING EFFECT (STATIONARY / NO FLOAT) --- */
 .logo-desktop-only, .logo-mini { 
     position: relative;
     filter: drop-shadow(0 0 8px rgba(0,0,0,0.8));
-    /* Animasi floatLogo dimatikan sesuai permintaan */
     overflow: hidden;
     display: inline-block;
 }
@@ -83,16 +94,16 @@ header {
     position: absolute;
     top: -50%;
     left: -150%;
-    width: 60%; /* Kilatan lebih lebar */
+    width: 60%;
     height: 200%;
     background: linear-gradient(
         to right, 
         transparent, 
-        rgba(255, 255, 255, 0.8), /* Intensitas diperkuat ke 0.8 */
+        rgba(255, 255, 255, 0.8), 
         transparent
     );
     transform: rotate(30deg);
-    animation: shineEffect 3.5s infinite; /* Gerakan periodik */
+    animation: shineEffect 3.5s infinite;
 }
 
 @keyframes shineEffect {
