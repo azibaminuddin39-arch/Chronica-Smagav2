@@ -4,8 +4,10 @@
     --color-maroon: #600000;
     --color-gold: #FFD700;
     --color-bg-main: #000000;
-    --color-bg-section: #1a1a1a;
+    --color-bg-section: rgba(26, 26, 26, 0.6); /* Transparan untuk efek kaca */
     --text-primary: #e0e0e0;
+    --glass-border: rgba(255, 215, 0, 0.2);
+    --glass-blur: blur(12px);
 }
 body { 
     font-family: 'Montserrat', sans-serif; 
@@ -40,7 +42,7 @@ body {
 header {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 9; /* Mengunci rasio GIF horizontal */
+    aspect-ratio: 16 / 9; 
     background-image: linear-gradient(rgba(0,0,0,0.6), rgba(96,0,0,0.4)), url('wqeqwe.gif');
     background-size: cover; 
     background-position: center;
@@ -78,43 +80,64 @@ header {
     text-shadow: 1px 1px 5px rgba(0,0,0,0.8); 
 }
 
-/* --- NAVIGASI --- */
+/* --- NAVIGASI DENGAN EFEK KACA --- */
 .nav-container { position: absolute; top: 25px; right: 25px; z-index: 2000; }
 .hamburger { display: flex; flex-direction: column; gap: 6px; background: none; border: none; cursor: pointer; }
 .hamburger span { width: 35px; height: 4px; background: var(--color-gold); border-radius: 2px; }
 
 .nav-menu {
     position: absolute; top: 50px; right: 0; 
-    background: rgba(30,0,0,0.98);
-    list-style: none; padding: 15px; border-radius: 8px; border: 1px solid var(--color-gold);
+    background: rgba(60, 0, 0, 0.7); /* Maroon Glass */
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    list-style: none; padding: 15px; border-radius: 12px; 
+    border: 1px solid var(--glass-border);
     display: none; flex-direction: column; min-width: 180px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
 }
 .nav-menu.active { display: flex; }
 .nav-menu a { color: white; text-decoration: none; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.1); }
 
-/* --- SECTIONS --- */
+/* --- SECTIONS DENGAN EFEK KACA --- */
 main { max-width: 1200px; margin: 0 auto; padding: 20px; }
 section { 
     margin-bottom: 60px; padding: 40px; 
     background: var(--color-bg-section); 
-    border-radius: 20px; border-left: 8px solid var(--color-gold);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-radius: 20px; 
+    border: 1px solid var(--glass-border);
+    border-left: 8px solid var(--color-gold);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 h2 { color: var(--color-gold); margin-bottom: 40px; font-family: 'Playfair Display', serif; font-size: 2.2em; text-align: center; }
 
-/* --- PENGURUS INTI (CARD MAROON) --- */
+/* --- PENGURUS INTI (CARD MAROON GLASS) --- */
 .silsilah-row { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; }
 .card-maroon { 
-    background: var(--color-maroon); border: 2px solid var(--color-gold); 
+    background: rgba(96, 0, 0, 0.5); /* Maroon Transparan */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 215, 0, 0.4); 
     border-radius: 12px; padding: 20px; text-align: center; 
     min-width: 220px; flex: 1; max-width: 300px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
 }
+.card-maroon:hover { transform: translateY(-5px); background: rgba(96, 0, 0, 0.7); }
 .card-maroon h4 { color: var(--color-gold); margin-bottom: 8px; font-size: 0.9em; text-transform: uppercase; border-bottom: 1px solid rgba(255,215,0,0.2); }
 .card-maroon p { color: white; font-weight: bold; }
 
-/* --- DIVISI --- */
+/* --- DIVISI GLASS BOX --- */
 .divisi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-.divisi-box { background: #222; padding: 25px; border-radius: 15px; border-top: 5px solid var(--color-gold); }
+.divisi-box { 
+    background: rgba(255, 255, 255, 0.05); 
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 25px; border-radius: 15px; 
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 5px solid var(--color-gold); 
+}
 .anggota-list { display: none; margin-top: 15px; padding-left: 20px; color: #bbb; }
 .toggle-btn { width: 100%; padding: 10px; background: var(--color-maroon); color: white; border: 1px solid var(--color-gold); border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 15px; }
 
@@ -136,12 +159,7 @@ footer {
     border-top: 1px solid rgba(255, 215, 0, 0.1);
     margin-top: 40px;
 }
-
-footer p {
-    color: #888;
-    font-size: 0.9rem;
-    letter-spacing: 0.5px;
-}
+footer p { color: #888; font-size: 0.9rem; letter-spacing: 0.5px; }
 
 /* --- RESPONSIVE OPTIMIZATION --- */
 @media (min-width: 851px) {
@@ -149,7 +167,6 @@ footer p {
     .logo-desktop-only { display: block; height: 160px; filter: drop-shadow(0 0 10px black); }
     .logo-group-mobile { display: none; }
     .text-container h1 { font-size: 3.5em; }
-    
     .header-brand-wrapper img:nth-of-type(1) { order: 1; }
     .text-container { order: 2; }
     .header-brand-wrapper img:nth-of-type(2) { order: 3; }
