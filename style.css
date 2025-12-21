@@ -2,187 +2,145 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
     --color-maroon: #4b0000;
-    --color-maroon-bright: #800000;
-    /* UPDATE: Silver & Maroon Theme */
-    --color-accent: #e0e0e0; /* Silver Platinum */
-    --color-box-bg: rgba(75, 0, 0, 0.85); /* Box Merah Maroon Solid-Glass */
-    --text-primary: #e0e0e0; /* Teks Utama Silver */
+    --color-box-bg: rgba(70, 0, 0, 0.85); /* Box Maroon */
+    --color-accent-silver: #e0e0e0; /* Silver Platinum */
+    --text-pure-white: #ffffff; /* Untuk Nama Anggota */
     --glass-border: rgba(255, 255, 255, 0.15);
     --glass-blur: blur(25px);
+    /* Ganti Biru menjadi Silver */
+    --color-silver-glow: #f0f0f0; 
 }
 
-/* --- ANIMASI BACKGROUND APPLE MUSIC STYLE --- */
+/* --- BACKGROUND --- */
+body { 
+    font-family: 'Montserrat', sans-serif; 
+    background: linear-gradient(-45deg, #1a1a1a, #4b0000, #000814, #2c2c2c);
+    background-size: 400% 400%;
+    animation: appleMusicGradient 18s ease infinite;
+    color: var(--color-accent-silver); 
+    line-height: 1.6; 
+    overflow-x: hidden;
+}
+
 @keyframes appleMusicGradient {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
-body { 
-    font-family: 'Montserrat', sans-serif; 
-    background: linear-gradient(-45deg, #2c2c2c, #4b0000, #000814, #1a1a1a);
-    background-size: 400% 400%;
-    animation: appleMusicGradient 18s ease infinite;
-    color: var(--text-primary); 
-    line-height: 1.6; 
-    overflow-x: hidden; 
-    min-height: 100vh;
-}
-
-/* --- TOMBOL SOSIAL MEDIA MELAYANG --- */
-@keyframes floatIcon {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-12px); }
-}
-
-.fab-instagram, .fab-whatsapp {
-    position: fixed;
-    bottom: 25px;
-    width: 55px; height: 55px;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    color: #fff; z-index: 3000;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.6);
-    text-decoration: none;
-    animation: floatIcon 3s ease-in-out infinite;
-    transition: 0.3s ease;
-}
-
-.fab-instagram { right: 25px; background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%); font-size: 28px; }
-.fab-whatsapp { right: 95px; background: #25D366; font-size: 30px; }
-
-/* --- HEADER & BRANDING --- */
+/* --- HEADER (LOGO KIRI - TEXT - LOGO KANAN) --- */
 header {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 9; 
-    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(44,0,0,0.4)), url('wqeqwe.gif');
-    background-size: cover; background-position: center;
-    display: flex; align-items: center; justify-content: center;
-    padding: 20px; text-align: center;
-    border-bottom: 2px solid var(--glass-border);
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(44,0,0,0.5)), url('wqeqwe.gif');
+    background-size: cover;
+    background-position: center;
 }
 
-.logo-desktop-only, .logo-mini { 
-    position: relative;
+.header-brand-wrapper {
+    display: flex;
+    flex-direction: row; /* Berjejer ke samping */
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    width: 90%;
+}
+
+/* Logo Sizing */
+.logo-mini, .logo-desktop-only { 
+    height: 120px; /* Sesuaikan ukuran */
     filter: drop-shadow(0 0 15px rgba(255,255,255,0.2));
-    overflow: hidden;
-    display: inline-block;
 }
 
-.logo-desktop-only::after, .logo-mini::after {
-    content: ""; position: absolute; top: -50%; left: -150%; width: 60%; height: 200%;
-    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.6), transparent);
-    transform: rotate(30deg); animation: shineEffect 3.5s infinite;
-}
-
-@keyframes shineEffect {
-    0% { left: -150%; }
-    20% { left: 150%; }
-    100% { left: 150%; }
-}
-
-.logo-desktop-only { display: none; } 
-.logo-group-mobile { display: flex; gap: 15px; margin-bottom: 10px; }
-.logo-mini { height: 70px; }
-
+.text-container { text-align: center; }
 .text-container h1 { 
-    font-family: 'Playfair Display', serif; font-size: 2.5em; 
-    color: var(--text-primary); letter-spacing: 2px; 
-    text-shadow: 0 0 20px rgba(0,0,0,0.5); 
+    font-family: 'Playfair Display', serif; 
+    font-size: 3.5em; 
+    color: var(--color-accent-silver); 
+    letter-spacing: 4px;
+    text-shadow: 0 0 20px rgba(255,255,255,0.3);
 }
-.text-container p { color: var(--color-accent); font-weight: bold; letter-spacing: 2px; }
 
-/* --- NAVIGASI --- */
-.nav-container { position: absolute; top: 25px; right: 25px; z-index: 2000; }
-.hamburger { display: flex; flex-direction: column; gap: 6px; background: none; border: none; cursor: pointer; }
-.hamburger span { width: 35px; height: 4px; background: var(--color-accent); border-radius: 2px; }
-
-.nav-menu {
-    position: absolute; top: 50px; right: 0; 
-    background: rgba(44, 0, 0, 0.95); 
-    backdrop-filter: var(--glass-blur);
-    list-style: none; padding: 15px; border-radius: 12px; 
-    border: 1px solid var(--glass-border);
-    display: none; flex-direction: column; min-width: 180px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-}
-.nav-menu.active { display: flex; }
-.nav-menu a { color: var(--text-primary); text-decoration: none; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.1); }
-
-/* --- SECTIONS (FIXED MAROON BOX) --- */
-main { max-width: 1200px; margin: 0 auto; padding: 20px; position: relative; z-index: 5; }
+/* --- SECTIONS --- */
+main { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
 section { 
-    margin-bottom: 60px; padding: 40px; 
     background: var(--color-box-bg); 
     backdrop-filter: var(--glass-blur);
-    border-radius: 24px; 
+    padding: 40px; border-radius: 24px; 
     border: 1px solid var(--glass-border);
-    border-left: 8px solid var(--color-accent); /* Aksen Silver */
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    border-left: 8px solid var(--color-accent-silver);
+    margin-bottom: 50px;
 }
 
-h2 { 
-    color: var(--color-accent); 
-    margin-bottom: 40px; font-family: 'Playfair Display', serif; 
-    font-size: 2.2em; text-align: center; letter-spacing: 2px;
-}
+/* --- KARTU PENGURUS & JABATAN GLOW --- */
+.silsilah-row { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
 
-/* --- PENGURUS INTI (HORIZONTAL LAYOUT) --- */
-.silsilah-row { 
-    display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; 
-}
 .card-maroon { 
-    background: rgba(128, 0, 0, 0.4) !important; 
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1); 
-    border-radius: 18px; padding: 25px 20px; 
-    text-align: center; min-width: 220px; flex: 1; max-width: 300px;
-    transition: all 0.4s ease;
+    background: rgba(40, 0, 0, 0.6) !important; 
+    padding: 25px; border-radius: 18px; 
+    text-align: center; flex: 1; min-width: 250px; max-width: 350px;
+    border: 1px solid rgba(255,255,255,0.1);
 }
-.card-maroon:hover { 
-    transform: translateY(-10px); 
-    border-color: var(--color-accent);
-    background: rgba(128, 0, 0, 0.6) !important;
-}
-.card-maroon h4 { color: #0088ff; margin-bottom: 10px; font-size: 0.9em; text-transform: uppercase; font-weight: 800; }
 
-/* --- DIVISI GRID (FIXED LAYOUT) --- */
-.divisi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+/* Jabatan Glow (Silver Glow) */
+.card-maroon h4, .divisi-box h4 { 
+    color: var(--color-silver-glow) !important; 
+    text-transform: uppercase; 
+    font-weight: 800;
+    font-size: 0.9em;
+    letter-spacing: 1.5px;
+    /* Efek Glow */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.2);
+    margin-bottom: 10px;
+}
+
+/* Nama Anggota Warna Putih */
+.card-maroon p, .leader, .anggota-list li { 
+    color: var(--text-pure-white) !important; 
+}
+
+/* --- DIVISI GRID --- */
+.divisi-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 25px; 
+}
+
 .divisi-box { 
-    background: rgba(255, 255, 255, 0.05); padding: 25px; border-radius: 20px; 
+    background: rgba(120, 0, 0, 0.2); 
+    padding: 30px; border-radius: 20px; 
     border: 1px solid var(--glass-border);
-    border-top: 5px solid var(--color-accent); 
-    text-align: center; transition: 0.3s ease;
+    border-top: 5px solid var(--color-accent-silver);
 }
 
-/* --- TOGGLE BUTTON --- */
+/* Nama Leader di Divisi */
+.leader span { color: var(--color-accent-silver); font-weight: normal; }
+
+/* --- BUTTON --- */
 .toggle-btn { 
-    width: 100%; padding: 12px; background: rgba(0,0,0,0.2); 
-    color: var(--text-primary); border: 1px solid var(--color-accent); 
-    border-radius: 12px; cursor: pointer; font-weight: bold; 
-    margin-top: 10px; text-transform: uppercase;
+    width: 100%; padding: 12px; 
+    background: transparent; 
+    color: var(--color-accent-silver); 
+    border: 1px solid var(--color-accent-silver); 
+    border-radius: 10px; cursor: pointer;
+    font-weight: bold; transition: 0.3s;
 }
-.toggle-btn:hover { background: var(--color-accent); color: #000; }
-
-/* --- SLIDER --- */
-.slider-container { position: relative; max-width: 900px; margin: 0 auto; overflow: hidden; border-radius: 20px; border: 1px solid var(--glass-border); }
-.slider-wrapper { display: flex; transition: transform 0.6s ease-in-out; }
-.slider-item { min-width: 100%; }
-.slider-item img { width: 100%; height: 450px; object-fit: cover; }
-.slider-desc { position: absolute; bottom: 0; width: 100%; background: linear-gradient(transparent, rgba(0,0,0,0.95)); color: var(--color-accent); padding: 35px 15px 20px; text-align: center; }
-
-/* --- FOOTER --- */
-footer { padding: 50px 20px; background: rgba(10, 10, 10, 0.9); text-align: center; border-top: 1px solid var(--glass-border); }
-
-/* --- RESPONSIVE --- */
-@media (min-width: 851px) {
-    .header-brand-wrapper { flex-direction: row; gap: 50px; }
-    .logo-desktop-only { display: block; height: 160px; }
-    .logo-group-mobile { display: none; }
+.toggle-btn:hover { 
+    background: var(--color-accent-silver); 
+    color: #1a1a1a; 
+    box-shadow: 0 0 15px rgba(255,255,255,0.4);
 }
+
+/* --- RESPONSIVE (Logo Stack on Mobile) --- */
 @media (max-width: 850px) {
-    .text-container h1 { font-size: 1.8em; }
-    .card-maroon { min-width: 100%; }
-    section { padding: 30px 20px; }
+    .header-brand-wrapper { 
+        flex-direction: column; /* Logo menumpuk di HP agar tidak sempit */
+        gap: 15px;
+    }
+    .text-container h1 { font-size: 2.2em; }
+    .logo-mini { height: 80px; }
 }
