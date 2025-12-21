@@ -102,12 +102,14 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 40px;
+    gap: clamp(20px, 4vw, 50px);
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* Logo Group di Desktop: Kita buat transparan containernya agar logo mengapit teks */
-.logo-group {
-    display: contents; /* Menghilangkan pembungkus secara visual agar logo bisa dipisah */
+/* Sembunyikan grup logo mobile di desktop */
+.logo-group-mobile {
+    display: none;
 }
 
 .logo-side {
@@ -115,12 +117,12 @@ header {
     width: auto;
     object-fit: contain;
     filter: drop-shadow(0 0 15px rgba(0,0,0,0.6));
+    display: block;
 }
 
-/* Mengatur Posisi Desktop: Logo 1 (Kiri) - Teks (Tengah) - Logo 2 (Kanan) */
-.logo-sekolah { order: 1; }
-.text-container { order: 2; text-align: center; }
-.logo-organisasi { order: 3; }
+.text-container {
+    text-align: center;
+}
 
 header h1 {
     font-family: 'Playfair Display', serif;
@@ -138,7 +140,7 @@ header p {
 }
 
 /* ============================ */
-/* 4. CONTENT & DIVISI          */
+/* 4. CONTENT SECTIONS          */
 /* ============================ */
 main { padding: 20px; max-width: 1200px; margin: 0 auto; }
 
@@ -180,42 +182,44 @@ section {
 
 @media (max-width: 850px) {
     header {
-        padding: 50px 20px 30px 20px;
+        padding: 70px 20px 40px 20px;
         text-align: left;
     }
 
     .header-brand-wrapper {
-        display: flex;
-        flex-direction: row;
         justify-content: flex-start;
         gap: 15px;
     }
 
-    /* Mengaktifkan kembali pembungkus logo di mobile agar berjejer di kiri */
-    .logo-group {
-        display: flex; 
-        order: 1;
-        gap: 10px;
+    /* Sembunyikan logo individual desktop */
+    .header-brand-wrapper > .logo-side {
+        display: none;
     }
 
-    .logo-side {
-        height: 65px; /* Ukuran lebih kecil untuk pojok kiri */
-        order: unset; /* Reset urutan desktop */
+    /* Munculkan grup logo mobile di pojok kiri */
+    .logo-group-mobile {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .logo-group-mobile .logo-side {
+        display: block;
+        height: 60px; /* Ukuran pas untuk mobile */
     }
 
     .text-container {
-        order: 2;
         text-align: left;
     }
 
-    header h1 { font-size: 1.6em; }
-    header p { font-size: 0.8em; margin-top: 2px; }
+    header h1 { font-size: 1.7em; }
+    header p { font-size: 0.85em; margin-top: 2px; }
 
-    .nav-container { top: 15px; right: 15px; }
+    .nav-container { top: 20px; right: 20px; }
 }
 
 @media (max-width: 480px) {
-    .logo-side { height: 50px; }
-    header h1 { font-size: 1.3em; }
-    .header-brand-wrapper { gap: 10px; }
+    .logo-group-mobile .logo-side { height: 50px; }
+    header h1 { font-size: 1.4em; }
+    header { padding-top: 60px; }
 }
