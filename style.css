@@ -2,19 +2,31 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
     --color-maroon: #600000;
+    --color-maroon-bright: #8a0000;
     --color-gold: #FFD700;
-    --color-bg-main: #000000;
-    --color-bg-section: rgba(26, 26, 26, 0.6); 
-    --text-primary: #e0e0e0;
-    --glass-border: rgba(255, 215, 0, 0.2);
-    --glass-blur: blur(15px);
+    --color-bg-section: rgba(255, 255, 255, 0.05); /* Lebih transparan untuk Glass Effect */
+    --text-primary: #ffffff;
+    --glass-border: rgba(255, 255, 255, 0.15);
+    --glass-blur: blur(20px);
 }
+
+/* --- ANIMASI BACKGROUND APPLE MUSIC STYLE --- */
+@keyframes appleMusicGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
 body { 
     font-family: 'Montserrat', sans-serif; 
-    background: var(--color-bg-main); 
+    /* Gradasi Maroon ke Putih Abu-abu */
+    background: linear-gradient(-45deg, #4b0000, #800000, #2c0000, #e0e0e0);
+    background-size: 400% 400%;
+    animation: appleMusicGradient 15s ease infinite;
     color: var(--text-primary); 
     line-height: 1.6; 
     overflow-x: hidden; 
+    min-height: 100vh;
 }
 
 /* --- TOMBOL SOSIAL MEDIA MELAYANG --- */
@@ -23,7 +35,6 @@ body {
     50% { transform: translateY(-12px); }
 }
 
-/* Base Style untuk Floating Buttons */
 .fab-instagram, .fab-whatsapp {
     position: fixed;
     bottom: 25px;
@@ -41,21 +52,18 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
-/* Instagram Specific */
 .fab-instagram {
     right: 25px;
     background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
     font-size: 28px;
 }
 
-/* WhatsApp Specific (Customer Service) */
 .fab-whatsapp {
-    right: 95px; /* Jarak agar tidak menumpuk dengan IG */
+    right: 95px;
     background: #25D366;
     font-size: 30px;
 }
 
-/* Hover Effects */
 .fab-instagram:hover, .fab-whatsapp:hover { 
     animation-play-state: paused;
     transform: scale(1.2); 
@@ -80,7 +88,6 @@ header {
     text-align: center;
 }
 
-/* --- KHUSUS HALAMAN BERITA --- */
 .page-berita header {
     background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('LB_2.gif') !important;
 }
@@ -94,10 +101,10 @@ header {
     width: 100%;
 }
 
-/* --- LOGO SHINING EFFECT (STATIONARY) --- */
+/* --- LOGO SHINING EFFECT --- */
 .logo-desktop-only, .logo-mini { 
     position: relative;
-    filter: drop-shadow(0 0 8px rgba(0,0,0,0.8));
+    filter: drop-shadow(0 0 15px rgba(0,0,0,0.5));
     overflow: hidden;
     display: inline-block;
 }
@@ -129,12 +136,12 @@ header {
     font-size: 2.5em; 
     color: white; 
     letter-spacing: 2px; 
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.8); 
+    text-shadow: 2px 2px 15px rgba(0,0,0,0.9); 
 }
 .text-container p { 
     color: var(--color-gold); 
     font-weight: bold; 
-    text-shadow: 1px 1px 5px rgba(0,0,0,0.8); 
+    text-shadow: 1px 1px 8px rgba(0,0,0,0.8); 
 }
 
 /* --- NAVIGASI --- */
@@ -144,7 +151,7 @@ header {
 
 .nav-menu {
     position: absolute; top: 50px; right: 0; 
-    background: rgba(60, 0, 0, 0.75); 
+    background: rgba(60, 0, 0, 0.8); 
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
     list-style: none; padding: 15px; border-radius: 12px; 
@@ -155,17 +162,17 @@ header {
 .nav-menu.active { display: flex; }
 .nav-menu a { color: white; text-decoration: none; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.1); }
 
-/* --- SECTIONS --- */
-main { max-width: 1200px; margin: 0 auto; padding: 20px; }
+/* --- SECTIONS (GLASS EFFECT) --- */
+main { max-width: 1200px; margin: 0 auto; padding: 20px; position: relative; z-index: 5; }
 section { 
     margin-bottom: 60px; padding: 40px; 
     background: var(--color-bg-section); 
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
-    border-radius: 20px; 
+    border-radius: 24px; 
     border: 1px solid var(--glass-border);
     border-left: 8px solid var(--color-gold);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
 }
 
 h2 { 
@@ -174,20 +181,25 @@ h2 {
     font-family: 'Playfair Display', serif; 
     font-size: 2.2em; 
     text-align: center; 
+    text-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
-/* --- PENGURUS INTI --- */
+/* --- PENGURUS INTI (GLASS CARDS) --- */
 .silsilah-row { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; }
 .card-maroon { 
-    background: rgba(96, 0, 0, 0.45); 
-    backdrop-filter: blur(25px); 
-    -webkit-backdrop-filter: blur(25px);
-    border: 1px solid rgba(255, 215, 0, 0.35); 
-    border-radius: 15px; padding: 25px 20px; 
+    background: rgba(128, 0, 0, 0.4) !important; 
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 215, 0, 0.3); 
+    border-radius: 18px; padding: 25px 20px; 
     text-align: center; min-width: 220px; flex: 1; max-width: 300px;
-    transition: all 0.4s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-.card-maroon:hover { transform: translateY(-8px); border-color: var(--color-gold); }
+.card-maroon:hover { 
+    transform: translateY(-10px) scale(1.05); 
+    border-color: var(--color-gold);
+    background: rgba(128, 0, 0, 0.6) !important;
+}
 
 .card-maroon h4 { 
     color: var(--color-gold); 
@@ -195,46 +207,53 @@ h2 {
     font-size: 0.9em; 
     text-transform: uppercase; 
     font-weight: 800;
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
 }
 
-/* --- DIVISI BOX --- */
+/* --- DIVISI BOX (GLASS STYLE) --- */
 .divisi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
 .divisi-box { 
-    background: rgba(255, 255, 255, 0.05); 
-    backdrop-filter: blur(12px);
-    padding: 25px; border-radius: 15px; 
+    background: rgba(255, 255, 255, 0.07); 
+    backdrop-filter: blur(15px);
+    padding: 25px; border-radius: 20px; 
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-top: 5px solid var(--color-gold); 
     text-align: center; 
+    transition: 0.3s ease;
 }
+.divisi-box:hover { background: rgba(255, 255, 255, 0.12); }
 
 .leader { 
     color: #ffffff !important; 
     font-weight: 800;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
 }
 .leader span { color: var(--color-gold); text-shadow: none; }
 
-.anggota-list { display: none; margin-top: 15px; list-style: none; color: white; }
+.anggota-list { display: none; margin-top: 15px; list-style: none; color: white; text-align: left; padding-left: 20px; }
+.anggota-list li { margin-bottom: 5px; position: relative; }
+.anggota-list li::before { content: "▹"; color: var(--color-gold); position: absolute; left: -15px; }
 
 .toggle-btn { 
-    width: 100%; padding: 10px; background: var(--color-maroon); 
+    width: 100%; padding: 12px; background: rgba(96, 0, 0, 0.8); 
     color: white; border: 1px solid var(--color-gold); 
-    border-radius: 8px; cursor: pointer; font-weight: bold; 
+    border-radius: 12px; cursor: pointer; font-weight: bold; 
+    transition: 0.3s; margin-top: 10px;
 }
+.toggle-btn:hover { background: var(--color-maroon); transform: translateY(-2px); }
 
 /* --- SLIDER --- */
-.slider-container { position: relative; max-width: 900px; margin: 0 auto; overflow: hidden; border-radius: 15px; border: 2px solid var(--color-maroon); }
-.slider-wrapper { display: flex; transition: transform 0.5s ease; }
+.slider-container { position: relative; max-width: 900px; margin: 0 auto; overflow: hidden; border-radius: 20px; border: 1px solid var(--glass-border); box-shadow: 0 15px 35px rgba(0,0,0,0.5); }
+.slider-wrapper { display: flex; transition: transform 0.6s cubic-bezier(0.45, 0, 0.55, 1); }
 .slider-item { min-width: 100%; position: relative; }
 .slider-item img { width: 100%; height: 450px; object-fit: cover; }
-.slider-desc { position: absolute; bottom: 0; width: 100%; background: rgba(0,0,0,0.8); color: var(--color-gold); padding: 15px; text-align: center; }
-.slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: var(--color-maroon); color: white; border: 1px solid var(--color-gold); width: 45px; height: 45px; cursor: pointer; border-radius: 50%; z-index: 10; }
+.slider-desc { position: absolute; bottom: 0; width: 100%; background: linear-gradient(transparent, rgba(0,0,0,0.9)); color: var(--color-gold); padding: 30px 15px 15px; text-align: center; }
+.slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(96, 0, 0, 0.7); backdrop-filter: blur(5px); color: white; border: 1px solid var(--color-gold); width: 45px; height: 45px; cursor: pointer; border-radius: 50%; z-index: 10; transition: 0.3s; }
+.slider-btn:hover { background: var(--color-maroon); scale: 1.1; }
 .prev { left: 15px; } .next { right: 15px; }
 
 /* --- FOOTER --- */
-footer { padding: 30px; background: #0a0a0a; text-align: center; border-top: 1px solid rgba(255,215,0,0.1); }
+footer { padding: 40px; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); text-align: center; border-top: 1px solid var(--glass-border); }
 
 /* --- RESPONSIVE --- */
 @media (min-width: 851px) {
@@ -248,5 +267,6 @@ footer { padding: 30px; background: #0a0a0a; text-align: center; border-top: 1px
     header { aspect-ratio: 16 / 9; }
     .text-container h1 { font-size: 1.8em; }
     .logo-mini { height: 60px; }
-    .fab-whatsapp { right: 85px; } /* Penyesuaian jarak di layar kecil */
+    .fab-whatsapp { right: 85px; }
+    section { padding: 25px; }
 }
