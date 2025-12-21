@@ -111,19 +111,18 @@ section {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
-/* Memastikan Judul "Pengurus Inti" & "Divisi" di Tengah */
 h2 { 
     color: var(--color-gold); 
     margin-bottom: 40px; 
     font-family: 'Playfair Display', serif; 
     font-size: 2.2em; 
-    text-align: center; /* Kunci Tulisan Tengah */
+    text-align: center; 
 }
 
 /* --- PENGURUS INTI (CARD MAROON - EXTRA BLUR) --- */
 .silsilah-row { 
     display: flex; 
-    justify-content: center; /* Kunci Layout Tengah */
+    justify-content: center; 
     gap: 20px; 
     flex-wrap: wrap; 
     margin-bottom: 20px; 
@@ -160,7 +159,7 @@ h2 {
     display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
     gap: 25px; 
-    justify-content: center; /* Kunci Grid Tengah */
+    justify-content: center; 
 }
 .divisi-box { 
     background: rgba(255, 255, 255, 0.05); 
@@ -170,18 +169,60 @@ h2 {
     border-radius: 15px; 
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-top: 5px solid var(--color-gold); 
-    text-align: center; /* Kunci Tulisan Divisi Tengah */
+    text-align: center; 
 }
 
-/* Memastikan teks judul divisi (h3) juga di tengah */
 .divisi-box h3 {
     color: var(--color-gold);
     margin-bottom: 15px;
     font-family: 'Playfair Display', serif;
 }
 
-.anggota-list { display: none; margin-top: 15px; padding-left: 0; list-style: none; color: #bbb; }
-.toggle-btn { width: 100%; padding: 10px; background: var(--color-maroon); color: white; border: 1px solid var(--color-gold); border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 15px; }
+/* JABATAN KETUA: KUNING EMAS DENGAN EFEK GLOW */
+.leader { 
+    color: var(--color-gold) !important; 
+    font-weight: 800;
+    margin-bottom: 12px;
+    display: block;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.6), 0 0 12px rgba(255, 215, 0, 0.2);
+}
+
+/* LIST ANGGOTA: PUTIH BERSIH DENGAN HOVER EFFECT */
+.anggota-list { 
+    display: none; 
+    margin-top: 15px; 
+    padding-left: 0; 
+    list-style: none; 
+    color: #ffffff !important; 
+    border-top: 1px solid rgba(255, 215, 0, 0.2); 
+    padding-top: 15px;
+}
+
+.anggota-list li {
+    padding: 6px 0;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.anggota-list li:hover {
+    color: var(--color-gold);
+    transform: translateX(5px);
+}
+
+.toggle-btn { 
+    width: 100%; 
+    padding: 10px; 
+    background: var(--color-maroon); 
+    color: white; 
+    border: 1px solid var(--color-gold); 
+    border-radius: 8px; 
+    cursor: pointer; 
+    font-weight: bold; 
+    margin-top: 15px; 
+}
 
 /* --- SLIDER --- */
 .slider-container { position: relative; max-width: 900px; margin: 0 auto; overflow: hidden; border-radius: 15px; border: 2px solid var(--color-maroon); }
