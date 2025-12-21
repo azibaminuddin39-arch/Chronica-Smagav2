@@ -11,24 +11,12 @@
     --glass-border: rgba(255, 215, 0, 0.2);
     --glass-blur: blur(15px);
 }
-
-/* --- ANIMASI BACKGROUND APPLE MUSIC STYLE --- */
-@keyframes appleMusicFluid {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
 body { 
     font-family: 'Montserrat', sans-serif; 
-    /* Perubahan: Menggunakan Gradasi Silver-Maroon yang Bergerak */
-    background: linear-gradient(-45deg, #4b0000, #800000, #c0c0c0, #2c2c2c, #000000);
-    background-size: 300% 300%; 
-    animation: appleMusicFluid 9s ease-in-out infinite; 
+    background: var(--color-bg-main); 
     color: var(--text-primary); 
     line-height: 1.6; 
     overflow-x: hidden; 
-    min-height: 100vh;
 }
 
 /* --- TOMBOL SOSIAL MEDIA MELAYANG --- */
@@ -141,7 +129,7 @@ header {
     text-shadow: 2px 2px 10px rgba(0,0,0,0.8); 
 }
 .text-container p { 
-    color: var(--color-silver); 
+    color: var(--color-silver); /* Berubah dari Gold ke Silver */
     font-weight: bold; 
     text-shadow: 1px 1px 5px rgba(0,0,0,0.8); 
 }
@@ -168,18 +156,17 @@ header {
 main { max-width: 1200px; margin: 0 auto; padding: 20px; }
 section { 
     margin-bottom: 60px; padding: 40px; 
-    /* Update: Latar belakang dibuat semi-transparan (Glassmorphism) */
-    background: rgba(15, 15, 15, 0.5); 
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
+    background: var(--color-bg-section); 
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
     border-radius: 20px; 
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-left: 8px solid var(--color-silver);
+    border: 1px solid var(--glass-border);
+    border-left: 8px solid var(--color-silver); /* Berubah ke Silver */
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
 h2 { 
-    color: var(--color-silver); 
+    color: var(--color-silver); /* Berubah ke Silver */
     margin-bottom: 40px; 
     font-family: 'Playfair Display', serif; 
     font-size: 2.2em; 
@@ -189,28 +176,24 @@ h2 {
 /* --- PENGURUS INTI --- */
 .silsilah-row { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; }
 .card-maroon { 
-    /* Update: Transparansi kartu agar efek gradasi menembus */
-    background: rgba(255, 255, 255, 0.03) !important; 
-    backdrop-filter: blur(10px); 
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(192, 192, 192, 0.15); 
+    background: rgba(96, 0, 0, 0.45); 
+    backdrop-filter: blur(25px); 
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 215, 0, 0.35); 
     border-radius: 15px; padding: 25px 20px; 
     text-align: center; min-width: 220px; flex: 1; max-width: 300px;
     transition: all 0.4s ease;
 }
-.card-maroon:hover { 
-    transform: translateY(-8px); 
-    border-color: var(--color-silver);
-    background: rgba(255, 255, 255, 0.07) !important;
-}
+.card-maroon:hover { transform: translateY(-8px); border-color: var(--color-silver); }
 
+/* JABATAN GLOW EFFECT */
 .card-maroon h4 { 
     color: var(--color-silver); 
     margin-bottom: 10px; 
     font-size: 0.9em; 
     text-transform: uppercase; 
     font-weight: 800;
-    text-shadow: 0 0 10px rgba(192, 192, 192, 0.8), 0 0 20px rgba(192, 192, 192, 0.4);
+    text-shadow: 0 0 10px rgba(192, 192, 192, 0.8), 0 0 20px rgba(192, 192, 192, 0.4); /* Glow Silver */
 }
 
 /* NAMA ANGGOTA PUTIH */
@@ -225,7 +208,7 @@ h2 {
     backdrop-filter: blur(12px);
     padding: 25px; border-radius: 15px; 
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-top: 5px solid var(--color-silver); 
+    border-top: 5px solid var(--color-silver); /* Berubah ke Silver */
     text-align: center; 
 }
 
@@ -253,6 +236,7 @@ footer { padding: 30px; background: #0a0a0a; text-align: center; border-top: 1px
 
 /* --- RESPONSIVE --- */
 @media (min-width: 851px) {
+    /* LOGO MENGAPIT TEKS PADA DESKTOP */
     .header-brand-wrapper { 
         flex-direction: row; 
         gap: 50px; 
