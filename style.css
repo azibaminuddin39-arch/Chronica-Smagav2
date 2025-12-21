@@ -2,15 +2,16 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
     --color-maroon: #4b0000;
-    --color-box-maroon: rgba(75, 0, 0, 0.8); /* Box Maroon Glass */
+    --color-maroon-bright: #800000;
+    /* UPDATE: Silver & Maroon Theme */
     --color-accent: #e0e0e0; /* Silver Platinum */
-    --color-blue-accent: #0088ff; 
-    --text-primary: #e0e0e0; /* Teks Silver */
+    --color-box-bg: rgba(75, 0, 0, 0.85); /* Box Merah Maroon Solid-Glass */
+    --text-primary: #e0e0e0; /* Teks Utama Silver */
     --glass-border: rgba(255, 255, 255, 0.15);
     --glass-blur: blur(25px);
 }
 
-/* --- ANIMASI BACKGROUND & NOISE --- */
+/* --- ANIMASI BACKGROUND APPLE MUSIC STYLE --- */
 @keyframes appleMusicGradient {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
@@ -21,53 +22,58 @@ body {
     font-family: 'Montserrat', sans-serif; 
     background: linear-gradient(-45deg, #2c2c2c, #4b0000, #000814, #1a1a1a);
     background-size: 400% 400%;
-    animation: appleMusicGradient 20s ease infinite;
+    animation: appleMusicGradient 18s ease infinite;
     color: var(--text-primary); 
     line-height: 1.6; 
     overflow-x: hidden; 
     min-height: 100vh;
-    position: relative;
 }
 
-body::before {
-    content: "";
+/* --- TOMBOL SOSIAL MEDIA MELAYANG --- */
+@keyframes floatIcon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+.fab-instagram, .fab-whatsapp {
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    opacity: 0.04; pointer-events: none; z-index: 1;
+    bottom: 25px;
+    width: 55px; height: 55px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; z-index: 3000;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.6);
+    text-decoration: none;
+    animation: floatIcon 3s ease-in-out infinite;
+    transition: 0.3s ease;
 }
 
-/* --- HEADER --- */
+.fab-instagram { right: 25px; background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%); font-size: 28px; }
+.fab-whatsapp { right: 95px; background: #25D366; font-size: 30px; }
+
+/* --- HEADER & BRANDING --- */
 header {
     position: relative;
     width: 100%;
     aspect-ratio: 16 / 9; 
-    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,15,30,0.5)), url('wqeqwe.gif');
-    background-size: cover; 
-    background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    text-align: center;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-    z-index: 2;
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(44,0,0,0.4)), url('wqeqwe.gif');
+    background-size: cover; background-position: center;
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px; text-align: center;
+    border-bottom: 2px solid var(--glass-border);
 }
 
-/* --- LOGO SHINE --- */
 .logo-desktop-only, .logo-mini { 
     position: relative;
-    overflow: hidden;
     filter: drop-shadow(0 0 15px rgba(255,255,255,0.2));
+    overflow: hidden;
+    display: inline-block;
 }
 
 .logo-desktop-only::after, .logo-mini::after {
-    content: "";
-    position: absolute;
-    top: -50%; left: -150%; width: 60%; height: 200%;
+    content: ""; position: absolute; top: -50%; left: -150%; width: 60%; height: 200%;
     background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.6), transparent);
-    transform: rotate(30deg);
-    animation: shineEffect 3.5s infinite;
+    transform: rotate(30deg); animation: shineEffect 3.5s infinite;
 }
 
 @keyframes shineEffect {
@@ -76,93 +82,107 @@ header {
     100% { left: 150%; }
 }
 
-/* --- MAIN CONTENT & SECTIONS --- */
-main { max-width: 1200px; margin: 0 auto; padding: 20px; position: relative; z-index: 5; }
+.logo-desktop-only { display: none; } 
+.logo-group-mobile { display: flex; gap: 15px; margin-bottom: 10px; }
+.logo-mini { height: 70px; }
 
+.text-container h1 { 
+    font-family: 'Playfair Display', serif; font-size: 2.5em; 
+    color: var(--text-primary); letter-spacing: 2px; 
+    text-shadow: 0 0 20px rgba(0,0,0,0.5); 
+}
+.text-container p { color: var(--color-accent); font-weight: bold; letter-spacing: 2px; }
+
+/* --- NAVIGASI --- */
+.nav-container { position: absolute; top: 25px; right: 25px; z-index: 2000; }
+.hamburger { display: flex; flex-direction: column; gap: 6px; background: none; border: none; cursor: pointer; }
+.hamburger span { width: 35px; height: 4px; background: var(--color-accent); border-radius: 2px; }
+
+.nav-menu {
+    position: absolute; top: 50px; right: 0; 
+    background: rgba(44, 0, 0, 0.95); 
+    backdrop-filter: var(--glass-blur);
+    list-style: none; padding: 15px; border-radius: 12px; 
+    border: 1px solid var(--glass-border);
+    display: none; flex-direction: column; min-width: 180px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+.nav-menu.active { display: flex; }
+.nav-menu a { color: var(--text-primary); text-decoration: none; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.1); }
+
+/* --- SECTIONS (FIXED MAROON BOX) --- */
+main { max-width: 1200px; margin: 0 auto; padding: 20px; position: relative; z-index: 5; }
 section { 
     margin-bottom: 60px; padding: 40px; 
-    background: var(--color-box-maroon); /* Box Maroon */
+    background: var(--color-box-bg); 
     backdrop-filter: var(--glass-blur);
     border-radius: 24px; 
     border: 1px solid var(--glass-border);
     border-left: 8px solid var(--color-accent); /* Aksen Silver */
-    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
 }
 
 h2 { 
-    color: var(--text-primary); 
-    margin-bottom: 40px; 
-    font-family: 'Playfair Display', serif; 
-    font-size: 2.2em; 
-    text-align: center; 
+    color: var(--color-accent); 
+    margin-bottom: 40px; font-family: 'Playfair Display', serif; 
+    font-size: 2.2em; text-align: center; letter-spacing: 2px;
 }
 
-/* --- PENGURUS INTI (FIXED LAYOUT) --- */
+/* --- PENGURUS INTI (HORIZONTAL LAYOUT) --- */
 .silsilah-row { 
-    display: flex; 
-    justify-content: center; 
-    gap: 20px; 
-    flex-wrap: wrap; 
+    display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; 
 }
-
 .card-maroon { 
-    background: rgba(40, 0, 0, 0.6) !important; 
+    background: rgba(128, 0, 0, 0.4) !important; 
+    backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1); 
-    border-radius: 18px; padding: 25px; 
-    text-align: center;
-    flex: 1;
-    min-width: 250px;
-    max-width: 300px;
-    transition: 0.3s;
+    border-radius: 18px; padding: 25px 20px; 
+    text-align: center; min-width: 220px; flex: 1; max-width: 300px;
+    transition: all 0.4s ease;
 }
-
-.card-maroon:hover { transform: translateY(-10px); background: rgba(80, 0, 0, 0.8) !important; }
-.card-maroon h4 { color: var(--color-blue-accent); text-transform: uppercase; font-weight: 800; }
+.card-maroon:hover { 
+    transform: translateY(-10px); 
+    border-color: var(--color-accent);
+    background: rgba(128, 0, 0, 0.6) !important;
+}
+.card-maroon h4 { color: #0088ff; margin-bottom: 10px; font-size: 0.9em; text-transform: uppercase; font-weight: 800; }
 
 /* --- DIVISI GRID (FIXED LAYOUT) --- */
-.divisi-grid { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-    gap: 25px; 
+.divisi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+.divisi-box { 
+    background: rgba(255, 255, 255, 0.05); padding: 25px; border-radius: 20px; 
+    border: 1px solid var(--glass-border);
+    border-top: 5px solid var(--color-accent); 
+    text-align: center; transition: 0.3s ease;
 }
 
-.divisi-box { 
-    background: rgba(120, 0, 0, 0.2); 
-    padding: 25px; border-radius: 20px; 
-    border: 1px solid var(--glass-border);
-    border-top: 5px solid var(--color-accent); /* Aksen Silver Atas */
+/* --- TOGGLE BUTTON --- */
+.toggle-btn { 
+    width: 100%; padding: 12px; background: rgba(0,0,0,0.2); 
+    color: var(--text-primary); border: 1px solid var(--color-accent); 
+    border-radius: 12px; cursor: pointer; font-weight: bold; 
+    margin-top: 10px; text-transform: uppercase;
 }
+.toggle-btn:hover { background: var(--color-accent); color: #000; }
 
 /* --- SLIDER --- */
-.slider-container { position: relative; max-width: 900px; margin: 0 auto; overflow: hidden; border-radius: 20px; }
-.slider-wrapper { display: flex; transition: transform 0.6s cubic-bezier(0.45, 0, 0.55, 1); }
+.slider-container { position: relative; max-width: 900px; margin: 0 auto; overflow: hidden; border-radius: 20px; border: 1px solid var(--glass-border); }
+.slider-wrapper { display: flex; transition: transform 0.6s ease-in-out; }
 .slider-item { min-width: 100%; }
 .slider-item img { width: 100%; height: 450px; object-fit: cover; }
-
-/* --- BUTTONS --- */
-.toggle-btn { 
-    width: 100%; padding: 12px; background: rgba(0, 136, 255, 0.1); 
-    color: var(--text-primary); border: 1px solid var(--text-primary); 
-    border-radius: 12px; cursor: pointer; transition: 0.3s;
-}
-.toggle-btn:hover { background: var(--text-primary); color: #000; }
+.slider-desc { position: absolute; bottom: 0; width: 100%; background: linear-gradient(transparent, rgba(0,0,0,0.95)); color: var(--color-accent); padding: 35px 15px 20px; text-align: center; }
 
 /* --- FOOTER --- */
-footer { 
-    padding: 50px 20px; 
-    background: rgba(20, 0, 0, 0.95); 
-    text-align: center; 
-    border-top: 1px solid rgba(255,255,255,0.1); 
-}
+footer { padding: 50px 20px; background: rgba(10, 10, 10, 0.9); text-align: center; border-top: 1px solid var(--glass-border); }
 
 /* --- RESPONSIVE --- */
 @media (min-width: 851px) {
     .header-brand-wrapper { flex-direction: row; gap: 50px; }
     .logo-desktop-only { display: block; height: 160px; }
+    .logo-group-mobile { display: none; }
 }
-
 @media (max-width: 850px) {
     .text-container h1 { font-size: 1.8em; }
+    .card-maroon { min-width: 100%; }
     section { padding: 30px 20px; }
-    .card-maroon { max-width: 100%; }
 }
