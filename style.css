@@ -138,7 +138,7 @@ header {
 }
 
 .logo-organisasi {
-    height: clamp(80px, 15vw, 150px); 
+    height: clamp(80px, 15vw, 180px); 
 }
 
 .logo-side:hover {
@@ -304,4 +304,5 @@ footer {
     header { padding: 120px 15px 60px 15px; }
     .nav-container { top: 20px; right: 20px; }
 }
+
 
