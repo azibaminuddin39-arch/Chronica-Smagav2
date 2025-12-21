@@ -40,6 +40,17 @@
     50% { opacity: 0.8; }
 }
 
+/* ANIMASI GLOW TEKS (BARU) */
+@keyframes textGlowSilver {
+    0%, 100% { text-shadow: 0 0 10px rgba(192, 192, 192, 0.4), 0 0 20px rgba(192, 192, 192, 0.2); }
+    50% { text-shadow: 0 0 20px rgba(192, 192, 192, 0.8), 0 0 30px rgba(192, 192, 192, 0.4); }
+}
+
+@keyframes textGlowMaroon {
+    0%, 100% { text-shadow: 0 0 10px rgba(96, 0, 0, 0.4), 0 0 20px rgba(96, 0, 0, 0.2); }
+    50% { text-shadow: 0 0 20px rgba(96, 0, 0, 0.8), 0 0 30px rgba(96, 0, 0, 0.4); }
+}
+
 body { 
     font-family: 'Montserrat', sans-serif; 
     background: var(--color-bg-main); 
@@ -47,6 +58,15 @@ body {
     line-height: 1.6; 
     overflow-x: hidden;
     position: relative; /* Penting untuk lapisan bintang */
+}
+
+/* --- TARGET GLOW JUDUL (BARU) --- */
+#visi-misi h2 {
+    animation: textGlowSilver 3s ease-in-out infinite;
+}
+
+#organisasi h2 {
+    animation: textGlowMaroon 3s ease-in-out infinite;
 }
 
 /* LAPISAN GLOW LATAR BELAKANG */
