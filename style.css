@@ -7,7 +7,7 @@
     --color-bg-section: rgba(26, 26, 26, 0.6); 
     --text-primary: #e0e0e0;
     --glass-border: rgba(255, 215, 0, 0.2);
-    --glass-blur: blur(15px); /* Sedikit ditingkatkan secara global */
+    --glass-blur: blur(15px);
 }
 body { 
     font-family: 'Montserrat', sans-serif; 
@@ -110,13 +110,27 @@ section {
     border-left: 8px solid var(--color-gold);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
-h2 { color: var(--color-gold); margin-bottom: 40px; font-family: 'Playfair Display', serif; font-size: 2.2em; text-align: center; }
+
+/* Memastikan Judul "Pengurus Inti" & "Divisi" di Tengah */
+h2 { 
+    color: var(--color-gold); 
+    margin-bottom: 40px; 
+    font-family: 'Playfair Display', serif; 
+    font-size: 2.2em; 
+    text-align: center; /* Kunci Tulisan Tengah */
+}
 
 /* --- PENGURUS INTI (CARD MAROON - EXTRA BLUR) --- */
-.silsilah-row { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; }
+.silsilah-row { 
+    display: flex; 
+    justify-content: center; /* Kunci Layout Tengah */
+    gap: 20px; 
+    flex-wrap: wrap; 
+    margin-bottom: 20px; 
+}
 .card-maroon { 
-    background: rgba(96, 0, 0, 0.45); /* Lebih transparan agar blur terasa */
-    backdrop-filter: blur(25px); /* Blur ekstra kuat */
+    background: rgba(96, 0, 0, 0.45); 
+    backdrop-filter: blur(25px); 
     -webkit-backdrop-filter: blur(25px);
     border: 1px solid rgba(255, 215, 0, 0.35); 
     border-radius: 15px; 
@@ -142,16 +156,31 @@ h2 { color: var(--color-gold); margin-bottom: 40px; font-family: 'Playfair Displ
 .card-maroon p { color: white; font-weight: bold; font-size: 1.1em; }
 
 /* --- DIVISI GLASS BOX --- */
-.divisi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+.divisi-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 25px; 
+    justify-content: center; /* Kunci Grid Tengah */
+}
 .divisi-box { 
     background: rgba(255, 255, 255, 0.05); 
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    padding: 25px; border-radius: 15px; 
+    padding: 25px; 
+    border-radius: 15px; 
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-top: 5px solid var(--color-gold); 
+    text-align: center; /* Kunci Tulisan Divisi Tengah */
 }
-.anggota-list { display: none; margin-top: 15px; padding-left: 20px; color: #bbb; }
+
+/* Memastikan teks judul divisi (h3) juga di tengah */
+.divisi-box h3 {
+    color: var(--color-gold);
+    margin-bottom: 15px;
+    font-family: 'Playfair Display', serif;
+}
+
+.anggota-list { display: none; margin-top: 15px; padding-left: 0; list-style: none; color: #bbb; }
 .toggle-btn { width: 100%; padding: 10px; background: var(--color-maroon); color: white; border: 1px solid var(--color-gold); border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 15px; }
 
 /* --- SLIDER --- */
