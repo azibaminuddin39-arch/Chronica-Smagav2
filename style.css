@@ -29,7 +29,6 @@ body {
 /* ============================ */
 header {
     position: relative;
-    background-color: var(--color-bg-main); 
     background-image: 
         linear-gradient(rgba(0, 0, 0, 0.65), rgba(96, 0, 0, 0.5)), 
         url('wqeqwe.gif');
@@ -58,7 +57,6 @@ header {
     background: transparent;
     border: none;
     cursor: pointer;
-    padding: 0;
 }
 
 .hamburger span {
@@ -66,7 +64,7 @@ header {
     height: 4px;
     background-color: var(--color-gold);
     border-radius: 10px;
-    transition: all 0.3s ease;
+    transition: 0.3s;
 }
 
 .hamburger.is-active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
@@ -85,7 +83,6 @@ header {
     display: none;
     flex-direction: column;
     min-width: 180px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.8);
 }
 
 .nav-menu.active {
@@ -103,30 +100,31 @@ header {
 /* ============================ */
 .header-brand-wrapper {
     display: flex;
-    justify-content: center; /* Desktop: Semua di tengah */
+    justify-content: center;
     align-items: center;
-    gap: clamp(20px, 5vw, 60px);
+    gap: 40px;
+}
+
+/* Logo Group di Desktop: Kita buat transparan containernya agar logo mengapit teks */
+.logo-group {
+    display: contents; /* Menghilangkan pembungkus secara visual agar logo bisa dipisah */
 }
 
 .logo-side {
+    height: clamp(100px, 15vw, 180px);
     width: auto;
     object-fit: contain;
     filter: drop-shadow(0 0 15px rgba(0,0,0,0.6));
-    transition: transform 0.3s ease;
 }
 
-/* Ukuran Logo Desktop */
-.logo-sekolah { height: clamp(100px, 15vw, 180px); }
-.logo-organisasi { height: clamp(100px, 15vw, 180px); }
-
-.logo-side:hover { transform: scale(1.05); }
-
-.text-container { text-align: center; }
+/* Mengatur Posisi Desktop: Logo 1 (Kiri) - Teks (Tengah) - Logo 2 (Kanan) */
+.logo-sekolah { order: 1; }
+.text-container { order: 2; text-align: center; }
+.logo-organisasi { order: 3; }
 
 header h1 {
     font-family: 'Playfair Display', serif;
     font-size: clamp(2.5em, 6vw, 4.5em);
-    letter-spacing: 3px;
     color: white;
     line-height: 1;
     text-shadow: 3px 3px 15px rgba(0,0,0,0.9);
@@ -140,13 +138,9 @@ header p {
 }
 
 /* ============================ */
-/* 4. CONTENT SECTIONS          */
+/* 4. CONTENT & DIVISI          */
 /* ============================ */
-main {
-    padding: 20px;
-    max-width: 1200px;
-    margin: 20px auto;
-}
+main { padding: 20px; max-width: 1200px; margin: 0 auto; }
 
 section {
     margin-bottom: 50px;
@@ -171,72 +165,57 @@ section {
 
 .toggle-anggota {
     background-color: var(--color-maroon) !important;
-    color: white !important;
+    color: white;
     border: none;
-    padding: 12px 20px;
+    padding: 12px;
+    width: 100%;
     border-radius: 8px;
     cursor: pointer;
-    width: 100%;
+    margin-top: 15px;
 }
 
 /* ============================ */
-/* 7. RESPONSIVE (NON-DESKTOP)  */
+/* 7. RESPONSIVE (POJOK KIRI)   */
 /* ============================ */
 
-/* Tablet & HP (Efek Pojok Kiri Atas) */
 @media (max-width: 850px) {
     header {
-        padding: 60px 20px 40px 20px; /* Padding lebih kecil */
+        padding: 50px 20px 30px 20px;
         text-align: left;
     }
 
     .header-brand-wrapper {
-        display: grid;
-        grid-template-columns: auto 1fr; /* Kolom 1 untuk logo, Kolom 2 untuk teks */
-        grid-template-areas: "logo-box text-box";
-        justify-content: start;
-        align-items: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
         gap: 15px;
     }
 
-    /* Menata kedua logo berdampingan di area kiri */
-    .logo-sekolah { 
-        grid-area: logo-box; 
-        height: 70px; 
-        margin-right: 75px !important; /* Memberi ruang untuk logo kedua */
+    /* Mengaktifkan kembali pembungkus logo di mobile agar berjejer di kiri */
+    .logo-group {
+        display: flex; 
+        order: 1;
+        gap: 10px;
     }
-    
-    .logo-organisasi { 
-        grid-area: logo-box; 
-        height: 70px; 
-        margin-left: 75px !important; /* Berjejer di samping logo sekolah */
+
+    .logo-side {
+        height: 65px; /* Ukuran lebih kecil untuk pojok kiri */
+        order: unset; /* Reset urutan desktop */
     }
 
     .text-container {
-        grid-area: text-box;
-        text-align: left; /* Teks jadi rata kiri */
+        order: 2;
+        text-align: left;
     }
 
-    header h1 {
-        font-size: 1.8em;
-    }
+    header h1 { font-size: 1.6em; }
+    header p { font-size: 0.8em; margin-top: 2px; }
 
-    header p {
-        font-size: 0.85em;
-        margin-top: 5px;
-    }
-
-    /* Hamburger tetap di kanan */
-    .nav-container {
-        top: 20px;
-        right: 20px;
-    }
+    .nav-container { top: 15px; right: 15px; }
 }
 
-/* Mobile Smartphone Sangat Kecil */
 @media (max-width: 480px) {
-    .logo-sekolah, .logo-organisasi { height: 55px; }
-    .logo-sekolah { margin-right: 60px !important; }
-    .logo-organisasi { margin-left: 60px !important; }
-    header h1 { font-size: 1.4em; }
+    .logo-side { height: 50px; }
+    header h1 { font-size: 1.3em; }
+    .header-brand-wrapper { gap: 10px; }
 }
