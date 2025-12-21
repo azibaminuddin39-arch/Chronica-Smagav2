@@ -5,30 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Berita Terkini - CHRONICA</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <style>
+    <link rel="stylesheet" href="style.css"> <style>
+        /* Style internal Anda tetap dipertahankan */
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap');
         
-        .news-header {
-            padding: 120px 20px 60px;
-            text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(96,0,0,0.6)), url('LB_2.gif');
-            background-size: cover;
-            background-position: center;
-        }
-        .back-link { display: inline-block; margin-bottom: 20px; color: var(--color-gold); text-decoration: none; font-weight: bold; }
         .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 40px; }
-        .news-card { background: #222; border-radius: 15px; overflow: hidden; border: 1px solid #333; display: flex; flex-direction: column; }
+        .news-card { background: #222; border-radius: 15px; overflow: hidden; border: 1px solid #333; display: flex; flex-direction: column; transition: 0.3s; }
+        .news-card:hover { transform: translateY(-10px); border-color: var(--color-silver); }
         .news-image-wrapper { width: 100%; height: 200px; background: #333; overflow: hidden; }
         .news-image-wrapper img { width: 100%; height: 100%; object-fit: cover; }
         .news-body { padding: 25px; flex-grow: 1; }
         .news-tag { color: var(--color-gold); font-size: 0.8em; font-weight: bold; text-transform: uppercase; margin-bottom: 10px; display: block; }
         .news-title { color: white; font-size: 1.4em; margin-bottom: 15px; font-family: 'Playfair Display', serif; }
         .news-excerpt { color: #ccc; font-size: 0.95em; line-height: 1.6; margin-bottom: 20px; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: var(--color-gold); text-decoration: none; font-weight: bold; font-size: 0.9em; letter-spacing: 1px; }
+        .back-link:hover { color: white; }
     </style>
 </head>
-<body>
-    <a href="https://www.instagram.com/chronicasmaga_" target="_blank" class="fab-instagram" aria-label="Instagram Chronica">
+<body class="page-berita"> <a href="https://www.instagram.com/chronicasmaga_" target="_blank" class="fab-instagram" aria-label="Instagram Chronica">
         <i class="fab fa-instagram"></i>
     </a>
 
@@ -39,6 +33,7 @@
             <p>Update Prestasi dan Kegiatan SMAN 3 Banjarbaru</p>
         </div>
     </header>
+
     <main>
         <section>
             <h2>Berita Terbaru</h2>
@@ -54,6 +49,9 @@
             </div>
         </section>
     </main>
-    <footer><p>&copy; 2025 CHRONICA SMAN 3 Banjarbaru.</p></footer>
+
+    <footer>
+        <p>&copy; 2025 CHRONICA SMAN 3 Banjarbaru.</p>
+    </footer>
 </body>
 </html>
