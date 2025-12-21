@@ -17,38 +17,52 @@ body {
     overflow-x: hidden; 
 }
 
-/* --- TOMBOL INSTAGRAM MELAYANG (FLOAT ANIMATION) --- */
-@keyframes floatInstagram {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-12px) rotate(5deg); }
+/* --- TOMBOL SOSIAL MEDIA MELAYANG --- */
+@keyframes floatIcon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
 }
 
-.fab-instagram {
+/* Base Style untuk Floating Buttons */
+.fab-instagram, .fab-whatsapp {
     position: fixed;
     bottom: 25px;
-    right: 25px;
     width: 55px;
     height: 55px;
-    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #fff;
-    font-size: 28px;
     z-index: 3000;
     box-shadow: 0 6px 15px rgba(0,0,0,0.6);
     text-decoration: none;
-    /* Animasi melayang khusus IG */
-    animation: floatInstagram 3s ease-in-out infinite;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: floatIcon 3s ease-in-out infinite;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
-.fab-instagram:hover { 
-    animation-play-state: paused; /* Berhenti melayang saat kursor di atasnya */
-    transform: scale(1.2); 
-    box-shadow: 0 10px 20px rgba(214, 36, 159, 0.5);
+/* Instagram Specific */
+.fab-instagram {
+    right: 25px;
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    font-size: 28px;
 }
+
+/* WhatsApp Specific (Customer Service) */
+.fab-whatsapp {
+    right: 95px; /* Jarak agar tidak menumpuk dengan IG */
+    background: #25D366;
+    font-size: 30px;
+}
+
+/* Hover Effects */
+.fab-instagram:hover, .fab-whatsapp:hover { 
+    animation-play-state: paused;
+    transform: scale(1.2); 
+}
+
+.fab-instagram:hover { box-shadow: 0 10px 20px rgba(214, 36, 159, 0.5); }
+.fab-whatsapp:hover { background: #128C7E; box-shadow: 0 10px 20px rgba(37, 211, 102, 0.4); }
 
 /* --- HEADER & BRANDING --- */
 header {
@@ -80,7 +94,7 @@ header {
     width: 100%;
 }
 
-/* --- LOGO SHINING EFFECT (STATIONARY / NO FLOAT) --- */
+/* --- LOGO SHINING EFFECT (STATIONARY) --- */
 .logo-desktop-only, .logo-mini { 
     position: relative;
     filter: drop-shadow(0 0 8px rgba(0,0,0,0.8));
@@ -88,7 +102,6 @@ header {
     display: inline-block;
 }
 
-/* Efek Kilatan Cahaya (Shine) Diperkuat */
 .logo-desktop-only::after, .logo-mini::after {
     content: "";
     position: absolute;
@@ -96,12 +109,7 @@ header {
     left: -150%;
     width: 60%;
     height: 200%;
-    background: linear-gradient(
-        to right, 
-        transparent, 
-        rgba(255, 255, 255, 0.8), 
-        transparent
-    );
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.8), transparent);
     transform: rotate(30deg);
     animation: shineEffect 3.5s infinite;
 }
@@ -240,4 +248,5 @@ footer { padding: 30px; background: #0a0a0a; text-align: center; border-top: 1px
     header { aspect-ratio: 16 / 9; }
     .text-container h1 { font-size: 1.8em; }
     .logo-mini { height: 60px; }
+    .fab-whatsapp { right: 85px; } /* Penyesuaian jarak di layar kecil */
 }
