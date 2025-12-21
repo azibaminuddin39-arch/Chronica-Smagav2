@@ -135,10 +135,12 @@ header {
 /* Ukuran Terpisah: Silakan ubah angka di bawah untuk mengatur besar masing-masing */
 .logo-sekolah {
     height: clamp(90px, 18vw, 220px); 
+    margin-right: 20px;
 }
 
 .logo-organisasi {
     height: clamp(90px, 18vw, 220px); 
+    margin-left: 20px;
 }
 
 .logo-side:hover {
@@ -304,6 +306,7 @@ footer {
     header { padding: 120px 15px 60px 15px; }
     .nav-container { top: 20px; right: 20px; }
 }
+
 
 
 
