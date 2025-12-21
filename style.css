@@ -9,7 +9,7 @@
     --text-primary: #e0e0e0;
     --text-white: #ffffff;   /* Warna Putih untuk Anggota */
     --glass-border: rgba(255, 215, 0, 0.2);
-    --glass-blur: blur(15px);
+    --glass-blur: blur(25px); /* Diperkuat untuk efek iPhone */
 }
 
 /* --- ANIMASI BACKGROUND SILVER & BINTANG --- */
@@ -101,9 +101,6 @@ body::before {
     transform: scale(1.2); 
 }
 
-.fab-instagram:hover { box-shadow: 0 10px 20px rgba(214, 36, 159, 0.5); }
-.fab-whatsapp:hover { background: #128C7E; box-shadow: 0 10px 20px rgba(37, 211, 102, 0.4); }
-
 /* --- HEADER & BRANDING --- */
 header {
     position: relative;
@@ -176,35 +173,35 @@ header {
     text-shadow: 1px 1px 5px rgba(0,0,0,0.8); 
 }
 
-/* --- NAVIGASI --- */
+/* --- NAVIGASI (IPHONE GLASS STYLE) --- */
 .nav-container { position: absolute; top: 25px; right: 25px; z-index: 2000; }
 .hamburger { display: flex; flex-direction: column; gap: 6px; background: none; border: none; cursor: pointer; }
 .hamburger span { width: 35px; height: 4px; background: var(--color-silver); border-radius: 2px; }
 
 .nav-menu {
     position: absolute; top: 50px; right: 0; 
-    background: rgba(60, 0, 0, 0.75); 
+    background: rgba(255, 255, 255, 0.05); /* Putih tipis untuk efek kaca */
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
-    list-style: none; padding: 15px; border-radius: 12px; 
-    border: 1px solid var(--glass-border);
+    list-style: none; padding: 15px; border-radius: 18px; 
+    border: 1px solid rgba(255, 255, 255, 0.1);
     display: none; flex-direction: column; min-width: 180px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 .nav-menu.active { display: flex; }
 .nav-menu a { color: white; text-decoration: none; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.1); }
 
-/* --- SECTIONS --- */
+/* --- SECTIONS (IPHONE GLASS STYLE) --- */
 main { max-width: 1200px; margin: 0 auto; padding: 20px; }
 section { 
     margin-bottom: 60px; padding: 40px; 
-    background: rgba(15, 15, 15, 0.7); 
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-    border-radius: 20px; 
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-left: 8px solid var(--color-silver); 
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    background: rgba(255, 255, 255, 0.03); /* Kaca sangat transparan */
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-radius: 25px; 
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Border halus putih */
+    border-left: 8px solid var(--color-maroon); 
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
 }
 
 /* --- JUDUL: STRUKTUR ORGANISASI, VISI & MISI (MAROON GLOW) --- */
@@ -223,18 +220,18 @@ h2, .visi-misi-title {
         0 0 40px rgba(128, 0, 0, 0.5);
 }
 
-/* --- PENGURUS INTI --- */
+/* --- PENGURUS INTI (GLASS CARDS) --- */
 .silsilah-row { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; }
 .card-maroon { 
-    background: rgba(255, 255, 255, 0.05) !important; 
+    background: rgba(255, 255, 255, 0.04) !important; 
     backdrop-filter: blur(15px); 
     -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(192, 192, 192, 0.2); 
-    border-radius: 15px; padding: 25px 20px; 
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    border-radius: 20px; padding: 25px 20px; 
     text-align: center; min-width: 220px; flex: 1; max-width: 300px;
     transition: all 0.4s ease;
 }
-.card-maroon:hover { transform: translateY(-8px); border-color: var(--color-silver); }
+.card-maroon:hover { transform: translateY(-8px); border-color: var(--color-silver); background: rgba(255, 255, 255, 0.08) !important; }
 
 /* JABATAN GLOW EFFECT */
 .card-maroon h4 { 
@@ -243,7 +240,7 @@ h2, .visi-misi-title {
     font-size: 0.9em; 
     text-transform: uppercase; 
     font-weight: 800;
-    text-shadow: 0 0 10px rgba(192, 192, 192, 0.8), 0 0 20px rgba(192, 192, 192, 0.4);
+    text-shadow: 0 0 10px rgba(192, 192, 192, 0.8);
 }
 
 /* NAMA ANGGOTA PUTIH */
@@ -251,13 +248,13 @@ h2, .visi-misi-title {
     color: var(--text-white) !important; 
 }
 
-/* --- DIVISI BOX --- */
+/* --- DIVISI BOX (GLASS STYLE) --- */
 .divisi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
 .divisi-box { 
-    background: rgba(255, 255, 255, 0.05); 
-    backdrop-filter: blur(12px);
-    padding: 25px; border-radius: 15px; 
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.02); 
+    backdrop-filter: blur(15px);
+    padding: 25px; border-radius: 20px; 
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-top: 5px solid var(--color-silver); 
     text-align: center; 
 }
@@ -273,16 +270,14 @@ h2, .visi-misi-title {
 }
 
 /* --- SLIDER --- */
-.slider-container { position: relative; max-width: 900px; margin: 0 auto; overflow: hidden; border-radius: 15px; border: 2px solid var(--color-maroon); }
+.slider-container { position: relative; max-width: 900px; margin: 0 auto; overflow: hidden; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); }
 .slider-wrapper { display: flex; transition: transform 0.5s ease; }
 .slider-item { min-width: 100%; position: relative; }
 .slider-item img { width: 100%; height: 450px; object-fit: cover; }
-.slider-desc { position: absolute; bottom: 0; width: 100%; background: rgba(0,0,0,0.8); color: var(--color-silver); padding: 15px; text-align: center; }
-.slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: var(--color-maroon); color: white; border: 1px solid var(--color-silver); width: 45px; height: 45px; cursor: pointer; border-radius: 50%; z-index: 10; }
-.prev { left: 15px; } .next { right: 15px; }
+.slider-desc { position: absolute; bottom: 0; width: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(10px); color: var(--color-silver); padding: 15px; text-align: center; }
 
 /* --- FOOTER --- */
-footer { padding: 30px; background: #000; text-align: center; border-top: 1px solid rgba(192, 192, 192, 0.1); }
+footer { padding: 30px; background: rgba(0,0,0,0.8); backdrop-filter: blur(15px); text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05); }
 
 /* --- RESPONSIVE --- */
 @media (min-width: 851px) {
@@ -302,4 +297,5 @@ footer { padding: 30px; background: #000; text-align: center; border-top: 1px so
     .text-container h1 { font-size: 1.8em; }
     .logo-mini { height: 60px; }
     .fab-whatsapp { right: 85px; }
+    section { padding: 25px; border-radius: 20px; }
 }
