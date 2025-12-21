@@ -119,7 +119,7 @@ h2 {
     text-align: center; 
 }
 
-/* --- PENGURUS INTI (CARD MAROON - EXTRA BLUR) --- */
+/* --- PENGURUS INTI (CARD MAROON) --- */
 .silsilah-row { 
     display: flex; 
     justify-content: center; 
@@ -178,19 +178,27 @@ h2 {
     font-family: 'Playfair Display', serif;
 }
 
-/* JABATAN KETUA: KUNING EMAS DENGAN EFEK GLOW */
+/* NAMA KETUA: PUTIH DENGAN WHITE GLOW */
 .leader { 
-    color: var(--color-gold) !important; 
+    color: #ffffff !important; 
     font-weight: 800;
     margin-bottom: 12px;
     display: block;
     text-transform: uppercase;
     font-size: 0.95rem;
     letter-spacing: 1px;
-    text-shadow: 0 0 8px rgba(255, 215, 0, 0.6), 0 0 12px rgba(255, 215, 0, 0.2);
+    /* Glow Putih untuk Nama */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
-/* LIST ANGGOTA: PUTIH BERSIH DENGAN HOVER EFFECT */
+/* Jika Anda ingin label "Ketua:" tetap Kuning di HTML (misalnya menggunakan <span>) */
+/* Anda bisa menggunakan class ini jika struktur HTML-nya dipisah */
+.leader span {
+    color: var(--color-gold);
+    text-shadow: none;
+}
+
+/* LIST ANGGOTA: PUTIH BERSIH */
 .anggota-list { 
     display: none; 
     margin-top: 15px; 
@@ -205,10 +213,12 @@ h2 {
     padding: 6px 0;
     font-size: 0.9rem;
     transition: all 0.2s ease;
+    opacity: 0.9;
 }
 
 .anggota-list li:hover {
     color: var(--color-gold);
+    opacity: 1;
     transform: translateX(5px);
 }
 
