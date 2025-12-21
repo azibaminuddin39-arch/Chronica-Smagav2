@@ -17,7 +17,15 @@
     --glass-blur: blur(15px);
 }
 
-/* --- ANIMASI ASLI --- */
+body { 
+    font-family: 'Montserrat', sans-serif; 
+    background: var(--color-bg-main); 
+    color: var(--text-primary); 
+    line-height: 1.6; 
+    overflow-x: hidden; 
+}
+
+/* --- ANIMASI --- */
 @keyframes floatIcon {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-12px); }
@@ -29,77 +37,7 @@
     100% { left: 150%; }
 }
 
-/* --- ANIMASI BARU (BINTANG & GLOW) --- */
-@keyframes twinkle {
-    0%, 100% { opacity: 0.3; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.2); }
-}
-
-@keyframes pulseGlow {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 0.8; }
-}
-
-/* ANIMASI GLOW TEKS (BARU) */
-@keyframes textGlowSilver {
-    0%, 100% { text-shadow: 0 0 10px rgba(192, 192, 192, 0.4), 0 0 20px rgba(192, 192, 192, 0.2); }
-    50% { text-shadow: 0 0 20px rgba(192, 192, 192, 0.8), 0 0 35px rgba(192, 192, 192, 0.4); }
-}
-
-@keyframes textGlowMaroon {
-    0%, 100% { text-shadow: 0 0 10px rgba(96, 0, 0, 0.4), 0 0 20px rgba(96, 0, 0, 0.2); }
-    50% { text-shadow: 0 0 20px rgba(96, 0, 0, 0.8), 0 0 35px rgba(96, 0, 0, 0.4); }
-}
-
-body { 
-    font-family: 'Montserrat', sans-serif; 
-    background: var(--color-bg-main); 
-    color: var(--text-primary); 
-    line-height: 1.6; 
-    overflow-x: hidden;
-    position: relative; /* Penting untuk lapisan bintang */
-}
-
-/* --- TARGET GLOW JUDUL (BARU) --- */
-#visi-misi h2 {
-    animation: textGlowSilver 3s ease-in-out infinite;
-}
-
-#organisasi h2 {
-    animation: textGlowMaroon 3s ease-in-out infinite;
-    color: var(--color-maroon) !important;
-}
-
-/* LAPISAN GLOW LATAR BELAKANG */
-body::after {
-    content: "";
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: radial-gradient(circle at 50% 50%, rgba(96, 0, 0, 0.15), transparent 70%);
-    animation: pulseGlow 8s ease-in-out infinite;
-    z-index: -2;
-    pointer-events: none;
-}
-
-/* LAPISAN BINTANG */
-body::before {
-    content: "";
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-image: 
-        radial-gradient(1px 1px at 10% 10%, #fff, transparent),
-        radial-gradient(1.5px 1.5px at 20% 40%, #fff, transparent),
-        radial-gradient(1px 1px at 40% 70%, #fff, transparent),
-        radial-gradient(2px 2px at 60% 20%, #fff, transparent),
-        radial-gradient(1px 1px at 80% 50%, #fff, transparent),
-        radial-gradient(1.5px 1.5px at 90% 80%, #fff, transparent);
-    background-size: 300px 300px;
-    animation: twinkle 5s infinite;
-    z-index: -1;
-    pointer-events: none;
-}
-
-/* --- TOMBOL SOSIAL MEDIA MELAYANG (ASLI) --- */
+/* --- TOMBOL SOSIAL MEDIA MELAYANG --- */
 .fab-instagram, .fab-whatsapp {
     position: fixed;
     bottom: 25px;
@@ -134,16 +72,15 @@ body::before {
     transform: scale(1.2); 
 }
 
-/* --- HEADER & BRANDING (DENGAN EFEK FADE KE BAWAH) --- */
+.fab-instagram:hover { box-shadow: 0 10px 20px rgba(214, 36, 159, 0.5); }
+.fab-whatsapp:hover { background: #128C7E; box-shadow: 0 10px 20px rgba(37, 211, 102, 0.4); }
+
+/* --- HEADER & BRANDING --- */
 header {
     position: relative;
     width: 100%;
     aspect-ratio: 16 / 9; 
-    /* Layer 1: Fade out ke warna BG main, Layer 2: Overlay Maroon, Layer 3: GIF */
-    background-image: 
-        linear-gradient(to bottom, transparent 60%, var(--color-bg-main) 100%),
-        linear-gradient(rgba(0,0,0,0.6), rgba(96,0,0,0.4)), 
-        url('wqeqwe.gif');
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(96,0,0,0.4)), url('wqeqwe.gif');
     background-size: cover; 
     background-position: center;
     background-repeat: no-repeat;
@@ -152,14 +89,10 @@ header {
     justify-content: center;
     padding: 20px;
     text-align: center;
-    z-index: 1;
 }
 
 .page-berita header {
-    background-image: 
-        linear-gradient(to bottom, transparent 60%, var(--color-bg-main) 100%),
-        linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-        url('LB_2.gif') !important;
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('LB_2.gif') !important;
 }
 
 .header-brand-wrapper {
@@ -171,7 +104,7 @@ header {
     width: 100%;
 }
 
-/* --- LOGO SHINING EFFECT (ASLI) --- */
+/* --- LOGO SHINING EFFECT --- */
 .logo-desktop-only, .logo-mini { 
     position: relative;
     filter: drop-shadow(0 0 8px rgba(0,0,0,0.8));
@@ -203,8 +136,39 @@ header {
     text-shadow: 2px 2px 10px rgba(0,0,0,0.8); 
 }
 
-/* --- SECTIONS (DENGAN NEGATIVE MARGIN UNTUK EFEK MENYAMBUNG) --- */
-main { max-width: 1200px; margin: 0 auto; padding: 20px; position: relative; z-index: 10; }
+.text-container p { 
+    color: var(--color-silver); 
+    font-weight: bold; 
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.8); 
+}
+
+/* --- NAVIGASI --- */
+.nav-container { position: absolute; top: 25px; right: 25px; z-index: 2000; }
+.hamburger { display: flex; flex-direction: column; gap: 6px; background: none; border: none; cursor: pointer; }
+.hamburger span { width: 35px; height: 4px; background: var(--color-silver); border-radius: 2px; }
+
+.nav-menu {
+    position: absolute; 
+    top: 50px; 
+    right: 0; 
+    background: rgba(60, 0, 0, 0.75); 
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    list-style: none; 
+    padding: 15px; 
+    border-radius: 12px; 
+    border: 1px solid var(--glass-border);
+    display: none; 
+    flex-direction: column; 
+    min-width: 180px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+
+.nav-menu.active { display: flex; }
+.nav-menu a { color: white; text-decoration: none; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.1); }
+
+/* --- SECTIONS --- */
+main { max-width: 1200px; margin: 0 auto; padding: 20px; }
 
 section { 
     margin-bottom: 60px; 
@@ -218,11 +182,6 @@ section {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
-/* Membuat box pertama (Visi & Misi) sedikit naik menimpa fade header */
-#visi-misi {
-    margin-top: -80px;
-}
-
 h2 { 
     color: var(--color-silver); 
     margin-bottom: 40px; 
@@ -231,7 +190,9 @@ h2 {
     text-align: center; 
 }
 
-/* --- SISANYA TETAP SAMA (ASLI) --- */
+/* --- PENGURUS INTI --- */
+.silsilah-row { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; }
+
 .card-maroon { 
     background: rgba(96, 0, 0, 0.45); 
     backdrop-filter: blur(25px); 
@@ -246,33 +207,136 @@ h2 {
     transition: all 0.4s ease;
 }
 
+.card-maroon:hover { transform: translateY(-8px); border-color: var(--color-silver); }
+
 .card-maroon h4 { 
     color: var(--color-silver); 
+    margin-bottom: 10px; 
+    font-size: 0.9em; 
     text-transform: uppercase; 
     font-weight: 800;
+    text-shadow: 0 0 10px rgba(192, 192, 192, 0.8), 0 0 20px rgba(192, 192, 192, 0.4); 
 }
 
-.footer { 
-    padding: 30px; 
-    background: rgba(192, 192, 192, 0.15); 
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+.card-maroon p, .leader, .anggota-list li { 
+    color: var(--text-white) !important; 
+}
+
+/* --- DIVISI BOX --- */
+.divisi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+
+.divisi-box { 
+    background: rgba(255, 255, 255, 0.05); 
+    backdrop-filter: blur(12px);
+    padding: 25px; 
+    border-radius: 15px; 
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 5px solid var(--color-silver); 
     text-align: center; 
-    border-top: 1px solid rgba(192, 192, 192, 0.4); 
-    color: var(--color-silver);
+}
+
+.leader span { color: var(--color-silver); text-shadow: none; }
+.anggota-list { display: none; margin-top: 15px; list-style: none; color: var(--text-white); }
+
+.toggle-btn { 
+    width: 100%; 
+    padding: 10px; 
+    background: var(--color-maroon); 
+    color: white; 
+    border: 1px solid var(--color-silver); 
+    border-radius: 8px; 
+    cursor: pointer; 
+    font-weight: bold; 
+}
+
+/* --- SLIDER --- */
+.slider-container { 
+    position: relative; 
+    max-width: 900px; 
+    margin: 0 auto; 
+    overflow: hidden; 
+    border-radius: 15px; 
+    border: 2px solid var(--color-maroon); 
+}
+
+.slider-wrapper { display: flex; transition: transform 0.5s ease; }
+.slider-item { min-width: 100%; position: relative; }
+.slider-item img { width: 100%; height: 450px; object-fit: cover; }
+.slider-desc { position: absolute; bottom: 0; width: 100%; background: rgba(0,0,0,0.8); color: var(--color-silver); padding: 15px; text-align: center; }
+
+.slider-btn { 
+    position: absolute; 
+    top: 50%; 
+    transform: translateY(-50%); 
+    background: var(--color-maroon); 
+    color: white; 
+    border: 1px solid var(--color-silver); 
+    width: 45px; 
+    height: 45px; 
+    cursor: pointer; 
+    border-radius: 50%; 
+    z-index: 10; 
+}
+.prev { left: 15px; } 
+.next { right: 15px; }
+
+/* --- FOOTER --- */
+footer { 
+    padding: 30px; 
+    background: #0a0a0a; 
+    text-align: center; 
+    border-top: 1px solid rgba(192, 192, 192, 0.1); 
 }
 
 /* --- RESPONSIVE --- */
 @media (min-width: 851px) {
-    .header-brand-wrapper { flex-direction: row; gap: 50px; justify-content: space-between; max-width: 1000px; }
+    .header-brand-wrapper { 
+        flex-direction: row; 
+        gap: 50px; 
+        justify-content: space-between; 
+        max-width: 1000px;
+    }
     .logo-desktop-only { display: block; height: 160px; }
     .logo-group-mobile { display: none; }
     .text-container h1 { font-size: 3.5em; }
-    #visi-misi { margin-top: -120px; } /* Margin negatif lebih besar di desktop */
 }
 
 @media (max-width: 850px) {
+    header { aspect-ratio: 16 / 9; }
     .text-container h1 { font-size: 1.8em; }
     .logo-mini { height: 60px; }
-    #visi-misi { margin-top: -50px; }
+    .fab-whatsapp { right: 85px; }
+}
+
+/* --- KODE TAMBAHAN (OVERRIDE) --- 
+   Ditambahkan di akhir agar browser mengutamakan instruksi ini 
+   tanpa perlu mengubah kode asli di atas.
+*/
+
+header {
+    /* Menumpuk gradient Fade-Out di atas GIF asli */
+    background-image: 
+        linear-gradient(to bottom, transparent 65%, var(--color-bg-main) 100%), 
+        linear-gradient(rgba(0,0,0,0.6), rgba(96,0,0,0.4)), 
+        url('wqeqwe.gif') !important;
+}
+
+.page-berita header {
+    background-image: 
+        linear-gradient(to bottom, transparent 65%, var(--color-bg-main) 100%), 
+        linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+        url('LB_2.gif') !important;
+}
+
+/* Membuat box pertama (Visi Misi) menyatu naik ke atas header */
+section:first-of-type {
+    margin-top: -80px;
+    position: relative;
+    z-index: 10;
+}
+
+@media (max-width: 850px) {
+    section:first-of-type {
+        margin-top: -45px;
+    }
 }
