@@ -1,142 +1,137 @@
-/* RESET & VARIABLES */
+/* --- 1. RESET & VARIABLES (KEMBALI KE ASLI) --- */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
     --color-maroon: #600000;
-    --color-gold: #FFD700;
     --color-silver: #C0C0C0; 
-    --color-bg-main: #000000;
-    --text-primary: #e0e0e0;
     --text-white: #ffffff;   
-    --glass-border: rgba(255, 255, 255, 0.1);
     --glass-blur: blur(25px); 
-}
-
-/* --- ANIMASI BACKGROUND HITAM & BINTANG --- */
-@keyframes fluidDark {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
 }
 
 body { 
     font-family: 'Montserrat', sans-serif; 
-    background: linear-gradient(-45deg, #000000, #0a0a0a, #1a1a1a, #000000);
-    background-size: 200% 200%; 
-    animation: fluidDark 8s ease-in-out infinite; 
-    color: var(--text-primary); 
-    line-height: 1.6; 
+    background: #000000; 
+    color: #e0e0e0; 
     overflow-x: hidden; 
-    min-height: 100vh;
 }
 
-/* LAPISAN BINTANG */
-body::before {
-    content: "";
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-image: 
-        radial-gradient(1.5px 1.5px at 15% 15%, #ffffff, transparent),
-        radial-gradient(2px 2px at 25% 60%, #ffffff, transparent),
-        radial-gradient(1px 1px at 35% 85%, #ffffff, transparent),
-        radial-gradient(2.5px 2.5px at 50% 40%, #ffffff, transparent),
-        radial-gradient(2px 2px at 80% 75%, #ffffff, transparent);
-    background-size: 350px 350px;
-    z-index: -1;
-    opacity: 0.8; 
-}
-
-/* --- HEADER & BRANDING FIX --- */
-header {
-    position: relative;
-    width: 100%;
-    padding: 60px 20px;
-    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('wqeqwe.gif');
-    background-size: cover; 
-    background-position: center;
-    display: flex;
-    justify-content: center;
+/* --- 2. FIX SOSMED ICONS (PENTING: AGAR MUNCUL LAGI) --- */
+.fab-instagram, .fab-whatsapp {
+    position: fixed !important; 
+    bottom: 25px;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex !important; 
     align-items: center;
+    justify-content: center;
+    color: #fff !important;
+    z-index: 9999 !important; 
+    text-decoration: none;
+    font-size: 28px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+.fab-instagram { 
+    right: 25px; 
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%); 
+}
+
+.fab-whatsapp { 
+    right: 95px; 
+    background: #25D366; 
+}
+
+/* --- 3. HEADER & LOGO (FIX LAYOUT BERANTAKAN) --- */
+header {
+    width: 100%;
+    padding: 40px 20px;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('wqeqwe.gif');
+    background-size: cover;
+    background-position: center;
     text-align: center;
 }
 
 .header-brand-wrapper {
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 40px;
-    width: 100%;
+    gap: 30px;
     max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* Mencegah Logo Berantakan (Raksasa) */
+/* Kunci ukuran Logo agar tidak raksasa */
 .logo-desktop-only {
-    height: 150px;
-    width: auto;
+    height: 140px !important;
+    width: auto !important;
     object-fit: contain;
 }
 
-.logo-group-mobile { display: none; gap: 15px; }
-.logo-mini { height: 70px; width: auto; object-fit: contain; }
-
-.text-container h1 { 
-    font-family: 'Playfair Display', serif; 
-    font-size: 3.5em; 
-    color: white; 
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.8); 
+.logo-group-mobile {
+    display: none; /* Sembunyi di desktop */
+    gap: 15px;
 }
 
-/* --- NAVIGASI --- */
-.nav-container { position: absolute; top: 25px; right: 25px; }
-.hamburger span { width: 35px; height: 4px; background: var(--color-silver); display: block; margin: 6px 0; }
-.nav-menu { display: none; } /* Tetap gunakan JS Anda untuk mengaktifkan ini */
+.logo-mini {
+    height: 70px !important;
+    width: auto !important;
+    object-fit: contain;
+}
 
-/* --- SECTIONS (IPHONE GLASS) --- */
-main { max-width: 1200px; margin: 0 auto; padding: 20px; }
+.text-container h1 { 
+    font-size: 3.5rem; 
+    color: white; 
+    text-shadow: none !important; /* Hapus Glow */
+}
+
+/* --- 4. SECTIONS (GLASS EFFECT STABIL) --- */
+main { max-width: 1100px; margin: 0 auto; padding: 20px; }
+
 section { 
-    margin-bottom: 60px; padding: 40px; 
+    margin-bottom: 50px; 
+    padding: 40px; 
     background: rgba(255, 255, 255, 0.03); 
     backdrop-filter: var(--glass-blur);
     border-radius: 25px; 
-    border: 1px solid var(--glass-border);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-left: 8px solid var(--color-maroon); 
 }
 
-/* --- JUDUL TANPA GLOW (VISI MISI, STRUKTUR, KEGIATAN, BERITA) --- */
-h2, .visi-misi-title { 
-    margin-bottom: 40px; 
-    font-family: 'Playfair Display', serif; 
-    font-size: 2.8em; 
-    text-align: center; 
+/* --- 5. HAPUS SEMUA GLOW PADA JUDUL --- */
+h2, .visi-misi-title, #organisasi h2, #kegiatan h2 { 
+    text-shadow: none !important; 
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 800;
     text-transform: uppercase;
-    font-weight: 900;
-    text-shadow: none !important; /* Glow dihapus 100% */
 }
 
-/* Warna Judul Spesifik */
-#visi-misi h2 { color: #ffffff; }
+h2 { font-size: 2.5rem; color: #ffffff; }
 #organisasi h2 { color: var(--color-maroon); }
-#kegiatan h2 { color: #ffffff; }
 
-/* --- PENGURUS INTI CARDS --- */
-.silsilah-row { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
-.card-maroon { 
-    background: rgba(255, 255, 255, 0.05); 
-    border: 1px solid var(--glass-border); 
-    border-radius: 20px; padding: 25px; 
-    text-align: center; min-width: 220px;
+/* --- 6. KEGIATAN JURNALISTIK (SLIDER FIX) --- */
+.slider-container {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 20px;
 }
-.card-maroon h4 { color: var(--color-silver); text-shadow: none; }
-.card-maroon p { color: white; }
 
-/* --- FOOTER --- */
-footer { padding: 30px; background: #000000; text-align: center; border-top: 1px solid var(--glass-border); }
+.slider-wrapper { display: flex; transition: transform 0.5s ease; }
 
-/* --- RESPONSIVE MOBILE FIX --- */
+.slider-item img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+}
+
+/* --- 7. RESPONSIVE (LAYOUT HP) --- */
 @media (max-width: 850px) {
-    .header-brand-wrapper { flex-direction: column; gap: 20px; }
     .logo-desktop-only { display: none; }
     .logo-group-mobile { display: flex; justify-content: center; }
-    .text-container h1 { font-size: 2.2em; }
+    .header-brand-wrapper { flex-direction: column; gap: 15px; }
+    .text-container h1 { font-size: 2rem; }
     section { padding: 25px; }
+    .slider-item img { height: 300px; }
 }
