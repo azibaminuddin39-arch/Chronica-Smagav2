@@ -1,1 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berita Terkini - CHRONICA</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap');
+        
+        .news-header {
+            padding: 120px 20px 60px;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(96,0,0,0.6)), url('wqeqwe.gif');
+            background-size: cover;
+            background-position: center;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--color-gold);
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .news-card {
+            background: #222;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #333;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        .news-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--color-gold);
+        }
+        .news-image-wrapper { width: 100%; height: 200px; background: #333; overflow: hidden; }
+        .news-image-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+        .news-body { padding: 25px; flex-grow: 1; }
+        .news-tag { color: var(--color-gold); font-size: 0.8em; font-weight: bold; text-transform: uppercase; margin-bottom: 10px; display: block; }
+        .news-title { color: white; font-size: 1.4em; margin-bottom: 15px; font-family: 'Playfair Display', serif; }
+        .news-excerpt { color: #ccc; font-size: 0.95em; line-height: 1.6; margin-bottom: 20px; }
+        .read-more { color: var(--color-gold); text-decoration: none; font-weight: bold; border-bottom: 2px solid transparent; transition: 0.3s; }
+        .read-more:hover { border-bottom: 2px solid var(--color-gold); }
+    </style>
+</head>
+<body>
 
+    <header class="news-header">
+        <div class="text-container">
+            <a href="index.html" class="back-link">← KEMBALI KE BERANDA</a>
+            <h1>WARTA CHRONICA</h1>
+            <p>Update Prestasi dan Kegiatan SMAN 3 Banjarbaru</p>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <h2>Berita Terbaru</h2>
+            <div class="news-grid">
+                
+                <article class="news-card">
+                    <div class="news-image-wrapper">
+                        <img src="futsal.jpg" alt="Tim Futsal SMAGA">
+                    </div>
+                    <div class="news-body">
+                        <span class="news-tag">Olahraga | September 2025</span>
+                        <h3 class="news-title">SMAGA Berlaga di Futsal Series Regional Banjarmasin 2025</h3>
+                        <p class="news-excerpt">
+                            Tim Futsal SMAN 3 Banjarbaru menunjukkan taringnya dalam ajang bergengsi Futsal Series Regional Banjarmasin 2025. Menggunakan jersey abu-hitam-hitam yang ikonik, mereka bertanding sengit melawan SMAN 9 Banjarmasin.
+                        </p>
+                        <p class="news-excerpt">
+                            Partisipasi aktif ini menegaskan posisi SMAGA sebagai salah satu tim paling kompetitif di kancah regional Kalimantan Selatan. Semangat juang tim menjadi inspirasi bagi seluruh siswa.
+                        </p>
+                        <a href="#" class="read-more">Baca Selengkapnya</a>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 CHRONICA Jurnalistik SMAN 3 Banjarbaru.</p>
+    </footer>
+
+</body>
+</html>
