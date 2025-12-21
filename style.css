@@ -340,3 +340,19 @@ section:first-of-type {
         margin-top: -45px;
     }
 }
+
+/* POSISI WHATSAPP DI ATAS INSTAGRAM */
+.fab-instagram {
+    right: 25px !important;
+    bottom: 25px !important;
+}
+
+.fab-whatsapp {
+    right: 25px !important;
+    bottom: 95px !important; /* Posisi di atas Instagram (25px + 55px ikon + 15px jarak) */
+}
+
+@media (max-width: 850px) {
+    .fab-instagram { right: 20px !important; bottom: 20px !important; }
+    .fab-whatsapp { right: 20px !important; bottom: 85px !important; }
+}
