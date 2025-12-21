@@ -98,4 +98,23 @@ document.addEventListener('DOMContentLoaded', () => {
             autoSlideInterval = setInterval(nextSlide, 5000);
         }
     }
+
+    // --- 4. LOGIKA FAQ ACCORDION (TAMBAHAN) ---
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+            const faqItem = question.parentElement;
+            
+            // Menutup FAQ lain yang terbuka (opsional, agar lebih rapi)
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (item !== faqItem) {
+                    item.classList.remove('active');
+                }
+            });
+            
+            // Toggle item yang diklik
+            faqItem.classList.toggle('active');
+        });
+    });
 });
