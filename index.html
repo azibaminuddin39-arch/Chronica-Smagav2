@@ -19,8 +19,7 @@
             </button>
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html">Beranda</a></li>
-                <li><a href="berita.html">Berita</a></li>
-                <li><a href="#struktur">Pengurus</a></li>
+                <li><a href="berita.html">Berita</a></li> <li><a href="#struktur">Pengurus</a></li>
                 <li><a href="#galeri">Galeri</a></li>
             </ul>
         </div>
@@ -33,25 +32,63 @@
                 <p>Ekstrakurikuler Jurnalistik SMAN 3 Banjarbaru</p>
             </div>
 
-            <img src="logo_chronica.png" alt="Logo Chronica" class="logo-desktop-only">
+            <img src="logo_chronica.png" alt="Logo Organisasi" class="logo-desktop-only">
 
             <div class="logo-group-mobile">
                 <img src="logo_sekolah.png" alt="Logo Sekolah" class="logo-mini">
-                <img src="logo_chronica.png" alt="Logo Chronica" class="logo-mini">
+                <img src="logo_chronica.png" alt="Logo Organisasi" class="logo-mini">
             </div>
         </div>
     </header>
 
     <main>
         <section id="struktur">
-            <h2>Struktur Pengurus</h2>
+            <h2>Struktur Pengurus Inti</h2>
             <div class="silsilah-row">
                 <div class="card-maroon">
                     <h4>Ketua Umum</h4>
-                    <p>Nama Ketua</p>
+                    <p class="leader">Nama Ketua</p>
+                </div>
+                <div class="card-maroon">
+                    <h4>Wakil Ketua</h4>
+                    <p class="leader">Nama Wakil</p>
                 </div>
             </div>
-            </section>
+            <div class="silsilah-row">
+                <div class="card-maroon">
+                    <h4>Sekretaris</h4>
+                    <p class="leader">Nama Sekretaris</p>
+                </div>
+                <div class="card-maroon">
+                    <h4>Bendahara</h4>
+                    <p class="leader">Nama Bendahara</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="divisi">
+            <h2>Divisi Organisasi</h2>
+            <div class="divisi-grid">
+                <div class="divisi-box">
+                    <h3>Divisi Redaksi</h3>
+                    <p class="leader">Koordinator: <span>Nama Koord</span></p>
+                    <button class="toggle-btn" onclick="toggleAnggota('redaksi')">Lihat Anggota</button>
+                    <ul id="redaksi" class="anggota-list">
+                        <li>Anggota 1</li>
+                        <li>Anggota 2</li>
+                    </ul>
+                </div>
+                <div class="divisi-box">
+                    <h3>Divisi Dokumentasi</h3>
+                    <p class="leader">Koordinator: <span>Nama Koord</span></p>
+                    <button class="toggle-btn" onclick="toggleAnggota('dokum')">Lihat Anggota</button>
+                    <ul id="dokum" class="anggota-list">
+                        <li>Anggota 1</li>
+                        <li>Anggota 2</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
         <section id="galeri">
             <h2>Galeri Kegiatan</h2>
@@ -70,8 +107,8 @@
                         <div class="slider-desc">Pelatihan Jurnalistik</div>
                     </div>
                 </div>
-                <button class="slider-btn prev" id="prevBtn" aria-label="Slide Sebelumnya">&#10094;</button>
-                <button class="slider-btn next" id="nextBtn" aria-label="Slide Selanjutnya">&#10095;</button>
+                <button class="slider-btn prev" id="prevBtn">&#10094;</button>
+                <button class="slider-btn next" id="nextBtn">&#10095;</button>
             </div>
         </section>
     </main>
@@ -80,22 +117,21 @@
         <p>&copy; 2025 CHRONICA Jurnalistik SMAN 3 Banjarbaru. All Rights Reserved.</p>
     </footer>
 
-    <a href="https://wa.me/6281234567890?text=Halo%20Chronica%20Jurnalistik,%20saya%20ingin%20bertanya..." 
-       class="fab-whatsapp" 
-       target="_blank" 
-       rel="noopener noreferrer"
-       title="Hubungi Customer Service">
+    <a href="https://wa.me/628XXXXXXXXXX" class="fab-whatsapp" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <a href="https://instagram.com/username_ig_anda" 
-       class="fab-instagram" 
-       target="_blank" 
-       rel="noopener noreferrer"
-       title="Ikuti kami di Instagram">
+    <a href="https://instagram.com/akun_ig" class="fab-instagram" target="_blank">
         <i class="fab fa-instagram"></i>
     </a>
 
     <script src="script.js"></script>
+    <script>
+        // Fungsi sederhana untuk toggle anggota jika belum ada di script.js
+        function toggleAnggota(id) {
+            const list = document.getElementById(id);
+            list.style.display = list.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
 </body>
 </html>
