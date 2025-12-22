@@ -541,4 +541,46 @@ footer { padding: 30px; background: #0a0a0a; text-align: center; border-top: 1px
     background-position: center;
 }
 
-tambahkan code CSS tersebut ke dalam code yang asli ini, tanpa mengganti satupun yang asli
+/* ==========================================================================
+   KODE BARU: PERBAIKAN BLANK HITAM DI AREA GIF & VISI MISI (MOBILE & DESKTOP)
+   ========================================================================== */
+
+/* Mengunci lebar global agar tidak ada elemen meluber ke kanan */
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden !important;
+    position: relative;
+}
+
+/* Memastikan area Header GIF tidak bocor lebar */
+header {
+    max-width: 100vw !important;
+    overflow: hidden;
+}
+
+/* Penyesuaian khusus Mobile untuk area transisi GIF ke Visi Misi */
+@media (max-width: 850px) {
+    /* Menghapus overflow pada kontainer branding */
+    .header-brand-wrapper {
+        width: 100%;
+        max-width: 100vw;
+        overflow: hidden;
+        padding: 0 10px;
+    }
+
+    /* Memastikan Box Visi Misi tetap di dalam layar */
+    section:first-of-type {
+        margin-left: 10px !important;
+        margin-right: 10px !important;
+        width: calc(100% - 20px) !important;
+        max-width: none !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Memberi padding kanan agar teks tidak tertutup tombol FAB */
+    section {
+        padding-right: 25px !important; /* Tambah jarak aman sisi kanan */
+    }
+}
