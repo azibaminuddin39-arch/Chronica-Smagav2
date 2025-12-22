@@ -708,83 +708,49 @@ header {
 }
 
 /* ==========================================================================
-   INTEGRASI TERBARU: NAVIGASI NORMAL PADA MODE NON-DESKTOP
+   PERBAIKAN FINAL NAVIGASI NON-DESKTOP (FIXED OVERFLOW & POSITIONING)
    ========================================================================== */
 @media (max-width: 850px) {
-    /* 1. Mencegah konten header meluber dan memastikan z-index benar */
-    header {
-        overflow: hidden !important;
-        position: relative !important;
-        z-index: 100 !important;
-    }
-
-    /* 2. Tata letak Logo-Teks-Logo agar tidak bertumpuk */
-    .header-brand-wrapper {
-        display: flex !important;
-        flex-direction: row !important; 
-        align-items: center !important;
-        justify-content: space-around !important; 
-        width: 100% !important;
-        padding: 0 10px !important;
-        gap: 0 !important;
-    }
-
-    /* 3. Ukuran Logo yang lebih aman untuk layar sempit */
-    .logo-mini {
-        width: 50px !important; 
-        height: auto !important;
-        flex-shrink: 0 !important; 
-    }
-
-    /* 4. Penyesuaian Teks CHRONICA agar tidak melebar */
-    .text-container {
-        flex: 1 !important;
-        max-width: 60% !important; 
-        margin: 0 auto !important;
-        padding: 5px 10px !important;
-        z-index: 50 !important;
-    }
-
-    .text-container h1 {
-        font-size: 1.1rem !important; 
-        white-space: nowrap !important; 
-    }
-
-    /* 5. PERBAIKAN TOMBOL HAMBURGER & MENU TERPOTONG */
+    /* Memastikan container navigasi tidak mepet ke pinggir layar hp */
     .nav-container {
         position: absolute !important;
-        top: 20px !important;
-        right: 20px !important;
-        z-index: 9999 !important; 
+        top: 20px !important; /* Jarak dari atas diturunkan sedikit */
+        right: 20px !important; /* Jarak dari kanan diperbesar */
+        z-index: 5000 !important;
     }
 
     .hamburger {
-        display: flex !important;
-        padding: 10px !important; 
+        background: rgba(0, 0, 0, 0.2) !important; /* Background tipis agar terlihat */
+        padding: 8px !important;
+        border-radius: 5px !important;
     }
 
-    /* Pastikan menu drop-down tidak terpotong layar */
+    /* Memperbaiki Menu yang terpotong dan posisi 'X' */
     .nav-menu {
-        position: fixed !important; 
-        top: 70px !important;
+        position: fixed !important; /* Menggunakan fixed agar tidak terpotong parent */
+        top: 80px !important; /* Memberi ruang agar tidak menabrak tombol X */
+        right: 20px !important; /* Mengikuti jarak aman kanan layar */
+        width: calc(100% - 40px) !important; /* Lebar maksimal dikurangi padding layar */
+        max-width: 220px !important; /* Batas lebar menu */
+        z-index: 5000 !important;
+        display: none;
+        flex-direction: column;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.8) !important;
+    }
+
+    .nav-menu.active {
+        display: flex !important;
+    }
+
+    /* Memastikan tombol Close (X) tetap terlihat jelas */
+    .hamburger.active {
+        position: fixed !important; /* Mengunci tombol X agar tidak bergeser */
+        top: 20px !important;
         right: 20px !important;
-        width: 200px !important;
-        max-width: 80vw !important;
-        z-index: 9999 !important;
     }
 
-    /* Tombol 'X' (Close) saat menu aktif */
-    .hamburger.active span {
-        background: var(--color-silver) !important;
-    }
-}
-
-/* Penyesuaian khusus untuk HP yang sangat kecil (di bawah 380px) */
-@media (max-width: 380px) {
-    .logo-mini {
-        width: 40px !important;
-    }
-    .text-container h1 {
-        font-size: 0.9rem !important;
+    /* Mengatur logo-logo agar tidak bertabrakan dengan navigasi */
+    .header-brand-wrapper {
+        padding-right: 40px !important; /* Memberi ruang di kanan agar tidak kena tombol hamburger */
     }
 }
