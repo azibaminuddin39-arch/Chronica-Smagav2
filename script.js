@@ -64,20 +64,30 @@ document.addEventListener('DOMContentLoaded', () => {
             /* MODIFIKASI: Menggunakan class 'active' agar sinkron dengan animasi CSS */
             list.classList.toggle('active');
             
-            const isHidden = !list.classList.contains('active');
+            const isShowing = list.classList.contains('active');
             
             // Backup logic display untuk keamanan (tetap mempertahankan logic asli Anda)
-            if (list.classList.contains('active')) {
+            if (isShowing) {
                 list.style.display = 'block';
             } else {
                 list.style.display = 'none';
             }
             
             // Update teks tombol sesuai status
-            this.textContent = !isHidden ? 'Sembunyikan Anggota' : 'Lihat Anggota';
+            this.textContent = isShowing ? 'Sembunyikan Anggota' : 'Lihat Anggota';
             
-            // Memberikan feedback visual warna saat tombol aktif
-            this.style.backgroundColor = !isHidden ? '#800000' : '#600000';
+            // LOGIKA WARNA BARU:
+            // Saat Sembunyikan Anggota (Tampil): Warna Silver (#C0C0C0), Teks Hitam
+            // Saat Lihat Anggota (Sembunyi): Kembali ke Maroon (#600000), Teks Putih
+            if (isShowing) {
+                this.style.backgroundColor = '#C0C0C0';
+                this.style.color = '#000000';
+                this.style.borderColor = '#600000';
+            } else {
+                this.style.backgroundColor = '#600000';
+                this.style.color = '#ffffff';
+                this.style.borderColor = '#C0C0C0';
+            }
         });
     });
 
