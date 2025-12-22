@@ -7,47 +7,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* ==========================================
-           PENGGABUNGAN CODE CSS ASLI & PERBAIKAN
-           ========================================== */
-        
-        :root {
-            --color-maroon: #600000;
-            --color-gold: #FFD700;
-            --color-silver: #C0C0C0;
-            --color-bg-main: #000000;
-            --text-primary: #e0e0e0;
-            --text-white: #ffffff;
-        }
-
-        /* FIX BACKGROUND DOUBLE & KHUSUS ANGGOTA */
+        /* CSS KHUSUS HALAMAN ANGGOTA */
         .page-anggota {
-            background: url('img/LB_4.gif') no-repeat center center fixed !important;
-            background-size: cover !important;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
             color: white;
             padding-bottom: 50px;
-            margin: 0;
-            overflow-x: hidden;
         }
 
-        /* HEADER TRANSPARAN AGAR GIF TERLIHAT */
-        header {
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.5) !important; 
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border-bottom: 1px solid rgba(192, 192, 192, 0.2);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            aspect-ratio: auto !important; /* Reset dari header utama */
-            height: auto !important;
+        .divisi-section {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: auto;
         }
 
-        /* STYLE JUDUL DIVISI (SILVER GLOW) */
         .section-title {
             text-align: center;
-            color: #C0C0C0 !important;
+            color: #C0C0C0 !important; /* Silver Glow */
             text-transform: uppercase;
             letter-spacing: 3px;
             margin-bottom: 40px;
@@ -59,17 +34,9 @@
             padding-bottom: 10px;
             font-family: 'Playfair Display', serif;
             text-shadow: 0 0 10px rgba(192, 192, 192, 0.7), 
-                         0 0 20px rgba(0, 0, 0, 0.8);
+                         0 0 20px rgba(192, 192, 192, 0.4);
         }
 
-        .divisi-section {
-            padding: 40px 20px;
-            max-width: 1200px;
-            margin: auto;
-            background: transparent !important; /* Memastikan GIF terlihat */
-        }
-
-        /* GRID & CARD ANGGOTA */
         .anggota-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -105,10 +72,9 @@
             color: #C0C0C0;
             line-height: 1.2;
             font-family: 'Montserrat', sans-serif;
-            text-shadow: 1px 1px 3px black;
         }
 
-        /* --- MODAL LANDSCAPE --- */
+        /* MODAL STYLES LANDSCAPE */
         .modal {
             display: none;
             position: fixed;
@@ -140,12 +106,14 @@
         }
 
         .modal-left { flex-shrink: 0; }
+
         .modal-foto {
             width: 180px;
             height: 180px;
             border-radius: 50%;
             object-fit: cover;
             border: 4px solid #C0C0C0;
+            box-shadow: 0 0 20px rgba(192, 192, 192, 0.3);
         }
 
         .modal-divider {
@@ -156,8 +124,20 @@
         }
 
         .modal-right { flex-grow: 1; text-align: left; }
-        .modal-right h2 { color: white; margin: 0; font-family: 'Playfair Display', serif; font-size: 1.8rem; }
-        .modal-job { color: #C0C0C0 !important; font-weight: 800; text-transform: uppercase; font-size: 1.1rem; }
+
+        .modal-right h2 { 
+            color: white; 
+            margin: 0 0 8px 0; 
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+        }
+
+        .modal-job { 
+            color: #C0C0C0 !important; 
+            font-weight: 800; 
+            text-transform: uppercase;
+            text-shadow: 0 0 8px rgba(192, 192, 192, 0.5);
+        }
 
         .close-modal {
             position: absolute;
@@ -168,16 +148,15 @@
             cursor: pointer;
         }
 
-        /* RESPONSIVE FIX */
         @media (max-width: 650px) {
-            .modal-content { flex-direction: column; text-align: center; padding: 30px 20px; gap: 15px; }
-            .modal-divider { width: 80%; height: 2px; background: linear-gradient(to right, transparent, #C0C0C0, transparent); }
+            .modal-content { flex-direction: column; text-align: center; max-width: 350px; padding: 30px 20px; }
+            .modal-divider { width: 80%; height: 2px; background: linear-gradient(to right, transparent, #C0C0C0, transparent); margin: 10px 0; }
             .modal-right { text-align: center; }
             .modal-foto { width: 140px; height: 140px; }
-            .section-title { font-size: 1.2rem; }
         }
 
         @keyframes modalScale { from { transform: scale(0.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        header { padding: 20px; background: rgba(0,0,0,0.8); border-bottom: 1px solid #333; }
     </style>
 </head>
 <body class="page-anggota">
@@ -187,7 +166,7 @@
             <a href="index.html" style="color: white; font-size: 1.5rem; margin-right: 20px; text-decoration: none;">
                 <i class="fas fa-arrow-left"></i>
             </a>
-            <h1 style="font-family: 'Playfair Display'; letter-spacing: 2px; margin: 0; color: white;">FAMILY CHRONICA</h1>
+            <h1 style="font-family: 'Playfair Display'; letter-spacing: 2px; margin: 0;">FAMILY CHRONICA</h1>
         </div>
     </header>
 
@@ -390,16 +369,15 @@
         function openModal(name, job, img) {
             document.getElementById('modalName').innerText = name;
             document.getElementById('modalJob').innerText = job;
+            // Menambahkan img/ agar mengambil dari folder foto
             document.getElementById('modalImg').src = 'img/' + img;
             document.getElementById('memberModal').style.display = 'flex';
             document.body.style.overflow = 'hidden'; 
         }
-
         function closeModal() {
             document.getElementById('memberModal').style.display = 'none';
             document.body.style.overflow = 'auto'; 
         }
-
         window.onclick = function(event) {
             let modal = document.getElementById('memberModal');
             if (event.target == modal) { closeModal(); }
@@ -407,3 +385,4 @@
     </script>
 </body>
 </html>
+
