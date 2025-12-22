@@ -754,3 +754,53 @@ header {
         padding-right: 40px !important; /* Memberi ruang di kanan agar tidak kena tombol hamburger */
     }
 }
+
+/* ==========================================================================
+   TAMBAHAN BARU: PENYESUAIAN SEMUA ELEMENT KE TENGAH (CENTER)
+   (Diletakkan paling bawah tanpa mengubah kode di atas)
+   ========================================================================== */
+@media (max-width: 850px) {
+    header {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        padding-top: 60px !important; /* Memberi ruang aman untuk hamburger */
+    }
+
+    .header-brand-wrapper {
+        display: flex !important;
+        flex-direction: row !important; /* Tetap baris untuk mengapit */
+        align-items: center !important;
+        justify-content: center !important; /* Paksa ke as tengah */
+        gap: 10px !important;
+        width: 100% !important;
+        margin: 0 auto !important;
+    }
+
+    .logo-mini {
+        width: 50px !important;
+        height: 50px !important;
+        margin: 0 !important;
+        flex-shrink: 0 !important;
+    }
+
+    .text-container {
+        flex: 0 1 auto !important; /* Ukuran mengikuti konten teks */
+        margin: 0 !important;
+        text-align: center !important;
+    }
+
+    /* Pastikan Visi Misi & Section lain benar-benar di tengah */
+    section {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        text-align: center !important;
+        width: 95% !important;
+    }
+
+    .silsilah-row, .divisi-grid {
+        justify-content: center !important;
+        text-align: center !important;
+    }
+}
