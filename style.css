@@ -38,7 +38,8 @@ body {
 }
 
 /* --- TOMBOL SOSIAL MEDIA MELAYANG --- */
-.fab-instagram, .fab-whatsapp {
+/* (Tetap dipertahankan kelas aslinya agar tidak error, tapi kita tambahkan selector baru di bawah) */
+.fab-instagram, .fab-whatsapp, .fab-message {
     position: fixed;
     bottom: 25px;
     width: 55px;
@@ -67,7 +68,7 @@ body {
     font-size: 30px;
 }
 
-.fab-instagram:hover, .fab-whatsapp:hover { 
+.fab-instagram:hover, .fab-whatsapp:hover, .fab-message:hover { 
     animation-play-state: paused;
     transform: scale(1.2); 
 }
@@ -314,7 +315,6 @@ footer {
 */
 
 header {
-    /* Menumpuk gradient Fade-Out di atas GIF asli */
     background-image: 
         linear-gradient(to bottom, transparent 65%, var(--color-bg-main) 100%), 
         linear-gradient(rgba(0,0,0,0.6), rgba(96,0,0,0.4)), 
@@ -328,7 +328,6 @@ header {
         url('LB_2.gif') !important;
 }
 
-/* Membuat box pertama menyatu naik ke atas header */
 section:first-of-type {
     margin-top: -80px;
     position: relative;
@@ -341,20 +340,30 @@ section:first-of-type {
     }
 }
 
-/* POSISI WHATSAPP DI ATAS INSTAGRAM */
+/* POSISI SOSIAL MEDIA */
 .fab-instagram {
     right: 25px !important;
     bottom: 25px !important;
 }
 
-.fab-whatsapp {
+/* --- PERBAIKAN IKON PESAN (PENGGANTI WHATSAPP) --- */
+.fab-message {
     right: 25px !important;
-    bottom: 95px !important; /* Posisi di atas Instagram */
+    bottom: 95px !important; /* Di atas Instagram */
+    background: var(--color-maroon) !important;
+    border: 2px solid var(--color-silver) !important;
+    font-size: 24px !important;
+}
+
+.fab-message:hover {
+    background: #ffffff !important;
+    color: var(--color-maroon) !important;
+    border-color: var(--color-maroon) !important;
 }
 
 @media (max-width: 850px) {
     .fab-instagram { right: 20px !important; bottom: 20px !important; }
-    .fab-whatsapp { right: 20px !important; bottom: 85px !important; }
+    .fab-message { right: 20px !important; bottom: 85px !important; }
 }
 
 /* MENGHILANGKAN HIGHLIGHT BIRU SAAT DIKLIK */
@@ -363,6 +372,7 @@ section:first-of-type {
 .toggle-btn, 
 .fab-instagram, 
 .fab-whatsapp,
+.fab-message,
 .slider-btn,
 .back-link,
 .faq-question,
@@ -408,7 +418,7 @@ section:first-of-type {
     color: var(--color-maroon);
 }
 
-/* --- FAQ ACCORDION STYLE (QUESTION LEFT, ANSWER CENTER) --- */
+/* --- FAQ ACCORDION STYLE --- */
 .faq-container {
     max-width: 800px;
     margin: 0 auto;
@@ -433,9 +443,9 @@ section:first-of-type {
     color: var(--color-silver);
     font-size: 1.1rem;
     font-weight: 600;
-    text-align: left; /* Teks pertanyaan tetap di kiri */
+    text-align: left;
     display: flex;
-    justify-content: space-between; /* Panah tetap di ujung kanan */
+    justify-content: space-between;
     align-items: center;
     cursor: pointer;
 }
@@ -443,7 +453,7 @@ section:first-of-type {
 .faq-answer {
     max-height: 0;
     overflow: hidden;
-    text-align: center; /* Jawaban berada di tengah */
+    text-align: center;
     transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
 }
 
@@ -461,29 +471,19 @@ section:first-of-type {
     transition: max-height 0.4s cubic-bezier(1, 0, 1, 0);
 }
 
-/* Menambahkan rotasi ikon panah saat aktif */
-.faq-item.active .faq-question i {
-    transform: rotate(180deg);
-}
-
-.faq-question i {
-    transition: transform 0.3s ease;
-}
+.faq-item.active .faq-question i { transform: rotate(180deg); }
+.faq-question i { transition: transform 0.3s ease; }
 
 /* --- PENYESUAIAN HALAMAN SUARA.HTML (FIX CENTER & LB_3.gif) --- */
 .page-suara header {
-    /* Mengganti GIF khusus halaman Suara */
     background-image: 
         linear-gradient(to bottom, transparent 65%, var(--color-bg-main) 100%), 
         linear-gradient(rgba(0,0,0,0.6), rgba(96,0,0,0.4)), 
         url('LB_3.gif') !important;
     
-    /* Mengatur dimensi header */
     aspect-ratio: auto !important; 
     height: 60vh !important; 
     min-height: 400px;
-    
-    /* Memaksa elemen di dalamnya berada di tengah mutlak */
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
@@ -492,7 +492,6 @@ section:first-of-type {
 }
 
 .page-suara .header-brand-wrapper {
-    /* Mematikan pengaturan space-between bawaan desktop agar ke tengah */
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
@@ -503,7 +502,6 @@ section:first-of-type {
 }
 
 .page-suara .text-container {
-    /* Menghilangkan sisa-sisa alignment kiri */
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
@@ -534,7 +532,7 @@ section:first-of-type {
     align-items: center;
     gap: 10px;
     letter-spacing: 1px;
-    align-self: center; /* Memastikan tombol kembali juga center */
+    align-self: center;
 }
 
 .back-link:hover {
