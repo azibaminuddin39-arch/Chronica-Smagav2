@@ -331,17 +331,17 @@ h2 {
 }
 
 .card-maroon h4 { 
-    color: var(--color-maroon) !important; /* Text Maroon agar kontras di silver */
+    color: var(--color-maroon) !important; /* Text Maroon kontras di silver */
     margin-bottom: 10px; 
     font-size: 0.9em; 
     text-transform: uppercase; 
     font-weight: 800;
-    text-shadow: 0 0 5px rgba(96, 0, 0, 0.3) !important; /* Glow maroon tipis */
+    text-shadow: 0 0 5px rgba(96, 0, 0, 0.3) !important; 
     letter-spacing: 1.5px;
 }
 
 .card-maroon p { 
-    color: #000000 !important; /* Nama Hitam agar mudah dibaca di silver */
+    color: #000000 !important; /* Nama Hitam di silver */
     font-weight: 700;
 }
 
@@ -443,6 +443,19 @@ footer {
     .text-container h1 { font-size: 1.8em; }
     .logo-mini { height: 60px; }
     .fab-whatsapp { right: 85px; }
+
+    /* PERBAIKAN MOBILE LAYOUT AGAR TIDAK SESAK */
+    main { padding: 15px; }
+    section { 
+        padding: 25px 15px; 
+        margin-bottom: 30px; 
+        border-left-width: 5px !important; 
+    }
+    h2 { font-size: 1.8rem; margin-bottom: 25px; letter-spacing: 1.5px; }
+    .text-container { padding: 15px 20px; }
+    .slider-item img { height: 280px; }
+    .silsilah-row { gap: 15px; }
+    .card-maroon { min-width: 100%; padding: 20px 15px; }
 }
 
 /* --- KODE TAMBAHAN (OVERRIDE) --- */
