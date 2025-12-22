@@ -408,7 +408,7 @@ section:first-of-type {
     color: var(--color-maroon);
 }
 
-/* --- FAQ ACCORDION STYLE --- */
+/* --- FAQ ACCORDION STYLE (CENTERED) --- */
 .faq-container {
     max-width: 800px;
     margin: 0 auto;
@@ -433,17 +433,23 @@ section:first-of-type {
     color: var(--color-silver);
     font-size: 1.1rem;
     font-weight: 600;
-    text-align: left;
+    text-align: center; /* Teks pertanyaan di tengah */
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Konten di tengah */
     align-items: center;
+    gap: 15px; /* Jarak antara teks dan ikon */
     cursor: pointer;
 }
 
 .faq-answer {
     max-height: 0;
     overflow: hidden;
+    text-align: center; /* Jawaban di tengah */
     transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+}
+
+.faq-answer p {
+    padding: 0 20px 20px 20px;
 }
 
 .faq-item.active {
@@ -454,6 +460,15 @@ section:first-of-type {
 .faq-item.active .faq-answer {
     max-height: 500px;
     transition: max-height 0.4s cubic-bezier(1, 0, 1, 0);
+}
+
+/* Menambahkan rotasi ikon panah saat aktif */
+.faq-item.active .faq-question i {
+    transform: rotate(180deg);
+}
+
+.faq-question i {
+    transition: transform 0.3s ease;
 }
 
 /* --- PENYESUAIAN HALAMAN SUARA.HTML (NEW) --- */
