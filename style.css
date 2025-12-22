@@ -160,7 +160,7 @@ body {
 }
 
 /* ==========================================
-   HEADER & BRANDING (FIXED DUPLICATION)
+   HEADER & BRANDING
    ========================================== */
 header {
     position: relative;
@@ -182,7 +182,7 @@ header {
 
 .header-brand-wrapper {
     display: flex;
-    flex-direction: row; /* Selalu sejajar horizontal */
+    flex-direction: row; /* Selalu sejajar horizontal untuk halaman utama */
     align-items: center;
     justify-content: center;
     gap: 30px;
@@ -191,7 +191,7 @@ header {
 }
 
 .logo-mini { 
-    height: 120px; /* Ukuran Desktop */
+    height: 120px; 
     width: auto;
     position: relative;
     filter: drop-shadow(0 0 8px rgba(0,0,0,0.8));
@@ -343,7 +343,7 @@ h2 {
 .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: var(--color-maroon); color: white; border: 1px solid var(--color-silver); width: 45px; height: 45px; cursor: pointer; border-radius: 50%; z-index: 10; transition: 0.2s; -webkit-tap-highlight-color: transparent; outline: none; }
 
 /* ==========================================
-   SUARA SMAGA & FAQ (SECTION KHUSUS)
+   SUARA SMAGA & FAQ
    ========================================== */
 .suara-section {
     text-align: center;
@@ -374,34 +374,14 @@ h2 {
    ========================================== */
 @media (max-width: 850px) {
     header { aspect-ratio: 16 / 9; }
-    
-    .header-brand-wrapper { 
-        gap: 15px; /* Jarak pas antara logo dan teks di HP */
-    }
-
-    .logo-mini { 
-        height: 60px; /* Logo mengecil agar muat sebaris */
-        flex-shrink: 0;
-    }
-
-    .text-container { 
-        padding: 10px 15px; 
-        flex: 1;
-        max-width: fit-content;
-    }
-
-    .text-container h1 { 
-        font-size: 1.5rem; /* Ukuran teks di HP agar proporsional */
-        margin: 0;
-    }
-
+    .header-brand-wrapper { gap: 15px; }
+    .logo-mini { height: 60px; flex-shrink: 0; }
+    .text-container { padding: 10px 15px; flex: 1; max-width: fit-content; }
+    .text-container h1 { font-size: 1.5rem; margin: 0; }
     .text-container p { font-size: 0.7rem; }
-
     section:first-of-type { margin-top: -45px; }
-    
     .fab-instagram { right: 20px !important; bottom: 20px !important; }
     .fab-message { right: 20px !important; bottom: 85px !important; }
-
     main { padding: 15px; }
     section { padding: 25px 15px; margin-bottom: 30px; border-left-width: 5px !important; }
     h2 { font-size: 1.8rem; }
@@ -410,3 +390,52 @@ h2 {
 }
 
 footer { padding: 30px; background: #0a0a0a; text-align: center; border-top: 1px solid rgba(192, 192, 192, 0.1); }
+
+/* ==========================================
+   PERBAIKAN KHUSUS HALAMAN SUARA SMAGA
+   (Agar Tombol Back Muncul & Layout Vertikal)
+   ========================================== */
+.page-suara .header-brand-wrapper {
+    flex-direction: column !important; /* Susun vertikal: Logo -> Teks -> Back */
+    gap: 20px !important;
+}
+
+.page-suara .text-container {
+    text-align: center !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.page-suara .back-link {
+    display: inline-flex !important; 
+    margin-top: 20px;
+    z-index: 100;
+    position: relative;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: var(--color-silver);
+    text-decoration: none;
+    font-weight: 800;
+    padding: 12px 25px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.page-suara .back-link:hover {
+    background: var(--color-maroon);
+    border-color: var(--color-silver);
+    color: white;
+    transform: translateX(-5px);
+}
+
+@media (max-width: 850px) {
+    .page-suara .header-brand-wrapper {
+        flex-direction: column !important;
+        padding-top: 20px;
+    }
+    .page-suara .logo-mini { height: 80px; }
+}
