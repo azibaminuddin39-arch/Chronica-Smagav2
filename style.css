@@ -86,7 +86,8 @@ body {
     background: var(--color-bg-main); 
     color: var(--text-primary); 
     line-height: 1.6; 
-    overflow-x: hidden; 
+    overflow-x: hidden; /* Mencegah scroll horizontal */
+    width: 100%;
 }
 
 @keyframes floatIcon {
@@ -193,7 +194,7 @@ header {
     justify-content: center;
     gap: 30px;
     width: 100%;
-    max-width: 1200px;
+    max-width: 100%; /* Mencegah overflow */
 }
 
 .logo-mini { 
@@ -282,7 +283,7 @@ header {
 /* ==========================================
    MAIN SECTIONS & VISI MISI CENTER
    ========================================== */
-main { max-width: 1200px; margin: 0 auto; padding: 20px; }
+main { max-width: 1200px; margin: 0 auto; padding: 20px; overflow-x: hidden; }
 
 section { 
     margin-bottom: 60px; 
@@ -294,6 +295,7 @@ section {
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
     border-left: 8px solid var(--color-silver) !important; 
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5) !important;
+    max-width: 100%; /* Mencegah section meluber */
 }
 
 section:first-of-type { margin-top: -80px; position: relative; z-index: 10; }
@@ -429,7 +431,7 @@ h2 {
     .card-maroon { min-width: 100%; }
 }
 
-footer { padding: 30px; background: #0a0a0a; text-align: center; border-top: 1px solid rgba(192, 192, 192, 0.1); }
+footer { padding: 30px; background: #0a0a0a; text-align: center; border-top: 1px solid rgba(192, 192, 192, 0.1); width: 100%; }
 
 /* ==========================================
    PERBAIKAN KHUSUS HALAMAN SUARA SMAGA
@@ -573,36 +575,45 @@ footer { padding: 30px; background: #0a0a0a; text-align: center; border-top: 1px
 }
 
 /* ==========================================
-   PERBAIKAN KHUSUS LAYOUT MOBILE V2 (FIX RIGHT CLUTTER)
+   PERBAIKAN FINAL: NO-OVERFLOW & TEXT SPACING
    ========================================== */
 @media (max-width: 850px) {
-    /* Mencegah teks bertabrakan dengan tombol melayang di kanan */
-    .visi-container {
-        padding-left: 5px;
-        padding-right: 65px; /* Memberi ruang aman untuk tombol melayang */
+    /* Mencegah "Blank Hitam" dengan membatasi lebar maksimal elemen */
+    html, body {
+        overflow-x: hidden !important;
+        position: relative;
+        width: 100%;
     }
 
-    /* Memaksa isi misi tetap rapi di layar sempit */
+    /* Memastikan kontainer utama tidak bocor ke kanan */
+    main, section, header, .header-brand-wrapper {
+        max-width: 100vw !important;
+        box-sizing: border-box;
+    }
+
+    /* Jarak aman di sisi kanan Visi & Misi agar tidak tertutup tombol */
+    .visi-container {
+        padding-left: 10px;
+        padding-right: 75px !important; /* Tambah ruang untuk area tombol */
+    }
+
     .misi-box ol, .tujuan-box ul {
         display: block; 
         width: 100%;
-        padding-left: 20px;
+        padding-left: 15px;
         text-align: left;
     }
 
     .misi-box li, .tujuan-box li {
         font-size: 0.85rem;
-        margin-bottom: 10px;
-        line-height: 1.4;
+        margin-bottom: 8px;
+        word-wrap: break-word; /* Mencegah teks panjang merusak layout */
     }
 
-    /* Mengatur posisi tombol melayang agar lebih efisien di layar kecil */
+    /* Ukuran tombol melayang sedikit dikecilkan agar hemat tempat */
     .fab-instagram, .fab-message {
         right: 15px !important;
-        width: 50px;
-        height: 50px;
+        width: 48px;
+        height: 48px;
     }
-
-    .fab-instagram { bottom: 80px !important; }
-    .fab-message { bottom: 20px !important; }
 }
