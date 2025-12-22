@@ -485,6 +485,40 @@ footer { padding: 30px; background: #0a0a0a; text-align: center; border-top: 1px
 }
 
 /* ==========================================
+   OPSI 1: WELCOME TO WEBSITE CHRONICA 
+   ========================================== */
+.text-container p { 
+    color: var(--color-silver) !important; 
+    font-size: 0.9rem;
+    font-weight: 600; 
+    letter-spacing: 5px;       
+    text-transform: uppercase;
+    margin-bottom: 8px;        
+    opacity: 0.9;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+.text-container h1 { 
+    color: #ffffff !important; 
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5em;
+    letter-spacing: 3px;
+    line-height: 1;
+    animation: textGlowWhite 3s infinite alternate;
+}
+
+/* Responsive Teks untuk Mobile */
+@media (max-width: 850px) {
+    .text-container p {
+        font-size: 0.6rem;
+        letter-spacing: 3px;
+    }
+    .text-container h1 {
+        font-size: 2rem;
+    }
+}
+
+/* ==========================================
    TAMBAHAN KHUSUS: BACKGROUND PAGES SPESIFIK
    ========================================== */
 /* Background untuk halaman suara.html */
