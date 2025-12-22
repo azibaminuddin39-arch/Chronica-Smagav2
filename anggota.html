@@ -7,13 +7,29 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* CSS KHUSUS HALAMAN ANGGOTA */
+        /* ==========================================
+           1. PERBAIKAN BACKGROUND KHUSUS ANGGOTA
+           ========================================== */
         .page-anggota {
-            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+            background-color: #0a0a0a; /* Dasar hitam */
+            background-image: url('img/LB_4.gif'); 
+            background-repeat: no-repeat;
+            background-position: top center;
+            background-size: 100% auto; /* GIF hanya muncul satu kali di atas */
             color: white;
             padding-bottom: 50px;
+            margin: 0;
         }
 
+        /* Memberikan efek transparan hitam agar teks di bawah GIF terbaca */
+        main {
+            background: linear-gradient(to bottom, transparent, #0a0a0a 20%);
+            margin-top: 150px; /* Menyesuaikan agar GIF di header terlihat */
+        }
+
+        /* ==========================================
+           2. CSS ASLI STRUKTUR ANGGOTA
+           ========================================== */
         .divisi-section {
             padding: 40px 20px;
             max-width: 1200px;
@@ -22,7 +38,7 @@
 
         .section-title {
             text-align: center;
-            color: #C0C0C0 !important; /* Silver Glow */
+            color: #C0C0C0 !important;
             text-transform: uppercase;
             letter-spacing: 3px;
             margin-bottom: 40px;
@@ -74,7 +90,9 @@
             font-family: 'Montserrat', sans-serif;
         }
 
-        /* MODAL STYLES LANDSCAPE */
+        /* ==========================================
+           3. MODAL STYLES (LANDSCAPE)
+           ========================================== */
         .modal {
             display: none;
             position: fixed;
@@ -106,7 +124,6 @@
         }
 
         .modal-left { flex-shrink: 0; }
-
         .modal-foto {
             width: 180px;
             height: 180px;
@@ -124,20 +141,8 @@
         }
 
         .modal-right { flex-grow: 1; text-align: left; }
-
-        .modal-right h2 { 
-            color: white; 
-            margin: 0 0 8px 0; 
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-        }
-
-        .modal-job { 
-            color: #C0C0C0 !important; 
-            font-weight: 800; 
-            text-transform: uppercase;
-            text-shadow: 0 0 8px rgba(192, 192, 192, 0.5);
-        }
+        .modal-right h2 { color: white; margin: 0 0 8px 0; font-family: 'Playfair Display', serif; font-size: 1.8rem; }
+        .modal-job { color: #C0C0C0 !important; font-weight: 800; text-transform: uppercase; }
 
         .close-modal {
             position: absolute;
@@ -148,6 +153,17 @@
             cursor: pointer;
         }
 
+        header { 
+            padding: 20px; 
+            background: rgba(0,0,0,0.4); 
+            backdrop-filter: blur(5px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 2000;
+        }
+
         @media (max-width: 650px) {
             .modal-content { flex-direction: column; text-align: center; max-width: 350px; padding: 30px 20px; }
             .modal-divider { width: 80%; height: 2px; background: linear-gradient(to right, transparent, #C0C0C0, transparent); margin: 10px 0; }
@@ -156,7 +172,6 @@
         }
 
         @keyframes modalScale { from { transform: scale(0.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-        header { padding: 20px; background: rgba(0,0,0,0.8); border-bottom: 1px solid #333; }
     </style>
 </head>
 <body class="page-anggota">
@@ -227,128 +242,7 @@
             </div>
         </section>
 
-        <section class="divisi-section">
-            <h2 class="section-title">Divisi Penulis</h2>
-            <div class="anggota-grid">
-                <div class="anggota-card" onclick="openModal('Arden Sasragam', 'Ketua Divisi (XI.7)', 'arden.jpg')">
-                    <div class="foto-container"><img src="img/arden.jpg" class="foto-lingkaran" alt="Foto"></div>
-                    <h3>Arden Sasragam</h3>
-                </div>
-                <div class="anggota-card" onclick="openModal('Salma Hera', 'Anggota (XI.9)', 'salma_h.jpg')">
-                    <div class="foto-container"><img src="img/salma_h.jpg" class="foto-lingkaran" alt="Foto"></div>
-                    <h3>Salma Hera</h3>
-                </div>
-                <div class="anggota-card" onclick="openModal('Auliya Nisa', 'Anggota (XI.10)', 'auliya.jpg')">
-                    <div class="foto-container"><img src="img/auliya.jpg" class="foto-lingkaran" alt="Foto"></div>
-                    <h3>Auliya Nisa</h3>
-                </div>
-                <div class="anggota-card" onclick="openModal('Gina Syarofa', 'Anggota (XI.9)', 'gina.jpg')">
-                    <div class="foto-container"><img src="img/gina.jpg" class="foto-lingkaran" alt="Foto"></div>
-                    <h3>Gina Syarofa</h3>
-                </div>
-                <div class="anggota-card" onclick="openModal('Salma', 'Anggota (XII.2)', 'salma.jpg')">
-                    <div class="foto-container"><img src="img/salma.jpg" class="foto-lingkaran" alt="Foto"></div>
-                    <h3>Salma</h3>
-                </div>
-            </div>
-        </section>
-
-        <section class="divisi-section">
-            <h2 class="section-title">Divisi Desain</h2>
-            <div class="anggota-grid">
-                <div class="anggota-card" onclick="openModal('Agustinus Rehan Sentaso', 'Ketua Divisi (XI.7)', 'rehan.jpg')">
-                    <div class="foto-container"><img src="img/rehan.jpg" class="foto-lingkaran" alt="Foto"></div>
-                    <h3>Agustinus Rehan S.</h3>
-                </div>
-                <div class="anggota-card" onclick="openModal('Afdhi Lay Shihaf', 'Anggota (XI.4)', 'afdhi.jpg')">
-                    <div class="foto-container"><img src="img/afdhi.jpg" class="foto-lingkaran" alt="Foto"></div>
-                    <h3>Afdhi Lay Shihaf</h3>
-                </div>
-                <div class="anggota-card" onclick="openModal('Sekar Ratu Nindita', 'Anggota (X.3)', 'sekar.jpg')">
-                    <div class="foto-container"><img src="img/sekar.jpg" class="foto-lingkaran" alt="Foto"></div>
-                    <h3>Sekar Ratu N.</h3>
-                </div>
-                <div class="anggota-card" onclick="openModal('Finsha Etiko NurRasya', 'Anggota (X.10)', 'finsha.jpg')">
-                    <div class="foto-container"><img src="img/finsha.jpg" class="foto-lingkaran" alt="Foto"></div>
-                    <h3>Finsha Etiko N.</h3>
-                </div>
-                <div class="anggota-card" onclick="openModal('Keisya Namira Putri', 'Anggota (XI.5)', 'keisya.jpg')">
-                    <div class="foto-container"><img src="img/keisya.jpg" class="foto-lingkaran" alt="Foto"></div>
-                    <h3>Keisya Namira P.</h3>
-                </div>
-                <div class="anggota-card" onclick="openModal('M. Ziddan Fiqqi', 'Anggota (XII.1)', 'ziddan.jpg')">
-                    <div class="foto-container"><img src="img/ziddan.jpg" class="foto-lingkaran" alt="Foto"></div>
-                    <h3>M. Ziddan Fiqqi</h3>
-                </div>
-            </div>
-        </section>
-
-        <section class="divisi-section">
-            <h2 class="section-title">Editing & Videografi</h2>
-            <div class="anggota-grid">
-                <div class="anggota-card" onclick="openModal('M. Dafa Khabir', 'Ketua Divisi Editing (XI.10)', 'dafa.jpg')">
-                    <div class="foto-container"><img src="img/dafa.jpg" class="foto-lingkaran" alt="Foto"></div>
-                    <h3>M. Dafa Khabir</h3>
-                </div>
-                <div class="anggota-card" onclick="openModal('Fredysca Maritza Febiananda', 'Anggota Editing (X.7)', 'fredysca.jpg')">
-                    <div class="foto-container"><img src="img/fredysca.jpg" class="foto-lingkaran" alt="Foto"></div>
-                    <h3>Fredysca Maritza F.</h3>
-                </div>
-                <div class="anggota-card" onclick="openModal('M. Rakha Maulana', 'Ketua Divisi Videografi (XI.8)', 'rakha.jpg')">
-                    <div class="foto-container"><img src="img/rakha.jpg" class="foto-lingkaran" alt="Foto"></div>
-                    <h3>M. Rakha Maulana</h3>
-                </div>
-                <div class="anggota-card" onclick="openModal('Nabila Najwa Ul Husna', 'Anggota Videografi (XI.7)', 'nabila.jpg')">
-                    <div class="foto-container"><img src="img/nabila.jpg" class="foto-lingkaran" alt="Foto"></div>
-                    <h3>Nabila Najwa U.</h3>
-                </div>
-            </div>
-        </section>
-
-        <section class="divisi-section">
-            <h2 class="section-title">Divisi Reporter</h2>
-            <div class="anggota-grid">
-                <div class="anggota-card" onclick="openModal('Aisyah Rahma Kuswadi', 'Ketua Divisi (XI.9)', 'aisyah.jpg')">
-                    <div class="foto-container"><img src="img/aisyah.jpg" class="foto-lingkaran" alt="Foto"></div>
-                    <h3>Aisyah Rahma K.</h3>
-                </div>
-                <div class="anggota-card" onclick="openModal('Maulida Nadira', 'Anggota (XI.8)', 'maulida.jpg')">
-                    <div class="foto-container"><img src="img/maulida.jpg" class="foto-lingkaran" alt="Foto"></div>
-                    <h3>Maulida Nadira</h3>
-                </div>
-                <div class="anggota-card" onclick="openModal('Maysyarah', 'Anggota (XI.7)', 'maysyarah.jpg')">
-                    <div class="foto-container"><img src="img/maysyarah.jpg" class="foto-lingkaran" alt="Foto"></div>
-                    <h3>Maysyarah</h3>
-                </div>
-                <div class="anggota-card" onclick="openModal('Mira AlMunarah', 'Anggota (X.1)', 'mira.jpg')">
-                    <div class="foto-container"><img src="img/mira.jpg" class="foto-lingkaran" alt="Foto"></div>
-                    <h3>Mira AlMunarah</h3>
-                </div>
-                <div class="anggota-card" onclick="openModal('Nadiya Husna', 'Anggota (X.2)', 'nadiya.jpg')">
-                    <div class="foto-container"><img src="img/nadiya.jpg" class="foto-lingkaran" alt="Foto"></div>
-                    <h3>Nadiya Husna</h3>
-                </div>
-            </div>
-        </section>
-
-        <section class="divisi-section">
-            <h2 class="section-title">Divisi Ide Kreatif</h2>
-            <div class="anggota-grid">
-                <div class="anggota-card" onclick="openModal('M. Rezi Farisi', 'Ketua Divisi (XI.7)', 'rezi.jpg')">
-                    <div class="foto-container"><img src="img/rezi.jpg" class="foto-lingkaran" alt="Foto"></div>
-                    <h3>M. Rezi Farisi</h3>
-                </div>
-                <div class="anggota-card" onclick="openModal('Indie Arya Wardana', 'Anggota (XI.7)', 'indie.jpg')">
-                    <div class="foto-container"><img src="img/indie.jpg" class="foto-lingkaran" alt="Foto"></div>
-                    <h3>Indie Arya W.</h3>
-                </div>
-                <div class="anggota-card" onclick="openModal('Ludia', 'Anggota (XI.10)', 'ludia.jpg')">
-                    <div class="foto-container"><img src="img/ludia.jpg" class="foto-lingkaran" alt="Foto"></div>
-                    <h3>Ludia</h3>
-                </div>
-            </div>
-        </section>
-    </main>
+        </main>
 
     <div id="memberModal" class="modal">
         <div class="modal-content">
@@ -369,7 +263,6 @@
         function openModal(name, job, img) {
             document.getElementById('modalName').innerText = name;
             document.getElementById('modalJob').innerText = job;
-            // Menambahkan img/ agar mengambil dari folder foto
             document.getElementById('modalImg').src = 'img/' + img;
             document.getElementById('memberModal').style.display = 'flex';
             document.body.style.overflow = 'hidden'; 
@@ -385,4 +278,3 @@
     </script>
 </body>
 </html>
-
