@@ -763,3 +763,41 @@ header {
         margin-bottom: 20px;
     }
 }
+
+/* ==========================================================================
+   SOLUSI FINAL: BACKGROUND GIF & FOTO (HALAMAN ANGGOTA)
+   ========================================================================== */
+
+/* 1. Mencegah GIF berulang dan menutupi seluruh layar anggota */
+.page-anggota {
+    background: url('img/LB_4.gif') no-repeat center center fixed !important;
+    background-size: cover !important;
+    background-color: #000000 !important;
+}
+
+/* 2. Menambah lapisan gelap (overlay) agar teks daftar anggota tidak tenggelam */
+.page-anggota main {
+    background: rgba(0, 0, 0, 0.6) !important;
+    backdrop-filter: blur(3px);
+    min-height: 100vh;
+}
+
+/* 3. Menjamin teks nama anggota memiliki bayangan agar tajam terbaca */
+.anggota-card h3 {
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 1) !important;
+    font-weight: 600 !important;
+}
+
+/* 4. Memastikan foto dalam lingkaran terisi penuh tanpa gepeng */
+.foto-lingkaran {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block;
+}
+
+/* 5. Memberi efek cahaya pada border foto agar terlihat premium */
+.foto-container {
+    border: 3px solid var(--color-silver) !important;
+    box-shadow: 0 0 15px rgba(192, 192, 192, 0.4) !important;
+}
