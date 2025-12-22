@@ -5,17 +5,14 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- 0. LOGIKA PRELOADER (LOADING SCREEN) ---
-    // Logika ini memastikan loading screen hilang saat halaman siap
     const loader = document.getElementById('loader-wrapper');
     if (loader) {
-        // Kita gunakan window.onload agar benar-benar menunggu semua GIF & gambar selesai
         window.addEventListener('load', () => {
             setTimeout(() => {
                 loader.classList.add('fade-out');
-            }, 1000); // Jeda 1 detik agar transisi smooth
+            }, 1000); 
         });
 
-        // Backup plan: jika window load terlalu lama, paksa tutup setelah 3 detik
         setTimeout(() => {
             if (!loader.classList.contains('fade-out')) {
                 loader.classList.add('fade-out');
@@ -32,22 +29,26 @@ document.addEventListener('DOMContentLoaded', () => {
             e.stopPropagation();
             // Toggle kelas active untuk memunculkan/menyembunyikan menu
             navMenu.classList.toggle('active');
+            
+            /* TAMBAHAN UNTUK ANIMASI CSS MORPHING (Garis menjadi X) */
+            hamburger.classList.toggle('active'); 
+            
             hamburger.classList.toggle('is-active');
         });
 
-        // Menutup menu secara otomatis jika pengguna mengklik di luar area menu
         document.addEventListener('click', (e) => {
             if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
                 navMenu.classList.remove('active');
+                hamburger.classList.remove('active'); // Tambahan reset animasi
                 hamburger.classList.remove('is-active');
             }
         });
 
-        // Menutup menu setelah pengguna memilih salah satu link navigasi
         const navLinks = document.querySelectorAll('.nav-menu a');
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
+                hamburger.classList.remove('active'); // Tambahan reset animasi
                 hamburger.classList.remove('is-active');
             });
         });
@@ -58,18 +59,25 @@ document.addEventListener('DOMContentLoaded', () => {
     
     toggleButtons.forEach(btn => {
         btn.addEventListener('click', function() {
-            // Mengambil elemen daftar (ul) yang tepat berada di bawah tombol
             const list = this.nextElementSibling; 
-            const isHidden = list.style.display === 'none' || list.style.display === '';
             
-            // Toggle tampilan daftar anggota
-            list.style.display = isHidden ? 'block' : 'none';
+            /* MODIFIKASI: Menggunakan class 'active' agar sinkron dengan animasi CSS */
+            list.classList.toggle('active');
+            
+            const isHidden = !list.classList.contains('active');
+            
+            // Backup logic display untuk keamanan (tetap mempertahankan logic asli Anda)
+            if (list.classList.contains('active')) {
+                list.style.display = 'block';
+            } else {
+                list.style.display = 'none';
+            }
             
             // Update teks tombol sesuai status
-            this.textContent = isHidden ? 'Sembunyikan Anggota' : 'Lihat Anggota';
+            this.textContent = !isHidden ? 'Sembunyikan Anggota' : 'Lihat Anggota';
             
-            // Memberikan feedback visual warna saat tombol aktif (Maroon Terang/Gelap)
-            this.style.backgroundColor = isHidden ? '#800000' : '#600000';
+            // Memberikan feedback visual warna saat tombol aktif
+            this.style.backgroundColor = !isHidden ? '#800000' : '#600000';
         });
     });
 
@@ -83,7 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let index = 0;
         const total = slides.length;
         
-        // Fungsi untuk menggeser wrapper slider
         const updateSlider = () => {
             wrapper.style.transform = `translateX(${-index * 100}%)`;
         };
@@ -98,7 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
             updateSlider();
         };
 
-        // Event listener untuk navigasi manual panah
         if (nextBtn) {
             nextBtn.addEventListener('click', () => {
                 nextSlide();
@@ -113,7 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Jalankan slide otomatis setiap 5 detik
         let autoSlideInterval = setInterval(nextSlide, 5000);
 
         function resetAutoSlide() {
@@ -129,14 +134,12 @@ document.addEventListener('DOMContentLoaded', () => {
         question.addEventListener('click', () => {
             const faqItem = question.parentElement;
             
-            // Menutup FAQ lain yang terbuka (agar lebih rapi)
             document.querySelectorAll('.faq-item').forEach(item => {
                 if (item !== faqItem) {
                     item.classList.remove('active');
                 }
             });
             
-            // Toggle item yang diklik
             faqItem.classList.toggle('active');
         });
     });
