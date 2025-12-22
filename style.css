@@ -470,13 +470,29 @@ section:first-of-type {
     transition: transform 0.3s ease;
 }
 
-/* --- PENYESUAIAN HALAMAN SUARA.HTML (NEW) --- */
+/* --- PENYESUAIAN HALAMAN SUARA.HTML (NEW & LB_3.gif) --- */
 .page-suara header {
-    height: 45vh; /* Sedikit lebih pendek dari beranda */
+    /* Mengganti GIF khusus halaman Suara */
+    background-image: 
+        linear-gradient(to bottom, transparent 65%, var(--color-bg-main) 100%), 
+        linear-gradient(rgba(0,0,0,0.6), rgba(96,0,0,0.4)), 
+        url('LB_3.gif') !important;
+    
+    /* Mengubah ukuran agar tidak terkunci 16:9 */
+    aspect-ratio: auto !important; 
+    height: 50vh !important; 
+    min-height: 350px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+@media (max-width: 850px) {
+    .page-suara header {
+        height: 40vh !important;
+        min-height: 300px;
+    }
 }
 
 .back-link {
