@@ -368,11 +368,11 @@ h2 {
 }
 
 /* --- DIVISI BOX & ANGGOTA ANIMATION --- */
-/* PERBAIKAN: Ditambahkan align-items: flex-start agar box tidak ikut turun */
+/* PERBAIKAN: Ditambahkan align-items: flex-start agar box tidak ikut tertarik/turun */
 .divisi-grid { 
     display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-    gap: 25px;
+    gap: 25px; 
     align-items: flex-start; 
 }
 
