@@ -137,8 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     });
 
-    // --- 5. LOGIKA KONTROL MUSIK (GLOBAL FUNCTION) ---
-    // Menggunakan window agar bisa dipanggil oleh 'onclick' di HTML
+    // --- 5. LOGIKA KONTROL MUSIK (DIPERBARUI UNTUK IKON SILVER) ---
     window.toggleMusic = function() {
         const music = document.getElementById('bgMusic');
         const btn = document.getElementById('musicToggle');
@@ -147,20 +146,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!music) return;
 
+        // Atur volume agar tidak terlalu mengagetkan (0.0 sampai 1.0)
+        music.volume = 0.4;
+
         if (music.paused) {
+            // SAAT MUSIK BERJALAN
             music.play().catch(err => {
-                console.log("Autoplay diblokir oleh browser. Musik akan jalan setelah interaksi.");
+                console.log("Autoplay diblokir oleh browser.");
             });
             btn.classList.add('playing');
             if(waves) waves.style.display = 'block';
             if(muteLine) muteLine.style.display = 'none';
-            btn.style.color = '#C0C0C0'; // Silver saat menyala
+            
+            // Warna tetap Silver saat menyala
+            btn.style.color = '#C0C0C0'; 
         } else {
+            // SAAT MUSIK MUTE
             music.pause();
             btn.classList.remove('playing');
             if(waves) waves.style.display = 'none';
-            if(muteLine) muteLine.style.display = 'block';
-            btn.style.color = '#600000'; // Maroon saat mute
+            if(muteLine) {
+                muteLine.style.display = 'block';
+                // Memastikan garis coret berwarna Silver
+                muteLine.style.stroke = '#C0C0C0'; 
+            }
+            
+            // Warna tetap Silver saat dimatikan sesuai permintaan
+            btn.style.color = '#C0C0C0'; 
         }
     };
 });
