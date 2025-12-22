@@ -238,7 +238,14 @@ header {
     font-size: 2.5em; 
     color: white; 
     letter-spacing: 2px; 
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.8); 
+    /* GLOW EFFECT TAMBAHAN */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(192, 192, 192, 0.5) !important;
+    animation: textGlowWhite 3s infinite alternate;
+}
+
+@keyframes textGlowWhite {
+    from { text-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(192, 192, 192, 0.4); }
+    to { text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 35px rgba(192, 192, 192, 0.7); }
 }
 
 .text-container p { 
@@ -293,9 +300,12 @@ h2 {
     font-family: 'Playfair Display', serif; 
     font-size: 2.2em; 
     text-align: center; 
+    /* GLOW EFFECT TAMBAHAN */
+    text-shadow: 0 0 15px rgba(192, 192, 192, 0.6) !important;
+    letter-spacing: 3px;
 }
 
-/* --- PENGURUS INTI (SILVER BOX) --- */
+/* --- PENGURUS INTI (SILVER BOX + MAROON OUTLINE) --- */
 .silsilah-row { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; }
 
 .card-maroon { 
@@ -321,16 +331,17 @@ h2 {
 }
 
 .card-maroon h4 { 
-    color: var(--color-maroon) !important; /* Title to Maroon */
+    color: var(--color-maroon) !important; /* Text Maroon agar kontras di silver */
     margin-bottom: 10px; 
     font-size: 0.9em; 
     text-transform: uppercase; 
     font-weight: 800;
-    text-shadow: none; 
+    text-shadow: 0 0 5px rgba(96, 0, 0, 0.3) !important; /* Glow maroon tipis */
+    letter-spacing: 1.5px;
 }
 
 .card-maroon p { 
-    color: #000000 !important; /* Name to Black for Contrast */
+    color: #000000 !important; /* Nama Hitam agar mudah dibaca di silver */
     font-weight: 700;
 }
 
@@ -518,7 +529,7 @@ section:first-of-type {
     font-size: 3rem;
     color: var(--color-silver);
     margin-bottom: 20px;
-    filter: drop-shadow(0 0 10px rgba(192, 192, 192, 0.5));
+    filter: drop-shadow(0 0 12px rgba(192, 192, 192, 0.8)) !important;
 }
 
 .btn-suara {
