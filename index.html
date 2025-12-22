@@ -12,6 +12,10 @@
 </head>
 <body>
 
+    <audio id="bgMusic" loop>
+        <source src="bg-music.mp3" type="audio/mpeg">
+    </audio>
+
     <div id="loader-wrapper">
         <div class="loader-content">
             <div class="loader-logo">
@@ -32,6 +36,16 @@
 
     <header>
         <nav class="nav-container">
+            <button id="musicToggle" class="music-btn" onclick="toggleMusic()" aria-label="Toggle Music">
+                <div id="speakerIcon" class="speaker-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11 5L6 9H2V15H6L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        <path id="soundWaves" d="M15.54 8.46C16.4774 9.39764 17.004 10.6692 17.004 11.995C17.004 13.3208 16.4774 14.5924 15.54 15.53M19.07 4.93C20.9447 6.80528 21.9979 9.34836 21.9979 12C21.9979 14.6516 20.9447 17.1947 19.07 19.07" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path id="muteLine" d="M3 3L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display: none;"/>
+                    </svg>
+                </div>
+            </button>
+
             <button class="hamburger" id="hamburger" aria-label="Menu">
                 <span></span>
                 <span></span>
@@ -90,17 +104,14 @@
         
         <section id="organisasi">
             <h2>STRUKTUR ORGANISASI</h2>
-            
             <div class="silsilah-container">
                 <h3 style="text-align: center; margin-bottom: 30px; color: white; letter-spacing: 2px;">PENGURUS INTI</h3>
-                
                 <div class="silsilah-row">
                     <div class="card-maroon">
                         <h4>Pembina</h4> 
                         <p>Dr. Sarifah Triana M.Pd</p>
                     </div>
                 </div>
-                
                 <div class="silsilah-row">
                     <div class="card-maroon">
                         <h4>Ketua</h4>
@@ -115,7 +126,6 @@
                         <p>Azib Aminuddin</p>
                     </div>
                 </div>
-                
                 <div class="silsilah-row">
                     <div class="card-maroon">
                         <h4>Sekretaris 2</h4>
@@ -132,7 +142,6 @@
 
             <div class="divisi-container">
                 <h3 style="text-align: center; margin-bottom: 30px; color: white; letter-spacing: 2px;">DIVISI JURNALISTIK</h3>
-                
                 <div class="divisi-grid">
                     <div class="divisi-box">
                         <h4>Fotografi</h4>
@@ -145,7 +154,6 @@
                             <li>Jozuno Adalardi Rozali XII.6</li>
                         </ul>
                     </div>
-
                     <div class="divisi-box">
                         <h4>Penulis</h4>
                         <p class="leader"><span>Ketua:</span> Arden Sasragam XI.7</p>
@@ -157,7 +165,6 @@
                             <li>Salma XII.2</li>
                         </ul>
                     </div>
-
                     <div class="divisi-box">
                         <h4>Desain</h4>
                         <p class="leader"><span>Ketua:</span> Agustinus Rehan Sentaso XI.7</p>
@@ -170,49 +177,7 @@
                             <li>M.Ziddan Fiqqi XII.1</li>
                         </ul>
                     </div>
-
-                    <div class="divisi-box">
-                        <h4>Editing</h4>
-                        <p class="leader"><span>Ketua:</span> M.Dafa Khabir XI.10</p>
-                        <button class="toggle-btn">Lihat Anggota</button>
-                        <ul class="anggota-list">
-                            <li>Fredysca Maritza Febiananda X.7</li>
-                        </ul>
                     </div>
-
-                    <div class="divisi-box">
-                        <h4>Videografi</h4>
-                        <p class="leader"><span>Ketua:</span> M.Rakha Maulana XI.8</p>
-                        <button class="toggle-btn">Lihat Anggota</button>
-                        <ul class="anggota-list">
-                            <li>Nabila Najwa Ul Husna XI.7</li>
-                            <li>Ghiyas Arislan X.3</li>
-                            <li>Linda Talisa Putri X.3</li>
-                        </ul>
-                    </div>
-
-                    <div class="divisi-box">
-                        <h4>Reporter</h4>
-                        <p class="leader"><span>Ketua:</span> Aisyah Rahma Kuswadi XI.9</p>
-                        <button class="toggle-btn">Lihat Anggota</button>
-                        <ul class="anggota-list">
-                            <li>Maulida Nadira XI.8</li>
-                            <li>Maysyarah XI.7</li>
-                            <li>Mira AlMunarah X.1</li>
-                            <li>Nadiya Husna X.2</li>
-                        </ul>
-                    </div>
-
-                    <div class="divisi-box">
-                        <h4>Ide Kreatif</h4>
-                        <p class="leader"><span>Ketua:</span> M. Rezi Farisi XI.7</p>
-                        <button class="toggle-btn">Lihat Anggota</button>
-                        <ul class="anggota-list">
-                            <li>Indie Arya Wardana XI.7</li>
-                            <li>Ludia XI.10</li>
-                        </ul>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -252,6 +217,37 @@
                 loader.classList.add('fade-out');
             }, 1500); 
         });
+
+        // FUNGSI UNTUK TOMBOL MUSIK
+        function toggleMusic() {
+            const music = document.getElementById('bgMusic');
+            const btn = document.getElementById('musicToggle');
+            const waves = document.getElementById('soundWaves');
+            const muteLine = document.getElementById('muteLine');
+
+            if (music.paused) {
+                music.play().catch(e => console.log("Audio play diblokir oleh browser"));
+                btn.classList.add('playing');
+                waves.style.display = 'block';
+                muteLine.style.display = 'none';
+                btn.style.color = 'var(--color-silver)';
+            } else {
+                music.pause();
+                btn.classList.remove('playing');
+                waves.style.display = 'none';
+                muteLine.style.display = 'block';
+                btn.style.color = 'var(--color-maroon)';
+            }
+        }
+
+        // Memicu musik pada interaksi pertama (Aturan Autoplay Browser)
+        document.addEventListener('click', function() {
+            const music = document.getElementById('bgMusic');
+            // Hanya aktifkan jika musik belum pernah dimainkan
+            if(music.paused && !document.getElementById('musicToggle').classList.contains('playing')) {
+                 // Anda bisa membiarkannya kosong jika ingin user mengklik manual tombol speakernya
+            }
+        }, { once: true });
     </script>
 </body>
 </html>
