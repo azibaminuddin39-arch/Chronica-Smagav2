@@ -51,6 +51,7 @@
                 <span></span>
                 <span></span>
             </button>
+
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="#visi-misi">Visi & Misi</a></li>
                 <li><a href="#organisasi">Struktur</a></li>
@@ -177,7 +178,7 @@
                             <li>M.Ziddan Fiqqi XII.1</li>
                         </ul>
                     </div>
-                    </div>
+                </div>
             </div>
         </section>
 
@@ -218,7 +219,6 @@
             }, 1500); 
         });
 
-        // FUNGSI UNTUK TOMBOL MUSIK
         function toggleMusic() {
             const music = document.getElementById('bgMusic');
             const btn = document.getElementById('musicToggle');
@@ -240,12 +240,9 @@
             }
         }
 
-        // Memicu musik pada interaksi pertama (Aturan Autoplay Browser)
         document.addEventListener('click', function() {
             const music = document.getElementById('bgMusic');
-            // Hanya aktifkan jika musik belum pernah dimainkan
             if(music.paused && !document.getElementById('musicToggle').classList.contains('playing')) {
-                 // Anda bisa membiarkannya kosong jika ingin user mengklik manual tombol speakernya
             }
         }, { once: true });
     </script>
