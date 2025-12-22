@@ -584,3 +584,53 @@ header {
         padding-right: 25px !important; /* Tambah jarak aman sisi kanan */
     }
 }
+
+/* ==========================================================================
+   FINAL FIX: LOGO TERPOTONG PADA MOBILE (BERDASARKAN SCREENSHOT)
+   ========================================================================== */
+@media (max-width: 850px) {
+    /* 1. Mengubah susunan header agar logo punya ruang (Stacked Layout) */
+    .header-brand-wrapper {
+        flex-direction: column !important; 
+        gap: 15px !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    /* 2. Memastikan logo tidak terpotong (contain) dan terlihat utuh */
+    .logo-mini {
+        height: 110px !important; 
+        width: auto !important;
+        max-width: 100% !important;
+        overflow: visible !important; 
+        flex-shrink: 0 !important;
+        margin-bottom: 10px;
+        position: relative;
+    }
+
+    .logo-mini img {
+        height: 100% !important;
+        width: auto !important;
+        object-fit: contain !important; /* Mencegah cropping pada logo */
+        filter: drop-shadow(0 0 8px rgba(255,255,255,0.3));
+    }
+
+    /* 3. Menyesuaikan kotak teks "CHRONICA" agar proporsional di bawah logo */
+    .text-container {
+        max-width: 95% !important;
+        padding: 15px 20px !important;
+        text-align: center !important;
+        margin: 0 auto !important;
+    }
+
+    .text-container h1 {
+        font-size: 1.8rem !important; 
+        line-height: 1.2 !important;
+    }
+
+    /* 4. Memperbaiki posisi Visi Misi agar sejajar dengan header baru */
+    section:first-of-type {
+        margin-top: -20px !important; 
+        z-index: 100;
+    }
+}
