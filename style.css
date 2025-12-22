@@ -480,3 +480,16 @@ footer { padding: 30px; background: #0a0a0a; text-align: center; border-top: 1px
         margin-top: -30px !important;
     }
 }
+
+/* ==========================================
+   TAMBAHAN KHUSUS: BACKGROUND LB_3.GIF
+   (Hanya Aktif di Suara.html)
+   ========================================== */
+.page-suara header {
+    background-image: 
+        linear-gradient(to bottom, transparent 65%, var(--color-bg-main) 100%), 
+        linear-gradient(rgba(0,0,0,0.6), rgba(96,0,0,0.4)), 
+        url('LB_3.gif') !important;
+    background-size: cover;
+    background-position: center;
+}
