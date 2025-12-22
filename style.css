@@ -17,6 +17,83 @@
     --glass-blur: blur(15px);
 }
 
+/* ==========================================
+   TAMBAHAN: PRELOADER (LOADING SCREEN) STYLE
+   ========================================== */
+#loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.loader-content {
+    text-align: center;
+}
+
+.loader-logo {
+    position: relative;
+    width: 120px;
+    margin: 0 auto 20px;
+}
+
+.loader-logo img {
+    width: 100%;
+    filter: drop-shadow(0 0 15px rgba(192, 192, 192, 0.5));
+    animation: pulseLogo 2s infinite ease-in-out;
+}
+
+.loader-line {
+    width: 100%;
+    height: 3px;
+    background: rgba(192, 192, 192, 0.2);
+    margin-top: 15px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.loader-line::after {
+    content: "";
+    position: absolute;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, var(--color-silver), transparent);
+    animation: loadingBar 1.5s infinite;
+}
+
+.loader-content p {
+    color: var(--color-silver);
+    letter-spacing: 5px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+@keyframes pulseLogo {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 1; }
+}
+
+@keyframes loadingBar {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+#loader-wrapper.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+/* ========================================== */
+
 body { 
     font-family: 'Montserrat', sans-serif; 
     background: var(--color-bg-main); 
