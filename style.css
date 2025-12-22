@@ -706,3 +706,85 @@ header {
         height: 3px !important;
     }
 }
+
+/* ==========================================================================
+   INTEGRASI TERBARU: NAVIGASI NORMAL PADA MODE NON-DESKTOP
+   ========================================================================== */
+@media (max-width: 850px) {
+    /* 1. Mencegah konten header meluber dan memastikan z-index benar */
+    header {
+        overflow: hidden !important;
+        position: relative !important;
+        z-index: 100 !important;
+    }
+
+    /* 2. Tata letak Logo-Teks-Logo agar tidak bertumpuk */
+    .header-brand-wrapper {
+        display: flex !important;
+        flex-direction: row !important; 
+        align-items: center !important;
+        justify-content: space-around !important; 
+        width: 100% !important;
+        padding: 0 10px !important;
+        gap: 0 !important;
+    }
+
+    /* 3. Ukuran Logo yang lebih aman untuk layar sempit */
+    .logo-mini {
+        width: 50px !important; 
+        height: auto !important;
+        flex-shrink: 0 !important; 
+    }
+
+    /* 4. Penyesuaian Teks CHRONICA agar tidak melebar */
+    .text-container {
+        flex: 1 !important;
+        max-width: 60% !important; 
+        margin: 0 auto !important;
+        padding: 5px 10px !important;
+        z-index: 50 !important;
+    }
+
+    .text-container h1 {
+        font-size: 1.1rem !important; 
+        white-space: nowrap !important; 
+    }
+
+    /* 5. PERBAIKAN TOMBOL HAMBURGER & MENU TERPOTONG */
+    .nav-container {
+        position: absolute !important;
+        top: 20px !important;
+        right: 20px !important;
+        z-index: 9999 !important; 
+    }
+
+    .hamburger {
+        display: flex !important;
+        padding: 10px !important; 
+    }
+
+    /* Pastikan menu drop-down tidak terpotong layar */
+    .nav-menu {
+        position: fixed !important; 
+        top: 70px !important;
+        right: 20px !important;
+        width: 200px !important;
+        max-width: 80vw !important;
+        z-index: 9999 !important;
+    }
+
+    /* Tombol 'X' (Close) saat menu aktif */
+    .hamburger.active span {
+        background: var(--color-silver) !important;
+    }
+}
+
+/* Penyesuaian khusus untuk HP yang sangat kecil (di bawah 380px) */
+@media (max-width: 380px) {
+    .logo-mini {
+        width: 40px !important;
+    }
+    .text-container h1 {
+        font-size: 0.9rem !important;
+    }
+}
