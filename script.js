@@ -27,19 +27,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (hamburger && navMenu) {
         hamburger.addEventListener('click', (e) => {
             e.stopPropagation();
-            // Toggle kelas active untuk memunculkan/menyembunyikan menu
             navMenu.classList.toggle('active');
-            
-            /* TAMBAHAN UNTUK ANIMASI CSS MORPHING (Garis menjadi X) */
             hamburger.classList.toggle('active'); 
-            
             hamburger.classList.toggle('is-active');
         });
 
         document.addEventListener('click', (e) => {
             if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
                 navMenu.classList.remove('active');
-                hamburger.classList.remove('active'); // Tambahan reset animasi
+                hamburger.classList.remove('active'); 
                 hamburger.classList.remove('is-active');
             }
         });
@@ -48,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
-                hamburger.classList.remove('active'); // Tambahan reset animasi
+                hamburger.classList.remove('active'); 
                 hamburger.classList.remove('is-active');
             });
         });
@@ -60,25 +56,17 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleButtons.forEach(btn => {
         btn.addEventListener('click', function() {
             const list = this.nextElementSibling; 
-            
-            /* MODIFIKASI: Menggunakan class 'active' agar sinkron dengan animasi CSS */
             list.classList.toggle('active');
-            
             const isShowing = list.classList.contains('active');
             
-            // Backup logic display untuk keamanan (tetap mempertahankan logic asli Anda)
             if (isShowing) {
                 list.style.display = 'block';
             } else {
                 list.style.display = 'none';
             }
             
-            // Update teks tombol sesuai status
             this.textContent = isShowing ? 'Sembunyikan Anggota' : 'Lihat Anggota';
             
-            // LOGIKA WARNA BARU:
-            // Saat Sembunyikan Anggota (Tampil): Warna Silver (#C0C0C0), Teks Hitam
-            // Saat Lihat Anggota (Sembunyi): Kembali ke Maroon (#600000), Teks Putih
             if (isShowing) {
                 this.style.backgroundColor = '#C0C0C0';
                 this.style.color = '#000000';
@@ -115,45 +103,33 @@ document.addEventListener('DOMContentLoaded', () => {
             updateSlider();
         };
 
-        if (nextBtn) {
-            nextBtn.addEventListener('click', () => {
-                nextSlide();
-                resetAutoSlide(); 
-            });
-        }
-        
-        if (prevBtn) {
-            prevBtn.addEventListener('click', () => {
-                prevSlide();
-                resetAutoSlide();
-            });
-        }
+        if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); resetAutoSlide(); });
+        if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); resetAutoSlide(); });
 
         let autoSlideInterval = setInterval(nextSlide, 5000);
-
         function resetAutoSlide() {
             clearInterval(autoSlideInterval);
             autoSlideInterval = setInterval(nextSlide, 5000);
         }
     }
 
-    // --- 4. LOGIKA FAQ ACCORDION ---
+    // --- 4. LOGIKA FAQ ACCORDION (PEMBUKA KUNCI) ---
     const faqQuestions = document.querySelectorAll('.faq-question');
     
     faqQuestions.forEach(question => {
-        question.addEventListener('click', () => {
-            // Mengambil elemen pembungkus (faq-item)
-            const faqItem = question.parentElement;
+        question.onclick = function(e) {
+            e.preventDefault(); // Mencegah button melakukan refresh
+            const faqItem = this.parentElement;
             
-            // Menutup FAQ lain yang sedang terbuka (opsional, agar fokus ke satu jawaban)
+            // Tutup FAQ lain yang sedang terbuka
             document.querySelectorAll('.faq-item').forEach(item => {
                 if (item !== faqItem) {
                     item.classList.remove('active');
                 }
             });
             
-            // Menambah/menghapus class 'active' untuk membuka/menutup jawaban
+            // Toggle class active pada box yang diklik
             faqItem.classList.toggle('active');
-        });
+        };
     });
 });
