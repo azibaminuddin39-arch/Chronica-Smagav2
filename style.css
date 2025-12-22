@@ -5,6 +5,8 @@
     box-sizing: border-box; 
     margin: 0; 
     padding: 0; 
+    /* Menghilangkan highlight biru saat klik di seluruh web */
+    -webkit-tap-highlight-color: transparent;
 }
 
 :root {
@@ -117,7 +119,6 @@ body {
     animation: floatIcon 3s ease-in-out infinite;
     transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
     overflow: hidden;
-    -webkit-tap-highlight-color: transparent;
     outline: none;
 }
 
@@ -182,7 +183,7 @@ header {
 
 .header-brand-wrapper {
     display: flex;
-    flex-direction: row; /* Selalu sejajar horizontal untuk halaman utama */
+    flex-direction: row; 
     align-items: center;
     justify-content: center;
     gap: 30px;
@@ -243,7 +244,7 @@ header {
    NAVIGASI & HAMBURGER
    ========================================== */
 .nav-container { position: absolute; top: 25px; right: 25px; z-index: 2000; }
-.hamburger { display: flex; flex-direction: column; gap: 6px; background: none; border: none; cursor: pointer; -webkit-tap-highlight-color: transparent; outline: none; }
+.hamburger { display: flex; flex-direction: column; gap: 6px; background: none; border: none; cursor: pointer; outline: none; }
 .hamburger span { width: 35px; height: 4px; background: var(--color-silver); border-radius: 2px; transition: 0.3s ease; }
 
 .hamburger.active span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
@@ -271,7 +272,7 @@ header {
 }
 
 .nav-menu.active { display: flex; opacity: 1; transform: translateY(0); }
-.nav-menu a { color: white; text-decoration: none; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.1); transition: 0.2s; -webkit-tap-highlight-color: transparent; }
+.nav-menu a { color: white; text-decoration: none; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.1); transition: 0.2s; }
 
 /* ==========================================
    MAIN SECTIONS
@@ -333,14 +334,14 @@ h2 {
 }
 .anggota-list { display: none; margin-top: 15px; list-style: none; color: var(--text-white); opacity: 0; transition: opacity 0.4s ease; }
 .anggota-list.active { display: block; opacity: 1; }
-.toggle-btn { width: 100%; padding: 10px; background: var(--color-maroon); color: white; border: 1px solid var(--color-silver); border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent; outline: none; }
+.toggle-btn { width: 100%; padding: 10px; background: var(--color-maroon); color: white; border: 1px solid var(--color-silver); border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.3s ease; outline: none; }
 
 /* SLIDER */
 .slider-container { position: relative; max-width: 900px; margin: 0 auto; overflow: hidden; border-radius: 15px; border: 2px solid var(--color-maroon); }
 .slider-wrapper { display: flex; transition: transform 0.5s ease; }
 .slider-item { min-width: 100%; position: relative; }
 .slider-item img { width: 100%; height: 450px; object-fit: cover; }
-.slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: var(--color-maroon); color: white; border: 1px solid var(--color-silver); width: 45px; height: 45px; cursor: pointer; border-radius: 50%; z-index: 10; transition: 0.2s; -webkit-tap-highlight-color: transparent; outline: none; }
+.slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: var(--color-maroon); color: white; border: 1px solid var(--color-silver); width: 45px; height: 45px; cursor: pointer; border-radius: 50%; z-index: 10; transition: 0.2s; outline: none; }
 
 /* ==========================================
    SUARA SMAGA & FAQ
@@ -396,7 +397,7 @@ footer { padding: 30px; background: #0a0a0a; text-align: center; border-top: 1px
    DENGAN TOMBOL BERANDA DI TENGAH ATAS
    ========================================== */
 .page-suara .header-brand-wrapper {
-    flex-direction: column !important; /* Susun vertikal: Ikon Beranda -> Teks Judul */
+    flex-direction: column !important; 
     gap: 15px !important;
 }
 
@@ -419,13 +420,12 @@ footer { padding: 30px; background: #0a0a0a; text-align: center; border-top: 1px
     border-radius: 50% !important;
     color: var(--color-silver) !important;
     text-decoration: none;
-    font-size: 1.6rem !important; /* Ukuran Ikon Rumah */
+    font-size: 1.6rem !important; 
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
     z-index: 100;
 }
 
-/* Sembunyikan Teks Default Jika Ada di HTML */
 .page-suara .back-link span {
     display: none;
 }
@@ -440,48 +440,43 @@ footer { padding: 30px; background: #0a0a0a; text-align: center; border-top: 1px
 
 /* ==========================================
    OPTIMASI KHUSUS MOBILE (LEGA & RAPI) 
-   Halaman: suara.html
+   Halaman: suara.html & berita.html
    ========================================== */
+   
+/* Hilangkan Tap Highlight khusus di halaman spesifik jika perlu */
+.page-suara *, .page-berita * {
+    -webkit-tap-highlight-color: transparent !important;
+}
+
 @media (max-width: 850px) {
-    /* Memberikan ruang lebih pada area header di HP agar tidak mepet navigasi atas */
     .page-suara header {
         height: auto !important;
         min-height: 480px;
-        padding: 80px 20px 40px !important; /* Padding atas lebih besar untuk navigasi */
+        padding: 80px 20px 40px !important; 
     }
 
-    /* Jarak antara ikon rumah dan teks judul di mobile */
     .page-suara .header-brand-wrapper {
         gap: 25px !important;
     }
 
-    /* Mengatur box teks agar lega dan proporsional */
     .page-suara .text-container {
         width: 95% !important;
         padding: 25px 20px !important;
     }
 
-    /* Ukuran Judul di mobile */
     .page-suara .text-container h1 {
         font-size: 1.8rem !important;
         line-height: 1.2;
         letter-spacing: 2px;
     }
 
-    /* Memastikan tombol rumah tetap terlihat lega di mobile */
     .page-suara .back-link {
         width: 60px;
         height: 60px;
         font-size: 1.4rem !important;
     }
     
-    /* Memberi jarak pada section konten di bawah header */
     .page-suara section:first-of-type {
         margin-top: -30px !important;
-    }
-    
-    /* Menambah kelegaan di section FAQ */
-    .page-suara .faq-container {
-        margin-top: 20px;
     }
 }
