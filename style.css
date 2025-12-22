@@ -408,7 +408,7 @@ section:first-of-type {
     color: var(--color-maroon);
 }
 
-/* --- FAQ ACCORDION STYLE (CENTERED) --- */
+/* --- FAQ ACCORDION STYLE (QUESTION LEFT, ANSWER CENTER) --- */
 .faq-container {
     max-width: 800px;
     margin: 0 auto;
@@ -433,18 +433,17 @@ section:first-of-type {
     color: var(--color-silver);
     font-size: 1.1rem;
     font-weight: 600;
-    text-align: center; /* Teks pertanyaan di tengah */
+    text-align: left; /* Teks pertanyaan tetap di kiri */
     display: flex;
-    justify-content: center; /* Konten di tengah */
+    justify-content: space-between; /* Panah tetap di ujung kanan */
     align-items: center;
-    gap: 15px; /* Jarak antara teks dan ikon */
     cursor: pointer;
 }
 
 .faq-answer {
     max-height: 0;
     overflow: hidden;
-    text-align: center; /* Jawaban di tengah */
+    text-align: center; /* Jawaban berada di tengah */
     transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
 }
 
