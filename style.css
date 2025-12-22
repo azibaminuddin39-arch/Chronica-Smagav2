@@ -295,14 +295,14 @@ h2 {
     text-align: center; 
 }
 
-/* --- PENGURUS INTI --- */
+/* --- PENGURUS INTI (SILVER BOX) --- */
 .silsilah-row { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; }
 
 .card-maroon { 
-    background: rgba(96, 0, 0, 0.25) !important; /* Deep Glass Maroon */
+    background: rgba(192, 192, 192, 0.9) !important; /* Silver Background */
     backdrop-filter: blur(15px) !important; 
     -webkit-backdrop-filter: blur(15px) !important;
-    border: 1px solid rgba(192, 192, 192, 0.2) !important; 
+    border: 2px solid var(--color-maroon) !important; /* Maroon Outline */
     border-radius: 15px; 
     padding: 25px 20px; 
     text-align: center; 
@@ -310,26 +310,28 @@ h2 {
     flex: 1; 
     max-width: 300px;
     transition: all 0.4s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
 .card-maroon:hover { 
     transform: translateY(-8px); 
-    background: rgba(96, 0, 0, 0.45) !important;
-    border-color: var(--color-silver) !important; 
-    box-shadow: 0 10px 25px rgba(192, 192, 192, 0.15);
+    background: rgba(220, 220, 220, 1) !important;
+    border-color: #a00000 !important; 
+    box-shadow: 0 12px 30px rgba(96, 0, 0, 0.3);
 }
 
 .card-maroon h4 { 
-    color: var(--color-silver); 
+    color: var(--color-maroon) !important; /* Title to Maroon */
     margin-bottom: 10px; 
     font-size: 0.9em; 
     text-transform: uppercase; 
     font-weight: 800;
-    text-shadow: 0 0 10px rgba(192, 192, 192, 0.8); 
+    text-shadow: none; 
 }
 
-.card-maroon p, .leader, .anggota-list li { 
-    color: var(--text-white) !important; 
+.card-maroon p { 
+    color: #000000 !important; /* Name to Black for Contrast */
+    font-weight: 700;
 }
 
 /* --- DIVISI BOX --- */
