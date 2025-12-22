@@ -192,12 +192,13 @@ header {
     z-index: 5000;
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Kunci posisi kiri-kanan */
+    justify-content: space-between; 
     pointer-events: none;
 }
 
-.music-btn, .hamburger {
-    pointer-events: auto; /* Mengaktifkan klik pada tombol saja */
+/* Mengaktifkan klik pada tombol dan menu */
+.music-btn, .hamburger, .nav-menu {
+    pointer-events: auto; 
 }
 
 /* Speaker Icon Style */
@@ -310,7 +311,7 @@ h2 { color: var(--color-silver); margin-bottom: 40px; font-family: 'Playfair Dis
     /* Layout Branding */
     .header-brand-wrapper { 
         gap: 10px !important; 
-        padding: 0 45px !important; /* Ruang aman agar tidak tertutup ikon */
+        padding: 0 45px !important; 
     }
 
     .logo-mini { height: 60px !important; }
