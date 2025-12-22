@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 1000); 
         });
 
+        // Backup plan jika window load tidak terpicu
         setTimeout(() => {
             if (!loader.classList.contains('fade-out')) {
                 loader.classList.add('fade-out');
@@ -32,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
             hamburger.classList.toggle('is-active');
         });
 
+        // Klik di luar menu untuk menutup
         document.addEventListener('click', (e) => {
             if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
                 navMenu.classList.remove('active');
@@ -40,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        // Tutup menu saat link diklik
         const navLinks = document.querySelectorAll('.nav-menu a');
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
@@ -67,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             this.textContent = isShowing ? 'Sembunyikan Anggota' : 'Lihat Anggota';
             
+            // Perubahan visual tombol saat aktif (Silver/Black)
             if (isShowing) {
                 this.style.backgroundColor = '#C0C0C0';
                 this.style.color = '#000000';
@@ -106,6 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); resetAutoSlide(); });
         if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); resetAutoSlide(); });
 
+        // Auto Slide setiap 5 detik
         let autoSlideInterval = setInterval(nextSlide, 5000);
         function resetAutoSlide() {
             clearInterval(autoSlideInterval);
@@ -113,27 +118,27 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- 4. LOGIKA FAQ ACCORDION (PEMBUKA KUNCI) ---
+    // --- 4. LOGIKA FAQ ACCORDION ---
     const faqQuestions = document.querySelectorAll('.faq-question');
     
     faqQuestions.forEach(question => {
         question.onclick = function(e) {
-            e.preventDefault(); // Mencegah button melakukan refresh
+            e.preventDefault(); 
             const faqItem = this.parentElement;
             
-            // Tutup FAQ lain yang sedang terbuka
+            // Tutup FAQ lain yang sedang terbuka agar rapi
             document.querySelectorAll('.faq-item').forEach(item => {
                 if (item !== faqItem) {
                     item.classList.remove('active');
                 }
             });
             
-            // Toggle class active pada box yang diklik
             faqItem.classList.toggle('active');
         };
     });
 
-    // --- 5. LOGIKA KONTROL MUSIK (ADD-ON) ---
+    // --- 5. LOGIKA KONTROL MUSIK (GLOBAL FUNCTION) ---
+    // Menggunakan window agar bisa dipanggil oleh 'onclick' di HTML
     window.toggleMusic = function() {
         const music = document.getElementById('bgMusic');
         const btn = document.getElementById('musicToggle');
@@ -147,14 +152,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log("Autoplay diblokir oleh browser. Musik akan jalan setelah interaksi.");
             });
             btn.classList.add('playing');
-            waves.style.display = 'block';
-            muteLine.style.display = 'none';
+            if(waves) waves.style.display = 'block';
+            if(muteLine) muteLine.style.display = 'none';
             btn.style.color = '#C0C0C0'; // Silver saat menyala
         } else {
             music.pause();
             btn.classList.remove('playing');
-            waves.style.display = 'none';
-            muteLine.style.display = 'block';
+            if(waves) waves.style.display = 'none';
+            if(muteLine) muteLine.style.display = 'block';
             btn.style.color = '#600000'; // Maroon saat mute
         }
     };
