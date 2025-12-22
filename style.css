@@ -393,11 +393,11 @@ footer { padding: 30px; background: #0a0a0a; text-align: center; border-top: 1px
 
 /* ==========================================
    PERBAIKAN KHUSUS HALAMAN SUARA SMAGA
-   (Agar Tombol Back Muncul & Layout Vertikal)
+   DENGAN TOMBOL BERANDA DI TENGAH ATAS
    ========================================== */
 .page-suara .header-brand-wrapper {
-    flex-direction: column !important; /* Susun vertikal: Logo -> Teks -> Back */
-    gap: 20px !important;
+    flex-direction: column !important; /* Susun vertikal: Ikon Beranda -> Teks Judul */
+    gap: 15px !important;
 }
 
 .page-suara .text-container {
@@ -407,37 +407,35 @@ footer { padding: 30px; background: #0a0a0a; text-align: center; border-top: 1px
     align-items: center;
 }
 
+/* Mengubah Tombol Back Menjadi Ikon Rumah Bulat */
 .page-suara .back-link {
-    display: inline-flex !important; 
-    margin-top: 20px;
-    z-index: 100;
-    position: relative;
-    visibility: visible !important;
-    opacity: 1 !important;
-    color: var(--color-silver);
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 65px;
+    height: 65px;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid var(--color-silver) !important;
+    border-radius: 50% !important;
+    color: var(--color-silver) !important;
     text-decoration: none;
-    font-weight: 800;
-    padding: 12px 25px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 50px;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
+    font-size: 1.6rem !important; /* Ukuran Ikon Rumah */
     transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    z-index: 100;
+}
+
+/* Sembunyikan Teks Default Jika Ada di HTML */
+.page-suara .back-link span {
+    display: none;
 }
 
 .page-suara .back-link:hover {
-    background: var(--color-maroon);
-    border-color: var(--color-silver);
-    color: white;
-    transform: translateX(-5px);
-}
-
-@media (max-width: 850px) {
-    .page-suara .header-brand-wrapper {
-        flex-direction: column !important;
-        padding-top: 20px;
-    }
-    .page-suara .logo-mini { height: 80px; }
+    background: var(--color-maroon) !important;
+    border-color: white !important;
+    color: white !important;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
 }
 
 /* ==========================================
@@ -445,50 +443,45 @@ footer { padding: 30px; background: #0a0a0a; text-align: center; border-top: 1px
    Halaman: suara.html
    ========================================== */
 @media (max-width: 850px) {
-    /* Memberikan ruang lebih pada area header di HP */
+    /* Memberikan ruang lebih pada area header di HP agar tidak mepet navigasi atas */
     .page-suara header {
         height: auto !important;
-        min-height: 450px;
-        padding: 60px 20px !important;
+        min-height: 480px;
+        padding: 80px 20px 40px !important; /* Padding atas lebih besar untuk navigasi */
     }
 
-    /* Memaksa elemen tersusun vertikal dengan jarak yang lega */
+    /* Jarak antara ikon rumah dan teks judul di mobile */
     .page-suara .header-brand-wrapper {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 25px !important; /* Jarak antar Logo, Judul, dan Tombol */
-        align-items: center !important;
+        gap: 25px !important;
     }
 
-    /* Mengatur box teks agar tidak terlalu lebar dan nempel */
+    /* Mengatur box teks agar lega dan proporsional */
     .page-suara .text-container {
-        width: 90% !important;
-        max-width: 350px;
-        padding: 20px !important;
-        margin: 0 auto;
+        width: 95% !important;
+        padding: 25px 20px !important;
     }
 
-    /* Ukuran Judul yang pas untuk layar HP agar tidak sesak */
+    /* Ukuran Judul di mobile */
     .page-suara .text-container h1 {
         font-size: 1.8rem !important;
-        line-height: 1.3;
+        line-height: 1.2;
+        letter-spacing: 2px;
     }
 
-    /* Tombol Kembali khusus Mobile: Berbentuk Kapsul & Mudah Ditekan */
+    /* Memastikan tombol rumah tetap terlihat lega di mobile */
     .page-suara .back-link {
-        width: 80% !important; /* Agar mudah dijangkau jempol */
-        max-width: 250px;
-        padding: 15px 20px !important;
-        margin-top: 10px !important;
-        background: rgba(255, 255, 255, 0.08) !important;
-        border: 1px solid var(--color-silver) !important;
-        font-size: 0.85rem !important;
-        justify-content: center;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        width: 60px;
+        height: 60px;
+        font-size: 1.4rem !important;
     }
     
     /* Memberi jarak pada section konten di bawah header */
     .page-suara section:first-of-type {
         margin-top: -30px !important;
+    }
+    
+    /* Menambah kelegaan di section FAQ */
+    .page-suara .faq-container {
+        margin-top: 20px;
     }
 }
