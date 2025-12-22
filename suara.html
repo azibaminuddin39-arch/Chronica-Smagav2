@@ -12,6 +12,15 @@
 </head>
 <body class="page-suara">
 
+    <div id="loader-wrapper">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <img src="Logo_1.png" alt="Logo Chronica">
+                <div class="loader-line"></div>
+            </div>
+            <p>CHRONICA JURNALISTIK</p>
+        </div>
+    </div>
     <header>
         <div class="header-brand-wrapper">
             <div class="text-container">
@@ -92,5 +101,14 @@
     </footer>
 
     <script src="script.js"></script>
-</body>
+
+    <script>
+        window.addEventListener('load', function() {
+            const loader = document.getElementById('loader-wrapper');
+            setTimeout(() => {
+                loader.classList.add('fade-out');
+            }, 1000); // Durasi 1 detik untuk halaman FAQ
+        });
+    </script>
+    </body>
 </html>
