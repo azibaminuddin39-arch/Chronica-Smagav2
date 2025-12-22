@@ -86,8 +86,7 @@ body {
     background: var(--color-bg-main); 
     color: var(--text-primary); 
     line-height: 1.6; 
-    overflow-x: hidden; /* Mencegah scroll horizontal */
-    width: 100%;
+    overflow-x: hidden; 
 }
 
 @keyframes floatIcon {
@@ -194,7 +193,7 @@ header {
     justify-content: center;
     gap: 30px;
     width: 100%;
-    max-width: 100%; /* Mencegah overflow */
+    max-width: 1200px;
 }
 
 .logo-mini { 
@@ -281,9 +280,9 @@ header {
 .nav-menu a { color: white; text-decoration: none; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.1); transition: 0.2s; }
 
 /* ==========================================
-   MAIN SECTIONS & VISI MISI CENTER
+   MAIN SECTIONS
    ========================================== */
-main { max-width: 1200px; margin: 0 auto; padding: 20px; overflow-x: hidden; }
+main { max-width: 1200px; margin: 0 auto; padding: 20px; }
 
 section { 
     margin-bottom: 60px; 
@@ -295,7 +294,6 @@ section {
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
     border-left: 8px solid var(--color-silver) !important; 
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5) !important;
-    max-width: 100%; /* Mencegah section meluber */
 }
 
 section:first-of-type { margin-top: -80px; position: relative; z-index: 10; }
@@ -308,37 +306,6 @@ h2 {
     text-align: center; 
     text-shadow: 0 0 15px rgba(192, 192, 192, 0.6) !important;
     letter-spacing: 3px;
-}
-
-/* Visi & Misi Center Style */
-.visi-container { text-align: center; max-width: 900px; margin: 0 auto; }
-.visi-text { text-align: center; font-style: italic; margin-bottom: 30px; }
-.divider { margin: 25px auto; width: 50%; opacity: 0.2; border-top: 1px solid var(--color-silver); }
-
-/* Perbaikan Isi Misi & Tujuan ke Tengah */
-.misi-tujuan-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-    justify-items: center; /* Memastikan box berada di tengah grid */
-}
-
-.misi-box, .tujuan-box { 
-    text-align: center; /* Judul box ke tengah */
-    width: 100%;
-}
-
-.misi-box ol, .tujuan-box ul { 
-    display: inline-block; /* Agar container list bisa diposisikan center */
-    text-align: left;      /* Menjaga teks poin-poin tetap rapi rata kiri */
-    padding-left: 20px; 
-    margin: 0 auto;
-}
-
-.misi-box h3, .tujuan-box h3 { 
-    text-align: center; 
-    margin-bottom: 20px;
 }
 
 /* STRUCTURE CARDS */
@@ -431,7 +398,7 @@ h2 {
     .card-maroon { min-width: 100%; }
 }
 
-footer { padding: 30px; background: #0a0a0a; text-align: center; border-top: 1px solid rgba(192, 192, 192, 0.1); width: 100%; }
+footer { padding: 30px; background: #0a0a0a; text-align: center; border-top: 1px solid rgba(192, 192, 192, 0.1); }
 
 /* ==========================================
    PERBAIKAN KHUSUS HALAMAN SUARA SMAGA
@@ -518,7 +485,7 @@ footer { padding: 30px; background: #0a0a0a; text-align: center; border-top: 1px
 }
 
 /* ==========================================
-   WELCOME TO WEBSITE CHRONICA (SILVER & GLOW)
+   OPSI 1: WELCOME TO WEBSITE CHRONICA 
    ========================================== */
 .text-container p { 
     color: var(--color-silver) !important; 
@@ -540,7 +507,7 @@ footer { padding: 30px; background: #0a0a0a; text-align: center; border-top: 1px
     animation: textGlowWhite 3s infinite alternate;
 }
 
-/* Responsive Teks Header Mobile */
+/* Responsive Teks untuk Mobile */
 @media (max-width: 850px) {
     .text-container p {
         font-size: 0.6rem;
@@ -574,46 +541,4 @@ footer { padding: 30px; background: #0a0a0a; text-align: center; border-top: 1px
     background-position: center;
 }
 
-/* ==========================================
-   PERBAIKAN FINAL: NO-OVERFLOW & TEXT SPACING
-   ========================================== */
-@media (max-width: 850px) {
-    /* Mencegah "Blank Hitam" dengan membatasi lebar maksimal elemen */
-    html, body {
-        overflow-x: hidden !important;
-        position: relative;
-        width: 100%;
-    }
-
-    /* Memastikan kontainer utama tidak bocor ke kanan */
-    main, section, header, .header-brand-wrapper {
-        max-width: 100vw !important;
-        box-sizing: border-box;
-    }
-
-    /* Jarak aman di sisi kanan Visi & Misi agar tidak tertutup tombol */
-    .visi-container {
-        padding-left: 10px;
-        padding-right: 75px !important; /* Tambah ruang untuk area tombol */
-    }
-
-    .misi-box ol, .tujuan-box ul {
-        display: block; 
-        width: 100%;
-        padding-left: 15px;
-        text-align: left;
-    }
-
-    .misi-box li, .tujuan-box li {
-        font-size: 0.85rem;
-        margin-bottom: 8px;
-        word-wrap: break-word; /* Mencegah teks panjang merusak layout */
-    }
-
-    /* Ukuran tombol melayang sedikit dikecilkan agar hemat tempat */
-    .fab-instagram, .fab-message {
-        right: 15px !important;
-        width: 48px;
-        height: 48px;
-    }
-}
+tambahkan code CSS tersebut ke dalam code yang asli ini, tanpa mengganti satupun yang asli
