@@ -192,7 +192,7 @@ header {
 }
 
 .logo-mini { 
-    height: 120px; 
+    height: 180px; /* Ukuran diperbesar dari 120px sesuai permintaan */
     width: auto;
     position: relative;
     filter: drop-shadow(0 0 8px rgba(0,0,0,0.8));
@@ -376,7 +376,7 @@ h2 {
 @media (max-width: 850px) {
     header { aspect-ratio: 16 / 9; }
     .header-brand-wrapper { gap: 15px; }
-    .logo-mini { height: 60px; flex-shrink: 0; }
+    .logo-mini { height: 90px; flex-shrink: 0; } /* Ukuran diperbesar dari 60px */
     .text-container { padding: 10px 15px; flex: 1; max-width: fit-content; }
     .text-container h1 { font-size: 1.5rem; margin: 0; }
     .text-container p { font-size: 0.7rem; }
