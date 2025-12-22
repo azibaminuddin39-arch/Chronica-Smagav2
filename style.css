@@ -133,6 +133,11 @@ body {
     overflow: hidden; /* Tambahan untuk efek glass shine */
 }
 
+/* --- ANIMASI KLIK (ACTIVE) PADA FAB --- */
+.fab-instagram:active, .fab-whatsapp:active, .fab-message:active {
+    transform: scale(0.9);
+}
+
 /* Efek Kilatan Kaca pada Tombol Melayang */
 .fab-instagram::before, .fab-message::before {
     content: "";
@@ -254,30 +259,45 @@ header {
     text-shadow: 1px 1px 5px rgba(0,0,0,0.8); 
 }
 
-/* --- NAVIGASI --- */
+/* --- NAVIGASI & HAMBURGER ANIMATION --- */
 .nav-container { position: absolute; top: 25px; right: 25px; z-index: 2000; }
 .hamburger { display: flex; flex-direction: column; gap: 6px; background: none; border: none; cursor: pointer; }
-.hamburger span { width: 35px; height: 4px; background: var(--color-silver); border-radius: 2px; }
+.hamburger span { width: 35px; height: 4px; background: var(--color-silver); border-radius: 2px; transition: 0.3s ease; }
+
+/* Morphing Hamburger to X */
+.hamburger.active span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
 
 .nav-menu {
     position: absolute; 
     top: 50px; 
     right: 0; 
-    background: rgba(60, 0, 0, 0.45) !important; /* Glass Effect Lebih Transparan */
+    background: rgba(60, 0, 0, 0.45) !important; /* Glass Effect */
     backdrop-filter: blur(20px) saturate(180%) !important;
     -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
     list-style: none; 
     padding: 15px; 
     border-radius: 12px; 
-    border: 1px solid rgba(255, 255, 255, 0.1) !important; /* Border Kaca Halus */
+    border: 1px solid rgba(255, 255, 255, 0.1) !important; 
     display: none; 
     flex-direction: column; 
     min-width: 180px;
     box-shadow: 0 8px 32px rgba(0,0,0,0.6) !important;
+    /* Animasi Muncul */
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.nav-menu.active { display: flex; }
-.nav-menu a { color: white; text-decoration: none; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.nav-menu.active { 
+    display: flex; 
+    opacity: 1; 
+    transform: translateY(0);
+}
+
+.nav-menu a { color: white; text-decoration: none; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.1); transition: 0.2s; }
+.nav-menu a:active { transform: scale(0.95); background: rgba(255,255,255,0.05); }
 
 /* --- SECTIONS --- */
 main { max-width: 1200px; margin: 0 auto; padding: 20px; }
@@ -330,8 +350,10 @@ h2 {
     box-shadow: 0 12px 30px rgba(96, 0, 0, 0.3);
 }
 
+.card-maroon:active { transform: scale(0.96); }
+
 .card-maroon h4 { 
-    color: var(--color-maroon) !important; /* Text Maroon kontras di silver */
+    color: var(--color-maroon) !important; 
     margin-bottom: 10px; 
     font-size: 0.9em; 
     text-transform: uppercase; 
@@ -341,15 +363,15 @@ h2 {
 }
 
 .card-maroon p { 
-    color: #000000 !important; /* Nama Hitam di silver */
+    color: #000000 !important; 
     font-weight: 700;
 }
 
-/* --- DIVISI BOX --- */
+/* --- DIVISI BOX & ANGGOTA ANIMATION --- */
 .divisi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
 
 .divisi-box { 
-    background: rgba(255, 255, 255, 0.03) !important; /* Frosty Glass */
+    background: rgba(255, 255, 255, 0.03) !important; 
     backdrop-filter: blur(12px) !important;
     -webkit-backdrop-filter: blur(12px) !important;
     padding: 25px; 
@@ -360,7 +382,21 @@ h2 {
 }
 
 .leader span { color: var(--color-silver); text-shadow: none; }
-.anggota-list { display: none; margin-top: 15px; list-style: none; color: var(--text-white); }
+
+.anggota-list { 
+    display: none; 
+    margin-top: 15px; 
+    list-style: none; 
+    color: var(--text-white); 
+    /* Smooth transition for membership list */
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.anggota-list.active {
+    display: block;
+    opacity: 1;
+}
 
 .toggle-btn { 
     width: 100%; 
@@ -371,7 +407,10 @@ h2 {
     border-radius: 8px; 
     cursor: pointer; 
     font-weight: bold; 
+    transition: 0.2s;
 }
+
+.toggle-btn:active { transform: scale(0.94); background: #400000; }
 
 /* --- SLIDER --- */
 .slider-container { 
@@ -387,7 +426,6 @@ h2 {
 .slider-item { min-width: 100%; position: relative; }
 .slider-item img { width: 100%; height: 450px; object-fit: cover; }
 
-/* Glass Slider Description */
 .slider-desc { 
     position: absolute; 
     bottom: 0; 
@@ -413,7 +451,10 @@ h2 {
     cursor: pointer; 
     border-radius: 50%; 
     z-index: 10; 
+    transition: 0.2s;
 }
+.slider-btn:active { transform: translateY(-50%) scale(0.85); }
+
 .prev { left: 15px; } 
 .next { right: 15px; }
 
@@ -444,7 +485,6 @@ footer {
     .logo-mini { height: 60px; }
     .fab-whatsapp { right: 85px; }
 
-    /* PERBAIKAN MOBILE LAYOUT AGAR TIDAK SESAK */
     main { padding: 15px; }
     section { 
         padding: 25px 15px; 
@@ -492,7 +532,6 @@ section:first-of-type {
     bottom: 25px !important;
 }
 
-/* --- PERBAIKAN IKON PESAN (PENGGANTI WHATSAPP) --- */
 .fab-message {
     right: 25px !important;
     bottom: 95px !important; 
@@ -565,6 +604,8 @@ section:first-of-type {
     color: var(--color-maroon);
 }
 
+.btn-suara:active { transform: scale(0.95); }
+
 /* --- FAQ ACCORDION STYLE --- */
 .faq-container {
     max-width: 800px;
@@ -597,6 +638,8 @@ section:first-of-type {
     align-items: center;
     cursor: pointer;
 }
+
+.faq-question:active { background: rgba(255,255,255,0.02); }
 
 .faq-answer {
     max-height: 0;
@@ -689,3 +732,5 @@ section:first-of-type {
     color: white;
     transform: translateX(-5px);
 }
+
+.back-link:active { transform: scale(0.95) translateX(-5px); }
