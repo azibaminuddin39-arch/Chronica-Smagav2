@@ -1,4 +1,28 @@
+/* CHRONICA - Jurnalistik SMAN 3 Banjarbaru
+   Core Scripting
+*/
+
 document.addEventListener('DOMContentLoaded', () => {
+
+    // --- 0. LOGIKA PRELOADER (LOADING SCREEN) ---
+    // Logika ini memastikan loading screen hilang saat halaman siap
+    const loader = document.getElementById('loader-wrapper');
+    if (loader) {
+        // Kita gunakan window.onload agar benar-benar menunggu semua GIF & gambar selesai
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                loader.classList.add('fade-out');
+            }, 1000); // Jeda 1 detik agar transisi smooth
+        });
+
+        // Backup plan: jika window load terlalu lama, paksa tutup setelah 3 detik
+        setTimeout(() => {
+            if (!loader.classList.contains('fade-out')) {
+                loader.classList.add('fade-out');
+            }
+        }, 3000);
+    }
+
     // --- 1. LOGIKA NAVIGASI HAMBURGER ---
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
@@ -30,7 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- 2. LOGIKA TOGGLE ANGGOTA DIVISI ---
-    // Mencari semua tombol dengan class .toggle-btn atau .toggle-anggota
     const toggleButtons = document.querySelectorAll('.toggle-btn, .toggle-anggota');
     
     toggleButtons.forEach(btn => {
@@ -79,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (nextBtn) {
             nextBtn.addEventListener('click', () => {
                 nextSlide();
-                resetAutoSlide(); // Reset timer agar tidak double geser
+                resetAutoSlide(); 
             });
         }
         
@@ -99,14 +122,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- 4. LOGIKA FAQ ACCORDION (TAMBAHAN) ---
+    // --- 4. LOGIKA FAQ ACCORDION ---
     const faqQuestions = document.querySelectorAll('.faq-question');
     
     faqQuestions.forEach(question => {
         question.addEventListener('click', () => {
             const faqItem = question.parentElement;
             
-            // Menutup FAQ lain yang terbuka (opsional, agar lebih rapi)
+            // Menutup FAQ lain yang terbuka (agar lebih rapi)
             document.querySelectorAll('.faq-item').forEach(item => {
                 if (item !== faqItem) {
                     item.classList.remove('active');
