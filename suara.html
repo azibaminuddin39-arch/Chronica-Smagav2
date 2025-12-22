@@ -121,18 +121,18 @@
                 button.addEventListener('click', function() {
                     const item = this.parentElement;
                     
-                    // Opsi: Tutup item FAQ lain yang sedang terbuka agar lebih rapi
+                    // Menutup item FAQ lain yang sedang terbuka agar lebih rapi
                     document.querySelectorAll('.faq-item').forEach(otherItem => {
                         if (otherItem !== item) {
                             otherItem.classList.remove('active');
                         }
                     });
 
-                    // Toggle class active pada item yang diklik
+                    // Aktifkan (buka) item yang diklik
                     item.classList.toggle('active');
                 });
             });
         });
     </script>
-    </body>
+</body>
 </html>
