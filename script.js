@@ -132,4 +132,30 @@ document.addEventListener('DOMContentLoaded', () => {
             faqItem.classList.toggle('active');
         };
     });
+
+    // --- 5. LOGIKA KONTROL MUSIK (ADD-ON) ---
+    window.toggleMusic = function() {
+        const music = document.getElementById('bgMusic');
+        const btn = document.getElementById('musicToggle');
+        const waves = document.getElementById('soundWaves');
+        const muteLine = document.getElementById('muteLine');
+
+        if (!music) return;
+
+        if (music.paused) {
+            music.play().catch(err => {
+                console.log("Autoplay diblokir oleh browser. Musik akan jalan setelah interaksi.");
+            });
+            btn.classList.add('playing');
+            waves.style.display = 'block';
+            muteLine.style.display = 'none';
+            btn.style.color = '#C0C0C0'; // Silver saat menyala
+        } else {
+            music.pause();
+            btn.classList.remove('playing');
+            waves.style.display = 'none';
+            muteLine.style.display = 'block';
+            btn.style.color = '#600000'; // Maroon saat mute
+        }
+    };
 });
