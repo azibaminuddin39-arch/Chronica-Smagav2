@@ -5,7 +5,7 @@
     box-sizing: border-box; 
     margin: 0; 
     padding: 0; 
-    /* Menghilangkan highlight biru saat klik di seluruh web */
+    /* Menghilangkan highlight biru saat klik di seluruh web sesuai instruksi */
     -webkit-tap-highlight-color: transparent;
 }
 
