@@ -190,7 +190,7 @@ header {
     display: flex;
     flex-direction: row; 
     align-items: center;
-    justify-content: center;
+    justify-content: center; /* Dipastikan Center */
     gap: 30px;
     width: 100%;
     max-width: 1200px;
@@ -202,6 +202,7 @@ header {
     position: relative;
     filter: drop-shadow(0 0 8px rgba(0,0,0,0.8));
     overflow: hidden;
+    flex-shrink: 0; /* Menjaga ukuran logo tetap asli */
 }
 
 .logo-mini::after {
@@ -379,12 +380,58 @@ h2 {
    RESPONSIVE (MOBILE OPTIMIZATION)
    ========================================== */
 @media (max-width: 850px) {
-    header { aspect-ratio: 16 / 9; }
-    .header-brand-wrapper { gap: 15px; }
-    .logo-mini { height: 90px; flex-shrink: 0; }
-    .text-container { padding: 10px 15px; flex: 1; max-width: fit-content; }
-    .text-container h1 { font-size: 1.5rem; margin: 0; }
-    .text-container p { font-size: 0.7rem; }
+    header { 
+        aspect-ratio: 16 / 9;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+    }
+    
+    /* Layout Baris: Logo - Teks - Logo dipusatkan di tengah layar */
+    .header-brand-wrapper { 
+        display: flex !important;
+        flex-direction: row !important; 
+        align-items: center !important;
+        justify-content: center !important; /* Paksa ke Tengah */
+        gap: 10px !important; 
+        width: 100% !important;
+        max-width: 100vw !important;
+        padding: 0 10px !important;
+    }
+
+    .logo-mini { 
+        height: 60px !important; /* Menyesuaikan agar proporsional di tengah */
+        width: auto !important;
+        flex-shrink: 0 !important; 
+        overflow: visible !important; 
+    }
+
+    .logo-mini img {
+        width: 100% !important;
+        height: auto !important;
+        object-fit: contain !important;
+    }
+
+    .text-container { 
+        padding: 8px 12px !important; 
+        flex: 0 1 auto !important; /* Ukuran mengikuti konten */
+        max-width: fit-content; 
+        background: rgba(0, 0, 0, 0.4) !important;
+    }
+
+    .text-container h1 { font-size: 1.2rem !important; margin: 0; }
+    .text-container p { font-size: 0.55rem !important; }
+
+    /* Navigasi Hamburger tetap di ukuran aslinya di pojok kanan */
+    .nav-container { 
+        position: absolute !important;
+        top: 20px !important; 
+        right: 20px !important; 
+        z-index: 5000 !important;
+    }
+
     section:first-of-type { margin-top: -45px; }
     
     /* Instagram tetap di atas Message pada mobile */
@@ -589,121 +636,10 @@ header {
    FINAL FIX: LOGO TERPOTONG PADA MOBILE (BERDASARKAN SCREENSHOT)
    ========================================================================== */
 @media (max-width: 850px) {
-    /* 1. Mengubah susunan header agar logo punya ruang (Stacked Layout) */
-    .header-brand-wrapper {
-        flex-direction: column !important; 
-        gap: 15px !important;
-        align-items: center !important;
-        justify-content: center !important;
-    }
-
-    /* 2. Memastikan logo tidak terpotong (contain) dan terlihat utuh */
-    .logo-mini {
-        height: 110px !important; 
-        width: auto !important;
-        max-width: 100% !important;
-        overflow: visible !important; 
-        flex-shrink: 0 !important;
-        margin-bottom: 10px;
-        position: relative;
-    }
-
-    .logo-mini img {
-        height: 100% !important;
-        width: auto !important;
-        object-fit: contain !important; /* Mencegah cropping pada logo */
-        filter: drop-shadow(0 0 8px rgba(255,255,255,0.3));
-    }
-
-    /* 3. Menyesuaikan kotak teks "CHRONICA" agar proporsional di bawah logo */
-    .text-container {
-        max-width: 95% !important;
-        padding: 15px 20px !important;
-        text-align: center !important;
-        margin: 0 auto !important;
-    }
-
-    .text-container h1 {
-        font-size: 1.8rem !important; 
-        line-height: 1.2 !important;
-    }
-
-    /* 4. Memperbaiki posisi Visi Misi agar sejajar dengan header baru */
+    /* Memperbaiki posisi Visi Misi agar sejajar dengan header baru */
     section:first-of-type {
         margin-top: -20px !important; 
         z-index: 100;
-    }
-}
-
-/* ==========================================================================
-   PERBAIKAN HEADER MOBILE (LOGO MENGAPIT & NAVIGASI AMAN)
-   ========================================================================== */
-@media (max-width: 850px) {
-    /* Memastikan wadah header cukup luas */
-    header {
-        padding: 10px !important;
-        height: auto !important;
-        min-height: 250px !important;
-    }
-
-    /* Layout Baris: [Logo Sekolah] [Teks] [Logo Organisasi] */
-    .header-brand-wrapper {
-        display: flex !important;
-        flex-direction: row !important; 
-        align-items: center !important;
-        justify-content: space-between !important; 
-        width: 100% !important;
-        max-width: 100vw !important;
-        gap: 5px !important;
-        padding: 0 5px !important;
-    }
-
-    /* Ukuran Logo agar muat dan tidak terpotong */
-    .logo-mini {
-        width: 55px !important; 
-        height: auto !important;
-        flex-shrink: 0 !important;
-        overflow: visible !important;
-    }
-
-    .logo-mini img {
-        width: 100% !important;
-        height: auto !important;
-        object-fit: contain !important;
-    }
-
-    /* Box Teks di tengah */
-    .text-container {
-        flex: 1 !important;
-        padding: 8px 10px !important;
-        min-width: 0 !important;
-        background: rgba(0, 0, 0, 0.4) !important;
-    }
-
-    .text-container p {
-        font-size: 0.55rem !important; 
-        letter-spacing: 1px !important;
-    }
-
-    .text-container h1 {
-        font-size: 1.1rem !important; 
-        letter-spacing: 1px !important;
-    }
-
-    /* PERBAIKAN TOMBOL MENU (GARIS 3) */
-    .nav-container {
-        top: 15px !important;
-        right: 15px !important;
-    }
-
-    .hamburger {
-        scale: 0.8; /* Mengecilkan sedikit agar tidak mentok sisi layar */
-        padding: 5px;
-    }
-
-    .hamburger span {
-        width: 28px !important; 
-        height: 3px !important;
     }
 }
 
@@ -747,10 +683,5 @@ header {
         position: fixed !important; /* Mengunci tombol X agar tidak bergeser */
         top: 20px !important;
         right: 20px !important;
-    }
-
-    /* Mengatur logo-logo agar tidak bertabrakan dengan navigasi */
-    .header-brand-wrapper {
-        padding-right: 40px !important; /* Memberi ruang di kanan agar tidak kena tombol hamburger */
     }
 }
