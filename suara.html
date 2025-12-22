@@ -105,19 +105,32 @@
     <script src="script.js"></script>
 
     <script>
+        // Preloader Logic
         window.addEventListener('load', function() {
             const loader = document.getElementById('loader-wrapper');
             setTimeout(() => {
                 loader.classList.add('fade-out');
-            }, 1000); // Durasi 1 detik untuk halaman FAQ
+            }, 1000);
         });
         
-        // Inisialisasi FAQ toggle jika diperlukan
-        const faqButtons = document.querySelectorAll('.faq-question');
-        faqButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const item = button.parentElement;
-                item.classList.toggle('active');
+        // Perbaikan Inisialisasi FAQ toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqButtons = document.querySelectorAll('.faq-question');
+            
+            faqButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const item = this.parentElement;
+                    
+                    // Opsi: Tutup item FAQ lain yang sedang terbuka agar lebih rapi
+                    document.querySelectorAll('.faq-item').forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+
+                    // Toggle class active pada item yang diklik
+                    item.classList.toggle('active');
+                });
             });
         });
     </script>
