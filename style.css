@@ -470,7 +470,7 @@ section:first-of-type {
     transition: transform 0.3s ease;
 }
 
-/* --- PENYESUAIAN HALAMAN SUARA.HTML (NEW & LB_3.gif) --- */
+/* --- PENYESUAIAN HALAMAN SUARA.HTML (FIX CENTER & LB_3.gif) --- */
 .page-suara header {
     /* Mengganti GIF khusus halaman Suara */
     background-image: 
@@ -478,20 +478,43 @@ section:first-of-type {
         linear-gradient(rgba(0,0,0,0.6), rgba(96,0,0,0.4)), 
         url('LB_3.gif') !important;
     
-    /* Mengubah ukuran agar tidak terkunci 16:9 */
+    /* Mengatur dimensi header */
     aspect-ratio: auto !important; 
-    height: 50vh !important; 
-    min-height: 350px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    height: 60vh !important; 
+    min-height: 400px;
+    
+    /* Memaksa elemen di dalamnya berada di tengah mutlak */
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+}
+
+.page-suara .header-brand-wrapper {
+    /* Mematikan pengaturan space-between bawaan desktop agar ke tengah */
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    max-width: none !important; 
+    gap: 15px !important;
+}
+
+.page-suara .text-container {
+    /* Menghilangkan sisa-sisa alignment kiri */
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
 }
 
 @media (max-width: 850px) {
     .page-suara header {
-        height: 40vh !important;
-        min-height: 300px;
+        height: 45vh !important;
+        min-height: 350px;
     }
 }
 
@@ -511,6 +534,7 @@ section:first-of-type {
     align-items: center;
     gap: 10px;
     letter-spacing: 1px;
+    align-self: center; /* Memastikan tombol kembali juga center */
 }
 
 .back-link:hover {
