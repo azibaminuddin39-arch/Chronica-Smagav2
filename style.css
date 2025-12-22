@@ -368,11 +368,11 @@ h2 {
 }
 
 /* --- DIVISI BOX & ANGGOTA ANIMATION --- */
-/* PERBAIKAN: Ditambahkan align-items: flex-start agar box tidak ikut tertarik/turun */
+/* PERBAIKAN: Ditambahkan align-items: flex-start agar box tidak ikut turun (kosong) */
 .divisi-grid { 
     display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-    gap: 25px; 
+    gap: 25px;
     align-items: flex-start; 
 }
 
@@ -487,8 +487,36 @@ footer {
 
 @media (max-width: 850px) {
     header { aspect-ratio: 16 / 9; }
-    .text-container h1 { font-size: 1.8em; }
-    .logo-mini { height: 60px; }
+    
+    /* MODIFIKASI: Mengatur Logo Sekolah (Kiri) - Chronica (Tengah) - Logo Organisasi (Kanan) */
+    .header-brand-wrapper { 
+        flex-direction: row !important; 
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        width: 100%;
+    }
+
+    .logo-mini { 
+        height: 60px; 
+        flex-shrink: 0;
+    }
+
+    .text-container { 
+        padding: 10px 15px; 
+        flex: 1;
+        max-width: fit-content;
+    }
+
+    .text-container h1 { 
+        font-size: 1.6rem; /* Diperkecil sedikit agar muat sejajar */
+        margin: 0;
+    }
+
+    .text-container p {
+        font-size: 0.75rem;
+    }
+
     .fab-whatsapp { right: 85px; }
 
     main { padding: 15px; }
@@ -498,7 +526,6 @@ footer {
         border-left-width: 5px !important; 
     }
     h2 { font-size: 1.8rem; margin-bottom: 25px; letter-spacing: 1.5px; }
-    .text-container { padding: 15px 20px; }
     .slider-item img { height: 280px; }
     .silsilah-row { gap: 15px; }
     .card-maroon { min-width: 100%; padding: 20px 15px; }
