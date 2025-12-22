@@ -250,6 +250,7 @@
     <script src="script.js"></script>
 
     <script>
+        // Preloader Logic
         window.addEventListener('load', function() {
             const loader = document.getElementById('loader-wrapper');
             setTimeout(() => {
@@ -257,6 +258,7 @@
             }, 1500); 
         });
 
+        // Music Toggle Logic
         function toggleMusic() {
             const music = document.getElementById('bgMusic');
             const btn = document.getElementById('musicToggle');
@@ -277,12 +279,6 @@
                 btn.style.color = 'var(--color-maroon)';
             }
         }
-
-        document.addEventListener('click', function() {
-            const music = document.getElementById('bgMusic');
-            if(music.paused && !document.getElementById('musicToggle').classList.contains('playing')) {
-            }
-        }, { once: true });
     </script>
 </body>
 </html>
