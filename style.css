@@ -5,23 +5,24 @@
     box-sizing: border-box; 
     margin: 0; 
     padding: 0; 
+    /* Menghilangkan highlight biru saat klik di seluruh web sesuai instruksi */
     -webkit-tap-highlight-color: transparent;
 }
 
 :root {
     --color-maroon: #600000;
     --color-gold: #FFD700;
-    --color-silver: #C0C0C0; 
+    --color-silver: #C0C0C0; /* Warna Silver Baru */
     --color-bg-main: #000000;
     --color-bg-section: rgba(26, 26, 26, 0.6); 
     --text-primary: #e0e0e0;
-    --text-white: #ffffff;   
+    --text-white: #ffffff;   /* Warna Putih untuk Anggota */
     --glass-border: rgba(255, 215, 0, 0.2);
     --glass-blur: blur(15px);
 }
 
 /* ==========================================
-   PRELOADER STYLE
+   TAMBAHAN: PRELOADER (LOADING SCREEN) STYLE
    ========================================== */
 #loader-wrapper {
     position: fixed;
@@ -117,10 +118,52 @@ body {
     animation: floatIcon 3s ease-in-out infinite;
     transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
     overflow: hidden;
+    outline: none;
 }
 
-.fab-instagram { right: 25px; bottom: 95px; background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%); font-size: 28px; }
-.fab-message { right: 25px; bottom: 25px; background: var(--color-maroon); border: 2px solid var(--color-silver); font-size: 24px; }
+.fab-instagram:active, .fab-whatsapp:active, .fab-message:active { transform: scale(0.9); }
+
+.fab-instagram::before, .fab-message::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -100%;
+    width: 50%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(30deg);
+    transition: 0.5s;
+}
+
+.fab-instagram:hover::before, .fab-message:hover::before { left: 150%; }
+
+/* Posisi Ikon: Instagram di atas Message */
+.fab-instagram {
+    right: 25px !important;
+    bottom: 95px !important; /* Di atas tombol message */
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    font-size: 28px;
+}
+
+.fab-whatsapp { 
+    right: 95px; 
+    bottom: 25px; 
+    background: #25D366; 
+    font-size: 30px; 
+}
+
+.fab-message {
+    right: 25px !important;
+    bottom: 25px !important; 
+    background: var(--color-maroon) !important;
+    border: 2px solid var(--color-silver) !important;
+    font-size: 24px !important;
+}
+
+.fab-instagram:hover, .fab-whatsapp:hover, .fab-message:hover { 
+    animation-play-state: paused;
+    transform: scale(1.2); 
+}
 
 /* ==========================================
    HEADER & BRANDING
@@ -132,30 +175,55 @@ header {
     background-image: 
         linear-gradient(to bottom, transparent 65%, var(--color-bg-main) 100%), 
         linear-gradient(rgba(0,0,0,0.6), rgba(96,0,0,0.4)), 
-        url('wqeqwe.gif');
+        url('wqeqwe.gif') !important;
     background-size: cover; 
     background-position: center;
+    background-repeat: no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 20px;
+    text-align: center;
 }
 
 .header-brand-wrapper {
     display: flex;
+    flex-direction: row; 
     align-items: center;
-    justify-content: center;
+    justify-content: center; /* Dipastikan Center */
     gap: 30px;
     width: 100%;
+    max-width: 1200px;
 }
 
-.logo-mini { height: 180px; width: auto; flex-shrink: 0; filter: drop-shadow(0 0 8px rgba(0,0,0,0.8)); }
+.logo-mini { 
+    height: 180px; 
+    width: auto;
+    position: relative;
+    filter: drop-shadow(0 0 8px rgba(0,0,0,0.8));
+    overflow: hidden;
+    flex-shrink: 0; /* Menjaga ukuran logo tetap asli */
+}
+
+.logo-mini::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -150%;
+    width: 60%;
+    height: 200%;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.8), transparent);
+    transform: rotate(30deg);
+    animation: shineEffect 3.5s infinite;
+}
 
 .text-container {
     background: rgba(0, 0, 0, 0.3);
     padding: 20px 40px;
     border-radius: 15px;
     backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     /* Update: Centering Content */
     display: flex;
     flex-direction: column;
@@ -163,27 +231,29 @@ header {
     text-align: center;
 }
 
-.text-container p.welcome-text {
-    margin-bottom: 5px;
-    width: 100%;
-}
-
 .text-container h1 { 
     font-family: 'Playfair Display', serif; 
     font-size: 3.5em; 
     color: white; 
     letter-spacing: 2px; 
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(192, 192, 192, 0.5) !important;
     animation: textGlowWhite 3s infinite alternate;
 }
 
 @keyframes textGlowWhite {
-    from { text-shadow: 0 0 10px rgba(255, 255, 255, 0.6); }
-    to { text-shadow: 0 0 20px rgba(255, 255, 255, 0.9); }
+    from { text-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(192, 192, 192, 0.4); }
+    to { text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 35px rgba(192, 192, 192, 0.7); }
 }
 
-/* ==========================================================================
-   NAVIGASI (SPEAKER DI KIRI, HAMBURGER DI KANAN)
-   ========================================================================== */
+.text-container p { 
+    color: var(--color-silver); 
+    font-weight: bold; 
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.8); 
+}
+
+/* ==========================================
+   NAVIGASI & HAMBURGER
+   ========================================== */
 .nav-container { 
     position: absolute; 
     top: 25px; 
@@ -201,22 +271,7 @@ header {
     pointer-events: auto; 
 }
 
-/* Speaker Icon Style */
-.music-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--color-silver);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: 0.3s;
-}
-
-.music-btn svg { width: 32px; height: 32px; }
-.music-btn:hover { color: #fff; transform: scale(1.1); }
-
-.hamburger { display: flex; flex-direction: column; gap: 6px; background: none; border: none; cursor: pointer; }
+.hamburger { display: flex; flex-direction: column; gap: 6px; background: none; border: none; cursor: pointer; outline: none; }
 .hamburger span { width: 35px; height: 4px; background: var(--color-silver); border-radius: 2px; transition: 0.3s ease; }
 
 .hamburger.active span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
@@ -227,107 +282,431 @@ header {
     position: absolute; 
     top: 50px; 
     right: 0; 
-    background: rgba(60, 0, 0, 0.8) !important;
-    backdrop-filter: blur(20px);
+    background: rgba(60, 0, 0, 0.45) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
     list-style: none; 
     padding: 15px; 
     border-radius: 12px; 
+    border: 1px solid rgba(255, 255, 255, 0.1) !important; 
     display: none; 
     flex-direction: column; 
     min-width: 180px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.6) !important;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.nav-menu.active { display: flex; }
-.nav-menu a { color: white; text-decoration: none; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.nav-menu.active { display: flex; opacity: 1; transform: translateY(0); }
+.nav-menu a { color: white; text-decoration: none; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.1); transition: 0.2s; }
 
 /* ==========================================
-   MAIN SECTIONS & OTHERS
+   MAIN SECTIONS
    ========================================== */
 main { max-width: 1200px; margin: 0 auto; padding: 20px; }
 
 section { 
     margin-bottom: 60px; 
     padding: 40px; 
-    background: rgba(26, 26, 26, 0.45);
-    backdrop-filter: blur(20px);
+    background: rgba(26, 26, 26, 0.45) !important;
+    backdrop-filter: blur(20px) saturate(160%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(160%) !important;
     border-radius: 20px; 
-    border-left: 8px solid var(--color-silver); 
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-left: 8px solid var(--color-silver) !important; 
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5) !important;
 }
 
 section:first-of-type { margin-top: -80px; position: relative; z-index: 10; }
 
-h2 { color: var(--color-silver); margin-bottom: 40px; font-family: 'Playfair Display', serif; font-size: 2.2em; text-align: center; }
+h2 { 
+    color: var(--color-silver); 
+    margin-bottom: 40px; 
+    font-family: 'Playfair Display', serif; 
+    font-size: 2.2em; 
+    text-align: center; 
+    text-shadow: 0 0 15px rgba(192, 192, 192, 0.6) !important;
+    letter-spacing: 3px;
+}
 
 /* STRUCTURE CARDS */
 .silsilah-row { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; }
 .card-maroon { 
-    background: rgba(192, 192, 192, 0.9);
-    border: 2px solid var(--color-maroon);
+    background: rgba(192, 192, 192, 0.9) !important;
+    border: 2px solid var(--color-maroon) !important;
     border-radius: 15px; 
     padding: 25px 20px; 
     text-align: center; 
+    min-width: 220px; 
     flex: 1; 
     max-width: 300px;
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
-.card-maroon h4 { color: var(--color-maroon); text-transform: uppercase; font-weight: 800; }
-.card-maroon p { color: #000000; font-weight: 700; }
+.card-maroon:hover { transform: translateY(-8px); background: rgba(220, 220, 220, 1) !important; border-color: #a00000 !important; }
+.card-maroon h4 { color: var(--color-maroon) !important; text-transform: uppercase; font-weight: 800; letter-spacing: 1.5px; }
+.card-maroon p { color: #000000 !important; font-weight: 700; }
 
 /* DIVISI & ANGGOTA */
-.divisi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-.divisi-box { background: rgba(255, 255, 255, 0.03); padding: 25px; border-radius: 15px; border-top: 5px solid var(--color-silver); text-align: center; }
-.anggota-list { display: none; margin-top: 15px; list-style: none; color: var(--text-white); }
-.anggota-list.active { display: block; }
-.toggle-btn { width: 100%; padding: 10px; background: var(--color-maroon); color: white; border-radius: 8px; cursor: pointer; font-weight: bold; }
+.divisi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; align-items: flex-start; }
+.divisi-box { 
+    background: rgba(255, 255, 255, 0.03) !important; 
+    backdrop-filter: blur(12px) !important;
+    padding: 25px; 
+    border-radius: 15px; 
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-top: 5px solid var(--color-silver) !important; 
+    text-align: center; 
+}
+.anggota-list { display: none; margin-top: 15px; list-style: none; color: var(--text-white); opacity: 0; transition: opacity 0.4s ease; }
+.anggota-list.active { display: block; opacity: 1; }
+.toggle-btn { width: 100%; padding: 10px; background: var(--color-maroon); color: white; border: 1px solid var(--color-silver); border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.3s ease; outline: none; }
 
 /* SLIDER */
 .slider-container { position: relative; max-width: 900px; margin: 0 auto; overflow: hidden; border-radius: 15px; border: 2px solid var(--color-maroon); }
 .slider-wrapper { display: flex; transition: transform 0.5s ease; }
-.slider-item { min-width: 100%; }
+.slider-item { min-width: 100%; position: relative; }
 .slider-item img { width: 100%; height: 450px; object-fit: cover; }
-.slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: var(--color-maroon); color: white; width: 45px; height: 45px; cursor: pointer; border-radius: 50%; z-index: 10; }
+.slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: var(--color-maroon); color: white; border: 1px solid var(--color-silver); width: 45px; height: 45px; cursor: pointer; border-radius: 50%; z-index: 10; transition: 0.2s; outline: none; }
 
 /* ==========================================
-   MOBILE OPTIMIZATION (STABILISASI ICON)
+   SUARA SMAGA & FAQ
+   ========================================== */
+.suara-section {
+    text-align: center;
+    background: linear-gradient(135deg, rgba(96, 0, 0, 0.25) 0%, rgba(26, 26, 26, 0.8) 100%) !important;
+    backdrop-filter: blur(25px) saturate(180%) !important;
+    padding: 60px 20px !important;
+}
+.btn-suara {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--color-maroon);
+    color: white;
+    text-decoration: none;
+    padding: 18px 35px;
+    border-radius: 50px;
+    font-weight: bold;
+    border: 2px solid var(--color-silver);
+    transition: all 0.4s ease;
+}
+.faq-item { background: rgba(255, 255, 255, 0.04) !important; border: 1px solid rgba(255, 255, 255, 0.08) !important; border-radius: 12px; margin-bottom: 15px; overflow: hidden; }
+.faq-question { width: 100%; padding: 20px; background: none; border: none; color: var(--color-silver); font-size: 1.1rem; font-weight: 600; text-align: left; display: flex; justify-content: space-between; cursor: pointer; outline: none; }
+.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+.faq-item.active .faq-answer { max-height: 500px; }
+
+/* ==========================================
+   RESPONSIVE (MOBILE OPTIMIZATION)
    ========================================== */
 @media (max-width: 850px) {
-    /* Stabilisasi Navigasi */
-    .nav-container { 
-        top: 20px !important; 
-        left: 20px !important; 
-        right: 20px !important; 
-        background: rgba(0, 0, 0, 0.2);
-        padding: 5px 12px;
-        border-radius: 30px;
-        backdrop-filter: blur(5px);
+    header { 
+        aspect-ratio: 16 / 9;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
     }
-
-    .music-btn svg { 
-        width: 24px !important; 
-        height: 24px !important; 
-    }
-
-    .hamburger span { width: 28px; height: 3px; }
-
-    /* Layout Branding */
+    
+    /* Layout Baris: Logo - Teks - Logo dipusatkan di tengah layar */
     .header-brand-wrapper { 
+        display: flex !important;
+        flex-direction: row !important; 
+        align-items: center !important;
+        justify-content: center !important; /* Paksa ke Tengah */
         gap: 10px !important; 
-        padding: 0 45px !important; 
+        width: 100% !important;
+        max-width: 100vw !important;
+        padding: 0 10px !important;
     }
 
-    .logo-mini { height: 60px !important; }
-    /* Update: Ensure centering on mobile */
+    .logo-mini { 
+        height: 60px !important; /* Menyesuaikan agar proporsional di tengah */
+        width: auto !important;
+        flex-shrink: 0 !important; 
+        overflow: visible !important; 
+    }
+
+    .logo-mini img {
+        width: 100% !important;
+        height: auto !important;
+        object-fit: contain !important;
+    }
+
     .text-container { 
         padding: 8px 12px !important; 
+        flex: 0 1 auto !important; /* Ukuran mengikuti konten */
+        max-width: fit-content; 
+        background: rgba(0, 0, 0, 0.4) !important;
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
     }
-    .text-container h1 { font-size: 1.2rem !important; }
-    .text-container p { font-size: 0.55rem !important; letter-spacing: 2px; text-align: center !important; }
 
-    section:first-of-type { margin-top: -20px !important; }
-    section { padding: 25px 15px; }
+    .text-container h1 { font-size: 1.2rem !important; margin: 0; }
+    .text-container p { font-size: 0.55rem !important; text-align: center !important; }
+
+    /* Navigasi Hamburger tetap di ukuran aslinya di pojok kanan */
+    .nav-container { 
+        position: absolute !important;
+        top: 20px !important; 
+        right: 20px !important; 
+        z-index: 5000 !important;
+        left: auto !important;
+    }
+
+    section:first-of-type { margin-top: -45px; }
+    
+    /* Instagram tetap di atas Message pada mobile */
+    .fab-instagram { right: 20px !important; bottom: 85px !important; }
+    .fab-message { right: 20px !important; bottom: 20px !important; }
+    
+    main { padding: 15px; }
+    section { padding: 25px 15px; margin-bottom: 30px; border-left-width: 5px !important; }
+    h2 { font-size: 1.8rem; }
     .slider-item img { height: 280px; }
+    .card-maroon { min-width: 100%; }
 }
 
 footer { padding: 30px; background: #0a0a0a; text-align: center; border-top: 1px solid rgba(192, 192, 192, 0.1); }
+
+/* ==========================================
+   PERBAIKAN KHUSUS HALAMAN SUARA SMAGA
+   ========================================== */
+.page-suara .header-brand-wrapper {
+    flex-direction: column !important; 
+    gap: 15px !important;
+}
+
+.page-suara .text-container {
+    text-align: center !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.page-suara .back-link {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 65px;
+    height: 65px;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid var(--color-silver) !important;
+    border-radius: 50% !important;
+    color: var(--color-silver) !important;
+    text-decoration: none;
+    font-size: 1.6rem !important; 
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    z-index: 100;
+}
+
+.page-suara .back-link span {
+    display: none;
+}
+
+.page-suara .back-link:hover {
+    background: var(--color-maroon) !important;
+    border-color: white !important;
+    color: white !important;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+}
+
+/* ==========================================
+   OPTIMASI KHUSUS MOBILE 
+   ========================================== */
+.page-suara *, .page-berita * {
+    -webkit-tap-highlight-color: transparent !important;
+}
+
+@media (max-width: 850px) {
+    .page-suara header {
+        height: auto !important;
+        min-height: 480px;
+        padding: 80px 20px 40px !important; 
+    }
+
+    .page-suara .header-brand-wrapper {
+        gap: 25px !important;
+    }
+
+    .page-suara .text-container {
+        width: 95% !important;
+        padding: 25px 20px !important;
+    }
+
+    .page-suara .text-container h1 {
+        font-size: 1.8rem !important;
+        line-height: 1.2;
+        letter-spacing: 2px;
+    }
+
+    .page-suara .back-link {
+        width: 60px;
+        height: 60px;
+        font-size: 1.4rem !important;
+    }
+    
+    .page-suara section:first-of-type {
+        margin-top: -30px !important;
+    }
+}
+
+/* ==========================================
+   OPSI 1: WELCOME TO WEBSITE CHRONICA 
+   ========================================== */
+.text-container p { 
+    color: var(--color-silver) !important; 
+    font-size: 0.9rem;
+    font-weight: 600; 
+    letter-spacing: 5px;       
+    text-transform: uppercase;
+    margin-bottom: 8px;        
+    opacity: 0.9;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+.text-container h1 { 
+    color: #ffffff !important; 
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5em;
+    letter-spacing: 3px;
+    line-height: 1;
+    animation: textGlowWhite 3s infinite alternate;
+}
+
+/* Responsive Teks untuk Mobile */
+@media (max-width: 850px) {
+    .text-container p {
+        font-size: 0.6rem;
+        letter-spacing: 3px;
+    }
+    .text-container h1 {
+        font-size: 2rem;
+    }
+}
+
+/* ==========================================
+   TAMBAHAN KHUSUS: BACKGROUND PAGES SPESIFIK
+   ========================================== */
+/* Background untuk halaman suara.html */
+.page-suara header {
+    background-image: 
+        linear-gradient(to bottom, transparent 65%, var(--color-bg-main) 100%), 
+        linear-gradient(rgba(0,0,0,0.6), rgba(96,0,0,0.4)), 
+        url('LB_3.gif') !important;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Background untuk halaman berita.html */
+.page-berita header {
+    background-image: 
+        linear-gradient(to bottom, transparent 65%, var(--color-bg-main) 100%), 
+        linear-gradient(rgba(0,0,0,0.6), rgba(96,0,0,0.4)), 
+        url('LB_2.gif') !important;
+    background-size: cover;
+    background-position: center;
+}
+
+/* ==========================================================================
+   KODE BARU: PERBAIKAN BLANK HITAM DI AREA GIF & VISI MISI (MOBILE & DESKTOP)
+   ========================================================================== */
+
+/* Mengunci lebar global agar tidak ada elemen meluber ke kanan */
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden !important;
+    position: relative;
+}
+
+/* Memastikan area Header GIF tidak bocor lebar */
+header {
+    max-width: 100vw !important;
+    overflow: hidden;
+}
+
+/* Penyesuaian khusus Mobile untuk area transisi GIF ke Visi Misi */
+@media (max-width: 850px) {
+    /* Menghapus overflow pada kontainer branding */
+    .header-brand-wrapper {
+        width: 100%;
+        max-width: 100vw;
+        overflow: hidden;
+        padding: 0 10px;
+    }
+
+    /* Memastikan Box Visi Misi tetap di dalam layar */
+    section:first-of-type {
+        margin-left: 10px !important;
+        margin-right: 10px !important;
+        width: calc(100% - 20px) !important;
+        max-width: none !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Memberi padding kanan agar teks tidak tertutup tombol FAB */
+    section {
+        padding-right: 25px !important; /* Tambah jarak aman sisi kanan */
+    }
+}
+
+/* ==========================================================================
+   FINAL FIX: LOGO TERPOTONG PADA MOBILE (BERDASARKAN SCREENSHOT)
+   ========================================================================== */
+@media (max-width: 850px) {
+    /* Memperbaiki posisi Visi Misi agar sejajar dengan header baru */
+    section:first-of-type {
+        margin-top: -20px !important; 
+        z-index: 100;
+    }
+}
+
+/* ==========================================================================
+   PERBAIKAN FINAL NAVIGASI NON-DESKTOP (FIXED OVERFLOW & POSITIONING)
+   ========================================================================== */
+@media (max-width: 850px) {
+    /* Memastikan container navigasi tidak mepet ke pinggir layar hp */
+    .nav-container {
+        position: absolute !important;
+        top: 20px !important; /* Jarak dari atas diturunkan sedikit */
+        right: 20px !important; /* Jarak dari kanan diperbesar */
+        z-index: 5000 !important;
+    }
+
+    .hamburger {
+        background: rgba(0, 0, 0, 0.2) !important; /* Background tipis agar terlihat */
+        padding: 8px !important;
+        border-radius: 5px !important;
+    }
+
+    /* Memperbaiki Menu yang terpotong dan posisi 'X' */
+    .nav-menu {
+        position: fixed !important; /* Menggunakan fixed agar tidak terpotong parent */
+        top: 80px !important; /* Memberi ruang agar tidak menabrak tombol X */
+        right: 20px !important; /* Mengikuti jarak aman kanan layar */
+        width: calc(100% - 40px) !important; /* Lebar maksimal dikurangi padding layar */
+        max-width: 220px !important; /* Batas lebar menu */
+        z-index: 5000 !important;
+        display: none;
+        flex-direction: column;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.8) !important;
+    }
+
+    .nav-menu.active {
+        display: flex !important;
+    }
+
+    /* Memastikan tombol Close (X) tetap terlihat jelas */
+    .hamburger.active {
+        position: fixed !important; /* Mengunci tombol X agar tidak bergeser */
+        top: 20px !important;
+        right: 20px !important;
+    }
+}
