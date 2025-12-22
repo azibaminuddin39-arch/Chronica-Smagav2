@@ -312,8 +312,32 @@ h2 {
 .visi-container { text-align: center; max-width: 900px; margin: 0 auto; }
 .visi-text { text-align: center; font-style: italic; margin-bottom: 30px; }
 .divider { margin: 25px auto; width: 50%; opacity: 0.2; border-top: 1px solid var(--color-silver); }
-.misi-box, .tujuan-box { text-align: left; } /* List tetap di kiri dalam box agar rapi */
-.misi-box h3, .tujuan-box h3 { text-align: center; }
+
+/* Perbaikan Isi Misi & Tujuan ke Tengah */
+.misi-tujuan-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+    justify-items: center; /* Memastikan box berada di tengah grid */
+}
+
+.misi-box, .tujuan-box { 
+    text-align: center; /* Judul box ke tengah */
+    width: 100%;
+}
+
+.misi-box ol, .tujuan-box ul { 
+    display: inline-block; /* Agar container list bisa diposisikan center */
+    text-align: left;      /* Menjaga teks poin-poin tetap rapi rata kiri */
+    padding-left: 20px; 
+    margin: 0 auto;
+}
+
+.misi-box h3, .tujuan-box h3 { 
+    text-align: center; 
+    margin-bottom: 20px;
+}
 
 /* STRUCTURE CARDS */
 .silsilah-row { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; }
