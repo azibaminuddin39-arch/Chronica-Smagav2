@@ -571,3 +571,38 @@ footer { padding: 30px; background: #0a0a0a; text-align: center; border-top: 1px
     background-size: cover;
     background-position: center;
 }
+
+/* ==========================================
+   PERBAIKAN KHUSUS LAYOUT MOBILE V2 (FIX RIGHT CLUTTER)
+   ========================================== */
+@media (max-width: 850px) {
+    /* Mencegah teks bertabrakan dengan tombol melayang di kanan */
+    .visi-container {
+        padding-left: 5px;
+        padding-right: 65px; /* Memberi ruang aman untuk tombol melayang */
+    }
+
+    /* Memaksa isi misi tetap rapi di layar sempit */
+    .misi-box ol, .tujuan-box ul {
+        display: block; 
+        width: 100%;
+        padding-left: 20px;
+        text-align: left;
+    }
+
+    .misi-box li, .tujuan-box li {
+        font-size: 0.85rem;
+        margin-bottom: 10px;
+        line-height: 1.4;
+    }
+
+    /* Mengatur posisi tombol melayang agar lebih efisien di layar kecil */
+    .fab-instagram, .fab-message {
+        right: 15px !important;
+        width: 50px;
+        height: 50px;
+    }
+
+    .fab-instagram { bottom: 80px !important; }
+    .fab-message { bottom: 20px !important; }
+}
