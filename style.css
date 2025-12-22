@@ -137,10 +137,10 @@ body {
 
 .fab-instagram:hover::before, .fab-message:hover::before { left: 150%; }
 
-/* Instagram di atas Message */
+/* Posisi Ikon: Instagram di atas Message */
 .fab-instagram {
     right: 25px !important;
-    bottom: 95px !important; /* Naik ke atas */
+    bottom: 95px !important; /* Di atas tombol message */
     background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
     font-size: 28px;
 }
@@ -152,7 +152,6 @@ body {
     font-size: 30px; 
 }
 
-/* Message di posisi paling bawah kanan */
 .fab-message {
     right: 25px !important;
     bottom: 25px !important; 
@@ -486,13 +485,24 @@ footer { padding: 30px; background: #0a0a0a; text-align: center; border-top: 1px
 }
 
 /* ==========================================
-   TAMBAHAN KHUSUS: BACKGROUND LB_3.GIF
+   TAMBAHAN KHUSUS: BACKGROUND PAGES SPESIFIK
    ========================================== */
+/* Background untuk halaman suara.html */
 .page-suara header {
     background-image: 
         linear-gradient(to bottom, transparent 65%, var(--color-bg-main) 100%), 
         linear-gradient(rgba(0,0,0,0.6), rgba(96,0,0,0.4)), 
         url('LB_3.gif') !important;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Background untuk halaman berita.html */
+.page-berita header {
+    background-image: 
+        linear-gradient(to bottom, transparent 65%, var(--color-bg-main) 100%), 
+        linear-gradient(rgba(0,0,0,0.6), rgba(96,0,0,0.4)), 
+        url('LB_2.gif') !important;
     background-size: cover;
     background-position: center;
 }
