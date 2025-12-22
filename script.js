@@ -142,14 +142,17 @@ document.addEventListener('DOMContentLoaded', () => {
     
     faqQuestions.forEach(question => {
         question.addEventListener('click', () => {
+            // Mengambil elemen pembungkus (faq-item)
             const faqItem = question.parentElement;
             
+            // Menutup FAQ lain yang sedang terbuka (opsional, agar fokus ke satu jawaban)
             document.querySelectorAll('.faq-item').forEach(item => {
                 if (item !== faqItem) {
                     item.classList.remove('active');
                 }
             });
             
+            // Menambah/menghapus class 'active' untuk membuka/menutup jawaban
             faqItem.classList.toggle('active');
         });
     });
