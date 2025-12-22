@@ -407,7 +407,7 @@ h2 {
     border-radius: 8px; 
     cursor: pointer; 
     font-weight: bold; 
-    transition: 0.2s;
+    transition: all 0.3s ease; /* Ditambahkan transition halus */
 }
 
 .toggle-btn:active { transform: scale(0.94); background: #400000; }
