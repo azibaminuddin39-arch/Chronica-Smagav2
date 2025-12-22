@@ -738,3 +738,28 @@ header {
         height: 40px;
     }
 }
+
+/* ==========================================
+   PERBAIKAN UKURAN MEGAPHONE (SUARA.HTML)
+   ========================================== */
+.suara-icon {
+    font-size: 5rem !important; /* Diperbesar agar terlihat sangat jelas */
+    color: var(--color-silver); 
+    margin-bottom: 25px;
+    display: inline-block;
+    filter: drop-shadow(0 0 20px rgba(192, 192, 192, 0.5)); 
+    animation: pulseIcon 2s infinite ease-in-out; 
+}
+
+@keyframes pulseIcon {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 1; }
+}
+
+/* Penyesuaian ukuran untuk layar HP */
+@media (max-width: 850px) {
+    .suara-icon {
+        font-size: 4rem !important;
+        margin-bottom: 20px;
+    }
+}
