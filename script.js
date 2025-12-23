@@ -1,179 +1,804 @@
-/* CHRONICA - Jurnalistik SMAN 3 Banjarbaru
-   Core Scripting - Full Integrated
-*/
+/* ==========================================
+   RESET & VARIABLES
+   ========================================== */
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+    /* Menghilangkan highlight biru saat klik di seluruh web sesuai instruksi */
+    -webkit-tap-highlight-color: transparent;
+}
 
-document.addEventListener('DOMContentLoaded', () => {
+:root {
+    --color-maroon: #600000;
+    --color-gold: #FFD700;
+    --color-silver: #C0C0C0; /* Warna Silver Baru */
+    --color-bg-main: #000000;
+    --color-bg-section: rgba(26, 26, 26, 0.6); 
+    --text-primary: #e0e0e0;
+    --text-white: #ffffff;   /* Warna Putih untuk Anggota */
+    --glass-border: rgba(255, 215, 0, 0.2);
+    --glass-blur: blur(15px);
+}
 
-    // --- 0. LOGIKA PRELOADER (LOADING SCREEN) ---
-    const loader = document.getElementById('loader-wrapper');
-    if (loader) {
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                loader.classList.add('fade-out');
-            }, 1000); 
-        });
+/* ==========================================
+   TAMBAHAN: PRELOADER (LOADING SCREEN) STYLE
+   ========================================== */
+#loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
 
-        // Backup plan jika window load tidak terpicu
-        setTimeout(() => {
-            if (!loader.classList.contains('fade-out')) {
-                loader.classList.add('fade-out');
-            }
-        }, 3000);
+.loader-content { text-align: center; }
+.loader-logo { position: relative; width: 120px; margin: 0 auto 20px; }
+.loader-logo img {
+    width: 100%;
+    filter: drop-shadow(0 0 15px rgba(192, 192, 192, 0.5));
+    animation: pulseLogo 2s infinite ease-in-out;
+}
+.loader-line {
+    width: 100%;
+    height: 3px;
+    background: rgba(192, 192, 192, 0.2);
+    margin-top: 15px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+.loader-line::after {
+    content: "";
+    position: absolute;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, var(--color-silver), transparent);
+    animation: loadingBar 1.5s infinite;
+}
+.loader-content p {
+    color: var(--color-silver);
+    letter-spacing: 5px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+@keyframes pulseLogo {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 1; }
+}
+@keyframes loadingBar { 0% { left: -100%; } 100% { left: 100%; } }
+#loader-wrapper.fade-out { opacity: 0; visibility: hidden; }
+
+/* ==========================================
+   BASE STYLE & ANIMATIONS
+   ========================================== */
+body { 
+    font-family: 'Montserrat', sans-serif; 
+    background: var(--color-bg-main); 
+    color: var(--text-primary); 
+    line-height: 1.6; 
+    overflow-x: hidden; 
+}
+
+@keyframes floatIcon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+@keyframes shineEffect {
+    0% { left: -150%; }
+    20% { left: 150%; }
+    100% { left: 150%; }
+}
+
+/* ==========================================
+   TOMBOL SOSIAL MEDIA MELAYANG (FAB)
+   ========================================== */
+.fab-instagram, .fab-whatsapp, .fab-message {
+    position: fixed;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    z-index: 3000;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.6);
+    text-decoration: none;
+    animation: floatIcon 3s ease-in-out infinite;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    overflow: hidden;
+    outline: none;
+}
+
+.fab-instagram:active, .fab-whatsapp:active, .fab-message:active { transform: scale(0.9); }
+
+.fab-instagram::before, .fab-message::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -100%;
+    width: 50%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(30deg);
+    transition: 0.5s;
+}
+
+.fab-instagram:hover::before, .fab-message:hover::before { left: 150%; }
+
+/* Posisi Ikon: Instagram di atas Message */
+.fab-instagram {
+    right: 25px !important;
+    bottom: 95px !important; /* Di atas tombol message */
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    font-size: 28px;
+}
+
+.fab-whatsapp { 
+    right: 95px; 
+    bottom: 25px; 
+    background: #25D366; 
+    font-size: 30px; 
+}
+
+.fab-message {
+    right: 25px !important;
+    bottom: 25px !important; 
+    background: var(--color-maroon) !important;
+    border: 2px solid var(--color-silver) !important;
+    font-size: 24px !important;
+}
+
+.fab-instagram:hover, .fab-whatsapp:hover, .fab-message:hover { 
+    animation-play-state: paused;
+    transform: scale(1.2); 
+}
+
+/* ==========================================
+   HEADER & BRANDING
+   ========================================== */
+header {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9; 
+    background-image: 
+        linear-gradient(to bottom, transparent 65%, var(--color-bg-main) 100%), 
+        linear-gradient(rgba(0,0,0,0.6), rgba(96,0,0,0.4)), 
+        url('wqeqwe.gif') !important;
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+}
+
+.header-brand-wrapper {
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
+    justify-content: center; /* Dipastikan Center */
+    gap: 30px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.logo-mini { 
+    height: 180px; 
+    width: auto;
+    position: relative;
+    filter: drop-shadow(0 0 8px rgba(0,0,0,0.8));
+    overflow: hidden;
+    flex-shrink: 0; /* Menjaga ukuran logo tetap asli */
+}
+
+.logo-mini::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -150%;
+    width: 60%;
+    height: 200%;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.8), transparent);
+    transform: rotate(30deg);
+    animation: shineEffect 3.5s infinite;
+}
+
+.text-container {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 20px 40px;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.text-container h1 { 
+    font-family: 'Playfair Display', serif; 
+    font-size: 3.5em; 
+    color: white; 
+    letter-spacing: 2px; 
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(192, 192, 192, 0.5) !important;
+    animation: textGlowWhite 3s infinite alternate;
+}
+
+@keyframes textGlowWhite {
+    from { text-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(192, 192, 192, 0.4); }
+    to { text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 35px rgba(192, 192, 192, 0.7); }
+}
+
+.text-container p { 
+    color: var(--color-silver); 
+    font-weight: bold; 
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.8); 
+}
+
+/* ==========================================
+   NAVIGASI & HAMBURGER (BAGIAN PERBAIKAN)
+   ========================================== */
+.nav-container { 
+    position: absolute; 
+    top: 25px; 
+    right: 25px; 
+    z-index: 5000; 
+    pointer-events: auto !important; 
+    /* PERBAIKAN BERJEJER */
+    display: flex !important;
+    align-items: center !important;
+    gap: 15px !important;
+}
+
+.hamburger { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 6px; 
+    background: none; 
+    border: none; 
+    cursor: pointer; 
+    outline: none; 
+    z-index: 10000 !important;
+    pointer-events: auto !important;
+}
+
+.hamburger span { width: 35px; height: 4px; background: var(--color-silver); border-radius: 2px; transition: 0.3s ease; }
+
+.hamburger.active span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
+
+.nav-menu {
+    position: absolute; 
+    top: 50px; 
+    right: 0; 
+    background: rgba(60, 0, 0, 0.9) !important; 
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    list-style: none; 
+    padding: 15px; 
+    border-radius: 12px; 
+    border: 1px solid rgba(255, 255, 255, 0.1) !important; 
+    display: none; /* Default sembunyi */
+    flex-direction: column; 
+    min-width: 180px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.6) !important;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: auto !important; 
+}
+
+/* Paksa muncul saat class active dipicu JS */
+.nav-menu.active { 
+    display: flex !important; 
+    opacity: 1 !important; 
+    visibility: visible !important;
+    transform: translateY(0) !important;
+    z-index: 9999 !important;
+}
+
+.nav-menu a { color: white; text-decoration: none; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.1); transition: 0.2s; }
+
+/* ==========================================
+   MAIN SECTIONS
+   ========================================== */
+main { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+section { 
+    margin-bottom: 60px; 
+    padding: 40px; 
+    background: rgba(26, 26, 26, 0.45) !important;
+    backdrop-filter: blur(20px) saturate(160%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(160%) !important;
+    border-radius: 20px; 
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-left: 8px solid var(--color-silver) !important; 
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5) !important;
+}
+
+section:first-of-type { margin-top: -80px; position: relative; z-index: 10; }
+
+h2 { 
+    color: var(--color-silver); 
+    margin-bottom: 40px; 
+    font-family: 'Playfair Display', serif; 
+    font-size: 2.2em; 
+    text-align: center; 
+    text-shadow: 0 0 15px rgba(192, 192, 192, 0.6) !important;
+    letter-spacing: 3px;
+}
+
+/* STRUCTURE CARDS */
+.silsilah-row { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; }
+.card-maroon { 
+    background: rgba(192, 192, 192, 0.9) !important;
+    border: 2px solid var(--color-maroon) !important;
+    border-radius: 15px; 
+    padding: 25px 20px; 
+    text-align: center; 
+    min-width: 220px; 
+    flex: 1; 
+    max-width: 300px;
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+.card-maroon:hover { transform: translateY(-8px); background: rgba(220, 220, 220, 1) !important; border-color: #a00000 !important; }
+.card-maroon h4 { color: var(--color-maroon) !important; text-transform: uppercase; font-weight: 800; letter-spacing: 1.5px; }
+.card-maroon p { color: #000000 !important; font-weight: 700; }
+
+/* DIVISI & ANGGOTA */
+.divisi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; align-items: flex-start; }
+.divisi-box { 
+    background: rgba(255, 255, 255, 0.03) !important; 
+    backdrop-filter: blur(12px) !important;
+    padding: 25px; 
+    border-radius: 15px; 
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-top: 5px solid var(--color-silver) !important; 
+    text-align: center; 
+}
+.anggota-list { display: none; margin-top: 15px; list-style: none; color: var(--text-white); opacity: 0; transition: opacity 0.4s ease; }
+.anggota-list.active { display: block; opacity: 1; }
+.toggle-btn { width: 100%; padding: 10px; background: var(--color-maroon); color: white; border: 1px solid var(--color-silver); border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.3s ease; outline: none; }
+
+/* SLIDER */
+.slider-container { position: relative; max-width: 900px; margin: 0 auto; overflow: hidden; border-radius: 15px; border: 2px solid var(--color-maroon); }
+.slider-wrapper { display: flex; transition: transform 0.5s ease; }
+.slider-item { min-width: 100%; position: relative; }
+.slider-item img { width: 100%; height: 450px; object-fit: cover; }
+.slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: var(--color-maroon); color: white; border: 1px solid var(--color-silver); width: 45px; height: 45px; cursor: pointer; border-radius: 50%; z-index: 10; transition: 0.2s; outline: none; }
+
+/* ==========================================
+   SUARA SMAGA & FAQ
+   ========================================== */
+.suara-section {
+    text-align: center;
+    background: linear-gradient(135deg, rgba(96, 0, 0, 0.25) 0%, rgba(26, 26, 26, 0.8) 100%) !important;
+    backdrop-filter: blur(25px) saturate(180%) !important;
+    padding: 60px 20px !important;
+}
+.btn-suara {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--color-maroon);
+    color: white;
+    text-decoration: none;
+    padding: 18px 35px;
+    border-radius: 50px;
+    font-weight: bold;
+    border: 2px solid var(--color-silver);
+    transition: all 0.4s ease;
+}
+.faq-item { background: rgba(255, 255, 255, 0.04) !important; border: 1px solid rgba(255, 255, 255, 0.08) !important; border-radius: 12px; margin-bottom: 15px; overflow: hidden; }
+.faq-question { width: 100%; padding: 20px; background: none; border: none; color: var(--color-silver); font-size: 1.1rem; font-weight: 600; text-align: left; display: flex; justify-content: space-between; cursor: pointer; outline: none; }
+.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+.faq-item.active .faq-answer { max-height: 500px; }
+
+/* ==========================================
+   RESPONSIVE (MOBILE OPTIMIZATION)
+   ========================================== */
+@media (max-width: 850px) {
+    header { 
+        aspect-ratio: 16 / 9;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
     }
-
-    // --- 1. LOGIKA NAVIGASI HAMBURGER (PERBAIKAN FINAL) ---
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('nav-menu');
-
-    if (hamburger && navMenu) {
-        // Fungsi klik utama
-        hamburger.addEventListener('click', (e) => {
-            e.stopPropagation();
-            navMenu.classList.toggle('active');
-            hamburger.classList.toggle('active'); 
-            hamburger.classList.toggle('is-active');
-            console.log("Hamburger Menu Toggled"); // Untuk debugging
-        });
-
-        // Klik di luar menu untuk menutup
-        document.addEventListener('click', (e) => {
-            if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
-                navMenu.classList.remove('active');
-                hamburger.classList.remove('active'); 
-                hamburger.classList.remove('is-active');
-            }
-        });
-
-        // Tutup menu saat link diklik agar scroll lancar
-        const navLinks = document.querySelectorAll('.nav-menu a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                hamburger.classList.remove('active'); 
-                hamburger.classList.remove('is-active');
-            });
-        });
-    }
-
-    // --- 2. LOGIKA TOGGLE ANGGOTA DIVISI ---
-    const toggleButtons = document.querySelectorAll('.toggle-btn, .toggle-anggota');
     
-    toggleButtons.forEach(btn => {
-        btn.addEventListener('click', function() {
-            const list = this.nextElementSibling; 
-            if (!list) return;
-
-            list.classList.toggle('active');
-            const isShowing = list.classList.contains('active');
-            
-            // Menggunakan class active dari CSS lebih baik daripada inline style
-            if (isShowing) {
-                list.style.display = 'block';
-            } else {
-                list.style.display = 'none';
-            }
-            
-            this.textContent = isShowing ? 'Sembunyikan Anggota' : 'Lihat Anggota';
-            
-            // Perubahan visual tombol saat aktif (Silver/Black)
-            if (isShowing) {
-                this.style.backgroundColor = '#C0C0C0';
-                this.style.color = '#000000';
-                this.style.borderColor = '#600000';
-            } else {
-                this.style.backgroundColor = '#600000';
-                this.style.color = '#ffffff';
-                this.style.borderColor = '#C0C0C0';
-            }
-        });
-    });
-
-    // --- 3. LOGIKA SLIDER KEGIATAN ---
-    const wrapper = document.getElementById('slider-wrapper');
-    const slides = document.querySelectorAll('.slider-item');
-    const nextBtn = document.getElementById('nextBtn');
-    const prevBtn = document.getElementById('prevBtn');
-
-    if (wrapper && slides.length > 0) {
-        let index = 0;
-        const total = slides.length;
-        
-        const updateSlider = () => {
-            wrapper.style.transform = `translateX(${-index * 100}%)`;
-        };
-        
-        const nextSlide = () => {
-            index = (index + 1) % total;
-            updateSlider();
-        };
-        
-        const prevSlide = () => {
-            index = (index - 1 + total) % total;
-            updateSlider();
-        };
-
-        if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); resetAutoSlide(); });
-        if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); resetAutoSlide(); });
-
-        // Auto Slide setiap 5 detik
-        let autoSlideInterval = setInterval(nextSlide, 5000);
-        function resetAutoSlide() {
-            clearInterval(autoSlideInterval);
-            autoSlideInterval = setInterval(nextSlide, 5000);
-        }
+    .header-brand-wrapper { 
+        display: flex !important;
+        flex-direction: row !important; 
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 10px !important; 
+        width: 100% !important;
+        max-width: 100vw !important;
+        padding: 0 10px !important;
     }
 
-    // --- 4. LOGIKA FAQ ACCORDION ---
-    const faqQuestions = document.querySelectorAll('.faq-question');
+    .logo-mini { 
+        height: 60px !important; 
+        width: auto !important;
+        flex-shrink: 0 !important; 
+        overflow: visible !important; 
+    }
+
+    .logo-mini img {
+        width: 100% !important;
+        height: auto !important;
+        object-fit: contain !important;
+    }
+
+    .text-container { 
+        padding: 8px 12px !important; 
+        flex: 0 1 auto !important; 
+        max-width: fit-content; 
+        background: rgba(0, 0, 0, 0.4) !important;
+    }
+
+    .text-container h1 { font-size: 1.2rem !important; margin: 0; }
+    .text-container p { font-size: 0.55rem !important; }
+
+    .nav-container { 
+        position: absolute !important;
+        top: 20px !important; 
+        right: 20px !important; 
+        z-index: 5000 !important;
+        pointer-events: auto !important;
+        /* FLEX MOBILE */
+        display: flex !important;
+        gap: 12px !important;
+    }
+
+    section:first-of-type { margin-top: -45px; }
     
-    faqQuestions.forEach(question => {
-        question.onclick = function(e) {
-            e.preventDefault(); 
-            const faqItem = this.parentElement;
-            
-            // Tutup FAQ lain yang sedang terbuka agar rapi
-            document.querySelectorAll('.faq-item').forEach(item => {
-                if (item !== faqItem) {
-                    item.classList.remove('active');
-                }
-            });
-            
-            faqItem.classList.toggle('active');
-        };
-    });
+    .fab-instagram { right: 20px !important; bottom: 85px !important; }
+    .fab-message { right: 20px !important; bottom: 20px !important; }
+    
+    main { padding: 15px; }
+    section { padding: 25px 15px; margin-bottom: 30px; border-left-width: 5px !important; }
+    h2 { font-size: 1.8rem; }
+    .slider-item img { height: 280px; }
+    .card-maroon { min-width: 100%; }
+}
 
-    // --- 5. LOGIKA KONTROL MUSIK (GLOBAL FUNCTION) ---
-    window.toggleMusic = function() {
-        const music = document.getElementById('bgMusic');
-        const btn = document.getElementById('musicToggle');
-        const waves = document.getElementById('soundWaves');
-        const muteLine = document.getElementById('muteLine');
+footer { padding: 30px; background: #0a0a0a; text-align: center; border-top: 1px solid rgba(192, 192, 192, 0.1); }
 
-        if (!music) return;
+/* ==========================================
+   PERBAIKAN KHUSUS HALAMAN SUARA SMAGA
+   ========================================== */
+.page-suara .header-brand-wrapper {
+    flex-direction: column !important; 
+    gap: 15px !important;
+}
 
-        // Atur volume standar
-        music.volume = 0.4;
+.page-suara .text-container {
+    text-align: center !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-        if (music.paused) {
-            // SAAT MUSIK BERJALAN
-            music.play().then(() => {
-                btn.classList.add('playing');
-                if(waves) waves.style.display = 'block';
-                if(muteLine) muteLine.style.display = 'none';
-                btn.style.color = '#C0C0C0'; 
-            }).catch(err => {
-                console.log("Autoplay diblokir oleh browser.");
-            });
-        } else {
-            // SAAT MUSIK MUTE
-            music.pause();
-            btn.classList.remove('playing');
-            if(waves) waves.style.display = 'none';
-            if(muteLine) {
-                muteLine.style.display = 'block';
-                muteLine.style.stroke = '#C0C0C0'; 
-            }
-            btn.style.color = '#C0C0C0'; 
-        }
-    };
-});
+.page-suara .back-link {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 65px;
+    height: 65px;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid var(--color-silver) !important;
+    border-radius: 50% !important;
+    color: var(--color-silver) !important;
+    text-decoration: none;
+    font-size: 1.6rem !important; 
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    z-index: 100;
+}
+
+.page-suara .back-link span {
+    display: none;
+}
+
+.page-suara .back-link:hover {
+    background: var(--color-maroon) !important;
+    border-color: white !important;
+    color: white !important;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+}
+
+/* ==========================================
+   OPTIMASI KHUSUS MOBILE 
+   ========================================== */
+.page-suara *, .page-berita * {
+    -webkit-tap-highlight-color: transparent !important;
+}
+
+@media (max-width: 850px) {
+    .page-suara header {
+        height: auto !important;
+        min-height: 480px;
+        padding: 80px 20px 40px !important; 
+    }
+
+    .page-suara .header-brand-wrapper {
+        gap: 25px !important;
+    }
+
+    .page-suara .text-container {
+        width: 95% !important;
+        padding: 25px 20px !important;
+    }
+
+    .page-suara .text-container h1 {
+        font-size: 1.8rem !important;
+        line-height: 1.2;
+        letter-spacing: 2px;
+    }
+
+    .page-suara .back-link {
+        width: 60px;
+        height: 60px;
+        font-size: 1.4rem !important;
+    }
+    
+    .page-suara section:first-of-type {
+        margin-top: -30px !important;
+    }
+}
+
+/* ==========================================
+   OPSI 1: WELCOME TO WEBSITE CHRONICA 
+   ========================================== */
+.text-container p { 
+    color: var(--color-silver) !important; 
+    font-size: 0.9rem;
+    font-weight: 600; 
+    letter-spacing: 5px;       
+    text-transform: uppercase;
+    margin-bottom: 8px;        
+    opacity: 0.9;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+.text-container h1 { 
+    color: #ffffff !important; 
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5em;
+    letter-spacing: 3px;
+    line-height: 1;
+    animation: textGlowWhite 3s infinite alternate;
+}
+
+/* Responsive Teks untuk Mobile */
+@media (max-width: 850px) {
+    .text-container p {
+        font-size: 0.6rem;
+        letter-spacing: 3px;
+    }
+    .text-container h1 {
+        font-size: 2rem;
+    }
+}
+
+/* ==========================================
+   TAMBAHAN KHUSUS: BACKGROUND PAGES SPESIFIK
+   ========================================== */
+.page-suara header {
+    background-image: 
+        linear-gradient(to bottom, transparent 65%, var(--color-bg-main) 100%), 
+        linear-gradient(rgba(0,0,0,0.6), rgba(96,0,0,0.4)), 
+        url('LB_3.gif') !important;
+    background-size: cover;
+    background-position: center;
+}
+
+.page-berita header {
+    background-image: 
+        linear-gradient(to bottom, transparent 65%, var(--color-bg-main) 100%), 
+        linear-gradient(rgba(0,0,0,0.6), rgba(96,0,0,0.4)), 
+        url('LB_2.gif') !important;
+    background-size: cover;
+    background-position: center;
+}
+
+/* ==========================================================================
+   KODE BARU: PERBAIKAN BLANK HITAM DI AREA GIF & VISI MISI (MOBILE & DESKTOP)
+   ========================================================================== */
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden !important;
+    position: relative;
+}
+
+header {
+    max-width: 100vw !important;
+    overflow: hidden;
+}
+
+@media (max-width: 850px) {
+    .header-brand-wrapper {
+        width: 100%;
+        max-width: 100vw;
+        overflow: hidden;
+        padding: 0 10px;
+    }
+
+    section:first-of-type {
+        margin-left: 10px !important;
+        margin-right: 10px !important;
+        width: calc(100% - 20px) !important;
+        max-width: none !important;
+        box-sizing: border-box !important;
+    }
+
+    section {
+        padding-right: 25px !important; 
+    }
+}
+
+/* ==========================================================================
+   FINAL FIX: LOGO TERPOTONG PADA MOBILE (BERDASARKAN SCREENSHOT)
+   ========================================================================== */
+@media (max-width: 850px) {
+    section:first-of-type {
+        margin-top: -20px !important; 
+        z-index: 100;
+    }
+}
+
+/* ==========================================================================
+   PERBAIKAN FINAL NAVIGASI NON-DESKTOP (FIXED OVERFLOW & POSITIONING)
+   ========================================================================== */
+@media (max-width: 850px) {
+    .nav-container {
+        position: absolute !important;
+        top: 20px !important; 
+        right: 20px !important; 
+        z-index: 5000 !important;
+        pointer-events: auto !important;
+    }
+
+    .hamburger {
+        background: rgba(0, 0, 0, 0.4) !important; 
+        padding: 8px !important;
+        border-radius: 5px !important;
+        pointer-events: auto !important;
+        /* HAPUS POSITION FIXED AGAR TIDAK LEPAS DARI CONTAINER */
+        position: relative !important;
+        top: auto !important;
+        right: auto !important;
+    }
+
+    .nav-menu {
+        position: fixed !important; 
+        top: 80px !important; 
+        right: 20px !important; 
+        width: calc(100% - 40px) !important; 
+        max-width: 220px !important; 
+        z-index: 5000 !important;
+        display: none;
+        flex-direction: column;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.8) !important;
+        pointer-events: auto !important;
+    }
+
+    .nav-menu.active {
+        display: flex !important;
+    }
+}
+
+/* ==========================================================================
+   PERBAIKAN MEGAPHONE & MUSIK (DIPERBAIKI POINTER EVENTS)
+   ========================================================================== */
+.music-btn, .hamburger, .nav-menu {
+    pointer-events: auto !important;
+}
+
+.music-btn {
+    background: rgba(0, 0, 0, 0.4);
+    border: 2px solid var(--color-silver);
+    color: var(--color-silver);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+    pointer-events: auto !important;
+    /* PERBAIKAN POSISI */
+    position: relative !important;
+}
+
+.music-btn svg { width: 22px; height: 22px; fill: currentColor; }
+
+@media (max-width: 850px) {
+    .music-btn {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+.suara-icon {
+    font-size: 5rem !important; 
+    color: var(--color-silver); 
+    margin-bottom: 25px;
+    display: inline-block;
+    filter: drop-shadow(0 0 20px rgba(192, 192, 192, 0.5)); 
+    animation: pulseIcon 2s infinite ease-in-out; 
+}
+
+@keyframes pulseIcon {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 1; }
+}
+
+@media (max-width: 850px) {
+    .suara-icon {
+        font-size: 4rem !important;
+        margin-bottom: 20px;
+    }
+}
+
+/* ==========================================================================
+   SOLUSI FINAL: HALAMAN ANGGOTA
+   ========================================================================== */
+.page-anggota { background: #000000 !important; }
+
+.page-anggota header {
+    background-image: 
+        linear-gradient(to bottom, transparent 65%, #000000 100%), 
+        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), 
+        url('img/LB_4.gif') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    aspect-ratio: 16 / 9;
+}
+
+.page-anggota main {
+    background: #000000 !important;
+    min-height: 100vh;
+    padding-top: 20px !important;
+}
+
+.foto-container {
+    border: 3px solid var(--color-silver) !important;
+    box-shadow: 0 0 15px rgba(192, 192, 192, 0.4) !important;
+    overflow: hidden !important;
+    border-radius: 50% !important;
+}
+
+.foto-lingkaran {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block;
+}
+
+.anggota-card h3 {
+    color: #ffffff !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1) !important;
+    font-weight: 600 !important;
+}
