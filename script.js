@@ -1,10 +1,10 @@
 /* CHRONICA - Jurnalistik SMAN 3 Banjarbaru
-   Core Scripting
+   Core Scripting - FULL VERSION
 */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 0. LOGIKA PRELOADER (LOADING SCREEN) ---
+    // --- 0. LOGIKA PRELOADER (LOADING SCREEN) - TETAP UTUH ---
     const loader = document.getElementById('loader-wrapper');
     if (loader) {
         window.addEventListener('load', () => {
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 3000);
     }
 
-    // --- 1. LOGIKA NAVIGASI HAMBURGER ---
+    // --- 1. LOGIKA NAVIGASI HAMBURGER - TETAP UTUH ---
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
 
@@ -50,23 +50,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 2. LOGIKA TOGGLE ANGGOTA DIVISI ---
+    // --- 2. LOGIKA TOGGLE ANGGOTA DIVISI (DIPERBAIKI AGAR PASTI TERBUKA) ---
     const toggleButtons = document.querySelectorAll('.toggle-btn, .toggle-anggota');
     
     toggleButtons.forEach(btn => {
         btn.addEventListener('click', function() {
             const list = this.nextElementSibling; 
+            if (!list) return; // Keamanan jika elemen tidak ada
+
             list.classList.toggle('active');
             const isShowing = list.classList.contains('active');
             
+            // Pastikan perubahan display terjadi
             if (isShowing) {
                 list.style.display = 'block';
+                list.style.maxHeight = '1000px'; // Memberi ruang agar terlihat
             } else {
                 list.style.display = 'none';
+                list.style.maxHeight = '0';
             }
             
             this.textContent = isShowing ? 'Sembunyikan Anggota' : 'Lihat Anggota';
             
+            // Perubahan style tombol
             if (isShowing) {
                 this.style.backgroundColor = '#C0C0C0';
                 this.style.color = '#000000';
@@ -79,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 3. LOGIKA SLIDER KEGIATAN ---
+    // --- 3. LOGIKA SLIDER KEGIATAN - TETAP UTUH ---
     const wrapper = document.getElementById('slider-wrapper');
     const slides = document.querySelectorAll('.slider-item');
     const nextBtn = document.getElementById('nextBtn');
@@ -113,23 +119,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- 4. LOGIKA FAQ ACCORDION (PEMBUKA KUNCI) ---
+    // --- 4. LOGIKA FAQ ACCORDION (DIPERBAIKI) ---
     const faqQuestions = document.querySelectorAll('.faq-question');
     
     faqQuestions.forEach(question => {
         question.onclick = function(e) {
-            e.preventDefault(); // Mencegah button melakukan refresh
+            e.preventDefault(); 
             const faqItem = this.parentElement;
             
-            // Tutup FAQ lain yang sedang terbuka
+            // Toggle class active pada item yang diklik
+            const isActive = faqItem.classList.contains('active');
+            
+            // Tutup semua FAQ lain
             document.querySelectorAll('.faq-item').forEach(item => {
-                if (item !== faqItem) {
-                    item.classList.remove('active');
-                }
+                item.classList.remove('active');
+                const ans = item.querySelector('.faq-answer');
+                if (ans) ans.style.display = 'none';
             });
             
-            // Toggle class active pada box yang diklik
-            faqItem.classList.toggle('active');
+            // Jika sebelumnya tidak aktif, sekarang buka
+            if (!isActive) {
+                faqItem.classList.add('active');
+                const ans = faqItem.querySelector('.faq-answer');
+                if (ans) ans.style.display = 'block';
+            }
         };
     });
 });
