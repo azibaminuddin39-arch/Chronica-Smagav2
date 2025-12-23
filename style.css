@@ -5,18 +5,17 @@
     box-sizing: border-box; 
     margin: 0; 
     padding: 0; 
-    /* Menghilangkan highlight biru saat klik di seluruh web sesuai instruksi */
     -webkit-tap-highlight-color: transparent;
 }
 
 :root {
     --color-maroon: #600000;
     --color-gold: #FFD700;
-    --color-silver: #C0C0C0; /* Warna Silver Baru */
+    --color-silver: #C0C0C0; 
     --color-bg-main: #000000;
     --color-bg-section: rgba(26, 26, 26, 0.6); 
     --text-primary: #e0e0e0;
-    --text-white: #ffffff;   /* Warna Putih untuk Anggota */
+    --text-white: #ffffff;   
     --glass-border: rgba(255, 215, 0, 0.2);
     --glass-blur: blur(15px);
 }
@@ -406,8 +405,8 @@ h2 {
     text-align: center; 
 }
 .anggota-list { display: none; margin-top: 15px; list-style: none; color: var(--text-white); opacity: 0; transition: opacity 0.4s ease; }
-.anggota-list.active { display: block; opacity: 1; }
-.toggle-btn { width: 100%; padding: 10px; background: var(--color-maroon); color: white; border: 1px solid var(--color-silver); border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.3s ease; outline: none; }
+.anggota-list.active { display: block !important; opacity: 1 !important; } /* DIPERKUAT DENGAN !IMPORTANT */
+.toggle-btn { width: 100%; padding: 10px; background: var(--color-maroon); color: white; border: 1px solid var(--color-silver); border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.3s ease; outline: none; position: relative; z-index: 10; }
 
 /* SLIDER */
 .slider-container { position: relative; max-width: 900px; margin: 0 auto; overflow: hidden; border-radius: 15px; border: 2px solid var(--color-maroon); }
@@ -454,9 +453,9 @@ h2 {
 }
 
 .faq-item { background: rgba(255, 255, 255, 0.04) !important; border: 1px solid rgba(255, 255, 255, 0.08) !important; border-radius: 12px; margin-bottom: 15px; overflow: hidden; }
-.faq-question { width: 100%; padding: 20px; background: none; border: none; color: var(--color-silver); font-size: 1.1rem; font-weight: 600; text-align: left; display: flex; justify-content: space-between; cursor: pointer; outline: none; }
+.faq-question { width: 100%; padding: 20px; background: none; border: none; color: var(--color-silver); font-size: 1.1rem; font-weight: 600; text-align: left; display: flex; justify-content: space-between; cursor: pointer; outline: none; position: relative; z-index: 10; }
 .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
-.faq-item.active .faq-answer { max-height: 500px; }
+.faq-item.active .faq-answer { max-height: 500px !important; padding: 15px 20px; } /* DITAMBAHKAN PADDING SAAT TERBUKA */
 
 /* ==========================================
    RESPONSIVE (MOBILE OPTIMIZATION)
@@ -515,11 +514,11 @@ h2 {
         left: auto !important;
         z-index: 5000 !important;
         display: flex !important;
-        pointer-events: none; /* Mencegah area kosong nav menghalangi klik ke section */
+        pointer-events: none; 
     }
 
     .hamburger {
-        pointer-events: auto; /* Mengaktifkan klik hanya pada tombol */
+        pointer-events: auto; 
         background: var(--color-maroon) !important;
         border: 2px solid var(--color-silver) !important;
         width: 55px !important;
