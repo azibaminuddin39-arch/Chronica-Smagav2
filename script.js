@@ -247,18 +247,16 @@ header {
 }
 
 /* ==========================================
-   NAVIGASI & HAMBURGER (BAGIAN PERBAIKAN)
+   NAVIGASI & HAMBURGER (PERBAIKAN POSISI)
    ========================================== */
 .nav-container { 
-    position: absolute; 
-    top: 25px; 
-    right: 25px; 
-    z-index: 5000; 
+    position: absolute !important; 
+    top: 25px !important; 
+    right: 25px !important; 
+    z-index: 5000 !important; 
     pointer-events: auto !important; 
-    /* PERBAIKAN BERJEJER */
     display: flex !important;
     align-items: center !important;
-    gap: 15px !important;
 }
 
 .hamburger { 
@@ -278,6 +276,27 @@ header {
 .hamburger.active span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
 .hamburger.active span:nth-child(2) { opacity: 0; }
 .hamburger.active span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
+
+/* Tombol Musik di Pojok Kiri Atas */
+.music-btn {
+    position: absolute !important;
+    top: 25px !important;
+    left: 25px !important; /* Pindah ke kiri */
+    background: rgba(0, 0, 0, 0.4);
+    border: 2px solid var(--color-silver);
+    color: var(--color-silver);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+    z-index: 6000 !important;
+    pointer-events: auto !important;
+}
 
 .nav-menu {
     position: absolute; 
@@ -460,9 +479,13 @@ h2 {
         right: 20px !important; 
         z-index: 5000 !important;
         pointer-events: auto !important;
-        /* FLEX MOBILE */
-        display: flex !important;
-        gap: 12px !important;
+    }
+
+    .music-btn {
+        top: 20px !important;
+        left: 20px !important;
+        width: 40px !important;
+        height: 40px !important;
     }
 
     section:first-of-type { margin-top: -45px; }
@@ -682,10 +705,7 @@ header {
         padding: 8px !important;
         border-radius: 5px !important;
         pointer-events: auto !important;
-        /* HAPUS POSITION FIXED AGAR TIDAK LEPAS DARI CONTAINER */
         position: relative !important;
-        top: auto !important;
-        right: auto !important;
     }
 
     .nav-menu {
@@ -713,32 +733,7 @@ header {
     pointer-events: auto !important;
 }
 
-.music-btn {
-    background: rgba(0, 0, 0, 0.4);
-    border: 2px solid var(--color-silver);
-    color: var(--color-silver);
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    outline: none;
-    pointer-events: auto !important;
-    /* PERBAIKAN POSISI */
-    position: relative !important;
-}
-
 .music-btn svg { width: 22px; height: 22px; fill: currentColor; }
-
-@media (max-width: 850px) {
-    .music-btn {
-        width: 40px;
-        height: 40px;
-    }
-}
 
 .suara-icon {
     font-size: 5rem !important; 
