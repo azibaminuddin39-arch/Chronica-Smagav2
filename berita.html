@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Berita Terkini - CHRONICA</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css"> <style>
+    <link rel="stylesheet" href="style.css"> 
+    <style>
         /* Style internal Anda tetap dipertahankan */
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap');
         
@@ -24,6 +25,35 @@
 </head>
 <body class="page-berita"> 
 
+    <div class="nav-container">
+        <button id="musicToggle" class="music-btn" onclick="toggleMusic()" aria-label="Toggle Music">
+            <div id="speakerIcon" class="speaker-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11 5L6 9H2V15H6L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                    <path id="soundWaves" d="M15.54 8.46C16.4774 9.39764 17.004 10.6692 17.004 11.995C17.004 13.3208 16.4774 14.5924 15.54 15.53M19.07 4.93C20.9447 6.80528 21.9979 9.34836 21.9979 12C21.9979 14.6516 20.9447 17.1947 19.07 19.07" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path id="muteLine" d="M3 3L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display: none;"/>
+                </svg>
+            </div>
+        </button>
+
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="berita.html">Berita</a></li>
+            <li><a href="anggota.html">Anggota Divisi</a></li>
+            <li><a href="suara.html">Suara SMAGA & FAQ</a></li> 
+        </ul>
+    </div>
+
+    <audio id="bgMusic" loop>
+        <source src="bg-music.mp3" type="audio/mpeg">
+    </audio>
+
     <div id="loader-wrapper">
         <div class="loader-content">
             <div class="loader-logo">
@@ -33,6 +63,7 @@
             <p>CHRONICA JURNALISTIK</p>
         </div>
     </div>
+    
     <a href="https://www.instagram.com/chronicasmaga_" target="_blank" class="fab-instagram" aria-label="Instagram Chronica">
         <i class="fab fa-instagram"></i>
     </a>
@@ -65,13 +96,44 @@
         <p>&copy; 2025 CHRONICA SMAN 3 Banjarbaru.</p>
     </footer>
 
+    <script src="script.js"></script>
     <script>
+        // Preloader Logic
         window.addEventListener('load', function() {
             const loader = document.getElementById('loader-wrapper');
             setTimeout(() => {
                 loader.classList.add('fade-out');
-            }, 1000); // Khusus berita dibuat sedikit lebih cepat (1 detik)
+            }, 1000); 
         });
+
+        // Hamburger Logic
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+        }
+
+        // Music Toggle Logic
+        function toggleMusic() {
+            const music = document.getElementById('bgMusic');
+            const btn = document.getElementById('musicToggle');
+            const waves = document.getElementById('soundWaves');
+            const muteLine = document.getElementById('muteLine');
+
+            if (music.paused) {
+                music.play().catch(e => console.log("Audio play diblokir"));
+                waves.style.display = 'block';
+                muteLine.style.display = 'none';
+            } else {
+                music.pause();
+                waves.style.display = 'none';
+                muteLine.style.display = 'block';
+            }
+        }
     </script>
-    </body>
+</body>
 </html>
