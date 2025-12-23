@@ -1,97 +1,8 @@
 /* ==========================================
-   BAGIAN 1: KODE CSS ASLI ANDA
-   (Tetap utuh tanpa perubahan)
-   ========================================== */
-
-/* Catatan: Jika ditaruh di file .html, 
-   bungkus kode di bawah ini dengan tag <style> 
-*/
-
-/* [KODE CSS ASLI ANDA DIMULAI] */
-* { 
-    box-sizing: border-box; 
-    margin: 0; 
-    padding: 0; 
-    -webkit-tap-highlight-color: transparent;
-}
-
-:root {
-    --color-maroon: #600000;
-    --color-gold: #FFD700;
-    --color-silver: #C0C0C0;
-    --color-bg-main: #000000;
-    --color-bg-section: rgba(26, 26, 26, 0.6); 
-    --text-primary: #e0e0e0;
-    --text-white: #ffffff;
-    --glass-border: rgba(255, 215, 0, 0.2);
-    --glass-blur: blur(15px);
-}
-
-#loader-wrapper {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #000000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    transition: opacity 0.8s ease, visibility 0.8s ease;
-}
-
-.loader-content { text-align: center; }
-.loader-logo { position: relative; width: 120px; margin: 0 auto 20px; }
-.loader-logo img {
-    width: 100%;
-    filter: drop-shadow(0 0 15px rgba(192, 192, 192, 0.5));
-    animation: pulseLogo 2s infinite ease-in-out;
-}
-.loader-line {
-    width: 100%;
-    height: 3px;
-    background: rgba(192, 192, 192, 0.2);
-    margin-top: 15px;
-    border-radius: 10px;
-    overflow: hidden;
-    position: relative;
-}
-.loader-line::after {
-    content: "";
-    position: absolute;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to right, transparent, var(--color-silver), transparent);
-    animation: loadingBar 1.5s infinite;
-}
-.loader-content p {
-    color: var(--color-silver);
-    letter-spacing: 5px;
-    font-size: 0.8rem;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-@keyframes pulseLogo {
-    0%, 100% { transform: scale(1); opacity: 0.8; }
-    50% { transform: scale(1.1); opacity: 1; }
-}
-@keyframes loadingBar { 0% { left: -100%; } 100% { left: 100%; } }
-#loader-wrapper.fade-out { opacity: 0; visibility: hidden; }
-
-/* ... (Seluruh Sisa Kode CSS Anda Tetap Disini) ... */
-/* [KODE CSS ASLI ANDA SELESAI] */
-
-/* ==========================================
    BAGIAN 2: KODE SCRIPT JS (LOGIKA PERINTAH)
    ========================================== */
 
-/* Catatan: Jika ditaruh di file .html, 
-   bungkus kode di bawah ini dengan tag <script> 
-*/
-
+// --- LOGIKA LOADER (DARI KODE ASLI ANDA) ---
 window.addEventListener('load', function() {
     // Menangkap elemen loader
     const loader = document.getElementById('loader-wrapper');
@@ -110,8 +21,10 @@ window.addEventListener('load', function() {
     }
 });
 
-// Tambahan: Logika Hamburger Menu (Agar Navigasi Anda berfungsi)
+// --- LOGIKA INTERAKSI (DOM CONTENT LOADED) ---
 document.addEventListener('DOMContentLoaded', function() {
+    
+    // 1. LOGIKA ASLI ANDA: Hamburger Menu
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
 
@@ -121,4 +34,51 @@ document.addEventListener('DOMContentLoaded', function() {
             navMenu.classList.toggle('active');
         });
     }
+
+    // 2. LOGIKA BARU: Aktivasi Tombol FAQ
+    // Agar pertanyaan FAQ bisa diklik dan memunculkan jawaban
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', function() {
+            // Menambah/menghapus class active pada tombol
+            this.classList.toggle('active');
+            
+            // Mengambil elemen jawaban yang ada tepat di bawahnya
+            const answer = this.nextElementSibling;
+            
+            if (answer) {
+                // Logika buka-tutup (Slide effect)
+                if (answer.style.maxHeight) {
+                    answer.style.maxHeight = null;
+                } else {
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                }
+            }
+        });
+    });
+
+    // 3. LOGIKA BARU: Aktivasi Tombol "Lihat Anggota"
+    // Agar daftar anggota bisa muncul saat tombol diklik
+    const btnAnggota = document.querySelectorAll('.lihat-anggota-btn');
+
+    btnAnggota.forEach(btn => {
+        btn.addEventListener('click', function() {
+            // Mencari container card terdekat agar tidak salah buka divisi lain
+            const parentCard = this.closest('.card, .divisi-card'); 
+            const listAnggota = parentCard ? parentCard.querySelector('.daftar-anggota') : null;
+
+            if (listAnggota) {
+                // Toggle tampilan (Show/Hide)
+                if (listAnggota.style.display === "block") {
+                    listAnggota.style.display = "none";
+                    this.textContent = "Lihat Anggota";
+                } else {
+                    listAnggota.style.display = "block";
+                    this.textContent = "Tutup Anggota";
+                }
+            }
+        });
+    });
+
 });
