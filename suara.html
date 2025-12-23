@@ -8,22 +8,6 @@
     <link rel="stylesheet" href="style.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Playfair+Display:wght@700&display=swap');
-        
-        /* CSS tambahan khusus untuk memastikan ikon rumah muncul */
-        .back-link {
-            position: absolute;
-            top: 25px;
-            left: 25px;
-            color: var(--color-silver);
-            font-size: 1.8rem;
-            z-index: 100;
-            transition: 0.3s;
-            text-shadow: 0 0 10px rgba(0,0,0,0.5);
-        }
-        .back-link:hover {
-            color: white;
-            transform: scale(1.1);
-        }
     </style>
 </head>
 <body class="page-suara">
@@ -36,18 +20,18 @@
             </svg>
         </button>
 
-        <button class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        
-        <ul class="nav-menu" id="nav-menu">
-            <li><a href="index.html">Beranda</a></li>
-            <li><a href="berita.html">Berita</a></li>
-            <li><a href="anggota.html">Anggota</a></li> 
-            <li><a href="suara.html">Suara Smaga</a></li>
-        </ul>
+        <div class="nav-wrapper">
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="berita.html">Berita</a></li>
+                <li><a href="anggota.html">Anggota</a></li> <li><a href="suara.html">Suara Smaga</a></li>
+            </ul>
+        </div>
     </div>
 
     <audio id="bgMusic" loop>
@@ -147,7 +131,7 @@
     <script src="script.js"></script>
 
     <script>
-        // Logika Preloader
+        // Logika Preloader asli
         window.addEventListener('load', function() {
             const loader = document.getElementById('loader-wrapper');
             if(loader) {
@@ -157,33 +141,16 @@
             }
         });
 
-        // Logika Hamburger (Memastikan event listener terpasang dengan benar)
+        // Logika Hamburger (Jika belum ada di script.js)
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('nav-menu');
 
         if (hamburger) {
-            hamburger.addEventListener('click', function(e) {
-                e.stopPropagation(); // Mencegah bubbling
+            hamburger.addEventListener('click', () => {
                 hamburger.classList.toggle('active');
                 navMenu.classList.toggle('active');
             });
         }
-
-        // Logika FAQ (Menambahkan fungsi klik agar FAQ bisa terbuka)
-        document.querySelectorAll('.faq-question').forEach(button => {
-            button.addEventListener('click', () => {
-                const faqItem = button.parentElement;
-                faqItem.classList.toggle('active');
-            });
-        });
-
-        // Logika Tutup Menu saat klik di luar
-        document.addEventListener('click', (e) => {
-            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            }
-        });
     </script>
 </body>
 </html>
