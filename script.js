@@ -138,6 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- 5. LOGIKA KONTROL MUSIK (DIPERBARUI UNTUK IKON SILVER) ---
+    // Menggunakan window agar fungsi bisa dipanggil dari atribut onclick di HTML
     window.toggleMusic = function() {
         const music = document.getElementById('bgMusic');
         const btn = document.getElementById('musicToggle');
@@ -146,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!music) return;
 
-        // Atur volume agar tidak terlalu mengagetkan (0.0 sampai 1.0)
+        // Atur volume agar tidak terlalu mengagetkan
         music.volume = 0.4;
 
         if (music.paused) {
@@ -171,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 muteLine.style.stroke = '#C0C0C0'; 
             }
             
-            // Warna tetap Silver saat dimatikan sesuai permintaan
+            // Warna tetap Silver saat dimatikan
             btn.style.color = '#C0C0C0'; 
         }
     };
