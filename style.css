@@ -766,3 +766,36 @@ header {
 .page-anggota .hamburger span {
     background: var(--color-silver) !important;
 }
+
+/* ==========================================================================
+   KODE TAMBAHAN: MODIFIKASI MENU NAVIGASI KHUSUS HALAMAN SUARA (NAVY BLUE)
+   ========================================================================== */
+.page-suara .nav-menu {
+    /* Navy Blue Deep dengan Glassmorphism */
+    background: rgba(0, 0, 50, 0.95) !important; 
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    border: 1px solid rgba(100, 149, 237, 0.3) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7) !important;
+}
+
+.page-suara .nav-menu a {
+    color: #ffffff !important; /* Teks Putih */
+    /* Efek Glow Putih Menyala */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.4) !important;
+    font-weight: bold !important;
+    letter-spacing: 1.5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.page-suara .nav-menu a:hover {
+    background: rgba(100, 149, 237, 0.15) !important;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 35px rgba(255, 255, 255, 0.7) !important;
+    transform: translateX(8px);
+}
+
+.page-suara .hamburger span {
+    background: #ffffff !important;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
