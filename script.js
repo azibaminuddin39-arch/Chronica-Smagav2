@@ -59,6 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleButtons.forEach(btn => {
         btn.addEventListener('click', function() {
             const list = this.nextElementSibling; 
+            if (!list) return;
+
             list.classList.toggle('active');
             const isShowing = list.classList.contains('active');
             
@@ -137,8 +139,8 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     });
 
-    // --- 5. LOGIKA KONTROL MUSIK (DIPERBARUI UNTUK IKON SILVER) ---
-    // Menggunakan window agar fungsi bisa dipanggil dari atribut onclick di HTML
+    // --- 5. LOGIKA KONTROL MUSIK (GLOBAL FUNCTION) ---
+    // Dipindahkan ke window agar bisa diakses oleh atribut onclick="toggleMusic()" di HTML
     window.toggleMusic = function() {
         const music = document.getElementById('bgMusic');
         const btn = document.getElementById('musicToggle');
@@ -147,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!music) return;
 
-        // Atur volume agar tidak terlalu mengagetkan
+        // Atur volume (0.0 sampai 1.0)
         music.volume = 0.4;
 
         if (music.paused) {
@@ -159,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if(waves) waves.style.display = 'block';
             if(muteLine) muteLine.style.display = 'none';
             
-            // Warna tetap Silver saat menyala
+            // Warna Silver saat menyala
             btn.style.color = '#C0C0C0'; 
         } else {
             // SAAT MUSIK MUTE
@@ -168,7 +170,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if(waves) waves.style.display = 'none';
             if(muteLine) {
                 muteLine.style.display = 'block';
-                // Memastikan garis coret berwarna Silver
                 muteLine.style.stroke = '#C0C0C0'; 
             }
             
