@@ -1,5 +1,5 @@
 /* CHRONICA - Jurnalistik SMAN 3 Banjarbaru
-   Core Scripting
+   Core Scripting - Full Integrated
 */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -21,16 +21,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 3000);
     }
 
-    // --- 1. LOGIKA NAVIGASI HAMBURGER ---
+    // --- 1. LOGIKA NAVIGASI HAMBURGER (PERBAIKAN FINAL) ---
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
 
     if (hamburger && navMenu) {
+        // Fungsi klik utama
         hamburger.addEventListener('click', (e) => {
             e.stopPropagation();
             navMenu.classList.toggle('active');
             hamburger.classList.toggle('active'); 
             hamburger.classList.toggle('is-active');
+            console.log("Hamburger Menu Toggled"); // Untuk debugging
         });
 
         // Klik di luar menu untuk menutup
@@ -42,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Tutup menu saat link diklik
+        // Tutup menu saat link diklik agar scroll lancar
         const navLinks = document.querySelectorAll('.nav-menu a');
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
@@ -64,6 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
             list.classList.toggle('active');
             const isShowing = list.classList.contains('active');
             
+            // Menggunakan class active dari CSS lebih baik daripada inline style
             if (isShowing) {
                 list.style.display = 'block';
             } else {
@@ -140,7 +143,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- 5. LOGIKA KONTROL MUSIK (GLOBAL FUNCTION) ---
-    // Dipindahkan ke window agar bisa diakses oleh atribut onclick="toggleMusic()" di HTML
     window.toggleMusic = function() {
         const music = document.getElementById('bgMusic');
         const btn = document.getElementById('musicToggle');
@@ -149,20 +151,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!music) return;
 
-        // Atur volume (0.0 sampai 1.0)
+        // Atur volume standar
         music.volume = 0.4;
 
         if (music.paused) {
             // SAAT MUSIK BERJALAN
-            music.play().catch(err => {
+            music.play().then(() => {
+                btn.classList.add('playing');
+                if(waves) waves.style.display = 'block';
+                if(muteLine) muteLine.style.display = 'none';
+                btn.style.color = '#C0C0C0'; 
+            }).catch(err => {
                 console.log("Autoplay diblokir oleh browser.");
             });
-            btn.classList.add('playing');
-            if(waves) waves.style.display = 'block';
-            if(muteLine) muteLine.style.display = 'none';
-            
-            // Warna Silver saat menyala
-            btn.style.color = '#C0C0C0'; 
         } else {
             // SAAT MUSIK MUTE
             music.pause();
@@ -172,8 +173,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 muteLine.style.display = 'block';
                 muteLine.style.stroke = '#C0C0C0'; 
             }
-            
-            // Warna tetap Silver saat dimatikan
             btn.style.color = '#C0C0C0'; 
         }
     };
