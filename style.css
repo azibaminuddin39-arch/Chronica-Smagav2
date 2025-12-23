@@ -733,3 +733,29 @@ header {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 1) !important;
     font-weight: 600 !important;
 }
+
+/* ==========================================================================
+   KODE TAMBAHAN: MODIFIKASI MENU NAVIGASI KHUSUS HALAMAN ANGGOTA
+   ========================================================================== */
+.page-anggota .nav-menu {
+    background: rgba(192, 192, 192, 0.95) !important; /* Latar Belakang Silver */
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    box-shadow: 0 0 20px rgba(192, 192, 192, 0.5) !important;
+}
+
+.page-anggota .nav-menu a {
+    color: #ffffff !important; /* Teks Berwarna Putih */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.4) !important; /* Efek Glow Putih */
+    font-weight: bold !important;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.page-anggota .nav-menu a:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 0.6) !important;
+    transform: translateX(5px);
+}
