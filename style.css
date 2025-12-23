@@ -735,27 +735,34 @@ header {
 }
 
 /* ==========================================================================
-   KODE TAMBAHAN: MODIFIKASI MENU NAVIGASI KHUSUS HALAMAN ANGGOTA
+   KODE TAMBAHAN: MODIFIKASI MENU NAVIGASI KHUSUS HALAMAN ANGGOTA (DARK SILVER)
    ========================================================================== */
 .page-anggota .nav-menu {
-    background: rgba(192, 192, 192, 0.95) !important; /* Latar Belakang Silver */
+    /* Menggunakan Silver yang jauh lebih gelap (Dark Charcoal Silver) untuk kontras teks putih */
+    background: rgba(40, 40, 40, 0.95) !important; 
     backdrop-filter: blur(20px) saturate(180%) !important;
     -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
-    border: 1px solid rgba(255, 255, 255, 0.5) !important;
-    box-shadow: 0 0 20px rgba(192, 192, 192, 0.5) !important;
+    border: 1px solid rgba(192, 192, 192, 0.3) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8) !important;
 }
 
 .page-anggota .nav-menu a {
-    color: #ffffff !important; /* Teks Berwarna Putih */
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.4) !important; /* Efek Glow Putih */
+    color: #ffffff !important; /* Teks Putih */
+    /* Efek Glow Putih menyala */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.4) !important;
     font-weight: bold !important;
-    letter-spacing: 1px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    letter-spacing: 1.5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
 }
 
 .page-anggota .nav-menu a:hover {
-    background: rgba(255, 255, 255, 0.2) !important;
+    background: rgba(192, 192, 192, 0.1) !important;
     text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 0.6) !important;
-    transform: translateX(5px);
+    transform: translateX(8px);
+}
+
+/* Memastikan ikon hamburger di halaman anggota tetap terlihat elegan */
+.page-anggota .hamburger span {
+    background: var(--color-silver) !important;
 }
