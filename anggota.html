@@ -171,6 +171,35 @@
 </head>
 <body class="page-anggota">
 
+    <div class="nav-container">
+        <button id="musicToggle" class="music-btn" onclick="toggleMusic()" aria-label="Toggle Music">
+            <div id="speakerIcon" class="speaker-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11 5L6 9H2V15H6L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                    <path id="soundWaves" d="M15.54 8.46C16.4774 9.39764 17.004 10.6692 17.004 11.995C17.004 13.3208 16.4774 14.5924 15.54 15.53M19.07 4.93C20.9447 6.80528 21.9979 9.34836 21.9979 12C21.9979 14.6516 20.9447 17.1947 19.07 19.07" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path id="muteLine" d="M3 3L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display: none;"/>
+                </svg>
+            </div>
+        </button>
+
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="berita.html">Berita</a></li>
+            <li><a href="anggota.html">Anggota Divisi</a></li>
+            <li><a href="suara.html">Suara SMAGA & FAQ</a></li> 
+        </ul>
+    </div>
+
+    <audio id="bgMusic" loop>
+        <source src="bg-music.mp3" type="audio/mpeg">
+    </audio>
+
     <header>
         <div class="header-brand-wrapper" style="display: flex; align-items: center; justify-content: center;">
             <a href="index.html" style="color: white; font-size: 1.5rem; margin-right: 20px; text-decoration: none;">
@@ -375,11 +404,12 @@
         </div>
     </div>
 
+    <script src="script.js"></script>
     <script>
+        // Logika Modal Asli
         function openModal(name, job, img) {
             document.getElementById('modalName').innerText = name;
             document.getElementById('modalJob').innerText = job;
-            // Menambahkan img/ agar mengambil dari folder foto
             document.getElementById('modalImg').src = 'img/' + img;
             document.getElementById('memberModal').style.display = 'flex';
             document.body.style.overflow = 'hidden'; 
@@ -391,6 +421,35 @@
         window.onclick = function(event) {
             let modal = document.getElementById('memberModal');
             if (event.target == modal) { closeModal(); }
+        }
+
+        // Logika Hamburger (Baru)
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+        }
+
+        // Logika Music Toggle (Baru)
+        function toggleMusic() {
+            const music = document.getElementById('bgMusic');
+            const btn = document.getElementById('musicToggle');
+            const waves = document.getElementById('soundWaves');
+            const muteLine = document.getElementById('muteLine');
+
+            if (music.paused) {
+                music.play().catch(e => console.log("Audio play diblokir"));
+                waves.style.display = 'block';
+                muteLine.style.display = 'none';
+            } else {
+                music.pause();
+                waves.style.display = 'none';
+                muteLine.style.display = 'block';
+            }
         }
     </script>
 </body>
