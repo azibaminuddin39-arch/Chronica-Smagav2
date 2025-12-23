@@ -800,4 +800,74 @@ header {
     box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
 }
 
-tambahkan code CSS tersebut ke dalam code yang asli ini, tanpa mengganti satupun yang asli
+/* ==========================================================================
+   OPTIMASI NAVIGASI MOBILE: FLOATING UI (NON-DESKTOP ONLY)
+   Fokus: Aksesibilitas Jempol & Menghindari Tabrakan FAB Sosmed
+   ========================================================================== */
+@media (max-width: 850px) {
+    /* 1. Wadah Navigasi: Dipindah ke kanan bawah, di atas tombol Instagram */
+    .nav-container {
+        position: fixed !important;
+        top: auto !important;
+        right: 25px !important;
+        /* Ditempatkan di atas Instagram (95px) + Ukuran tombol (55px) + Jarak (15px) */
+        bottom: 165px !important; 
+        left: auto !important;
+        z-index: 5000 !important;
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* 2. Tombol Hamburger: Menjadi Lingkaran (Floating Action Button) */
+    .hamburger {
+        background: var(--color-maroon) !important;
+        border: 2px solid var(--color-silver) !important;
+        width: 55px !important;
+        height: 55px !important;
+        border-radius: 50% !important;
+        padding: 0 !important; /* Reset padding untuk alignment center */
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 4px !important; /* Jarak antar garis lebih rapat agar pas di lingkaran */
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6) !important;
+        transition: all 0.3s ease;
+    }
+
+    /* Menyesuaikan ukuran garis di dalam lingkaran */
+    .hamburger span {
+        width: 25px !important;
+        height: 3px !important;
+        margin: 0 !important;
+    }
+
+    /* Animasi Silang (X) tetap proporsional di dalam lingkaran */
+    .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* 3. Overlay Menu: Muncul Mengarah ke ATAS (Pop-up) */
+    .nav-menu {
+        position: absolute !important;
+        bottom: 70px !important; /* Jarak dari tombol ke kotak menu */
+        top: auto !important;
+        right: 0 !important;
+        min-width: 200px !important;
+        transform: translateY(20px) !important; /* Animasi muncul dari bawah */
+        box-shadow: 0 -10px 30px rgba(0,0,0,0.8) !important; /* Shadow mengarah ke bawah */
+    }
+
+    .nav-menu.active {
+        display: flex !important;
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+    }
+
+    /* Efek saat tombol ditekan agar terasa responsif */
+    .hamburger:active {
+        transform: scale(0.9);
+        background: #800000 !important;
+    }
+}
