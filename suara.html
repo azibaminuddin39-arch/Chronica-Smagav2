@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suara SMAGA - CHRONICA</title>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Playfair+Display:wght@700&display=swap');
 
-        /* --- TAMBAHAN STYLE UNTUK PENATAAN ULANG --- */
-        
         .header-brand-wrapper {
             display: flex;
             flex-direction: column;
@@ -26,8 +26,6 @@
             font-size: 2.2rem;
             transition: all 0.3s ease;
             text-decoration: none;
-            pointer-events: auto !important;
-            z-index: 10;
         }
 
         .back-link:hover {
@@ -35,12 +33,12 @@
             transform: scale(1.1);
         }
 
-        /* Perbaikan FAQ agar jawaban bisa terbuka */
+        /* FAQ aman */
         .faq-item.active .faq-answer {
-            max-height: 800px !important; /* Ukuran lebih besar agar teks tidak terpotong */
+            max-height: 800px;
             padding: 15px 20px;
             opacity: 1;
-            display: block !important;
+            display: block;
         }
 
         .faq-answer {
@@ -49,43 +47,40 @@
             transition: all 0.4s ease;
             opacity: 0;
         }
-
-        /* Menjamin area klik pada perangkat mobile */
-        .nav-container { pointer-events: none; }
-        .music-btn, .hamburger, .nav-menu, .back-link, .faq-question, .btn-suara { 
-            pointer-events: auto !important; 
-        }
     </style>
 </head>
+
 <body class="page-suara">
 
+    <!-- NAVIGATION -->
     <div class="nav-container">
         <button id="musicToggle" class="music-btn" onclick="toggleMusic()">
             <svg viewBox="0 0 24 24">
-                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
-                <line id="muteLine" x1="1" y1="1" x2="23" y2="23" stroke="#C0C0C0" stroke-width="2" style="display:none;"></line>
+                <path d="M3 9v6h4l5 5V4L7 9H3z"/>
+                <line id="muteLine" x1="1" y1="1" x2="23" y2="23"
+                      stroke="#C0C0C0" stroke-width="2" style="display:none;" />
             </svg>
         </button>
 
         <div class="nav-wrapper">
             <button class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </button>
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="index.html">Beranda</a></li>
                 <li><a href="berita.html">Berita</a></li>
-                <li><a href="anggota.html">Anggota</a></li> 
+                <li><a href="anggota.html">Anggota</a></li>
                 <li><a href="suara.html">Suara Smaga</a></li>
             </ul>
         </div>
     </div>
 
+    <!-- AUDIO -->
     <audio id="bgMusic" loop>
         <source src="bg-music.mp3" type="audio/mpeg">
     </audio>
 
+    <!-- LOADER -->
     <div id="loader-wrapper">
         <div class="loader-content">
             <div class="loader-logo">
@@ -96,12 +91,12 @@
         </div>
     </div>
 
+    <!-- HEADER -->
     <header>
         <div class="header-brand-wrapper">
             <a href="index.html" class="back-link">
                 <i class="fas fa-home"></i>
             </a>
-            
             <div class="text-container">
                 <h1>SUARA SMAGA</h1>
                 <p>Aspirasi & Pertanyaan Umum</p>
@@ -109,130 +104,71 @@
         </div>
     </header>
 
+    <!-- CONTENT -->
     <main>
-        <section id="suara-smaga" class="suara-section">
-            <div class="suara-content">
-                <i class="fas fa-bullhorn suara-icon"></i>
-                <h2>Kritik & Saran</h2>
-                <p>Suara Anda adalah energi kami. Sampaikan kritik, saran, atau ide secara anonim untuk CHRONICA yang lebih baik.</p>
-                <div class="suara-footer">
-                    <a href="https://forms.gle/89w5K1VCMqdtepg59" target="_blank" class="btn-suara">
-                        <span>KRITIK & SARAN</span>
-                        <i class="fas fa-paper-plane"></i>
-                    </a>
-                </div>
-            </div>
+        <section class="suara-section">
+            <i class="fas fa-bullhorn suara-icon"></i>
+            <h2>Kritik & Saran</h2>
+            <p>Sampaikan kritik, saran, atau ide secara anonim.</p>
+            <a href="https://forms.gle/89w5K1VCMqdtepg59" target="_blank" class="btn-suara">
+                KRITIK & SARAN <i class="fas fa-paper-plane"></i>
+            </a>
         </section>
 
-        <section id="faq-section" class="faq-section">
+        <section class="faq-section">
             <h2>Frequently Asked Questions</h2>
-            <div class="faq-container">
-                <div class="faq-item">
-                    <button class="faq-question">Apa itu CHRONICA SMAGA? <i class="fas fa-chevron-down"></i></button>
-                    <div class="faq-answer">
-                        <p>CHRONICA adalah organisasi jurnalistik di SMA Negeri 3 yang berfokus pada peliputan berita, dokumentasi sekolah, dan pengembangan konten kreatif.</p>
-                    </div>
-                </div>
 
-                <div class="faq-item">
-                    <button class="faq-question">Apa saja divisi yang ada di CHRONICA? <i class="fas fa-chevron-down"></i></button>
-                    <div class="faq-answer">
-                        <p>Terdapat 7 divisi utama yaitu: Fotografi, Penulis, Desain, Editing, Videografi, Reporter, dan Ide Kreatif yang bekerja secara kolaboratif.</p>
-                    </div>
-                </div>
+            <div class="faq-item">
+                <button class="faq-question">Apa itu CHRONICA? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-answer"><p>Organisasi jurnalistik SMAN 3.</p></div>
+            </div>
 
-                <div class="faq-item">
-                    <button class="faq-question">Bagaimana cara mengirim karya? <i class="fas fa-chevron-down"></i></button>
-                    <div class="faq-answer">
-                        <p>Anda bisa mengirimkan karya berupa tulisan, foto, atau video melalui DM Instagram kami atau menghubungi divisi redaksi.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">Apakah identitas saya aman? <i class="fas fa-chevron-down"></i></button>
-                    <div class="faq-answer">
-                        <p>Sangat aman. Google Form kami diatur untuk tidak merekam email atau nama Anda kecuali Anda memberikannya secara sukarela.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">Kapan pendaftaran anggota baru dibuka? <i class="fas fa-chevron-down"></i></button>
-                    <div class="faq-answer">
-                        <p>Pendaftaran biasanya dibuka pada awal semester baru atau saat masa pengenalan lingkungan sekolah (MPLS). Pantau Instagram kami untuk update terbaru.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">Apakah boleh bergabung jika belum ahli dalam satu bidang? <i class="fas fa-chevron-down"></i></button>
-                    <div class="faq-answer">
-                        <p>Tentu saja! CHRONICA adalah wadah belajar bersama. Kami mengadakan sesi pelatihan internal untuk mengasah kemampuan anggota baru.</p>
-                    </div>
-                </div>
+            <div class="faq-item">
+                <button class="faq-question">Apakah identitas aman? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-answer"><p>Ya, anonim & aman.</p></div>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 CHRONICA Jurnalistik SMAN 3 Banjarbaru.</p>
+        <p>&copy; 2025 CHRONICA Jurnalistik SMAN 3 Banjarbaru</p>
     </footer>
 
     <script src="script.js"></script>
 
     <script>
-        // Logika Preloader asli
-        window.addEventListener('load', function() {
+        window.addEventListener('load', () => {
             const loader = document.getElementById('loader-wrapper');
-            if(loader) {
-                setTimeout(() => {
-                    loader.classList.add('fade-out');
-                }, 1000);
-            }
+            setTimeout(() => loader.classList.add('fade-out'), 1000);
         });
 
-        // Menjalankan logika interaksi setelah DOM siap sepenuhnya
-        document.addEventListener('DOMContentLoaded', function() {
-            
-            // 1. Logika Hamburger (Navigasi)
+        document.addEventListener('DOMContentLoaded', () => {
             const hamburger = document.getElementById('hamburger');
             const navMenu = document.getElementById('nav-menu');
 
-            if (hamburger && navMenu) {
-                hamburger.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    this.classList.toggle('active');
-                    navMenu.classList.toggle('active');
-                });
-            }
+            hamburger.onclick = e => {
+                e.stopPropagation();
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            };
 
-            // 2. Logika FAQ
-            const faqQuestions = document.querySelectorAll('.faq-question');
-            faqQuestions.forEach(button => {
-                button.addEventListener('click', function() {
-                    const faqItem = this.parentElement;
-                    faqItem.classList.toggle('active');
-                });
+            document.querySelectorAll('.faq-question').forEach(btn => {
+                btn.onclick = () => btn.parentElement.classList.toggle('active');
             });
 
-            // Tutup menu jika klik di luar area navigasi
-            document.addEventListener('click', function(e) {
-                if (hamburger && !hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+            document.onclick = e => {
+                if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
                     hamburger.classList.remove('active');
                     navMenu.classList.remove('active');
                 }
-            });
+            };
         });
 
-        // 3. Logika Musik
         function toggleMusic() {
             const music = document.getElementById('bgMusic');
             const muteLine = document.getElementById('muteLine');
-            if (music.paused) {
-                music.play().catch(e => console.log("Audio play blocked"));
-                muteLine.style.display = 'none';
-            } else {
-                music.pause();
-                muteLine.style.display = 'block';
-            }
+            music.paused ? (music.play(), muteLine.style.display = 'none')
+                         : (music.pause(), muteLine.style.display = 'block');
         }
     </script>
 </body>
