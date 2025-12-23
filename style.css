@@ -871,3 +871,22 @@ header {
         background: #800000 !important;
     }
 }
+
+/* ==========================================================================
+   KHUSUS HALAMAN SUARA: NAVY DARK THEME UNTUK FLOATING HAMBURGER
+   Garis (3) dan Silang (X) tetap Putih Glow
+   ========================================================================== */
+.page-suara .hamburger {
+    background: #000032 !important; /* Navy Gelap */
+    border: 2px solid #ffffff !important; /* Border Putih agar garis menyatu */
+    box-shadow: 0 0 15px rgba(0, 0, 50, 0.5), 0 6px 15px rgba(0, 0, 0, 0.6) !important;
+}
+
+.page-suara .hamburger span {
+    background: #ffffff !important; /* Garis Putih */
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8) !important; /* Efek menyala */
+}
+
+.page-suara .hamburger:active {
+    background: #000050 !important; /* Navy sedikit lebih terang saat klik */
+}
