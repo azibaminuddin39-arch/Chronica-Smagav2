@@ -2,7 +2,7 @@
    BAGIAN 2: KODE SCRIPT JS (LOGIKA PERINTAH)
    ========================================== */
 
-// --- LOGIKA LOADER (DARI KODE ASLI ANDA) ---
+// --- LOGIKA LOADER (DARI KODE ASLI ANDA - TETAP UTUH) ---
 window.addEventListener('load', function() {
     // Menangkap elemen loader
     const loader = document.getElementById('loader-wrapper');
@@ -24,7 +24,7 @@ window.addEventListener('load', function() {
 // --- LOGIKA INTERAKSI (DOM CONTENT LOADED) ---
 document.addEventListener('DOMContentLoaded', function() {
     
-    // 1. LOGIKA ASLI ANDA: Hamburger Menu
+    // 1. LOGIKA ASLI ANDA: Hamburger Menu (TETAP UTUH TANPA PERUBAHAN)
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
 
@@ -35,8 +35,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 2. LOGIKA BARU: Aktivasi Tombol FAQ
-    // Agar pertanyaan FAQ bisa diklik dan memunculkan jawaban
+    /* --- MULAI TAMBAHAN: LOGIKA TOMBOL FAQ & LIHAT ANGGOTA --- */
+
+    // 2. Aktivasi Tombol FAQ (Accordion)
     const faqQuestions = document.querySelectorAll('.faq-question');
     
     faqQuestions.forEach(question => {
@@ -58,8 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // 3. LOGIKA BARU: Aktivasi Tombol "Lihat Anggota"
-    // Agar daftar anggota bisa muncul saat tombol diklik
+    // 3. Aktivasi Tombol "Lihat Anggota"
     const btnAnggota = document.querySelectorAll('.lihat-anggota-btn');
 
     btnAnggota.forEach(btn => {
@@ -81,4 +81,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    /* --- SELESAI TAMBAHAN --- */
 });
