@@ -247,14 +247,17 @@ header {
 }
 
 /* ==========================================
-   NAVIGASI & HAMBURGER (BAGIAN PERBAIKAN)
+   NAVIGASI & HAMBURGER (BAGIAN PERBAIKAN POSISI)
    ========================================== */
 .nav-container { 
     position: absolute; 
     top: 25px; 
     right: 25px; 
     z-index: 5000; 
-    pointer-events: auto !important; /* DIPERBAIKI: Agar area navigasi bisa diklik */
+    pointer-events: auto !important; 
+    /* NAV-CONTAINER SEKARANG HANYA UNTUK AREA KANAN */
+    display: flex !important;
+    align-items: center !important;
 }
 
 .hamburger { 
@@ -266,7 +269,7 @@ header {
     cursor: pointer; 
     outline: none; 
     z-index: 10000 !important;
-    pointer-events: auto !important; /* DIPERBAIKI: Agar tombol hamburger bisa diklik */
+    pointer-events: auto !important;
 }
 
 .hamburger span { width: 35px; height: 4px; background: var(--color-silver); border-radius: 2px; transition: 0.3s ease; }
@@ -306,6 +309,32 @@ header {
 }
 
 .nav-menu a { color: white; text-decoration: none; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.1); transition: 0.2s; }
+
+/* ==========================================
+   PERBAIKAN MEGAPHONE & MUSIK (PINDAH KE KIRI)
+   ========================================== */
+.music-btn {
+    /* MENGGUNAKAN FIXED/ABSOLUTE AGAR LEPAS DARI CONTAINER KANAN */
+    position: absolute !important;
+    top: 25px !important;
+    left: 25px !important; /* INI KUNCI AGAR KE KIRI */
+    background: rgba(0, 0, 0, 0.4);
+    border: 2px solid var(--color-silver);
+    color: var(--color-silver);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+    z-index: 6000 !important;
+    pointer-events: auto !important;
+}
+
+.music-btn svg { width: 22px; height: 22px; fill: currentColor; }
 
 /* ==========================================
    MAIN SECTIONS
@@ -456,6 +485,15 @@ h2 {
         right: 20px !important; 
         z-index: 5000 !important;
         pointer-events: auto !important;
+        /* FLEX MOBILE SEKARANG HANYA UNTUK AREA KANAN */
+        display: flex !important;
+    }
+
+    .music-btn {
+        top: 20px !important;
+        left: 20px !important; /* TETAP DI KIRI PADA MOBILE */
+        width: 40px !important;
+        height: 40px !important;
     }
 
     section:first-of-type { margin-top: -45px; }
@@ -675,6 +713,10 @@ header {
         padding: 8px !important;
         border-radius: 5px !important;
         pointer-events: auto !important;
+        /* HAPUS POSITION FIXED AGAR TIDAK LEPAS DARI CONTAINER */
+        position: relative !important;
+        top: auto !important;
+        right: auto !important;
     }
 
     .nav-menu {
@@ -693,46 +735,11 @@ header {
     .nav-menu.active {
         display: flex !important;
     }
-
-    .hamburger.active {
-        position: fixed !important; 
-        top: 20px !important;
-        right: 20px !important;
-    }
 }
 
 /* ==========================================================================
    PERBAIKAN MEGAPHONE & MUSIK (DIPERBAIKI POINTER EVENTS)
    ========================================================================== */
-.music-btn, .hamburger, .nav-menu {
-    pointer-events: auto !important;
-}
-
-.music-btn {
-    background: rgba(0, 0, 0, 0.4);
-    border: 2px solid var(--color-silver);
-    color: var(--color-silver);
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    outline: none;
-    pointer-events: auto !important;
-}
-
-.music-btn svg { width: 22px; height: 22px; fill: currentColor; }
-
-@media (max-width: 850px) {
-    .music-btn {
-        width: 40px;
-        height: 40px;
-    }
-}
-
 .suara-icon {
     font-size: 5rem !important; 
     color: var(--color-silver); 
