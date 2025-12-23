@@ -698,3 +698,42 @@ header::after {
 .music-btn {
     z-index: 100000 !important;
 }
+
+/* =================================================
+   FINAL FIX – PAGE SUARA (KLIK 100% AMAN)
+   ================================================= */
+
+/* Header & overlay TIDAK BOLEH nangkap klik */
+header,
+header::before,
+header::after {
+    pointer-events: none !important;
+}
+
+/* Aktifkan kembali SEMUA elemen interaktif */
+.nav-container,
+.nav-wrapper,
+.hamburger,
+.hamburger span,
+.nav-menu,
+.nav-menu *,
+.music-btn,
+.music-btn *,
+.back-link,
+.back-link *,
+.faq-question,
+.faq-question *,
+.btn-suara {
+    pointer-events: auto !important;
+}
+
+/* Pastikan layer navigasi di atas segalanya */
+.nav-container {
+    position: fixed !important;
+    z-index: 100000 !important;
+}
+
+.hamburger { z-index: 100001 !important; }
+.nav-menu { z-index: 100002 !important; }
+.music-btn { z-index: 100001 !important; }
+.back-link { z-index: 100001 !important; }
