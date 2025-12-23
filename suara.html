@@ -136,6 +136,26 @@
 
     <script src="script.js"></script>
 
+    <script>
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader-wrapper');
+            setTimeout(() => loader.classList.add('fade-out'), 1000);
+        });
+
+            };
+
+            document.querySelectorAll('.faq-question').forEach(btn => {
+                btn.onclick = () => btn.parentElement.classList.toggle('active');
+            });
+
+            document.onclick = e => {
+                if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }
+            };
+        });
+
         function toggleMusic() {
             const music = document.getElementById('bgMusic');
             const muteLine = document.getElementById('muteLine');
