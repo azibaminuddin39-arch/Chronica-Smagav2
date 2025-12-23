@@ -9,25 +9,51 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Playfair+Display:wght@700&display=swap');
 
-        /* --- TAMBAHAN CODE UNTUK PERBAIKAN TAMPILAN TANPA MENGGANTI YANG ASLI --- */
-        .back-link {
-            position: absolute;
-            top: 25px;
-            left: 25px;
-            z-index: 1000; /* Memastikan ikon rumah berada di lapisan paling atas */
-            color: #C0C0C0;
-            font-size: 1.5rem;
-            pointer-events: auto !important; /* Memastikan bisa diklik */
+        /* --- TAMBAHAN STYLE UNTUK PENATAAN ULANG --- */
+        
+        /* Memposisikan Header secara vertikal agar ikon rumah di tengah atas */
+        .header-brand-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
         }
 
-        .faq-item.active .faq-answer {
-            max-height: 500px !important; /* Memastikan jawaban muncul saat class active aktif */
-            padding: 15px 20px;
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px; /* Jarak antara ikon dan teks */
+            color: #C0C0C0;
+            font-size: 2.2rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            pointer-events: auto !important;
         }
-        
-        /* Memastikan navigasi tidak menutupi klik elemen di bawahnya */
+
+        .back-link:hover {
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* Perbaikan FAQ agar jawaban bisa terbuka */
+        .faq-item.active .faq-answer {
+            max-height: 500px !important;
+            padding: 15px 20px;
+            opacity: 1;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            opacity: 0;
+        }
+
+        /* Menjamin area klik pada perangkat mobile */
         .nav-container { pointer-events: none; }
-        .music-btn, .hamburger, .nav-menu, .back-link, .faq-question { pointer-events: auto; }
+        .music-btn, .hamburger, .nav-menu, .back-link, .faq-question, .btn-suara { 
+            pointer-events: auto !important; 
+        }
     </style>
 </head>
 <body class="page-suara">
@@ -161,7 +187,7 @@
             }
         });
 
-        // Logika Hamburger (Jika belum ada di script.js)
+        // Logika Hamburger asli
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('nav-menu');
 
@@ -172,7 +198,7 @@
             });
         }
 
-        // --- TAMBAHAN LOGIKA UNTUK FAQ TANPA MENGGANTI YANG ASLI ---
+        // --- TAMBAHAN LOGIKA UNTUK FAQ AGAR BERFUNGSI ---
         document.querySelectorAll('.faq-question').forEach(button => {
             button.addEventListener('click', () => {
                 const faqItem = button.parentElement;
@@ -180,11 +206,12 @@
             });
         });
 
+        // Logika Musik
         function toggleMusic() {
             const music = document.getElementById('bgMusic');
             const muteLine = document.getElementById('muteLine');
             if (music.paused) {
-                music.play();
+                music.play().catch(e => console.log("Audio play blocked"));
                 muteLine.style.display = 'none';
             } else {
                 music.pause();
