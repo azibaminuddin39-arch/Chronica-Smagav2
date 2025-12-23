@@ -1,5 +1,5 @@
 /* CHRONICA - Jurnalistik SMAN 3 Banjarbaru
-   Core Scripting - FULL VERSION
+   Core Scripting - FULL INTEGRATED VERSION
 */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -50,34 +50,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 2. LOGIKA TOGGLE ANGGOTA DIVISI (DIPERBAIKI AGAR PASTI TERBUKA) ---
+    // --- 2. LOGIKA TOGGLE ANGGOTA DIVISI (INTEGRASI BARU) ---
     const toggleButtons = document.querySelectorAll('.toggle-btn, .toggle-anggota');
     
     toggleButtons.forEach(btn => {
         btn.addEventListener('click', function() {
             const list = this.nextElementSibling; 
-            if (!list) return; // Keamanan jika elemen tidak ada
+            if (!list) return; 
 
             list.classList.toggle('active');
             const isShowing = list.classList.contains('active');
             
-            // Pastikan perubahan display terjadi
+            // Logika Display & Style Tombol
             if (isShowing) {
                 list.style.display = 'block';
-                list.style.maxHeight = '1000px'; // Memberi ruang agar terlihat
-            } else {
-                list.style.display = 'none';
-                list.style.maxHeight = '0';
-            }
-            
-            this.textContent = isShowing ? 'Sembunyikan Anggota' : 'Lihat Anggota';
-            
-            // Perubahan style tombol
-            if (isShowing) {
+                list.style.maxHeight = '1000px'; 
+                this.textContent = 'Sembunyikan Anggota';
                 this.style.backgroundColor = '#C0C0C0';
                 this.style.color = '#000000';
                 this.style.borderColor = '#600000';
             } else {
+                list.style.display = 'none';
+                list.style.maxHeight = '0';
+                this.textContent = 'Lihat Anggota';
                 this.style.backgroundColor = '#600000';
                 this.style.color = '#ffffff';
                 this.style.borderColor = '#C0C0C0';
@@ -119,25 +114,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- 4. LOGIKA FAQ ACCORDION (DIPERBAIKI) ---
+    // --- 4. LOGIKA FAQ ACCORDION (INTEGRASI BARU) ---
     const faqQuestions = document.querySelectorAll('.faq-question');
     
     faqQuestions.forEach(question => {
         question.onclick = function(e) {
             e.preventDefault(); 
             const faqItem = this.parentElement;
-            
-            // Toggle class active pada item yang diklik
             const isActive = faqItem.classList.contains('active');
             
-            // Tutup semua FAQ lain
+            // Tutup semua FAQ lain sebelum membuka yang baru
             document.querySelectorAll('.faq-item').forEach(item => {
                 item.classList.remove('active');
                 const ans = item.querySelector('.faq-answer');
                 if (ans) ans.style.display = 'none';
             });
             
-            // Jika sebelumnya tidak aktif, sekarang buka
+            // Jika diklik dalam keadaan tertutup, maka buka
             if (!isActive) {
                 faqItem.classList.add('active');
                 const ans = faqItem.querySelector('.faq-answer');
