@@ -249,8 +249,23 @@ header {
 /* ==========================================
    NAVIGASI & HAMBURGER
    ========================================== */
-.nav-container { position: absolute; top: 25px; right: 25px; z-index: 2000; }
-.hamburger { display: flex; flex-direction: column; gap: 6px; background: none; border: none; cursor: pointer; outline: none; }
+.nav-container { 
+    position: absolute; 
+    top: 25px; 
+    right: 25px; 
+    z-index: 5000; /* Dinaikkan agar di atas segalanya */
+    pointer-events: auto !important; /* DIPERBAIKI: Agar bisa diklik */
+}
+.hamburger { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 6px; 
+    background: none; 
+    border: none; 
+    cursor: pointer; 
+    outline: none; 
+    pointer-events: auto !important; /* DIPERBAIKI */
+}
 .hamburger span { width: 35px; height: 4px; background: var(--color-silver); border-radius: 2px; transition: 0.3s ease; }
 
 .hamburger.active span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
@@ -261,7 +276,7 @@ header {
     position: absolute; 
     top: 50px; 
     right: 0; 
-    background: rgba(60, 0, 0, 0.45) !important;
+    background: rgba(60, 0, 0, 0.9) !important; /* Dibuat lebih pekat agar terbaca */
     backdrop-filter: blur(20px) saturate(180%) !important;
     -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
     list-style: none; 
@@ -275,9 +290,10 @@ header {
     opacity: 0;
     transform: translateY(-10px);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: auto !important; /* DIPERBAIKI */
 }
 
-.nav-menu.active { display: flex; opacity: 1; transform: translateY(0); }
+.nav-menu.active { display: flex !important; opacity: 1; transform: translateY(0); }
 .nav-menu a { color: white; text-decoration: none; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.1); transition: 0.2s; }
 
 /* ==========================================
@@ -389,12 +405,11 @@ h2 {
         text-align: center !important;
     }
     
-    /* Layout Baris: Logo - Teks - Logo dipusatkan di tengah layar */
     .header-brand-wrapper { 
         display: flex !important;
         flex-direction: row !important; 
         align-items: center !important;
-        justify-content: center !important; /* Paksa ke Tengah */
+        justify-content: center !important;
         gap: 10px !important; 
         width: 100% !important;
         max-width: 100vw !important;
@@ -402,7 +417,7 @@ h2 {
     }
 
     .logo-mini { 
-        height: 60px !important; /* Menyesuaikan agar proporsional di tengah */
+        height: 60px !important; 
         width: auto !important;
         flex-shrink: 0 !important; 
         overflow: visible !important; 
@@ -416,7 +431,7 @@ h2 {
 
     .text-container { 
         padding: 8px 12px !important; 
-        flex: 0 1 auto !important; /* Ukuran mengikuti konten */
+        flex: 0 1 auto !important; 
         max-width: fit-content; 
         background: rgba(0, 0, 0, 0.4) !important;
     }
@@ -424,17 +439,16 @@ h2 {
     .text-container h1 { font-size: 1.2rem !important; margin: 0; }
     .text-container p { font-size: 0.55rem !important; }
 
-    /* Navigasi Hamburger tetap di ukuran aslinya di pojok kanan */
     .nav-container { 
         position: absolute !important;
         top: 20px !important; 
         right: 20px !important; 
         z-index: 5000 !important;
+        pointer-events: auto !important;
     }
 
     section:first-of-type { margin-top: -45px; }
     
-    /* Instagram tetap di atas Message pada mobile */
     .fab-instagram { right: 20px !important; bottom: 85px !important; }
     .fab-message { right: 20px !important; bottom: 20px !important; }
     
@@ -568,7 +582,6 @@ footer { padding: 30px; background: #0a0a0a; text-align: center; border-top: 1px
 /* ==========================================
    TAMBAHAN KHUSUS: BACKGROUND PAGES SPESIFIK
    ========================================== */
-/* Background untuk halaman suara.html */
 .page-suara header {
     background-image: 
         linear-gradient(to bottom, transparent 65%, var(--color-bg-main) 100%), 
@@ -578,7 +591,6 @@ footer { padding: 30px; background: #0a0a0a; text-align: center; border-top: 1px
     background-position: center;
 }
 
-/* Background untuk halaman berita.html */
 .page-berita header {
     background-image: 
         linear-gradient(to bottom, transparent 65%, var(--color-bg-main) 100%), 
@@ -591,8 +603,6 @@ footer { padding: 30px; background: #0a0a0a; text-align: center; border-top: 1px
 /* ==========================================================================
    KODE BARU: PERBAIKAN BLANK HITAM DI AREA GIF & VISI MISI (MOBILE & DESKTOP)
    ========================================================================== */
-
-/* Mengunci lebar global agar tidak ada elemen meluber ke kanan */
 html, body {
     width: 100%;
     margin: 0;
@@ -601,15 +611,12 @@ html, body {
     position: relative;
 }
 
-/* Memastikan area Header GIF tidak bocor lebar */
 header {
     max-width: 100vw !important;
     overflow: hidden;
 }
 
-/* Penyesuaian khusus Mobile untuk area transisi GIF ke Visi Misi */
 @media (max-width: 850px) {
-    /* Menghapus overflow pada kontainer branding */
     .header-brand-wrapper {
         width: 100%;
         max-width: 100vw;
@@ -617,7 +624,6 @@ header {
         padding: 0 10px;
     }
 
-    /* Memastikan Box Visi Misi tetap di dalam layar */
     section:first-of-type {
         margin-left: 10px !important;
         margin-right: 10px !important;
@@ -626,9 +632,8 @@ header {
         box-sizing: border-box !important;
     }
 
-    /* Memberi padding kanan agar teks tidak tertutup tombol FAB */
     section {
-        padding-right: 25px !important; /* Tambah jarak aman sisi kanan */
+        padding-right: 25px !important; 
     }
 }
 
@@ -636,7 +641,6 @@ header {
    FINAL FIX: LOGO TERPOTONG PADA MOBILE (BERDASARKAN SCREENSHOT)
    ========================================================================== */
 @media (max-width: 850px) {
-    /* Memperbaiki posisi Visi Misi agar sejajar dengan header baru */
     section:first-of-type {
         margin-top: -20px !important; 
         z-index: 100;
@@ -647,60 +651,48 @@ header {
    PERBAIKAN FINAL NAVIGASI NON-DESKTOP (FIXED OVERFLOW & POSITIONING)
    ========================================================================== */
 @media (max-width: 850px) {
-    /* Memastikan container navigasi tidak mepet ke pinggir layar hp */
     .nav-container {
         position: absolute !important;
-        top: 20px !important; /* Jarak dari atas diturunkan sedikit */
-        right: 20px !important; /* Jarak dari kanan diperbesar */
+        top: 20px !important; 
+        right: 20px !important; 
         z-index: 5000 !important;
+        pointer-events: auto !important;
     }
 
     .hamburger {
-        background: rgba(0, 0, 0, 0.2) !important; /* Background tipis agar terlihat */
+        background: rgba(0, 0, 0, 0.4) !important; 
         padding: 8px !important;
         border-radius: 5px !important;
+        pointer-events: auto !important;
     }
 
-    /* Memperbaiki Menu yang terpotong dan posisi 'X' */
     .nav-menu {
-        position: fixed !important; /* Menggunakan fixed agar tidak terpotong parent */
-        top: 80px !important; /* Memberi ruang agar tidak menabrak tombol X */
-        right: 20px !important; /* Mengikuti jarak aman kanan layar */
-        width: calc(100% - 40px) !important; /* Lebar maksimal dikurangi padding layar */
-        max-width: 220px !important; /* Batas lebar menu */
+        position: fixed !important; 
+        top: 80px !important; 
+        right: 20px !important; 
+        width: calc(100% - 40px) !important; 
+        max-width: 220px !important; 
         z-index: 5000 !important;
         display: none;
         flex-direction: column;
         box-shadow: 0 10px 30px rgba(0,0,0,0.8) !important;
+        pointer-events: auto !important;
     }
 
     .nav-menu.active {
         display: flex !important;
     }
 
-    /* Memastikan tombol Close (X) tetap terlihat jelas */
     .hamburger.active {
-        position: fixed !important; /* Mengunci tombol X agar tidak bergeser */
+        position: fixed !important; 
         top: 20px !important;
         right: 20px !important;
     }
 }
 
 /* ==========================================================================
-   KODE TAMBAHAN: FIX NAVIGASI & MUSIK DI HALAMAN SUARA.HTML
+   PERBAIKAN MEGAPHONE & MUSIK (DIPERBAIKI POINTER EVENTS)
    ========================================================================== */
-.nav-container {
-    position: absolute;
-    top: 25px;
-    left: 25px; 
-    right: 25px;
-    z-index: 9999 !important; 
-    display: flex;
-    align-items: center;
-    justify-content: space-between; 
-    pointer-events: none; 
-}
-
 .music-btn, .hamburger, .nav-menu {
     pointer-events: auto !important;
 }
@@ -718,32 +710,20 @@ header {
     cursor: pointer;
     transition: all 0.3s ease;
     outline: none;
+    pointer-events: auto !important;
 }
 
-.music-btn svg {
-    width: 22px;
-    height: 22px;
-    fill: currentColor;
-}
+.music-btn svg { width: 22px; height: 22px; fill: currentColor; }
 
 @media (max-width: 850px) {
-    .nav-container {
-        top: 20px !important;
-        left: 15px !important;
-        right: 15px !important;
-    }
-    
     .music-btn {
         width: 40px;
         height: 40px;
     }
 }
 
-/* ==========================================
-   PERBAIKAN UKURAN MEGAPHONE (SUARA.HTML)
-   ========================================== */
 .suara-icon {
-    font-size: 5rem !important; /* Diperbesar agar terlihat sangat jelas */
+    font-size: 5rem !important; 
     color: var(--color-silver); 
     margin-bottom: 25px;
     display: inline-block;
@@ -756,7 +736,6 @@ header {
     50% { transform: scale(1.1); opacity: 1; }
 }
 
-/* Penyesuaian ukuran untuk layar HP */
 @media (max-width: 850px) {
     .suara-icon {
         font-size: 4rem !important;
@@ -765,15 +744,10 @@ header {
 }
 
 /* ==========================================================================
-   SOLUSI FINAL: HEADER GIF & LATAR BELAKANG HITAM (HALAMAN ANGGOTA)
+   SOLUSI FINAL: HALAMAN ANGGOTA
    ========================================================================== */
+.page-anggota { background: #000000 !important; }
 
-/* 1. Paksa latar belakang dasar halaman Anggota menjadi Hitam Solid agar teks terbaca */
-.page-anggota {
-    background: #000000 !important;
-}
-
-/* 2. Pasang Background GIF HANYA di bagian Header (Atas) */
 .page-anggota header {
     background-image: 
         linear-gradient(to bottom, transparent 65%, #000000 100%), 
@@ -785,14 +759,12 @@ header {
     aspect-ratio: 16 / 9;
 }
 
-/* 3. Pastikan area konten (Main) tidak menggunakan GIF dan tetap Hitam */
 .page-anggota main {
     background: #000000 !important;
     min-height: 100vh;
     padding-top: 20px !important;
 }
 
-/* 4. Menjamin foto lingkaran tidak gepeng dan terisi penuh */
 .foto-container {
     border: 3px solid var(--color-silver) !important;
     box-shadow: 0 0 15px rgba(192, 192, 192, 0.4) !important;
@@ -807,7 +779,6 @@ header {
     display: block;
 }
 
-/* 5. Teks nama anggota memiliki bayangan agar tajam dan mudah dibaca */
 .anggota-card h3 {
     color: #ffffff !important;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 1) !important;
