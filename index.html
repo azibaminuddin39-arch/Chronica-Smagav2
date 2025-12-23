@@ -260,7 +260,7 @@
     <script src="script.js"></script>
 
     <script>
-        // Preloader Logic
+        // Preloader Logic ASLI
         window.addEventListener('load', function() {
             const loader = document.getElementById('loader-wrapper');
             setTimeout(() => {
@@ -268,7 +268,7 @@
             }, 1500); 
         });
 
-        // Music Toggle Logic
+        // Music Toggle Logic ASLI
         function toggleMusic() {
             const music = document.getElementById('bgMusic');
             const btn = document.getElementById('musicToggle');
@@ -288,6 +288,25 @@
                 muteLine.style.display = 'block';
                 btn.style.color = 'var(--color-maroon)';
             }
+        }
+
+        // JS TAMBAHAN UNTUK HAMBURGER
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+
+            // Menutup menu saat link diklik (agar scroll mulus ke section)
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
         }
     </script>
 </body>
