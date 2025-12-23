@@ -247,15 +247,16 @@ header {
 }
 
 /* ==========================================
-   NAVIGASI & HAMBURGER
+   NAVIGASI & HAMBURGER (BAGIAN PERBAIKAN)
    ========================================== */
 .nav-container { 
     position: absolute; 
     top: 25px; 
     right: 25px; 
-    z-index: 5000; /* Dinaikkan agar di atas segalanya */
-    pointer-events: auto !important; /* DIPERBAIKI: Agar bisa diklik */
+    z-index: 5000; 
+    pointer-events: auto !important; /* DIPERBAIKI: Agar area navigasi bisa diklik */
 }
+
 .hamburger { 
     display: flex; 
     flex-direction: column; 
@@ -264,8 +265,10 @@ header {
     border: none; 
     cursor: pointer; 
     outline: none; 
-    pointer-events: auto !important; /* DIPERBAIKI */
+    z-index: 10000 !important;
+    pointer-events: auto !important; /* DIPERBAIKI: Agar tombol hamburger bisa diklik */
 }
+
 .hamburger span { width: 35px; height: 4px; background: var(--color-silver); border-radius: 2px; transition: 0.3s ease; }
 
 .hamburger.active span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
@@ -276,24 +279,32 @@ header {
     position: absolute; 
     top: 50px; 
     right: 0; 
-    background: rgba(60, 0, 0, 0.9) !important; /* Dibuat lebih pekat agar terbaca */
+    background: rgba(60, 0, 0, 0.9) !important; 
     backdrop-filter: blur(20px) saturate(180%) !important;
     -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
     list-style: none; 
     padding: 15px; 
     border-radius: 12px; 
     border: 1px solid rgba(255, 255, 255, 0.1) !important; 
-    display: none; 
+    display: none; /* Default sembunyi */
     flex-direction: column; 
     min-width: 180px;
     box-shadow: 0 8px 32px rgba(0,0,0,0.6) !important;
     opacity: 0;
     transform: translateY(-10px);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    pointer-events: auto !important; /* DIPERBAIKI */
+    pointer-events: auto !important; 
 }
 
-.nav-menu.active { display: flex !important; opacity: 1; transform: translateY(0); }
+/* Paksa muncul saat class active dipicu JS */
+.nav-menu.active { 
+    display: flex !important; 
+    opacity: 1 !important; 
+    visibility: visible !important;
+    transform: translateY(0) !important;
+    z-index: 9999 !important;
+}
+
 .nav-menu a { color: white; text-decoration: none; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.1); transition: 0.2s; }
 
 /* ==========================================
