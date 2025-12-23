@@ -11,11 +11,11 @@
 
         /* Penambahan warna silver untuk Pengurus Inti dan Judul Divisi */
         #organisasi h3 {
-            color: #C0C0C0 !important; /* Warna silver untuk 'PENGURUS INTI' dan 'DIVISI JURNALISTIK' */
+            color: #C0C0C0 !important;
         }
 
         .divisi-box h4 {
-            color: #C0C0C0 !important; /* Warna silver untuk judul tiap divisi (Fotografi, Penulis, dll) */
+            color: #C0C0C0 !important;
         }
     </style>
 </head>
@@ -73,12 +73,10 @@
 
         <div class="header-brand-wrapper">
             <img src="Logo_1.png" alt="Logo Sekolah" class="logo-mini">
-            
             <div class="text-container">
                 <p class="welcome-text">Welcome to Website</p>
                 <h1 class="brand-name">CHRONICA</h1>
             </div>
-
             <img src="Logo_2.png" alt="Logo Organisasi" class="logo-mini">
         </div>
     </header>
@@ -260,15 +258,10 @@
     <script src="script.js"></script>
 
     <script>
-        // Preloader Logic ASLI
-        window.addEventListener('load', function() {
-            const loader = document.getElementById('loader-wrapper');
-            setTimeout(() => {
-                loader.classList.add('fade-out');
-            }, 1500); 
-        });
-
-        // Music Toggle Logic ASLI
+        /**
+         * LOGIKA MUSIK (KHUSUS)
+         * Dipisah di sini agar tidak mengganggu integrasi script.js 
+         */
         function toggleMusic() {
             const music = document.getElementById('bgMusic');
             const btn = document.getElementById('musicToggle');
@@ -280,33 +273,14 @@
                 btn.classList.add('playing');
                 waves.style.display = 'block';
                 muteLine.style.display = 'none';
-                btn.style.color = 'var(--color-silver)';
+                btn.style.color = '#C0C0C0'; // var(--color-silver)
             } else {
                 music.pause();
                 btn.classList.remove('playing');
                 waves.style.display = 'none';
                 muteLine.style.display = 'block';
-                btn.style.color = 'var(--color-maroon)';
+                btn.style.color = '#600000'; // var(--color-maroon)
             }
-        }
-
-        // JS TAMBAHAN UNTUK HAMBURGER
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('nav-menu');
-
-        if (hamburger) {
-            hamburger.addEventListener('click', () => {
-                hamburger.classList.toggle('active');
-                navMenu.classList.toggle('active');
-            });
-
-            // Menutup menu saat link diklik (agar scroll mulus ke section)
-            document.querySelectorAll('.nav-menu a').forEach(link => {
-                link.addEventListener('click', () => {
-                    hamburger.classList.remove('active');
-                    navMenu.classList.remove('active');
-                });
-            });
         }
     </script>
 </body>
