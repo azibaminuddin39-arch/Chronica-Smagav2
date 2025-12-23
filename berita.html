@@ -97,6 +97,17 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // Preloader Logic
+        window.addEventListener('load', function() {
+            const loader = document.getElementById('loader-wrapper');
+            setTimeout(() => {
+                loader.classList.add('fade-out');
+            }, 1000); 
+        });
+
+            });
+        }
 
         // Music Toggle Logic
         function toggleMusic() {
