@@ -799,3 +799,57 @@ header {
     background: #ffffff !important;
     box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
 }
+
+/* ==========================================================================
+   STABILISASI & OPTIMASI FINAL (MOBILE RESPONSIVE)
+   Kode di bawah ini akan melengkapi kode di atas agar pas di layar HP.
+   ========================================================================== */
+
+/* Menggunakan clamp untuk font dan padding agar elastis */
+.text-container h1 { 
+    font-size: clamp(1.2rem, 6vw, 3.5rem) !important; 
+}
+
+.logo-mini { 
+    height: clamp(80px, 15vw, 180px) !important; 
+}
+
+/* Menstabilkan Grid Anggota agar tidak berantakan di HP kecil */
+.anggota-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)) !important; 
+    gap: 15px !important;
+    justify-items: center !important;
+}
+
+.anggota-card {
+    width: 100% !important;
+    max-width: 150px !important;
+}
+
+/* Memperbaiki posisi header di layar sangat kecil */
+@media (max-width: 600px) {
+    .header-brand-wrapper {
+        flex-direction: column !important; 
+        gap: 15px !important;
+        text-align: center !important;
+    }
+
+    .logo-mini {
+        height: 100px !important;
+    }
+
+    section:first-of-type {
+        margin-top: -30px !important; 
+    }
+}
+
+/* Memastikan FAB (Tombol Melayang) tidak terlalu besar di HP */
+@media (max-width: 480px) {
+    .fab-instagram, .fab-whatsapp, .fab-message {
+        width: 48px !important;
+        height: 48px !important;
+        font-size: 22px !important;
+    }
+    .fab-instagram { bottom: 80px !important; }
+}
