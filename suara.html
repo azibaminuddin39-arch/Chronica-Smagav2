@@ -11,7 +11,6 @@
 
         /* --- TAMBAHAN STYLE UNTUK PENATAAN ULANG --- */
         
-        /* Memposisikan Header secara vertikal agar ikon rumah di tengah atas */
         .header-brand-wrapper {
             display: flex;
             flex-direction: column;
@@ -22,12 +21,13 @@
 
         .back-link {
             display: inline-block;
-            margin-bottom: 20px; /* Jarak antara ikon dan teks */
+            margin-bottom: 20px;
             color: #C0C0C0;
             font-size: 2.2rem;
             transition: all 0.3s ease;
             text-decoration: none;
             pointer-events: auto !important;
+            z-index: 10;
         }
 
         .back-link:hover {
@@ -37,9 +37,10 @@
 
         /* Perbaikan FAQ agar jawaban bisa terbuka */
         .faq-item.active .faq-answer {
-            max-height: 500px !important;
+            max-height: 800px !important; /* Ukuran lebih besar agar teks tidak terpotong */
             padding: 15px 20px;
             opacity: 1;
+            display: block !important;
         }
 
         .faq-answer {
@@ -75,7 +76,8 @@
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="index.html">Beranda</a></li>
                 <li><a href="berita.html">Berita</a></li>
-                <li><a href="anggota.html">Anggota</a></li> <li><a href="suara.html">Suara Smaga</a></li>
+                <li><a href="anggota.html">Anggota</a></li> 
+                <li><a href="suara.html">Suara Smaga</a></li>
             </ul>
         </div>
     </div>
@@ -187,26 +189,40 @@
             }
         });
 
-        // Logika Hamburger asli
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('nav-menu');
+        // Menjalankan logika interaksi setelah DOM siap sepenuhnya
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // 1. Logika Hamburger (Navigasi)
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('nav-menu');
 
-        if (hamburger) {
-            hamburger.addEventListener('click', () => {
-                hamburger.classList.toggle('active');
-                navMenu.classList.toggle('active');
+            if (hamburger && navMenu) {
+                hamburger.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    this.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
+            }
+
+            // 2. Logika FAQ
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            faqQuestions.forEach(button => {
+                button.addEventListener('click', function() {
+                    const faqItem = this.parentElement;
+                    faqItem.classList.toggle('active');
+                });
             });
-        }
 
-        // --- TAMBAHAN LOGIKA UNTUK FAQ AGAR BERFUNGSI ---
-        document.querySelectorAll('.faq-question').forEach(button => {
-            button.addEventListener('click', () => {
-                const faqItem = button.parentElement;
-                faqItem.classList.toggle('active');
+            // Tutup menu jika klik di luar area navigasi
+            document.addEventListener('click', function(e) {
+                if (hamburger && !hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }
             });
         });
 
-        // Logika Musik
+        // 3. Logika Musik
         function toggleMusic() {
             const music = document.getElementById('bgMusic');
             const muteLine = document.getElementById('muteLine');
