@@ -97,25 +97,6 @@
     </footer>
 
     <script src="script.js"></script>
-    <script>
-        // Preloader Logic
-        window.addEventListener('load', function() {
-            const loader = document.getElementById('loader-wrapper');
-            setTimeout(() => {
-                loader.classList.add('fade-out');
-            }, 1000); 
-        });
-
-        // Hamburger Logic
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('nav-menu');
-
-        if (hamburger) {
-            hamburger.addEventListener('click', () => {
-                hamburger.classList.toggle('active');
-                navMenu.classList.toggle('active');
-            });
-        }
 
         // Music Toggle Logic
         function toggleMusic() {
