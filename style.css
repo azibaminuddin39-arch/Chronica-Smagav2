@@ -653,3 +653,48 @@ footer {
     text-align: center; 
     border-top: 1px solid rgba(192, 192, 192, 0.1); 
 }
+
+/* ==========================================
+   FIX TOTAL: NAVBAR & BUTTON TIDAK BISA DIKLIK
+   (AMAN, TANPA MERUSAK DESAIN)
+   ========================================== */
+
+/* Matikan penangkap klik pada layer header */
+header,
+header::before,
+header::after {
+    pointer-events: none !important;
+}
+
+/* Aktifkan kembali elemen yang HARUS bisa diklik */
+.nav-container,
+.hamburger,
+.hamburger span,
+.nav-menu,
+.nav-menu *,
+.music-btn,
+.music-btn *,
+.fab-instagram,
+.fab-whatsapp,
+.fab-message {
+    pointer-events: auto !important;
+}
+
+/* Pastikan navigasi selalu di atas SEMUA layer */
+.nav-container {
+    position: fixed !important;
+    z-index: 100000 !important;
+}
+
+.hamburger {
+    z-index: 100001 !important;
+}
+
+.nav-menu {
+    z-index: 100002 !important;
+}
+
+/* Tombol kiri (musik) */
+.music-btn {
+    z-index: 100000 !important;
+}
