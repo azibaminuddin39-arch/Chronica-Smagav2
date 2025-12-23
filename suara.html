@@ -29,7 +29,7 @@
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="index.html">Beranda</a></li>
                 <li><a href="berita.html">Berita</a></li>
-                <li><a href="suara.html">Suara Smaga</a></li>
+                <li><a href="anggota.html">Anggota</a></li> <li><a href="suara.html">Suara Smaga</a></li>
             </ul>
         </div>
     </div>
@@ -131,7 +131,7 @@
     <script src="script.js"></script>
 
     <script>
-        // Logika Preloader tetap di sini agar transisi halaman mulus
+        // Logika Preloader asli
         window.addEventListener('load', function() {
             const loader = document.getElementById('loader-wrapper');
             if(loader) {
@@ -140,6 +140,17 @@
                 }, 1000);
             }
         });
+
+        // Logika Hamburger (Jika belum ada di script.js)
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+        }
     </script>
 </body>
 </html>
