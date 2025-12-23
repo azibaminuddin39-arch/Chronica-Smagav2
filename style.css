@@ -737,3 +737,28 @@ header::after {
 .nav-menu { z-index: 100002 !important; }
 .music-btn { z-index: 100001 !important; }
 .back-link { z-index: 100001 !important; }
+
+/* FIX: Menjamin semua elemen interaktif bisa diklik */
+.nav-container, .hamburger, .nav-menu, .music-btn, .faq-question, .toggle-btn, .btn-suara, .back-link {
+    pointer-events: auto !important;
+    z-index: 99999 !important;
+}
+
+/* Memperbaiki tinggi FAQ agar tidak terpotong */
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.4s ease-in-out;
+    opacity: 0;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 1000px !important;
+    opacity: 1;
+    padding: 15px 20px;
+}
+
+/* Memperbaiki tampilan list anggota di index */
+.anggota-list {
+    transition: opacity 0.4s ease;
+}
