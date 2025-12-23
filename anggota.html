@@ -413,45 +413,6 @@
     </div>
 
     <script>
-        // SCRIPT PENGHILANG LOADER
-        window.addEventListener('load', function() {
-            const loader = document.getElementById('loader-wrapper');
-            if (loader) {
-                setTimeout(() => {
-                    loader.classList.add('fade-out');
-                    setTimeout(() => {
-                        loader.style.display = 'none';
-                    }, 800);
-                }, 500);
-            }
-        });
-
-        // LOGIKA MODAL
-        function openModal(name, job, img) {
-            document.getElementById('modalName').innerText = name;
-            document.getElementById('modalJob').innerText = job;
-            document.getElementById('modalImg').src = 'img/' + img;
-            document.getElementById('memberModal').style.display = 'flex';
-            document.body.style.overflow = 'hidden'; 
-        }
-        function closeModal() {
-            document.getElementById('memberModal').style.display = 'none';
-            document.body.style.overflow = 'auto'; 
-        }
-        window.onclick = function(event) {
-            let modal = document.getElementById('memberModal');
-            if (event.target == modal) { closeModal(); }
-        }
-
-        // LOGIKA HAMBURGER
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('nav-menu');
-        if (hamburger) {
-            hamburger.addEventListener('click', () => {
-                hamburger.classList.toggle('active');
-                navMenu.classList.toggle('active');
-            });
-        }
 
         // LOGIKA MUSIC
         function toggleMusic() {
