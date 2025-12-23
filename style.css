@@ -247,7 +247,7 @@ header {
 }
 
 /* ==========================================
-   NAVIGASI & HAMBURGER (BAGIAN PERBAIKAN POSISI)
+   NAVIGASI & HAMBURGER (PERBAIKAN POSISI)
    ========================================== */
 .nav-container { 
     position: absolute; 
@@ -255,7 +255,6 @@ header {
     right: 25px; 
     z-index: 5000; 
     pointer-events: auto !important; 
-    /* NAV-CONTAINER SEKARANG HANYA UNTUK AREA KANAN */
     display: flex !important;
     align-items: center !important;
 }
@@ -264,7 +263,9 @@ header {
     display: flex; 
     flex-direction: column; 
     gap: 6px; 
-    background: none; 
+    background: rgba(0, 0, 0, 0.4); /* Tambahan background agar terlihat di GIF */
+    padding: 8px;
+    border-radius: 5px;
     border: none; 
     cursor: pointer; 
     outline: none; 
@@ -289,7 +290,7 @@ header {
     padding: 15px; 
     border-radius: 12px; 
     border: 1px solid rgba(255, 255, 255, 0.1) !important; 
-    display: none; /* Default sembunyi */
+    display: none; 
     flex-direction: column; 
     min-width: 180px;
     box-shadow: 0 8px 32px rgba(0,0,0,0.6) !important;
@@ -299,7 +300,6 @@ header {
     pointer-events: auto !important; 
 }
 
-/* Paksa muncul saat class active dipicu JS */
 .nav-menu.active { 
     display: flex !important; 
     opacity: 1 !important; 
@@ -311,13 +311,12 @@ header {
 .nav-menu a { color: white; text-decoration: none; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.1); transition: 0.2s; }
 
 /* ==========================================
-   PERBAIKAN MEGAPHONE & MUSIK (PINDAH KE KIRI)
+   PERBAIKAN MEGAPHONE & MUSIK (KIRI)
    ========================================== */
 .music-btn {
-    /* MENGGUNAKAN FIXED/ABSOLUTE AGAR LEPAS DARI CONTAINER KANAN */
-    position: absolute !important;
+    position: fixed !important; /* Gunakan fixed agar tidak terpengaruh scroll header */
     top: 25px !important;
-    left: 25px !important; /* INI KUNCI AGAR KE KIRI */
+    left: 25px !important; 
     background: rgba(0, 0, 0, 0.4);
     border: 2px solid var(--color-silver);
     color: var(--color-silver);
@@ -485,13 +484,12 @@ h2 {
         right: 20px !important; 
         z-index: 5000 !important;
         pointer-events: auto !important;
-        /* FLEX MOBILE SEKARANG HANYA UNTUK AREA KANAN */
         display: flex !important;
     }
 
     .music-btn {
         top: 20px !important;
-        left: 20px !important; /* TETAP DI KIRI PADA MOBILE */
+        left: 20px !important; 
         width: 40px !important;
         height: 40px !important;
     }
@@ -617,17 +615,6 @@ footer { padding: 30px; background: #0a0a0a; text-align: center; border-top: 1px
     animation: textGlowWhite 3s infinite alternate;
 }
 
-/* Responsive Teks untuk Mobile */
-@media (max-width: 850px) {
-    .text-container p {
-        font-size: 0.6rem;
-        letter-spacing: 3px;
-    }
-    .text-container h1 {
-        font-size: 2rem;
-    }
-}
-
 /* ==========================================
    TAMBAHAN KHUSUS: BACKGROUND PAGES SPESIFIK
    ========================================== */
@@ -636,8 +623,6 @@ footer { padding: 30px; background: #0a0a0a; text-align: center; border-top: 1px
         linear-gradient(to bottom, transparent 65%, var(--color-bg-main) 100%), 
         linear-gradient(rgba(0,0,0,0.6), rgba(96,0,0,0.4)), 
         url('LB_3.gif') !important;
-    background-size: cover;
-    background-position: center;
 }
 
 .page-berita header {
@@ -645,12 +630,10 @@ footer { padding: 30px; background: #0a0a0a; text-align: center; border-top: 1px
         linear-gradient(to bottom, transparent 65%, var(--color-bg-main) 100%), 
         linear-gradient(rgba(0,0,0,0.6), rgba(96,0,0,0.4)), 
         url('LB_2.gif') !important;
-    background-size: cover;
-    background-position: center;
 }
 
 /* ==========================================================================
-   KODE BARU: PERBAIKAN BLANK HITAM DI AREA GIF & VISI MISI (MOBILE & DESKTOP)
+   KODE BARU: PERBAIKAN BLANK HITAM & VISI MISI
    ========================================================================== */
 html, body {
     width: 100%;
@@ -687,7 +670,7 @@ header {
 }
 
 /* ==========================================================================
-   FINAL FIX: LOGO TERPOTONG PADA MOBILE (BERDASARKAN SCREENSHOT)
+   FINAL FIX: LOGO TERPOTONG & MEGAPHONE PULSE
    ========================================================================== */
 @media (max-width: 850px) {
     section:first-of-type {
@@ -696,50 +679,6 @@ header {
     }
 }
 
-/* ==========================================================================
-   PERBAIKAN FINAL NAVIGASI NON-DESKTOP (FIXED OVERFLOW & POSITIONING)
-   ========================================================================== */
-@media (max-width: 850px) {
-    .nav-container {
-        position: absolute !important;
-        top: 20px !important; 
-        right: 20px !important; 
-        z-index: 5000 !important;
-        pointer-events: auto !important;
-    }
-
-    .hamburger {
-        background: rgba(0, 0, 0, 0.4) !important; 
-        padding: 8px !important;
-        border-radius: 5px !important;
-        pointer-events: auto !important;
-        /* HAPUS POSITION FIXED AGAR TIDAK LEPAS DARI CONTAINER */
-        position: relative !important;
-        top: auto !important;
-        right: auto !important;
-    }
-
-    .nav-menu {
-        position: fixed !important; 
-        top: 80px !important; 
-        right: 20px !important; 
-        width: calc(100% - 40px) !important; 
-        max-width: 220px !important; 
-        z-index: 5000 !important;
-        display: none;
-        flex-direction: column;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.8) !important;
-        pointer-events: auto !important;
-    }
-
-    .nav-menu.active {
-        display: flex !important;
-    }
-}
-
-/* ==========================================================================
-   PERBAIKAN MEGAPHONE & MUSIK (DIPERBAIKI POINTER EVENTS)
-   ========================================================================== */
 .suara-icon {
     font-size: 5rem !important; 
     color: var(--color-silver); 
@@ -752,13 +691,6 @@ header {
 @keyframes pulseIcon {
     0%, 100% { transform: scale(1); opacity: 0.8; }
     50% { transform: scale(1.1); opacity: 1; }
-}
-
-@media (max-width: 850px) {
-    .suara-icon {
-        font-size: 4rem !important;
-        margin-bottom: 20px;
-    }
 }
 
 /* ==========================================================================
@@ -774,7 +706,6 @@ header {
     background-size: cover !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
-    aspect-ratio: 16 / 9;
 }
 
 .page-anggota main {
