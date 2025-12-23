@@ -1,85 +1,135 @@
-/* ==========================================
-   BAGIAN 2: KODE SCRIPT JS (LOGIKA PERINTAH)
-   ========================================== */
+/* CHRONICA - Jurnalistik SMAN 3 Banjarbaru
+   Core Scripting
+*/
 
-// --- LOGIKA LOADER (DARI KODE ASLI ANDA - TETAP UTUH) ---
-window.addEventListener('load', function() {
-    // Menangkap elemen loader
+document.addEventListener('DOMContentLoaded', () => {
+
+    // --- 0. LOGIKA PRELOADER (LOADING SCREEN) ---
     const loader = document.getElementById('loader-wrapper');
-    
     if (loader) {
-        // Memberikan jeda agar user bisa melihat animasi loading sebentar
-        setTimeout(() => {
-            // Menambahkan class fade-out (yang sudah ada di CSS Anda)
-            loader.classList.add('fade-out');
-            
-            // Setelah animasi fade-out selesai, hilangkan display secara total
+        window.addEventListener('load', () => {
             setTimeout(() => {
-                loader.style.display = 'none';
-            }, 800); 
-        }, 500); // 0.5 detik jeda
-    }
-});
+                loader.classList.add('fade-out');
+            }, 1000); 
+        });
 
-// --- LOGIKA INTERAKSI (DOM CONTENT LOADED) ---
-document.addEventListener('DOMContentLoaded', function() {
-    
-    // 1. LOGIKA ASLI ANDA: Hamburger Menu (TETAP UTUH TANPA PERUBAHAN)
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('.nav-menu');
+        setTimeout(() => {
+            if (!loader.classList.contains('fade-out')) {
+                loader.classList.add('fade-out');
+            }
+        }, 3000);
+    }
+
+    // --- 1. LOGIKA NAVIGASI HAMBURGER ---
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
 
     if (hamburger && navMenu) {
-        hamburger.addEventListener('click', function() {
-            hamburger.classList.toggle('active');
+        hamburger.addEventListener('click', (e) => {
+            e.stopPropagation();
             navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active'); 
+            hamburger.classList.toggle('is-active');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active'); 
+                hamburger.classList.remove('is-active');
+            }
+        });
+
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active'); 
+                hamburger.classList.remove('is-active');
+            });
         });
     }
 
-    /* --- MULAI TAMBAHAN: LOGIKA TOMBOL FAQ & LIHAT ANGGOTA --- */
+    // --- 2. LOGIKA TOGGLE ANGGOTA DIVISI ---
+    const toggleButtons = document.querySelectorAll('.toggle-btn, .toggle-anggota');
+    
+    toggleButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const list = this.nextElementSibling; 
+            list.classList.toggle('active');
+            const isShowing = list.classList.contains('active');
+            
+            if (isShowing) {
+                list.style.display = 'block';
+            } else {
+                list.style.display = 'none';
+            }
+            
+            this.textContent = isShowing ? 'Sembunyikan Anggota' : 'Lihat Anggota';
+            
+            if (isShowing) {
+                this.style.backgroundColor = '#C0C0C0';
+                this.style.color = '#000000';
+                this.style.borderColor = '#600000';
+            } else {
+                this.style.backgroundColor = '#600000';
+                this.style.color = '#ffffff';
+                this.style.borderColor = '#C0C0C0';
+            }
+        });
+    });
 
-    // 2. Aktivasi Tombol FAQ (Accordion)
+    // --- 3. LOGIKA SLIDER KEGIATAN ---
+    const wrapper = document.getElementById('slider-wrapper');
+    const slides = document.querySelectorAll('.slider-item');
+    const nextBtn = document.getElementById('nextBtn');
+    const prevBtn = document.getElementById('prevBtn');
+
+    if (wrapper && slides.length > 0) {
+        let index = 0;
+        const total = slides.length;
+        
+        const updateSlider = () => {
+            wrapper.style.transform = `translateX(${-index * 100}%)`;
+        };
+        
+        const nextSlide = () => {
+            index = (index + 1) % total;
+            updateSlider();
+        };
+        
+        const prevSlide = () => {
+            index = (index - 1 + total) % total;
+            updateSlider();
+        };
+
+        if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); resetAutoSlide(); });
+        if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); resetAutoSlide(); });
+
+        let autoSlideInterval = setInterval(nextSlide, 5000);
+        function resetAutoSlide() {
+            clearInterval(autoSlideInterval);
+            autoSlideInterval = setInterval(nextSlide, 5000);
+        }
+    }
+
+    // --- 4. LOGIKA FAQ ACCORDION (PEMBUKA KUNCI) ---
     const faqQuestions = document.querySelectorAll('.faq-question');
     
     faqQuestions.forEach(question => {
-        question.addEventListener('click', function() {
-            // Menambah/menghapus class active pada tombol
-            this.classList.toggle('active');
+        question.onclick = function(e) {
+            e.preventDefault(); // Mencegah button melakukan refresh
+            const faqItem = this.parentElement;
             
-            // Mengambil elemen jawaban yang ada tepat di bawahnya
-            const answer = this.nextElementSibling;
+            // Tutup FAQ lain yang sedang terbuka
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (item !== faqItem) {
+                    item.classList.remove('active');
+                }
+            });
             
-            if (answer) {
-                // Logika buka-tutup (Slide effect)
-                if (answer.style.maxHeight) {
-                    answer.style.maxHeight = null;
-                } else {
-                    answer.style.maxHeight = answer.scrollHeight + "px";
-                }
-            }
-        });
+            // Toggle class active pada box yang diklik
+            faqItem.classList.toggle('active');
+        };
     });
-
-    // 3. Aktivasi Tombol "Lihat Anggota"
-    const btnAnggota = document.querySelectorAll('.lihat-anggota-btn');
-
-    btnAnggota.forEach(btn => {
-        btn.addEventListener('click', function() {
-            // Mencari container card terdekat agar tidak salah buka divisi lain
-            const parentCard = this.closest('.card, .divisi-card'); 
-            const listAnggota = parentCard ? parentCard.querySelector('.daftar-anggota') : null;
-
-            if (listAnggota) {
-                // Toggle tampilan (Show/Hide)
-                if (listAnggota.style.display === "block") {
-                    listAnggota.style.display = "none";
-                    this.textContent = "Lihat Anggota";
-                } else {
-                    listAnggota.style.display = "block";
-                    this.textContent = "Tutup Anggota";
-                }
-            }
-        });
-    });
-
-    /* --- SELESAI TAMBAHAN --- */
 });
