@@ -9,7 +9,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Playfair+Display:wght@700&display=swap');
 
-        /* Penambahan warna silver untuk Pengurus Inti dan Judul Divisi */
+        /* Warna silver untuk Pengurus Inti dan Judul Divisi */
         #organisasi h3 {
             color: #C0C0C0 !important;
         }
@@ -62,8 +62,7 @@
             </button>
 
             <ul class="nav-menu" id="nav-menu">
-                <li><a href="#visi-misi">Visi & Misi</a></li>
-                <li><a href="#organisasi">Struktur</a></li>
+                <li><a href="index.html">Beranda</a></li>
                 <li><a href="anggota.html">Anggota Divisi</a></li>
                 <li><a href="#kegiatan">Kegiatan</a></li>
                 <li><a href="berita.html">Berita</a></li>
@@ -258,10 +257,6 @@
     <script src="script.js"></script>
 
     <script>
-        /**
-         * LOGIKA MUSIK (KHUSUS)
-         * Dipisah di sini agar tidak mengganggu integrasi script.js 
-         */
         function toggleMusic() {
             const music = document.getElementById('bgMusic');
             const btn = document.getElementById('musicToggle');
@@ -269,17 +264,17 @@
             const muteLine = document.getElementById('muteLine');
 
             if (music.paused) {
-                music.play().catch(e => console.log("Audio play diblokir oleh browser"));
+                music.play().catch(e => console.log("Audio play diblokir"));
                 btn.classList.add('playing');
                 waves.style.display = 'block';
                 muteLine.style.display = 'none';
-                btn.style.color = '#C0C0C0'; // var(--color-silver)
+                btn.style.color = '#C0C0C0';
             } else {
                 music.pause();
                 btn.classList.remove('playing');
                 waves.style.display = 'none';
                 muteLine.style.display = 'block';
-                btn.style.color = '#600000'; // var(--color-maroon)
+                btn.style.color = '#600000';
             }
         }
     </script>
