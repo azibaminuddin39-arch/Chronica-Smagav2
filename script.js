@@ -1,26 +1,33 @@
-/* CHRONICA - Jurnalistik SMAN 3 Banjarbaru
-   Core Scripting - FULL INTEGRATED VERSION
-*/
+/* ==========================================
+   CHRONICA - Jurnalistik SMAN 3 Banjarbaru
+   Core Scripting - FULL INTEGRATED VERSION (FIXED)
+   ========================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 0. LOGIKA PRELOADER (LOADING SCREEN) - TETAP UTUH ---
+    // --- 0. LOGIKA PRELOADER (ANTI-STUCK & CLEANUP) ---
     const loader = document.getElementById('loader-wrapper');
+    
     if (loader) {
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                loader.classList.add('fade-out');
-            }, 1000); 
-        });
-
-        setTimeout(() => {
+        // Fungsi tunggal untuk menghilangkan loader
+        const removeLoader = () => {
             if (!loader.classList.contains('fade-out')) {
                 loader.classList.add('fade-out');
+                // Tambahan: Hapus dari display agar tidak menghalangi klik setelah transisi
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 800); // Sesuai durasi transisi di CSS (0.8s)
             }
-        }, 3000);
+        };
+
+        // Kejadian 1: Saat semua aset (GIF, Gambar, Font) selesai dimuat
+        window.addEventListener('load', removeLoader);
+
+        // Kejadian 2: Failsafe (Jika dalam 3 detik load belum selesai, paksa masuk)
+        setTimeout(removeLoader, 3000);
     }
 
-    // --- 1. LOGIKA NAVIGASI HAMBURGER - TETAP UTUH ---
+    // --- 1. LOGIKA NAVIGASI HAMBURGER ---
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
 
@@ -50,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 2. LOGIKA TOGGLE ANGGOTA DIVISI (INTEGRASI BARU) ---
+    // --- 2. LOGIKA TOGGLE ANGGOTA DIVISI ---
     const toggleButtons = document.querySelectorAll('.toggle-btn, .toggle-anggota');
     
     toggleButtons.forEach(btn => {
@@ -80,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 3. LOGIKA SLIDER KEGIATAN - TETAP UTUH ---
+    // --- 3. LOGIKA SLIDER KEGIATAN ---
     const wrapper = document.getElementById('slider-wrapper');
     const slides = document.querySelectorAll('.slider-item');
     const nextBtn = document.getElementById('nextBtn');
@@ -114,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- 4. LOGIKA FAQ ACCORDION (INTEGRASI BARU) ---
+    // --- 4. LOGIKA FAQ ACCORDION ---
     const faqQuestions = document.querySelectorAll('.faq-question');
     
     faqQuestions.forEach(question => {
@@ -127,7 +134,11 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.faq-item').forEach(item => {
                 item.classList.remove('active');
                 const ans = item.querySelector('.faq-answer');
-                if (ans) ans.style.display = 'none';
+                if (ans) {
+                    ans.style.display = 'none';
+                    // Tambahan agar sinkron dengan CSS maxHeight jika ada
+                    ans.parentElement.classList.remove('active');
+                }
             });
             
             // Jika diklik dalam keadaan tertutup, maka buka
