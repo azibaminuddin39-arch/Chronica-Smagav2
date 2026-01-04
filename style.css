@@ -1,6 +1,6 @@
 /* ==========================================
    CHRONICA - Jurnalistik SMAN 3 Banjarbaru
-   Core Styling - FULL VERSION
+   Core Styling - FULL VERSION (FIXED NAV)
    ========================================== */
 
 /* ==========================================
@@ -249,7 +249,7 @@ header {
     font-weight: 600; 
     letter-spacing: 5px;       
     text-transform: uppercase;
-    margin-bottom: 8px;        
+    margin-bottom: 8px;         
     opacity: 0.9;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 }
@@ -611,16 +611,28 @@ h2 {
 }
 
 /* ==========================================
-   HALAMAN SPESIFIK: ANGGOTA
+   HALAMAN SPESIFIK: ANGGOTA (FIX TOMBOL DI SINI)
    ========================================== */
 .page-anggota { background: #000000 !important; }
 
 .page-anggota header {
     background-image: 
         linear-gradient(to bottom, transparent 65%, #000000 100%), 
-        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), 
+        linear-gradient(transparent, transparent), 
         url('img/LB_4.gif') !important;
     background-size: cover !important;
+}
+
+/* Menambah kontras agar tombol hamburger terlihat di background terang */
+.page-anggota .hamburger {
+    background: rgba(0, 0, 0, 0.6) !important; /* Background hitam transparan */
+    border: 1px solid var(--color-silver) !important; /* Border perak */
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.page-anggota .text-container {
+    background: rgba(0, 0, 0, 0.5) !important; 
+    backdrop-filter: blur(8px) !important;
 }
 
 .page-anggota .nav-menu {
@@ -656,84 +668,26 @@ footer {
 
 /* ==========================================
    FIX TOTAL: NAVBAR & BUTTON TIDAK BISA DIKLIK
-   (AMAN, TANPA MERUSAK DESAIN)
    ========================================== */
 
-/* Matikan penangkap klik pada layer header */
-header,
-header::before,
-header::after {
+header, header::before, header::after {
     pointer-events: none !important;
 }
 
-/* Aktifkan kembali elemen yang HARUS bisa diklik */
-.nav-container,
-.hamburger,
-.hamburger span,
-.nav-menu,
-.nav-menu *,
-.music-btn,
-.music-btn *,
-.fab-instagram,
-.fab-whatsapp,
-.fab-message {
+.nav-container, .hamburger, .hamburger span, .nav-menu, .nav-menu *, .music-btn, .music-btn *, .fab-instagram, .fab-whatsapp, .fab-message {
     pointer-events: auto !important;
 }
 
-/* Pastikan navigasi selalu di atas SEMUA layer */
-.nav-container {
-    position: fixed !important;
-    z-index: 100000 !important;
-}
-
-.hamburger {
-    z-index: 100001 !important;
-}
-
-.nav-menu {
-    z-index: 100002 !important;
-}
-
-/* Tombol kiri (musik) */
-.music-btn {
-    z-index: 100000 !important;
-}
-
-/* =================================================
-   FINAL FIX – PAGE SUARA (KLIK 100% AMAN)
-   ================================================= */
-
-/* Header & overlay TIDAK BOLEH nangkap klik */
-header,
-header::before,
-header::after {
-    pointer-events: none !important;
-}
-
-/* Aktifkan kembali SEMUA elemen interaktif */
-.nav-container,
-.nav-wrapper,
-.hamburger,
-.hamburger span,
-.nav-menu,
-.nav-menu *,
-.music-btn,
-.music-btn *,
-.back-link,
-.back-link *,
-.faq-question,
-.faq-question *,
-.btn-suara {
-    pointer-events: auto !important;
-}
-
-/* Pastikan layer navigasi di atas segalanya */
-.nav-container {
-    position: fixed !important;
-    z-index: 100000 !important;
-}
-
+.nav-container { position: fixed !important; z-index: 100000 !important; }
 .hamburger { z-index: 100001 !important; }
 .nav-menu { z-index: 100002 !important; }
-.music-btn { z-index: 100001 !important; }
+.music-btn { z-index: 100000 !important; }
+
+/* =================================================
+   FINAL FIX – PAGE SUARA
+   ================================================= */
+.nav-wrapper, .back-link, .back-link *, .faq-question, .faq-question *, .btn-suara {
+    pointer-events: auto !important;
+}
+
 .back-link { z-index: 100001 !important; }
