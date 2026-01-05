@@ -16,24 +16,63 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            padding: 40px 20px;
+            padding: 80px 20px;
         }
 
-        .back-link {
-            display: inline-block;
-            margin-bottom: 20px;
-            color: #C0C0C0;
-            font-size: 2.2rem;
-            transition: all 0.3s ease;
+        /* FIX UTAMA: Memaksa area ini agar bisa diklik */
+        .back-link-wrapper {
             text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            pointer-events: auto !important; /* Menembus blokir header */
+            cursor: pointer !important;
+            z-index: 10001 !important; /* Di atas elemen header */
         }
 
-        .back-link:hover {
+        .back-link-wrapper:hover {
+            transform: scale(1.02);
+        }
+
+        .text-container {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 30px 50px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            pointer-events: none; /* Klik akan diteruskan ke back-link-wrapper */
+        }
+
+        .back-arrow {
+            color: #C0C0C0;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .back-link-wrapper:hover .back-arrow {
             color: white;
-            transform: scale(1.1);
         }
 
-        /* FAQ aman */
+        .text-container h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: white;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+
+        .text-container p {
+            color: #C0C0C0;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-top: 5px;
+        }
+
+        /* FAQ Styling */
         .faq-item.active .faq-answer {
             max-height: 800px;
             padding: 15px 20px;
@@ -52,16 +91,7 @@
 
 <body class="page-suara">
 
-    <!-- NAVIGATION -->
     <div class="nav-container">
-        <button id="musicToggle" class="music-btn" onclick="toggleMusic()">
-            <svg viewBox="0 0 24 24">
-                <path d="M3 9v6h4l5 5V4L7 9H3z"/>
-                <line id="muteLine" x1="1" y1="1" x2="23" y2="23"
-                      stroke="#C0C0C0" stroke-width="2" style="display:none;" />
-            </svg>
-        </button>
-
         <div class="nav-wrapper">
             <button class="hamburger" id="hamburger">
                 <span></span><span></span><span></span>
@@ -70,17 +100,10 @@
                 <li><a href="index.html">Beranda</a></li>
                 <li><a href="berita.html">Berita</a></li>
                 <li><a href="anggota.html">Anggota</a></li>
-                <li><a href="suara.html">Suara Smaga</a></li>
             </ul>
         </div>
     </div>
 
-    <!-- AUDIO -->
-    <audio id="bgMusic" loop>
-        <source src="bg-music.mp3" type="audio/mpeg">
-    </audio>
-
-    <!-- LOADER -->
     <div id="loader-wrapper">
         <div class="loader-content">
             <div class="loader-logo">
@@ -91,20 +114,18 @@
         </div>
     </div>
 
-    <!-- HEADER -->
     <header>
         <div class="header-brand-wrapper">
-            <a href="index.html" class="back-link">
-                <i class="fas fa-home"></i>
+            <a href="index.html" class="back-link-wrapper">
+                <div class="text-container">
+                    <i class="fas fa-arrow-left back-arrow"></i>
+                    <h1>SUARA SMAGA</h1>
+                    <p>Aspirasi & Pertanyaan Umum</p>
+                </div>
             </a>
-            <div class="text-container">
-                <h1>SUARA SMAGA</h1>
-                <p>Aspirasi & Pertanyaan Umum</p>
-            </div>
         </div>
     </header>
 
-    <!-- CONTENT -->
     <main>
         <section class="suara-section">
             <i class="fas fa-bullhorn suara-icon"></i>
@@ -116,18 +137,61 @@
         </section>
 
         <section class="faq-section">
-            <h2>Frequently Asked Questions</h2>
+    <div class="faq-container">
+        <h2 class="faq-title">Frequently Asked Questions</h2>
 
-            <div class="faq-item">
-                <button class="faq-question">Apa itu CHRONICA? <i class="fas fa-chevron-down"></i></button>
-                <div class="faq-answer"><p>Organisasi jurnalistik SMAN 3.</p></div>
+        <div class="faq-item">
+            <button class="faq-question">
+                Apa itu CHRONICA?
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+                <p>CHRONICA adalah media jurnalistik resmi SMAN 3 Banjarbaru yang berfungsi sebagai wadah aspirasi, informasi, dan kreativitas siswa.</p>
             </div>
+        </div>
 
-            <div class="faq-item">
-                <button class="faq-question">Apakah identitas aman? <i class="fas fa-chevron-down"></i></button>
-                <div class="faq-answer"><p>Ya, anonim & aman.</p></div>
+        <div class="faq-item">
+            <button class="faq-question">
+                Apakah identitas aman?
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+                <p>Ya, privasi kamu adalah prioritas kami. Identitas pengirim kritik atau saran akan dijaga kerahasiaannya atau bisa dikirimkan secara anonim.</p>
             </div>
-        </section>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                Apa saja kegiatan utama di ekskul jurnalistik?
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+                <p>Kegiatan kami meliputi liputan acara sekolah, wawancara, fotografi, desain grafis untuk mading digital, hingga pengelolaan website ini.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                Bagaimana cara saya menyampaikan kritik dan saran?
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+                <p>Kamu bisa menggunakan formulir yang tersedia di halaman "Suara Siswa" ini atau melalui kotak saran fisik yang ada di depan ruang redaksi.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                Bolehkah saya memberikan saran secara anonim?
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+                <p>Tentu saja. Kami menyediakan opsi anonim agar kamu bisa menyampaikan pendapat dengan lebih nyaman tanpa perlu khawatir tentang identitas.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
     </main>
 
     <footer>
@@ -139,29 +203,46 @@
     <script>
         window.addEventListener('load', () => {
             const loader = document.getElementById('loader-wrapper');
-            setTimeout(() => loader.classList.add('fade-out'), 1000);
+            if (loader) {
+                setTimeout(() => {
+                    loader.classList.add('fade-out');
+                }, 1000);
+            }
         });
 
-            };
+        document.querySelectorAll('.faq-question').forEach(btn => {
+            btn.onclick = () => btn.parentElement.classList.toggle('active');
+        });
 
-            document.querySelectorAll('.faq-question').forEach(btn => {
-                btn.onclick = () => btn.parentElement.classList.toggle('active');
-            });
-
-            document.onclick = e => {
+        document.addEventListener('click', e => {
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('nav-menu');
+            if (hamburger && navMenu) {
                 if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
                     hamburger.classList.remove('active');
                     navMenu.classList.remove('active');
                 }
-            };
+            }
         });
+    <script>
+    const faqItems = document.querySelectorAll('.faq-item');
 
-        function toggleMusic() {
-            const music = document.getElementById('bgMusic');
-            const muteLine = document.getElementById('muteLine');
-            music.paused ? (music.play(), muteLine.style.display = 'none')
-                         : (music.pause(), muteLine.style.display = 'block');
-        }
-    </script>
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        
+        question.addEventListener('click', () => {
+            // Cek jika item yang diklik sudah aktif
+            const isOpen = item.classList.contains('active');
+
+            // Tutup semua item FAQ lainnya (opsional, jika ingin hanya satu yang terbuka)
+            faqItems.forEach(i => i.classList.remove('active'));
+
+            // Jika sebelumnya tidak terbuka, maka buka sekarang
+            if (!isOpen) {
+                item.classList.add('active');
+            }
+        });
+    });
+</script>
 </body>
 </html>
