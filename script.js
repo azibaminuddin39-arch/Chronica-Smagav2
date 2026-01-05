@@ -5,26 +5,29 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 0. LOGIKA PRELOADER (ANTI-STUCK & CLEANUP) ---
+    // --- 0. LOGIKA PRELOADER (DENGAN JEDA TAMBAHAN) ---
     const loader = document.getElementById('loader-wrapper');
     
     if (loader) {
-        // Fungsi tunggal untuk menghilangkan loader
         const removeLoader = () => {
+            // Cek agar fungsi hanya berjalan jika class fade-out belum ada
             if (!loader.classList.contains('fade-out')) {
                 loader.classList.add('fade-out');
-                // Tambahan: Hapus dari display agar tidak menghalangi klik setelah transisi
                 setTimeout(() => {
                     loader.style.display = 'none';
-                }, 800); // Sesuai durasi transisi di CSS (0.8s)
+                }, 800); // Harus sama dengan durasi transition di CSS
             }
         };
 
-        // Kejadian 1: Saat semua aset (GIF, Gambar, Font) selesai dimuat
-        window.addEventListener('load', removeLoader);
+        // Menunggu halaman selesai dimuat sepenuhnya
+        window.addEventListener('load', () => {
+            // Menambah jeda 2000ms (2 detik) sebelum loader menghilang
+            // Kamu bisa mengganti angka 2000 sesuai keinginan (misal: 3000 untuk 3 detik)
+            setTimeout(removeLoader, 2000); 
+        });
 
-        // Kejadian 2: Failsafe (Jika dalam 3 detik load belum selesai, paksa masuk)
-        setTimeout(removeLoader, 3000);
+        // Failsafe: Jika halaman sangat berat, loader akan dipaksa hilang setelah 5 detik
+        setTimeout(removeLoader, 5000); 
     }
 
     // --- 1. LOGIKA NAVIGASI HAMBURGER ---
@@ -68,7 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
             list.classList.toggle('active');
             const isShowing = list.classList.contains('active');
             
-            // Logika Display & Style Tombol
             if (isShowing) {
                 list.style.display = 'block';
                 list.style.maxHeight = '1000px'; 
@@ -130,18 +132,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const faqItem = this.parentElement;
             const isActive = faqItem.classList.contains('active');
             
-            // Tutup semua FAQ lain sebelum membuka yang baru
+            // Menutup semua item lain sebelum membuka yang baru
             document.querySelectorAll('.faq-item').forEach(item => {
                 item.classList.remove('active');
                 const ans = item.querySelector('.faq-answer');
                 if (ans) {
                     ans.style.display = 'none';
-                    // Tambahan agar sinkron dengan CSS maxHeight jika ada
-                    ans.parentElement.classList.remove('active');
                 }
             });
             
-            // Jika diklik dalam keadaan tertutup, maka buka
+            // Jika item yang diklik tidak aktif, aktifkan
             if (!isActive) {
                 faqItem.classList.add('active');
                 const ans = faqItem.querySelector('.faq-answer');
