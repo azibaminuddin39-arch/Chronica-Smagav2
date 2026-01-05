@@ -38,8 +38,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999;
-    transition: opacity 0.8s ease, visibility 0.8s ease;
+    z-index: 999999;
+transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s;
 }
 
 .loader-content { text-align: center; }
@@ -691,3 +691,18 @@ header, header::before, header::after {
 }
 
 .back-link { z-index: 100001 !important; }
+
+/* Styling dasar untuk ikon panah */
+.faq-question i {
+    transition: transform 0.3s ease; /* Durasi animasi 0.3 detik */
+}
+
+/* Class 'active' akan ditambahkan melalui JavaScript saat diklik */
+.faq-item.active .faq-question i {
+    transform: rotate(180deg); /* Memutar panah ke atas */
+}
+
+/* Opsional: Memberi warna berbeda saat aktif */
+.faq-item.active .faq-question {
+    color: #ffffff; /* Contoh: teks jadi lebih terang saat terbuka */
+}
