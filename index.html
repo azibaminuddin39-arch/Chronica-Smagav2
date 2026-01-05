@@ -21,10 +21,6 @@
 </head>
 <body>
 
-    <audio id="bgMusic" loop>
-        <source src="bg-music.mp3" type="audio/mpeg">
-    </audio>
-
     <div id="loader-wrapper">
         <div class="loader-content">
             <div class="loader-logo">
@@ -45,16 +41,6 @@
 
     <header>
         <nav class="nav-container">
-            <button id="musicToggle" class="music-btn" onclick="toggleMusic()" aria-label="Toggle Music">
-                <div id="speakerIcon" class="speaker-icon">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M11 5L6 9H2V15H6L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                        <path id="soundWaves" d="M15.54 8.46C16.4774 9.39764 17.004 10.6692 17.004 11.995C17.004 13.3208 16.4774 14.5924 15.54 15.53M19.07 4.93C20.9447 6.80528 21.9979 9.34836 21.9979 12C21.9979 14.6516 20.9447 17.1947 19.07 19.07" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        <path id="muteLine" d="M3 3L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display: none;"/>
-                    </svg>
-                </div>
-            </button>
-
             <button class="hamburger" id="hamburger" aria-label="Menu">
                 <span></span>
                 <span></span>
@@ -64,7 +50,6 @@
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="index.html">Beranda</a></li>
                 <li><a href="anggota.html">Anggota Divisi</a></li>
-                <li><a href="#kegiatan">Kegiatan</a></li>
                 <li><a href="berita.html">Berita</a></li>
                 <li><a href="suara.html">Suara SMAGA & FAQ</a></li> 
             </ul>
@@ -121,28 +106,13 @@
                     </div>
                 </div>
                 <div class="silsilah-row">
-                    <div class="card-maroon">
-                        <h4>Ketua</h4>
-                        <p>Nourma Yunita</p>
-                    </div>
-                    <div class="card-maroon">
-                        <h4>Wakil Ketua</h4>
-                        <p>Awan Putra Ramadhan</p>
-                    </div>
-                    <div class="card-maroon">
-                        <h4>Sekretaris 1</h4>
-                        <p>Azib Aminuddin</p>
-                    </div>
+                    <div class="card-maroon"><h4>Ketua</h4><p>Nourma Yunita</p></div>
+                    <div class="card-maroon"><h4>Wakil Ketua</h4><p>Awan Putra Ramadhan</p></div>
+                    <div class="card-maroon"><h4>Sekretaris 1</h4><p>Azib Aminuddin</p></div>
                 </div>
                 <div class="silsilah-row">
-                    <div class="card-maroon">
-                        <h4>Sekretaris 2</h4>
-                        <p>Alexandra Octoriza R.s</p>
-                    </div>
-                    <div class="card-maroon">
-                        <h4>Bendahara</h4>
-                        <p>Kamila Atiqa Manulang</p>
-                    </div>
+                    <div class="card-maroon"><h4>Sekretaris 2</h4><p>Alexandra Octoriza R.s</p></div>
+                    <div class="card-maroon"><h4>Bendahara</h4><p>Kamila Atiqa Manulang</p></div>
                 </div>
             </div>
 
@@ -256,27 +226,5 @@
 
     <script src="script.js"></script>
 
-    <script>
-        function toggleMusic() {
-            const music = document.getElementById('bgMusic');
-            const btn = document.getElementById('musicToggle');
-            const waves = document.getElementById('soundWaves');
-            const muteLine = document.getElementById('muteLine');
-
-            if (music.paused) {
-                music.play().catch(e => console.log("Audio play diblokir"));
-                btn.classList.add('playing');
-                waves.style.display = 'block';
-                muteLine.style.display = 'none';
-                btn.style.color = '#C0C0C0';
-            } else {
-                music.pause();
-                btn.classList.remove('playing');
-                waves.style.display = 'none';
-                muteLine.style.display = 'block';
-                btn.style.color = '#600000';
-            }
-        }
-    </script>
-</body>
+    </body>
 </html>
