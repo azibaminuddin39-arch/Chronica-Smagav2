@@ -42,7 +42,7 @@
 
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="index.html">Beranda</a></li>
-                <li><a href="panduan.html">Panduan Desktop</a></li>
+                <li><a href="img panduan/panduan.html">Panduan Desktop</a></li>
                 <li><a href="anggota.html">Anggota Divisi</a></li>
                 <li><a href="berita.html">Berita</a></li>
                 <li><a href="suara.html">Suara SMAGA & FAQ</a></li> 
@@ -220,57 +220,66 @@
 
     <script src="script.js"></script>
 
-   <div id="desktop-guide-overlay">
-    <div class="guide-box">
-        <div class="guide-icon">
-            <i class="fas fa-mobile-alt"></i>
-            <i class="fas fa-arrow-right" style="font-size: 1rem; margin: 0 10px;"></i>
-            <i class="fas fa-desktop"></i>
-        </div>
-        <h3>Optimalkan Tampilan</h3>
-        <p class="guide-desc">
-            Agar tampilan website stabil dan rapi, mohon aktifkan <strong>Mode Desktop</strong> di browser HP kamu.
-        </p>
-        
-        <div class="guide-steps">
-            <div class="step-item">
-                <i class="fab fa-android"></i>
-                <div class="step-text">
-                    <strong>Android (Chrome):</strong><br>
-                    Klik titik tiga (⋮) > Centang <strong>"Situs Desktop"</strong>.
+    <div id="desktop-guide-overlay">
+        <div class="guide-box">
+            <div class="guide-icon">
+                <i class="fas fa-mobile-alt"></i>
+                <i class="fas fa-arrow-right" style="font-size: 1rem; margin: 0 10px;"></i>
+                <i class="fas fa-desktop"></i>
+            </div>
+            <h3>Optimalkan Tampilan</h3>
+            <p class="guide-desc">
+                Agar tampilan website stabil dan rapi, mohon aktifkan <strong>Mode Desktop</strong> di browser HP kamu.
+            </p>
+            
+            <div class="guide-steps">
+                <div class="step-item">
+                    <div class="step-header">
+                        <i class="fab fa-android"></i>
+                        <div class="step-text">
+                            <strong>Android (Chrome):</strong><br>
+                            1. Klik titik tiga (⋮) pojok kanan atas.<br>
+                            2. Centang <strong>"Situs Desktop"</strong>.
+                        </div>
+                    </div>
+                    <img src="img panduan/panduan-android-1.jpg" alt="Klik Menu" class="guide-img">
+                    <img src="img panduan/panduan-android-2.jpg" alt="Centang Desktop" class="guide-img">
+                </div>
+
+                <div class="step-item">
+                    <div class="step-header">
+                        <i class="fab fa-apple"></i>
+                        <div class="step-text">
+                            <strong>iPhone (Safari):</strong><br>
+                            Klik ikon "aA" > Pilih <strong>"Minta Situs Web Desktop"</strong>.
+                        </div>
+                    </div>
+                    <img src="img panduan/panduan-iphone.jpg" alt="iPhone Guide" class="guide-img">
                 </div>
             </div>
-            <div class="step-item">
-                <i class="fab fa-apple"></i>
-                <div class="step-text">
-                    <strong>iPhone (Safari):</strong><br>
-                    Klik ikon "aA" > Pilih <strong>"Minta Situs Web Desktop"</strong>.
-                </div>
-            </div>
+
+            <a href="img panduan/panduan.html" class="full-guide-link">
+                <i class="fas fa-book-open"></i> Lihat Panduan Selengkapnya
+            </a>
+
+            <button id="close-guide-btn" disabled>Mohon Baca (5)</button>
         </div>
-
-        <a href="panduan.html" class="full-guide-link">
-            <i class="fas fa-book-open"></i> Lihat Panduan Selengkapnya
-        </a>
-
-        <button id="close-guide-btn" disabled>Mohon Baca (5)</button>
     </div>
-</div>
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const guideOverlay = document.getElementById("desktop-guide-overlay");
             const closeBtn = document.getElementById("close-guide-btn");
 
-            // --- HAPUS BARIS DI BAWAH INI SETELAH SELESAI TESTING AGAR TIDAK MUNCUL TERUS ---
+            // --- HAPUS BARIS INI JIKA SUDAH SELESAI TESTING ---
             // localStorage.removeItem("guideSeen"); 
-            // --------------------------------------------------------------------------------
+            // --------------------------------------------------
 
             // Cek LocalStorage
             if (localStorage.getItem("guideSeen") === "true") {
                 guideOverlay.style.display = "none";
             } else {
-                // Timer Logic
+                // Timer Logic (5 Detik)
                 let timeLeft = 5;
                 
                 closeBtn.disabled = true;
