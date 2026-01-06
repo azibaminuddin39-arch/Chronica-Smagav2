@@ -706,3 +706,150 @@ header, header::before, header::after {
 .faq-item.active .faq-question {
     color: #ffffff; /* Contoh: teks jadi lebih terang saat terbuka */
 }
+
+/* ==========================================
+   POPUP PANDUAN DESKTOP MODE
+   ========================================== */
+#desktop-guide-overlay {
+    display: none; /* Default sembunyi di Desktop */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95); /* Latar gelap pekat */
+    z-index: 999999999; /* Paling atas di atas loader sekalipun */
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    transition: opacity 0.5s ease;
+}
+
+.guide-box {
+    background: #1a1a1a;
+    border: 2px solid var(--color-silver);
+    border-radius: 20px;
+    padding: 30px 20px;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 0 50px rgba(192, 192, 192, 0.2);
+    animation: popUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popUp {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.guide-icon {
+    font-size: 3rem;
+    color: var(--color-gold);
+    margin-bottom: 15px;
+    animation: floatIcon 3s infinite ease-in-out;
+}
+
+.guide-box h3 {
+    color: #fff;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.guide-desc {
+    color: #ccc;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.guide-steps {
+    text-align: left;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+.step-item:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.step-item i {
+    font-size: 1.5rem;
+    color: var(--color-silver);
+    margin-top: 2px;
+}
+
+.step-text {
+    font-size: 0.85rem;
+    color: #eee;
+    line-height: 1.4;
+}
+
+.step-text strong {
+    color: var(--color-gold);
+}
+
+#close-guide-btn {
+    background: var(--color-maroon);
+    color: white;
+    border: 1px solid var(--color-silver);
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: transform 0.2s, background 0.3s;
+    width: 100%;
+}
+
+#close-guide-btn:active {
+    transform: scale(0.95);
+    background: #400000;
+}
+
+/* HANYA MUNCUL DI LAYAR KECIL (MOBILE) */
+@media (max-width: 850px) {
+    #desktop-guide-overlay {
+        display: flex; /* Munculkan popup */
+    }
+}
+
+/* --- TAMBAHAN STYLE UNTUK LINK PANDUAN DI POPUP --- */
+.full-guide-link {
+    display: block;
+    margin: 10px 0 15px; /* Jarak atas bawah */
+    color: var(--color-gold); /* Warna Emas agar mencolok */
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: bold;
+    border: 1px dashed rgba(255, 215, 0, 0.3);
+    padding: 10px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.full-guide-link:hover {
+    background: rgba(255, 215, 0, 0.1);
+    border-color: var(--color-gold);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.full-guide-link i {
+    margin-right: 8px;
+}
