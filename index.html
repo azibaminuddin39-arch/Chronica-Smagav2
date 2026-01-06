@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>CHRONICA - Jurnalistik SMAN 3 Banjarbaru</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -10,13 +10,8 @@
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Playfair+Display:wght@700&display=swap');
 
         /* Warna silver untuk Pengurus Inti dan Judul Divisi */
-        #organisasi h3 {
-            color: #C0C0C0 !important;
-        }
-
-        .divisi-box h4 {
-            color: #C0C0C0 !important;
-        }
+        #organisasi h3 { color: #C0C0C0 !important; }
+        .divisi-box h4 { color: #C0C0C0 !important; }
     </style>
 </head>
 <body>
@@ -42,13 +37,12 @@
     <header>
         <nav class="nav-container">
             <button class="hamburger" id="hamburger" aria-label="Menu">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </button>
 
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="index.html">Beranda</a></li>
+                <li><a href="panduan.html">Panduan Desktop</a></li>
                 <li><a href="anggota.html">Anggota Divisi</a></li>
                 <li><a href="berita.html">Berita</a></li>
                 <li><a href="suara.html">Suara SMAGA & FAQ</a></li> 
@@ -226,5 +220,91 @@
 
     <script src="script.js"></script>
 
-    </body>
+   <div id="desktop-guide-overlay">
+    <div class="guide-box">
+        <div class="guide-icon">
+            <i class="fas fa-mobile-alt"></i>
+            <i class="fas fa-arrow-right" style="font-size: 1rem; margin: 0 10px;"></i>
+            <i class="fas fa-desktop"></i>
+        </div>
+        <h3>Optimalkan Tampilan</h3>
+        <p class="guide-desc">
+            Agar tampilan website stabil dan rapi, mohon aktifkan <strong>Mode Desktop</strong> di browser HP kamu.
+        </p>
+        
+        <div class="guide-steps">
+            <div class="step-item">
+                <i class="fab fa-android"></i>
+                <div class="step-text">
+                    <strong>Android (Chrome):</strong><br>
+                    Klik titik tiga (⋮) > Centang <strong>"Situs Desktop"</strong>.
+                </div>
+            </div>
+            <div class="step-item">
+                <i class="fab fa-apple"></i>
+                <div class="step-text">
+                    <strong>iPhone (Safari):</strong><br>
+                    Klik ikon "aA" > Pilih <strong>"Minta Situs Web Desktop"</strong>.
+                </div>
+            </div>
+        </div>
+
+        <a href="panduan.html" class="full-guide-link">
+            <i class="fas fa-book-open"></i> Lihat Panduan Selengkapnya
+        </a>
+
+        <button id="close-guide-btn" disabled>Mohon Baca (5)</button>
+    </div>
+</div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const guideOverlay = document.getElementById("desktop-guide-overlay");
+            const closeBtn = document.getElementById("close-guide-btn");
+
+            // --- HAPUS BARIS DI BAWAH INI SETELAH SELESAI TESTING AGAR TIDAK MUNCUL TERUS ---
+            // localStorage.removeItem("guideSeen"); 
+            // --------------------------------------------------------------------------------
+
+            // Cek LocalStorage
+            if (localStorage.getItem("guideSeen") === "true") {
+                guideOverlay.style.display = "none";
+            } else {
+                // Timer Logic
+                let timeLeft = 5;
+                
+                closeBtn.disabled = true;
+                closeBtn.style.opacity = "0.5";
+                closeBtn.style.cursor = "not-allowed";
+                closeBtn.textContent = `Mohon Baca (${timeLeft})`;
+
+                const countdown = setInterval(() => {
+                    timeLeft--;
+                    if (timeLeft > 0) {
+                        closeBtn.textContent = `Mohon Baca (${timeLeft})`;
+                    } else {
+                        clearInterval(countdown);
+                        closeBtn.textContent = "Saya Mengerti";
+                        closeBtn.disabled = false;
+                        closeBtn.style.opacity = "1";
+                        closeBtn.style.cursor = "pointer";
+                        closeBtn.style.transform = "scale(1.05)";
+                        setTimeout(() => closeBtn.style.transform = "scale(1)", 200);
+                    }
+                }, 1000);
+            }
+
+            closeBtn.addEventListener("click", () => {
+                if (!closeBtn.disabled) {
+                    guideOverlay.style.opacity = "0";
+                    setTimeout(() => {
+                        guideOverlay.style.display = "none";
+                    }, 500);
+                    localStorage.setItem("guideSeen", "true");
+                }
+            });
+        });
+    </script>
+
+</body>
 </html>
