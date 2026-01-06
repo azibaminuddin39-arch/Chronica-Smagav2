@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Panduan Mode Desktop - CHRONICA</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* CSS KHUSUS HALAMAN PANDUAN (Bisa ditaruh di sini atau di style.css) */
+        .guide-intro {
+            text-align: center;
+            font-size: 0.95rem;
+            color: #ccc;
+            margin-bottom: 30px;
+        }
+
+        .guide-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .guide-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+        }
+
+        .guide-icon-box {
+            width: 50px;
+            height: 50px;
+            background: var(--color-maroon);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            border: 2px solid var(--color-silver);
+            flex-shrink: 0;
+        }
+
+        .guide-header h3 {
+            margin: 0;
+            text-align: left;
+            font-size: 1.1rem;
+            color: var(--color-gold) !important;
+            letter-spacing: 1px;
+        }
+
+        .step-list {
+            padding-left: 0;
+            list-style: none;
+            margin: 0;
+        }
+
+        .step-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #e0e0e0;
+            line-height: 1.5;
+        }
+
+        .step-list li::before {
+            content: "\f00c"; /* FontAwesome Check Icon */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: var(--color-silver);
+        }
+
+        .step-highlight {
+            color: white;
+            font-weight: bold;
+            background: rgba(96, 0, 0, 0.5);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .btn-back {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: transparent;
+            color: var(--color-silver);
+            text-align: center;
+            text-decoration: none;
+            border: 1px solid var(--color-silver);
+            border-radius: 50px;
+            font-weight: bold;
+            margin-top: 30px;
+            transition: 0.3s;
+        }
+
+        .btn-back:hover {
+            background: var(--color-maroon);
+            color: white;
+            border-color: var(--color-maroon);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loader-wrapper">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <img src="Logo_2.png" alt="Logo Chronica">
+                <div class="loader-line"></div>
+            </div>
+            <p>MEMUAT PANDUAN...</p>
+        </div>
+    </div>
+
+    <header>
+        <nav class="nav-container">
+            <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="anggota.html">Anggota Divisi</a></li>
+                <li><a href="berita.html">Berita</a></li>
+                <li><a href="suara.html">Suara SMAGA</a></li>
+                <li><a href="panduan.html" style="color: var(--color-gold);">Panduan Desktop</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-brand-wrapper">
+            <div class="text-container">
+                <h1 class="brand-name" style="font-size: 1.8rem;">PANDUAN</h1>
+                <p class="welcome-text">OPTIMALISASI TAMPILAN</p>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <h2>Mengapa Mode Desktop?</h2>
+            <p class="guide-intro">
+                Website CHRONICA didesain dengan detail visual tinggi. Mengaktifkan <strong>"Situs Desktop"</strong> di HP kamu akan membuat tata letak lebih stabil, rapi, dan memberikan pengalaman membaca berita layaknya aplikasi profesional.
+            </p>
+        </section>
+
+        <section>
+            <div class="guide-card">
+                <div class="guide-header">
+                    <div class="guide-icon-box">
+                        <i class="fab fa-android"></i>
+                    </div>
+                    <h3>Pengguna Android</h3>
+                </div>
+                <ul class="step-list">
+                    <li>Buka browser <strong>Chrome</strong> di HP kamu.</li>
+                    <li>Lihat ke pojok kanan atas, ketuk ikon <strong>Titik Tiga (⋮)</strong>.</li>
+                    <li>Cari menu ke bawah, lalu centang kotak <span class="step-highlight">Situs Desktop</span> atau <em>Desktop Site</em>.</li>
+                    <li>Tampilan web akan memuat ulang secara otomatis menjadi lebih rapi.</li>
+                </ul>
+            </div>
+
+            <div class="guide-card">
+                <div class="guide-header">
+                    <div class="guide-icon-box">
+                        <i class="fab fa-apple"></i>
+                    </div>
+                    <h3>Pengguna iPhone (iOS)</h3>
+                </div>
+                <ul class="step-list">
+                    <li>Buka browser <strong>Safari</strong>.</li>
+                    <li>Lihat ke pojok kiri atas pada kolom alamat web, ketuk ikon <strong>"aA"</strong>.</li>
+                    <li>Pilih menu <span class="step-highlight">Minta Situs Web Desktop</span> atau <em>Request Desktop Website</em>.</li>
+                    <li>Tampilan akan menyesuaikan secara otomatis.</li>
+                </ul>
+            </div>
+
+            <a href="index.html" class="btn-back">
+                <i class="fas fa-arrow-left"></i> Kembali ke Beranda
+            </a>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 CHRONICA SMAN 3 Banjarbaru</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Loader
+            const loader = document.getElementById('loader-wrapper');
+            window.addEventListener('load', () => {
+                setTimeout(() => { if(loader) loader.classList.add('fade-out'); }, 1500); 
+            });
+
+            // Hamburger
+            const btn = document.getElementById('hamburger');
+            const menu = document.getElementById('nav-menu');
+            btn.onclick = () => { btn.classList.toggle('active'); menu.classList.toggle('active'); };
+        });
+    </script>
+</body>
+</html>
