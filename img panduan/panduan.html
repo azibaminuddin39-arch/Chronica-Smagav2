@@ -10,21 +10,63 @@
     <link rel="stylesheet" href="../style.css">
 
     <style>
-        /* --- 1. SETTING GIF HEADER KHUSUS HALAMAN PANDUAN --- */
+        /* --- 1. HEADER (GANTI GIF DI SINI) --- */
         header {
-            /* Pastikan file GIF baru juga ada di folder 'img panduan', atau gunakan '../' jika di luar */
-            /* Contoh jika GIF ada di folder yang sama: url('header-baru.gif'); */
-            /* Contoh jika pakai GIF lama (default): url('../wqeqwe.gif'); */
-            
+            /* Pastikan file GIF ada di folder yang benar. Gunakan '../' jika file ada di luar folder 'img panduan' */
             background-image: linear-gradient(to bottom, transparent 60%, var(--color-bg-main) 100%), 
                               linear-gradient(rgba(0,0,0,0.6), rgba(96,0,0,0.4)), 
-                              url('LB_5.gif') !important; /* <--- GANTI NAMA FILE GIF DI SINI */
-            
+                              url('../wqeqwe.gif') !important; 
             background-size: cover;
             background-position: center;
         }
 
-        /* --- 2. CSS LAINNYA --- */
+        /* --- 2. CUSTOM NAVIGASI ARMY GREEN (NEW) --- */
+        
+        /* Tombol Hamburger Hijau Army Glass */
+        .hamburger {
+            background: rgba(47, 79, 47, 0.85) !important; /* Hijau Army Transparan */
+            border: 1px solid rgba(144, 238, 144, 0.4) !important; /* Border Hijau Muda */
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 15px rgba(0, 128, 0, 0.4); /* Glow Kotak */
+        }
+
+        /* Garis Hamburger */
+        .hamburger span {
+            background: #e0ffd0 !important; /* Putih kehijauan */
+            box-shadow: 0 0 8px rgba(144, 238, 144, 0.8); /* Glow Garis */
+        }
+
+        /* Menu Dropdown Hijau Army Glass */
+        .nav-menu {
+            background: rgba(20, 40, 20, 0.95) !important; /* Hijau Sangat Gelap */
+            backdrop-filter: blur(20px) !important;
+            border: 1px solid rgba(144, 238, 144, 0.2) !important;
+            box-shadow: 0 10px 40px rgba(0, 50, 0, 0.9) !important;
+        }
+
+        /* Teks Menu Glow Effect */
+        .nav-menu a {
+            color: #f0fff0 !important; /* Putih Tulang */
+            text-shadow: 0 0 10px rgba(50, 205, 50, 0.7) !important; /* Glow Hijau Neon */
+            border-bottom: 1px solid rgba(144, 238, 144, 0.1) !important;
+            transition: all 0.3s ease;
+        }
+
+        /* Hover Effect Menu */
+        .nav-menu a:hover {
+            background: rgba(50, 205, 50, 0.2) !important;
+            text-shadow: 0 0 20px rgba(50, 205, 50, 1) !important; /* Glow makin terang */
+            padding-left: 20px; /* Geser sedikit saat hover */
+        }
+
+        /* Link Aktif (Panduan Desktop) */
+        .nav-menu li a[href="panduan.html"] {
+            color: #7fff00 !important; /* Chartreuse (Hijau Terang) */
+            text-shadow: 0 0 15px #7fff00 !important;
+            border-left: 3px solid #7fff00;
+        }
+
+        /* --- 3. CSS KONTEN PANDUAN --- */
         .guide-intro {
             text-align: center; font-size: 0.9rem; color: #ccc;
             margin-bottom: 30px; line-height: 1.6;
@@ -183,13 +225,11 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Loader
             const loader = document.getElementById('loader-wrapper');
             window.addEventListener('load', () => {
                 setTimeout(() => { if(loader) loader.classList.add('fade-out'); }, 1000); 
             });
 
-            // Hamburger
             const btn = document.getElementById('hamburger');
             const menu = document.getElementById('nav-menu');
             btn.onclick = () => { btn.classList.toggle('active'); menu.classList.toggle('active'); };
