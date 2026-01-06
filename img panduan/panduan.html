@@ -10,7 +10,21 @@
     <link rel="stylesheet" href="../style.css">
 
     <style>
-        /* CSS KHUSUS HALAMAN PANDUAN */
+        /* --- 1. SETTING GIF HEADER KHUSUS HALAMAN PANDUAN --- */
+        header {
+            /* Pastikan file GIF baru juga ada di folder 'img panduan', atau gunakan '../' jika di luar */
+            /* Contoh jika GIF ada di folder yang sama: url('header-baru.gif'); */
+            /* Contoh jika pakai GIF lama (default): url('../wqeqwe.gif'); */
+            
+            background-image: linear-gradient(to bottom, transparent 60%, var(--color-bg-main) 100%), 
+                              linear-gradient(rgba(0,0,0,0.6), rgba(96,0,0,0.4)), 
+                              url('../wqeqwe.gif') !important; /* <--- GANTI NAMA FILE GIF DI SINI */
+            
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* --- 2. CSS LAINNYA --- */
         .guide-intro {
             text-align: center; font-size: 0.9rem; color: #ccc;
             margin-bottom: 30px; line-height: 1.6;
