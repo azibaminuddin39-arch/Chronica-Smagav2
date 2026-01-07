@@ -4,14 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>CHRONICA - Jurnalistik SMAN 3 Banjarbaru</title>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <link rel="stylesheet" href="style.css">
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Playfair+Display:wght@700&display=swap');
 
         /* Warna silver untuk Pengurus Inti dan Judul Divisi */
         #organisasi h3 { color: #C0C0C0 !important; }
         .divisi-box h4 { color: #C0C0C0 !important; }
+        
+        /* STYLE KHUSUS JAM DI TENGAH (INLINE AGAR LANGSUNG JALAN) */
+        .clock-container-center {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-top: -30px; /* Sedikit menumpuk ke atas agar menyatu */
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .live-clock-widget {
+            background: #1a1a1a;
+            padding: 15px 30px;
+            border: 1px solid var(--color-silver);
+            border-radius: 50px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            border-bottom: 3px solid var(--color-gold);
+            min-width: 280px;
+            transition: transform 0.3s ease;
+        }
+
+        .live-clock-widget:hover {
+            transform: translateY(-5px);
+        }
+
+        #clock-day-date {
+            font-size: 0.9rem;
+            color: var(--color-silver);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 2px;
+            font-weight: bold;
+        }
+
+        #clock-time {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: white;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            letter-spacing: 3px;
+            line-height: 1.2;
+        }
+
+        /* Responsif HP */
+        @media (max-width: 480px) {
+            .clock-container-center { margin-top: 10px; margin-bottom: 10px; }
+            .live-clock-widget { width: 90%; padding: 10px; min-width: auto; border-radius: 15px; }
+            #clock-time { font-size: 1.6rem; }
+            #clock-day-date { font-size: 0.75rem; }
+        }
     </style>
 </head>
 <body>
@@ -60,6 +117,13 @@
     </header>
 
     <main>
+        
+        <div class="clock-container-center">
+            <div class="live-clock-widget">
+                <div id="clock-day-date">Memuat Tanggal...</div>
+                <div id="clock-time">00:00:00</div>
+            </div>
+        </div>
         <section id="visi-misi">
             <div class="visi-container">
                 <h2>Visi & Misi</h2>
@@ -242,8 +306,8 @@
                             2. Centang <strong>"Situs Desktop"</strong>.
                         </div>
                     </div>
-                    <img src="img panduan/panduan-android-1.jpg" alt="Klik Menu" class="guide-img">
-                    <img src="img panduan/panduan-android-2.jpg" alt="Centang Desktop" class="guide-img">
+                    <img src="img panduan/panduan-android-1.png" alt="Klik Menu" class="guide-img">
+                    <img src="img panduan/panduan-android-2.png" alt="Centang Desktop" class="guide-img">
                 </div>
 
                 <div class="step-item">
@@ -268,6 +332,26 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            
+            /* 1. SCRIPT JAM DIGITAL (PENTING!) */
+            function updateClock() {
+                const now = new Date();
+                const optionsDate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                const formattedDate = now.toLocaleDateString('id-ID', optionsDate);
+                const formattedTime = now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+                const dateElement = document.getElementById('clock-day-date');
+                const timeElement = document.getElementById('clock-time');
+
+                if (dateElement && timeElement) {
+                    dateElement.textContent = formattedDate;
+                    timeElement.textContent = formattedTime + " WITA";
+                }
+            }
+            setInterval(updateClock, 1000);
+            updateClock();
+
+            /* 2. SCRIPT POPUP */
             const guideOverlay = document.getElementById("desktop-guide-overlay");
             const closeBtn = document.getElementById("close-guide-btn");
 
@@ -275,13 +359,10 @@
             // localStorage.removeItem("guideSeen"); 
             // --------------------------------------------------
 
-            // Cek LocalStorage
             if (localStorage.getItem("guideSeen") === "true") {
                 guideOverlay.style.display = "none";
             } else {
-                // Timer Logic (5 Detik)
                 let timeLeft = 5;
-                
                 closeBtn.disabled = true;
                 closeBtn.style.opacity = "0.5";
                 closeBtn.style.cursor = "not-allowed";
