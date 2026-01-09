@@ -946,3 +946,77 @@ header, header::before, header::after {
     #clock-time { font-size: 1.8rem; }
     #clock-day-date { font-size: 0.8rem; }
 }
+
+/* Style Tombol Mading di Header */
+.btn-mading-header {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 30px;
+    background: rgba(255, 215, 0, 0.1); 
+    border: 2px solid #FFD700;
+    color: #FFD700;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+
+    /* --- BARIS DI BAWAH INI WAJIB ADA AGAR BISA DIKLIK --- */
+    position: relative; 
+    z-index: 10000;       /* Memastikan tombol ada di lapisan paling atas */
+    pointer-events: auto !important; /* Memaksa tombol agar BISA DIKLIK */
+    cursor: pointer;
+}
+
+.btn-mading-header:hover {
+    background: #FFD700;
+    color: #000000;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+    transform: translateY(-5px);
+}
+
+/* PERBAIKAN TOMBOL KEMBALI (PRESISI TENGAH) */
+        .btn-back-mading {
+            /* 1. Posisi Container Tombol */
+            position: relative;
+            display: flex; /* Ganti ke Flex agar margin auto bekerja sempurna */
+            margin: 0 auto 25px auto; /* Auto kiri-kanan = Center. Jarak bawah 25px */
+            
+            /* 2. Posisi Ikon di Dalam Tombol */
+            align-items: center;     /* Tengah Vertikal */
+            justify-content: center; /* Tengah Horizontal */
+            
+            /* 3. Tampilan Visual */
+            width: 50px; 
+            height: 50px;
+            border-radius: 50%; /* Bulat sempurna */
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            
+            /* 4. Style Ikon */
+            color: white;
+            font-size: 1.2rem; /* Ukuran ikon disesuaikan agar proporsional */
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            
+            /* 5. WAJIB: Agar bisa diklik */
+            z-index: 9999;
+            pointer-events: auto !important; 
+            cursor: pointer;
+        }
+
+        /* Fix khusus agar ikon panah benar-benar di tengah optik */
+        .btn-back-mading i {
+            margin-top: 2px; /* Kadang font icon agak naik, ini untuk menyeimbangkan */
+            margin-right: 2px; /* Sedikit geser agar pas di tengah lingkaran */
+            line-height: 1;
+        }
+
+        .btn-back-mading:hover {
+            background: var(--color-maroon); /* Merah Maroon saat hover */
+            border-color: var(--color-gold); /* Border Emas */
+            transform: scale(1.15); /* Membesar sedikit */
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5); /* Glow Emas */
+        }
