@@ -7,12 +7,13 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
 
     <style>
         /* --- 1. HEADER (GANTI GIF DI SINI) --- */
         header {
-            /* Pastikan file GIF ada di folder yang benar. Gunakan '../' jika file ada di luar folder 'img panduan' */
+            /* PERUBAHAN 2: URL gambar langsung (tanpa ../) */
+            /* Pastikan file GIF ini ada di folder yang sama dengan panduan.html */
             background-image: linear-gradient(to bottom, transparent 60%, var(--color-bg-main) 100%), 
                               linear-gradient(rgba(0,0,0,0.6), rgba(96,0,0,0.4)), 
                               url('LB_5.gif') !important; 
@@ -20,48 +21,42 @@
             background-position: center;
         }
 
-        /* --- 2. CUSTOM NAVIGASI ARMY GREEN (NEW) --- */
+        /* --- 2. CUSTOM NAVIGASI ARMY GREEN --- */
         
-        /* Tombol Hamburger Hijau Army Glass */
         .hamburger {
-            background: rgba(47, 79, 47, 0.85) !important; /* Hijau Army Transparan */
-            border: 1px solid rgba(144, 238, 144, 0.4) !important; /* Border Hijau Muda */
+            background: rgba(47, 79, 47, 0.85) !important;
+            border: 1px solid rgba(144, 238, 144, 0.4) !important;
             backdrop-filter: blur(10px);
-            box-shadow: 0 0 15px rgba(0, 128, 0, 0.4); /* Glow Kotak */
+            box-shadow: 0 0 15px rgba(0, 128, 0, 0.4);
         }
 
-        /* Garis Hamburger */
         .hamburger span {
-            background: #e0ffd0 !important; /* Putih kehijauan */
-            box-shadow: 0 0 8px rgba(144, 238, 144, 0.8); /* Glow Garis */
+            background: #e0ffd0 !important;
+            box-shadow: 0 0 8px rgba(144, 238, 144, 0.8);
         }
 
-        /* Menu Dropdown Hijau Army Glass */
         .nav-menu {
-            background: rgba(20, 40, 20, 0.95) !important; /* Hijau Sangat Gelap */
+            background: rgba(20, 40, 20, 0.95) !important;
             backdrop-filter: blur(20px) !important;
             border: 1px solid rgba(144, 238, 144, 0.2) !important;
             box-shadow: 0 10px 40px rgba(0, 50, 0, 0.9) !important;
         }
 
-        /* Teks Menu Glow Effect */
         .nav-menu a {
-            color: #f0fff0 !important; /* Putih Tulang */
-            text-shadow: 0 0 10px rgba(50, 205, 50, 0.7) !important; /* Glow Hijau Neon */
+            color: #f0fff0 !important;
+            text-shadow: 0 0 10px rgba(50, 205, 50, 0.7) !important;
             border-bottom: 1px solid rgba(144, 238, 144, 0.1) !important;
             transition: all 0.3s ease;
         }
 
-        /* Hover Effect Menu */
         .nav-menu a:hover {
             background: rgba(50, 205, 50, 0.2) !important;
-            text-shadow: 0 0 20px rgba(50, 205, 50, 1) !important; /* Glow makin terang */
-            padding-left: 20px; /* Geser sedikit saat hover */
+            text-shadow: 0 0 20px rgba(50, 205, 50, 1) !important;
+            padding-left: 20px;
         }
 
-        /* Link Aktif (Panduan Desktop) */
         .nav-menu li a[href="panduan.html"] {
-            color: #7fff00 !important; /* Chartreuse (Hijau Terang) */
+            color: #7fff00 !important;
             text-shadow: 0 0 15px #7fff00 !important;
             border-left: 3px solid #7fff00;
         }
@@ -134,7 +129,7 @@
     <div id="loader-wrapper">
         <div class="loader-content">
             <div class="loader-logo">
-                <img src="../Logo_2.png" alt="Logo Chronica">
+                <img src="Logo_2.png" alt="Logo Chronica">
                 <div class="loader-line"></div>
             </div>
             <p>MEMUAT PANDUAN...</p>
@@ -145,11 +140,12 @@
         <nav class="nav-container">
             <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
             <ul class="nav-menu" id="nav-menu">
-                <li><a href="../index.html">Beranda</a></li>
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="mading.html" style="color: #FFD700; font-weight: bold;">Mading Online</a></li>
                 <li><a href="panduan.html" style="color: var(--color-gold);">Panduan Desktop</a></li>
-                <li><a href="../anggota.html">Anggota Divisi</a></li>
-                <li><a href="../berita.html">Berita</a></li>
-                <li><a href="../suara.html">Suara SMAGA & FAQ</a></li> 
+                <li><a href="anggota.html">Anggota Divisi</a></li>
+                <li><a href="berita.html">Berita</a></li>
+                <li><a href="suara.html">Suara SMAGA & FAQ</a></li> 
             </ul>
         </nav>
 
@@ -203,12 +199,12 @@
                 
                 <ul class="step-list">
                     <li>Buka browser <strong>Safari</strong>.</li>
-                    <li>Ketuk ikon <strong>"aA \ menu situs"</strong> di kolom alamat (kiri atas/bawah).</li>
+                    <li>Ketuk ikon <strong>"aA"</strong> di kolom alamat (kiri atas/bawah).</li>
                     <li>Pilih menu <span class="step-highlight">Minta Situs Web Desktop</span>.</li>
                 </ul>
 
                 <div class="guide-img-container">
-                    <span class="guide-img-label">Langkah 1: Klik ikon "aA \ menu situs"</span>
+                    <span class="guide-img-label">Langkah 1: Klik ikon "aA"</span>
                     <img src="panduan-iphone-1.png" alt="Langkah 1 iPhone" class="page-guide-img">
 
                     <span class="guide-img-label">Langkah 2: Lihat Menu</span>
@@ -219,7 +215,7 @@
                 </div>
             </div>
 
-            <a href="../index.html" class="btn-back">
+            <a href="index.html" class="btn-back">
                 <i class="fas fa-arrow-left"></i> Kembali ke Beranda
             </a>
         </section>
