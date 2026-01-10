@@ -25,6 +25,7 @@
             position: relative;
             width: 100%;
             min-height: 50vh;
+            /* Pastikan nama folder gambar sesuai ('img panduan/' atau 'img/') */
             background-image: 
                 linear-gradient(to bottom, transparent 60%, #000000 100%), 
                 linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), 
@@ -72,12 +73,12 @@
            ========================================== */
         .nav-container {
             position: fixed !important;
-            top: 20px; /* Jarak dari atas layar */
-            right: 20px; /* Jarak dari kanan layar */
+            top: 20px;
+            right: 20px;
             z-index: 10000;
             display: flex;
-            flex-direction: column; /* Susun ke bawah agar menu pas di bawah tombol */
-            align-items: flex-end; /* Rata kanan */
+            flex-direction: column;
+            align-items: flex-end;
         }
 
         .hamburger {
@@ -98,7 +99,7 @@
             pointer-events: auto !important;
             transition: 0.3s;
             position: relative;
-            z-index: 10001; /* Di atas menu */
+            z-index: 10001; 
         }
 
         .hamburger span {
@@ -116,25 +117,24 @@
         .hamburger.active span:nth-child(2) { opacity: 0; }
         .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-        /* MENU DROPDOWN (POSISI DIPERBAIKI) */
+        /* MENU DROPDOWN */
         .nav-menu {
             position: absolute;
-            top: 55px; /* Jarak pas di bawah tombol hamburger */
-            right: 0;  /* Rata kanan dengan tombol */
+            top: 55px;
+            right: 0;
             
             background: rgba(20, 20, 20, 0.95);
             backdrop-filter: blur(15px);
             list-style: none;
-            padding: 10px 0; /* Padding vertikal saja */
+            padding: 10px 0;
             border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.2);
             
             display: none;
             flex-direction: column;
-            min-width: 180px; /* Lebar menu */
+            min-width: 180px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.8);
             
-            /* Animasi Muncul */
             transform-origin: top right;
             animation: menuPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
@@ -145,7 +145,6 @@
         }
 
         .nav-menu.active { display: flex !important; }
-
         .nav-menu li { width: 100%; }
 
         .nav-menu a { 
@@ -155,7 +154,7 @@
             display: block; 
             border-bottom: 1px solid rgba(255,255,255,0.05); 
             font-size: 0.9rem;
-            text-align: right; /* Teks rata kanan */
+            text-align: right; 
             transition: 0.2s; 
         }
 
@@ -229,8 +228,27 @@
         }
         .btn-home:hover { background: #600000; border-color: #FFD700; }
 
-        /* Media Query untuk Layar Kecil */
-        @media (max-width: 480px) {
+        /* ==========================================
+           4. PERBAIKAN RESPONSIF (JARAK MENU)
+           ========================================== */
+        @media (max-width: 850px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-end;
+                /* GAP DI-NOL-KAN AGAR RAPAT */
+                gap: 0px !important; 
+            }
+
+            .nav-menu {
+                position: relative;
+                /* RESET POSISI AGAR NEMPEL TOMBOL */
+                top: 0px !important; 
+                margin-top: 10px !important; /* Jarak kecil yang pas */
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+            
+            /* Font Header Mobile */
             .panduan-header-content h1 { font-size: 1.8rem; }
             .guide-step { padding: 20px; }
         }
