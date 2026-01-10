@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anggota CHRONICA - Jurnalistik SMAN 3 Banjarbaru</title>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <link rel="stylesheet" href="style.css">
+
     <style>
         /* ==========================================
            CSS KHUSUS HALAMAN ANGGOTA & GLASS HEADER
@@ -20,11 +23,12 @@
         header {
             position: relative;
             width: 100%;
-            min-height: 60vh; /* Tinggi diperbesar agar lega */
+            min-height: 60vh; 
+            /* Pastikan path gambar background ini benar sesuai folder kamu */
             background-image: 
                 linear-gradient(to bottom, transparent 50%, #000000 100%), 
                 linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), 
-                url('img/LB_4.gif') !important;
+                url('img/LB_4.gif') !important; 
             background-size: cover !important;
             background-position: center;
             display: flex;
@@ -36,10 +40,10 @@
 
         /* KOTAK GLASS (KACA) */
         .glass-header-box {
-            background: rgba(255, 255, 255, 0.05); /* Transparan */
-            backdrop-filter: blur(12px); /* Efek Blur Utama */
-            -webkit-backdrop-filter: blur(12px); /* Support Safari */
-            border: 1px solid rgba(255, 255, 255, 0.15); /* List kaca */
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 20px;
             padding: 40px;
             text-align: center;
@@ -49,6 +53,8 @@
             position: relative;
             margin-top: 40px;
             animation: fadeInGlass 1s ease-out;
+            /* Pastikan konten di dalam box bisa diklik */
+            pointer-events: auto !important;
         }
 
         @keyframes fadeInGlass {
@@ -56,7 +62,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* TOMBOL KEMBALI DI DALAM KACA */
+        /* TOMBOL KEMBALI DI DALAM KACA - FIX CSS */
         .btn-back-glass {
             position: absolute;
             left: 25px;
@@ -65,8 +71,13 @@
             color: rgba(255, 255, 255, 0.7);
             font-size: 1.8rem;
             transition: 0.3s;
-            z-index: 10;
+            z-index: 1000; /* Layer paling atas */
+            
+            /* --- WAJIB ADA AGAR BISA DIKLIK --- */
+            pointer-events: auto !important; 
+            cursor: pointer;
         }
+        
         .btn-back-glass:hover {
             color: #FFD700;
             transform: translateY(-50%) scale(1.2);
@@ -82,7 +93,7 @@
             letter-spacing: 2px;
         }
 
-        /* DESKRIPSI PUITIS */
+        /* DESKRIPSI (VERSI SINGKAT) */
         .glass-desc {
             font-family: 'Montserrat', sans-serif;
             font-size: 1rem;
@@ -99,7 +110,7 @@
             header { min-height: 50vh; }
             .glass-header-box { padding: 30px 20px; margin-top: 20px; }
             .glass-title { font-size: 1.8rem; margin-top: 10px; }
-            .glass-desc { font-size: 0.85rem; display: none; /* Sembunyikan teks panjang di HP jika mau, atau biarkan */ display: block; } 
+            .glass-desc { font-size: 0.85rem; } 
             
             /* Posisi tombol back di HP */
             .btn-back-glass { 
@@ -114,12 +125,12 @@
 
         /* --- NAVIGATION FIXED --- */
         .nav-container { position: fixed; top: 25px; right: 25px; z-index: 10000; display: flex; align-items: center; gap: 15px; }
-        .hamburger { display: flex; flex-direction: column; gap: 6px; background: rgba(0, 0, 0, 0.7) !important; padding: 10px; border-radius: 8px; border: 1px solid #C0C0C0 !important; cursor: pointer; outline: none; }
+        .hamburger { display: flex; flex-direction: column; gap: 6px; background: rgba(0, 0, 0, 0.7) !important; padding: 10px; border-radius: 8px; border: 1px solid #C0C0C0 !important; cursor: pointer; outline: none; pointer-events: auto !important; }
         .hamburger span { width: 30px; height: 3px; background: #C0C0C0; border-radius: 2px; transition: 0.3s ease; }
         .hamburger.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
         .hamburger.active span:nth-child(2) { opacity: 0; }
         .hamburger.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
-        .nav-menu { position: absolute; top: 65px; right: 0; background: rgba(20, 20, 20, 0.95); backdrop-filter: blur(15px); list-style: none; padding: 15px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); display: none; flex-direction: column; min-width: 180px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .nav-menu { position: absolute; top: 65px; right: 0; background: rgba(20, 20, 20, 0.95); backdrop-filter: blur(15px); list-style: none; padding: 15px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); display: none; flex-direction: column; min-width: 180px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); pointer-events: auto !important; }
         .nav-menu.active { display: flex !important; }
         .nav-menu a { color: white; text-decoration: none; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.1); }
 
@@ -136,7 +147,7 @@
         @media (max-width: 850px) { .nav-container { top: auto; bottom: 30px; right: 25px; flex-direction: column-reverse; } .nav-menu { bottom: 70px; top: auto; right: 0; } }
 
         /* MODAL */
-        .modal { display: none; position: fixed; z-index: 20000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.95); backdrop-filter: blur(10px); align-items: center; justify-content: center; padding: 20px; }
+        .modal { display: none; position: fixed; z-index: 20000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.95); backdrop-filter: blur(10px); align-items: center; justify-content: center; padding: 20px; pointer-events: auto !important; }
         .modal-content { background: #1a1a1a; padding: 40px; border-radius: 25px; display: flex; align-items: center; gap: 35px; max-width: 650px; width: 95%; position: relative; border: 2px solid #C0C0C0; }
         .modal-foto { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 4px solid #C0C0C0; }
         .close-modal { position: absolute; top: 15px; right: 20px; font-size: 35px; color: #C0C0C0; cursor: pointer; }
@@ -158,7 +169,8 @@
         </button>
         <ul class="nav-menu" id="navMenu">
             <li><a href="index.html">Beranda</a></li>
-            <li><a href="img panduan/panduan.html">Panduan Desktop</a></li>
+            <li><a href="mading.html">Mading Online</a></li>
+            <li><a href="panduan.html">Panduan Desktop</a></li>
             <li><a href="berita.html">Berita</a></li>
             <li><a href="suara.html">Suara SMAGA & FAQ</a></li> 
         </ul>
@@ -171,10 +183,10 @@
             </a>
 
             <h1 class="glass-title">FAMILY CHRONICA</h1>
+            
             <p class="glass-desc">
-                "Di balik setiap berita, ada cerita. Di balik setiap karya, ada keluarga.<br>
-                Inilah wajah-wajah penuh dedikasi yang menghidupkan CHRONICA,<br>
-                bersatu dalam visi untuk merekam jejak dan menyuarakan kebenaran."
+                "Inilah wajah-wajah penuh dedikasi keluarga besar CHRONICA, <br>
+                bersatu merekam jejak dan menyuarakan kebenaran."
             </p>
         </div>
     </header>
@@ -404,7 +416,8 @@
         function openModal(name, job, img) {
             document.getElementById('modalName').innerText = name;
             document.getElementById('modalJob').innerText = job;
-            document.getElementById('modalImg').src = 'img/' + img;
+            // Gunakan path 'img/' karena struktur kembali ke default
+            document.getElementById('modalImg').src = img;
             document.getElementById('memberModal').style.display = 'flex';
         }
         function closeModal() { document.getElementById('memberModal').style.display = 'none'; }
