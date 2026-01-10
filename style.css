@@ -255,65 +255,190 @@ header {
 }
 
 /* ==========================================
-   NAVIGASI & HAMBURGER
+           FIX NAVIGASI & TOMBOL MENU (Z-INDEX TINGGI)
+           ========================================== */
+        
+        .nav-container {
+            /* Posisi Default (Desktop) */
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            
+            /* Agar selalu di atas elemen lain */
+            z-index: 999999 !important; 
+            
+            /* WAJIB: Agar area ini bisa diklik */
+            pointer-events: auto !important; 
+            
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        #hamburger {
+            /* Style Tombol */
+            background: rgba(0, 0, 0, 0.6) !important;
+            border: 2px solid var(--color-silver) !important;
+            border-radius: 50px !important;
+            padding: 10px 25px !important;
+            
+            /* Teks */
+            font-family: 'Montserrat', sans-serif;
+            color: #ffffff !important;
+            font-weight: bold;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            
+            /* Interaksi */
+            cursor: pointer !important;
+            pointer-events: auto !important; /* MEMAKSA TOMBOL BISA DIKLIK */
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1000000 !important; /* Paling atas */
+        }
+
+        #hamburger:hover {
+            background: var(--color-maroon) !important;
+            border-color: var(--color-gold) !important;
+            color: var(--color-gold) !important;
+            transform: translateY(-2px);
+        }
+
+        /* Tampilan saat Aktif (Klik) */
+        #hamburger.active {
+            background: #800000 !important;
+            border-color: #ffffff !important;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+        }
+
+        /* ==========================================
+   PERBAIKAN TOTAL NAVIGASI (COPY & PASTE INI)
    ========================================== */
-.nav-container { 
-    position: absolute; 
-    top: 25px; 
-    right: 25px; 
-    z-index: 5000; 
-    pointer-events: auto !important; 
-    display: flex !important;
-    align-items: center !important;
+
+/* 1. WADAH UTAMA (Posisi Kanan Atas) */
+.nav-container {
+    position: fixed !important; /* Tetap di layar saat scroll */
+    top: 25px !important;
+    right: 25px !important;
+    z-index: 999999 !important; /* Selalu paling depan */
+    display: flex;
+    flex-direction: column; /* Agar menu turun ke bawah tombol */
+    align-items: flex-end;  /* Rata kanan */
+    pointer-events: auto !important; /* Agar bisa diklik */
 }
 
-.hamburger { 
-    display: flex; 
-    flex-direction: column; 
-    gap: 6px; 
-    background: rgba(0, 0, 0, 0.4); 
-    padding: 8px;
-    border-radius: 5px;
-    border: none; 
-    cursor: pointer; 
-    outline: none; 
-    z-index: 10000 !important;
+/* 2. TOMBOL MENU (KAPSUL) */
+#hamburger {
+    /* Tampilan */
+    background: rgba(0, 0, 0, 0.7) !important;
+    border: 2px solid var(--color-silver) !important;
+    color: #ffffff !important;
+    border-radius: 50px !important;
+    padding: 10px 25px !important;
+    
+    /* Teks */
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    
+    /* Fungsi */
+    cursor: pointer !important;
     pointer-events: auto !important;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    
+    /* Reset gaya default button */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto !important;
+    height: auto !important;
 }
 
-.hamburger span { width: 35px; height: 4px; background: var(--color-silver); border-radius: 2px; transition: 0.3s ease; }
+#hamburger:hover {
+    background: var(--color-maroon) !important;
+    border-color: var(--color-gold) !important;
+    color: var(--color-gold) !important;
+    transform: translateY(-2px);
+}
 
-.hamburger.active span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
-.hamburger.active span:nth-child(2) { opacity: 0; }
-.hamburger.active span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
+#hamburger.active {
+    background: #800000 !important; /* Warna merah saat aktif */
+    border-color: #ffffff !important;
+    content: "TUTUP"; /* Teks akan berubah lewat JS */
+}
 
+/* Hapus garis ikon lama jika masih muncul */
+#hamburger span { display: none !important; }
+
+/* 3. MENU DROPDOWN (RAPI & ADA BACKGROUND) */
 .nav-menu {
-    position: absolute; 
-    top: 50px; 
-    right: 0; 
-    background: rgba(60, 0, 0, 0.9) !important; 
-    backdrop-filter: blur(20px) saturate(180%) !important;
-    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
-    list-style: none; 
-    padding: 15px; 
-    border-radius: 12px; 
-    border: 1px solid rgba(255, 255, 255, 0.1) !important; 
-    display: none; 
-    flex-direction: column; 
-    min-width: 180px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.6) !important;
+    position: absolute !important;
+    top: 55px !important; /* Jarak dari tombol menu */
+    right: 0 !important;  /* Rata kanan dengan tombol */
+    
+    /* Background Gelap Kaca */
+    background: rgba(20, 20, 20, 0.95) !important;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 15px;
+    
+    /* Ukuran & Spasi */
+    min-width: 220px;
+    padding: 10px 0 !important;
+    margin: 0 !important;
+    
+    /* Hilangkan Titik List */
+    list-style: none !important;
+    display: flex;
+    flex-direction: column;
+    
+    /* Animasi Muncul */
     opacity: 0;
+    visibility: hidden;
     transform: translateY(-10px);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    pointer-events: auto !important; 
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8) !important;
 }
 
-.nav-menu.active { 
-    display: flex !important; 
-    opacity: 1 !important; 
+/* Tampilkan saat aktif */
+.nav-menu.active {
+    opacity: 1 !important;
     visibility: visible !important;
     transform: translateY(0) !important;
-    z-index: 9999 !important;
+}
+
+/* Item Link di Dalam Menu */
+.nav-menu li {
+    width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style-type: none !important; /* Hapus titik bullet */
+}
+
+.nav-menu a {
+    display: block;
+    padding: 12px 20px !important;
+    color: #e0e0e0 !important;
+    text-decoration: none;
+    font-size: 0.9rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: background 0.2s;
+    text-align: right; /* Teks rata kanan */
+}
+
+.nav-menu a:hover {
+    background: rgba(255, 215, 0, 0.1);
+    color: var(--color-gold) !important;
+    padding-right: 25px !important; /* Efek geser saat hover */
+}
+
+.nav-menu li:last-child a {
+    border-bottom: none; /* Hapus garis di item terakhir */
 }
 
 .nav-menu a { color: white; text-decoration: none; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.1); transition: 0.2s; }
@@ -1020,3 +1145,16 @@ header, header::before, header::after {
             transform: scale(1.15); /* Membesar sedikit */
             box-shadow: 0 0 15px rgba(255, 215, 0, 0.5); /* Glow Emas */
         }
+
+        /* --- SETTINGAN MOBILE (HP) --- */
+        @media (max-width: 850px) {
+            .nav-container {
+                position: fixed !important; /* Agar tombol 'Nempel' di layar */
+                top: 25px !important;       /* Jarak dari Sisi Atas */
+                right: 20px !important;     /* Jarak dari Sisi Kanan (Pojok Kanan Atas) */
+                z-index: 999999 !important; /* Pastikan selalu paling depan */
+                
+                /* Agar menu dropdown muncul rapi di bawah tombol */
+                flex-direction: column;     
+                align-items: flex-end;      
+            }
