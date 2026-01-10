@@ -11,55 +11,21 @@
 
     <style>
         /* ==========================================
-           1. STYLE ASLI HALAMAN BERITA
+           1. STYLE ASLI HALAMAN BERITA (DIPERTAHANKAN)
            ========================================== */
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap');
         
         body { margin: 0; padding: 0; background-color: #000; color: white; font-family: 'Montserrat', sans-serif; }
 
-        /* HEADER BERITA - DIPERBAIKI UNTUK GIF */
+        /* Header Berita Asli */
         .news-header {
-            /* Mengatur tinggi minimal agar GIF terlihat jelas */
-            min-height: 50vh; 
-            
-            /* Pusatkan konten secara vertikal dan horizontal */
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 40px 20px;
             text-align: center;
-            padding: 20px;
-            position: relative;
-
-            /* --- PENGATURAN BACKGROUND GIF --- */
-            /* 1. Lapisan hitam transparan agar teks terbaca */
-            /* 2. GANTI 'img/LB_2.gif' DENGAN FILE GIF ANDA SEBENARNYA */
-            background-image: 
-                linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)),
-                url('img/LB_2.gif'); 
-            
-            /* Memastikan gambar menutupi seluruh area tanpa terdistorsi */
-            background-size: cover; 
-            
-            /* Posisi gambar di tengah */
-            background-position: center;
-            
-            /* Opsional: Membuat background tetap saat discroll (efek parallax) */
-            background-attachment: fixed;
+            background: linear-gradient(to bottom, #000000, #111);
         }
-
-        .text-container { 
-            margin: 0 auto; 
-            max-width: 800px; 
-            /* Hapus padding-top besar karena sekarang sudah dipusatkan dengan flexbox */
-            padding: 20px; 
-            position: relative;
-            z-index: 2;
-        }
-        
+        .text-container { margin: 0 auto; max-width: 800px; padding-top: 60px; }
         .text-container h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: #FFD700; margin: 10px 0; }
         .text-container p { color: #ccc; letter-spacing: 1px; }
-        .back-link { display: inline-block; margin-bottom: 20px; color: #FFD700; text-decoration: none; font-weight: bold; font-size: 0.9em; letter-spacing: 1px; }
-        .back-link:hover { color: white; }
 
         /* Grid Berita Asli */
         .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 40px; padding: 0 20px; max-width: 1200px; margin-left: auto; margin-right: auto; }
@@ -71,6 +37,8 @@
         .news-tag { color: #FFD700; font-size: 0.8em; font-weight: bold; text-transform: uppercase; margin-bottom: 10px; display: block; }
         .news-title { color: white; font-size: 1.4em; margin-bottom: 15px; font-family: 'Playfair Display', serif; }
         .news-excerpt { color: #ccc; font-size: 0.95em; line-height: 1.6; margin-bottom: 20px; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: #FFD700; text-decoration: none; font-weight: bold; font-size: 0.9em; letter-spacing: 1px; }
+        .back-link:hover { color: white; }
 
         /* ==========================================
            2. STYLE NAVIGASI BARU (DARI PANDUAN.HTML)
@@ -119,11 +87,12 @@
         .hamburger.active span:nth-child(2) { opacity: 0; }
         .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-        /* MENU DROPDOWN */
+        /* MENU DROPDOWN (Fixed Hitbox & Position) */
         .nav-menu {
             position: absolute !important;
             top: 55px !important; 
             right: 0 !important;
+            
             bottom: auto !important;
             min-height: 0 !important;
             height: fit-content !important; 
@@ -211,7 +180,7 @@
         <section>
             <div class="news-grid">
                 <article class="news-card">
-                    <div class="news-image-wrapper"><img src="TIM-FUTSAL.jpg" alt="Futsal SMAGA" onerror="this.src='Logo_2.png'"></div>
+                    <div class="news-image-wrapper"><img src="img/TIM-FUTSAL.jpg" alt="Futsal SMAGA" onerror="this.src='Logo_2.png'"></div>
                     <div class="news-body">
                         <span class="news-tag">Olahraga | September 2025</span>
                         <h3 class="news-title">SMAGA Berlaga di Futsal Series Regional Banjarmasin 2025</h3>
