@@ -11,15 +11,16 @@
 
     <style>
         /* ==========================================
-           CSS KHUSUS HALAMAN PANDUAN
+           1. CSS DASAR & HEADER
            ========================================== */
         body {
             background-color: #000000;
             color: #ffffff;
             font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
         }
 
-        /* HEADER */
         header {
             position: relative;
             width: 100%;
@@ -37,45 +38,46 @@
             padding: 20px;
         }
 
+        /* EFEK GLASS UNTUK JUDUL */
         .panduan-header-content {
             position: relative;
             z-index: 2;
             max-width: 800px;
-            /* Efek Kaca */
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 20px;
-            padding: 40px;
+            padding: 30px;
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            width: 90%;
         }
 
         .panduan-header-content h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: #FFD700;
             margin-bottom: 10px;
             text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
         }
 
         .panduan-header-content p {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: #ffffff;
             text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
         /* ==========================================
-           NAVIGASI & TOMBOL MENU (RAPIIKAN DI SINI)
+           2. NAVIGASI (FIXED & OPTIMALISASI POSISI)
            ========================================== */
         .nav-container {
             position: fixed !important;
-            top: 25px;
-            right: 25px;
+            top: 20px; /* Jarak dari atas layar */
+            right: 20px; /* Jarak dari kanan layar */
             z-index: 10000;
             display: flex;
-            align-items: center;
-            gap: 15px;
+            flex-direction: column; /* Susun ke bawah agar menu pas di bawah tombol */
+            align-items: flex-end; /* Rata kanan */
         }
 
         .hamburger {
@@ -83,87 +85,86 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 6px; 
+            gap: 5px;
             
-            background: rgba(0, 0, 0, 0.7) !important;
-            padding: 12px;
-            width: 50px;
-            height: 50px;
+            background: rgba(0, 0, 0, 0.8) !important;
+            padding: 10px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             border: 2px solid #C0C0C0 !important;
             cursor: pointer;
             outline: none;
             pointer-events: auto !important;
             transition: 0.3s;
+            position: relative;
+            z-index: 10001; /* Di atas menu */
         }
 
         .hamburger span {
             display: block;
-            width: 25px;
-            height: 3px;
+            width: 22px;
+            height: 2px;
             background-color: #ffffff !important; 
             border-radius: 2px;
             transition: 0.3s ease;
         }
 
-        .hamburger:hover {
-            background: #600000 !important;
-            border-color: #FFD700 !important;
-        }
-
-        .hamburger.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+        /* Efek silang saat aktif */
+        .hamburger.active { border-color: #FFD700 !important; }
+        .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
         .hamburger.active span:nth-child(2) { opacity: 0; }
-        .hamburger.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+        .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-        /* MENU DROPDOWN (DIPERBAIKI AGAR RAPI) */
+        /* MENU DROPDOWN (POSISI DIPERBAIKI) */
         .nav-menu {
-            position: absolute; /* Wajib Absolute agar melayang */
-            top: 65px;
-            right: 0;
+            position: absolute;
+            top: 55px; /* Jarak pas di bawah tombol hamburger */
+            right: 0;  /* Rata kanan dengan tombol */
             
             background: rgba(20, 20, 20, 0.95);
             backdrop-filter: blur(15px);
             list-style: none;
-            padding: 15px;
+            padding: 10px 0; /* Padding vertikal saja */
             border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             
             display: none;
             flex-direction: column;
-            min-width: 220px; /* Sedikit dilebarkan */
-            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            min-width: 180px; /* Lebar menu */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            
+            /* Animasi Muncul */
+            transform-origin: top right;
+            animation: menuPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes menuPop {
+            from { opacity: 0; transform: scale(0.8) translateY(-10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
         .nav-menu.active { display: flex !important; }
 
+        .nav-menu li { width: 100%; }
+
         .nav-menu a { 
-            color: white; 
+            color: #e0e0e0; 
             text-decoration: none; 
-            padding: 12px 15px; 
+            padding: 12px 20px; 
             display: block; 
-            border-bottom: 1px solid rgba(255,255,255,0.1); 
+            border-bottom: 1px solid rgba(255,255,255,0.05); 
+            font-size: 0.9rem;
+            text-align: right; /* Teks rata kanan */
             transition: 0.2s; 
-            text-align: left; /* RATA KIRI AGAR RAPI */
-            font-size: 0.95rem;
-        }
-        
-        .nav-menu a:hover { 
-            color: #FFD700; 
-            padding-left: 20px; /* Efek geser saat hover */
-            background: rgba(255,255,255,0.05);
         }
 
-        /* Mobile Fix: Pastikan container tetap flex row & menu absolute */
-        @media (max-width: 850px) {
-            .nav-container { 
-                flex-direction: row; 
-                align-items: center; 
-            }
-            .panduan-header-content { padding: 25px; width: 90%; }
-            .panduan-header-content h1 { font-size: 2rem; }
-        }
+        .nav-menu a:last-child { border-bottom: none; }
+        .nav-menu a:hover { background: rgba(255, 215, 0, 0.1); color: #FFD700; }
 
-        /* KONTEN PANDUAN */
+        /* ==========================================
+           3. KONTEN PANDUAN
+           ========================================== */
         .guide-container {
             max-width: 900px;
             margin: -50px auto 50px;
@@ -183,12 +184,6 @@
             align-items: center;
             text-align: center;
             transition: transform 0.3s;
-        }
-
-        .guide-step:hover {
-            transform: translateY(-5px);
-            border-color: #FFD700;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .step-icon {
@@ -216,13 +211,13 @@
         /* TOMBOL KEMBALI */
         .btn-home {
             position: absolute;
-            top: 25px;
-            left: 25px;
+            top: 20px;
+            left: 20px;
             color: white;
-            font-size: 1.5rem;
-            background: rgba(0,0,0,0.5);
-            width: 45px;
-            height: 45px;
+            font-size: 1.2rem;
+            background: rgba(0,0,0,0.6);
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -233,6 +228,12 @@
             transition: 0.3s;
         }
         .btn-home:hover { background: #600000; border-color: #FFD700; }
+
+        /* Media Query untuk Layar Kecil */
+        @media (max-width: 480px) {
+            .panduan-header-content h1 { font-size: 1.8rem; }
+            .guide-step { padding: 20px; }
+        }
 
     </style>
 </head>
@@ -252,7 +253,9 @@
 
     <div class="nav-container">
         <button class="hamburger" id="hamburgerBtn">
-            <span></span><span></span><span></span>
+            <span></span>
+            <span></span>
+            <span></span>
         </button>
 
         <ul class="nav-menu" id="navMenu">
