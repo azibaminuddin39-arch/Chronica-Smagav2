@@ -17,11 +17,11 @@
         .divisi-box h4 { color: #C0C0C0 !important; }
         
         /* ==========================================
-           1. NAVIGASI (POSISI ABSOLUTE / TIDAK MELAYANG)
+           1. NAVIGASI (POSISI ABSOLUTE)
            ========================================== */
         
         .nav-container {
-            /* PERUBAHAN: 'absolute' agar tombol diam di atas (tidak ikut scroll) */
+            /* Posisi Absolute agar tidak ikut scroll (tetap di atas header) */
             position: absolute !important; 
             top: 25px;
             right: 25px;
@@ -77,7 +77,6 @@
         /* --- SETTINGAN MOBILE (HP) --- */
         @media (max-width: 850px) {
             .nav-container {
-                /* Mobile juga absolute agar tidak ikut scroll */
                 position: absolute !important; 
                 top: 25px !important;       
                 right: 20px !important;     
@@ -200,25 +199,42 @@
             transform: translateY(-5px);
         }
 
-        /* STYLE POPUP */
-        .alert-text-box {
-            background: rgba(255, 215, 0, 0.1);
-            border: 1px solid var(--color-gold);
-            padding: 15px;
-            border-radius: 10px;
+        /* STYLE POPUP PANDUAN (Update Teks) */
+        .guide-steps {
             text-align: left;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 15px;
             margin-bottom: 20px;
         }
-        .alert-item {
-            margin-bottom: 10px;
-            font-size: 0.9rem;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .step-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .alert-item i { font-size: 1.2rem; width: 20px; text-align: center; }
-        .alert-highlight { color: var(--color-gold); font-weight: bold; text-decoration: underline; }
+        .step-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        .step-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        .step-header i {
+            font-size: 1.5rem;
+            color: var(--color-silver);
+            margin-top: 2px;
+        }
+        .step-text {
+            font-size: 0.85rem;
+            color: #eee;
+            line-height: 1.4;
+        }
+        .step-text strong {
+            color: var(--color-gold);
+        }
     </style>
 </head>
 <body>
@@ -433,10 +449,52 @@
         <p>&copy; 2025 CHRONICA Jurnalistik SMAN 3 Banjarbaru. All Rights Reserved.</p>
     </footer>
 
+    <div id="desktop-guide-overlay">
+        <div class="guide-box">
+            <div class="guide-icon">
+                <i class="fas fa-mobile-alt"></i>
+                <i class="fas fa-arrow-right" style="font-size: 1rem; margin: 0 10px;"></i>
+                <i class="fas fa-desktop"></i>
+            </div>
+            <h3>Optimalkan Tampilan</h3>
+            <p class="guide-desc">
+                Agar tampilan website stabil dan rapi, mohon aktifkan <strong>Mode Desktop</strong> di browser HP kamu.
+            </p>
+            
+            <div class="guide-steps">
+                <div class="step-item">
+                    <div class="step-header">
+                        <i class="fab fa-android"></i>
+                        <div class="step-text">
+                            <strong>Android (Chrome):</strong><br>
+                            Klik titik tiga (⋮) > Centang <strong>"Situs Desktop"</strong>.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-header">
+                        <i class="fab fa-apple"></i>
+                        <div class="step-text">
+                            <strong>iPhone (Safari):</strong><br>
+                            Klik ikon "aA" > Pilih <strong>"Minta Situs Web Desktop"</strong>.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a href="panduan.html" class="full-guide-link">
+                <i class="fas fa-book-open"></i> Lihat Panduan Selengkapnya
+            </a>
+
+            <button id="close-guide-btn" disabled>Mohon Baca (5)</button>
+        </div>
+    </div>
+
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             
-            /* 1. LOGIKA TOMBOL MENU (HAMBURGER) */
+            /* 1. LOGIKA TOMBOL MENU */
             const hamburger = document.getElementById('hamburger');
             const navMenu = document.getElementById('nav-menu');
 
@@ -480,7 +538,7 @@
             setInterval(updateClock, 1000);
             updateClock();
 
-            /* 3. LOGIKA TOGGLE DIVISI (LIHAT ANGGOTA) */
+            /* 3. LOGIKA TOGGLE DIVISI */
             const toggleBtns = document.querySelectorAll('.toggle-btn');
             
             toggleBtns.forEach(btn => {
@@ -550,52 +608,6 @@
             });
         });
     </script>
-
-    <div id="desktop-guide-overlay">
-        <div class="guide-box">
-            <div class="guide-icon">
-                <i class="fas fa-mobile-alt"></i>
-                <i class="fas fa-arrow-right" style="font-size: 1rem; margin: 0 10px;"></i>
-                <i class="fas fa-desktop"></i>
-            </div>
-            <h3>Optimalkan Tampilan</h3>
-            <p class="guide-desc">
-                Agar tampilan website stabil dan rapi, mohon aktifkan <strong>Mode Desktop</strong> di browser HP kamu.
-            </p>
-            
-            <div class="guide-steps">
-                <div class="step-item">
-                    <div class="step-header">
-                        <i class="fab fa-android"></i>
-                        <div class="step-text">
-                            <strong>Android (Chrome):</strong><br>
-                            1. Klik titik tiga (⋮) pojok kanan atas.<br>
-                            2. Centang <strong>"Situs Desktop"</strong>.
-                        </div>
-                    </div>
-                    <img src="img panduan/panduan-android-1.png" alt="Klik Menu" class="guide-img">
-                    <img src="img panduan/panduan-android-2.png" alt="Centang Desktop" class="guide-img">
-                </div>
-
-                <div class="step-item">
-                    <div class="step-header">
-                        <i class="fab fa-apple"></i>
-                        <div class="step-text">
-                            <strong>iPhone (Safari):</strong><br>
-                            Klik ikon "aA" > Pilih <strong>"Minta Situs Web Desktop"</strong>.
-                        </div>
-                    </div>
-                    <img src="img panduan/panduan-iphone.jpg" alt="iPhone Guide" class="guide-img">
-                </div>
-            </div>
-
-            <a href="panduan.html" class="full-guide-link">
-                <i class="fas fa-book-open"></i> Lihat Panduan Selengkapnya
-            </a>
-
-            <button id="close-guide-btn" disabled>Mohon Baca (5)</button>
-        </div>
-    </div>
 
 </body>
 </html>
