@@ -19,12 +19,11 @@
             font-family: 'Montserrat', sans-serif;
         }
 
-        /* HEADER DENGAN BACKGROUND BERBEDA */
+        /* HEADER */
         header {
             position: relative;
             width: 100%;
             min-height: 50vh;
-            /* Ganti gambar background khusus panduan di sini */
             background-image: 
                 linear-gradient(to bottom, transparent 60%, #000000 100%), 
                 linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), 
@@ -58,7 +57,7 @@
         }
 
         /* ==========================================
-           PERBAIKAN TOMBOL HAMBURGER (NAVIGASI)
+           NAVIGASI & TOMBOL MENU (FIXED)
            ========================================== */
         .nav-container {
             position: fixed !important;
@@ -75,13 +74,13 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 6px; /* Jarak antar garis */
+            gap: 6px; 
             
             background: rgba(0, 0, 0, 0.7) !important;
             padding: 12px;
             width: 50px;
             height: 50px;
-            border-radius: 50%; /* Bulat */
+            border-radius: 50%;
             border: 2px solid #C0C0C0 !important;
             cursor: pointer;
             outline: none;
@@ -89,12 +88,11 @@
             transition: 0.3s;
         }
 
-        /* GARIS TIGA HAMBURGER */
         .hamburger span {
             display: block;
             width: 25px;
             height: 3px;
-            background-color: #ffffff !important; /* Warna Putih Jelas */
+            background-color: #ffffff !important; 
             border-radius: 2px;
             transition: 0.3s ease;
         }
@@ -108,7 +106,6 @@
         .hamburger.active span:nth-child(2) { opacity: 0; }
         .hamburger.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
-        /* MENU DROPDOWN */
         .nav-menu {
             position: absolute;
             top: 65px;
@@ -129,16 +126,9 @@
         .nav-menu a { color: white; text-decoration: none; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.1); transition: 0.2s; text-align: right; }
         .nav-menu a:hover { color: #FFD700; padding-right: 20px; }
 
-        /* RESPONSIF MOBILE */
         @media (max-width: 850px) {
-            .nav-container {
-                flex-direction: column;
-                align-items: flex-end;
-            }
-            .nav-menu {
-                position: relative;
-                top: 10px;
-            }
+            .nav-container { flex-direction: column; align-items: flex-end; }
+            .nav-menu { position: relative; top: 10px; }
         }
 
         /* KONTEN PANDUAN */
@@ -191,7 +181,7 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.5);
         }
 
-        /* TOMBOL KEMBALI DI HEADER */
+        /* TOMBOL KEMBALI */
         .btn-home {
             position: absolute;
             top: 25px;
@@ -230,9 +220,7 @@
 
     <div class="nav-container">
         <button class="hamburger" id="hamburgerBtn">
-            <span></span>
-            <span></span>
-            <span></span>
+            <span></span><span></span><span></span>
         </button>
 
         <ul class="nav-menu" id="navMenu">
@@ -255,18 +243,26 @@
         <div class="guide-step">
             <div class="step-icon"><i class="fab fa-android"></i></div>
             <h2 class="step-title">Pengguna Android (Chrome)</h2>
+            
             <p>1. Klik tanda titik tiga (⋮) di pojok kanan atas browser.</p>
-            <img src="img panduan/panduan-android-1.png" alt="Langkah 1 Android" class="guide-img">
-            <p style="margin-top: 15px;">2. Cari dan centang opsi <strong>"Situs Desktop"</strong>.</p>
-            <img src="img panduan/panduan-android-2.png" alt="Langkah 2 Android" class="guide-img">
+            <img src="img panduan/panduan-android-1.png" alt="Langkah 1 Android" class="guide-img" onerror="this.style.display='none'">
+            
+            <p style="margin-top: 20px;">2. Cari dan centang opsi <strong>"Situs Desktop"</strong>.</p>
+            <img src="img panduan/panduan-android-2.png" alt="Langkah 2 Android" class="guide-img" onerror="this.style.display='none'">
         </div>
 
         <div class="guide-step">
             <div class="step-icon"><i class="fab fa-apple"></i></div>
             <h2 class="step-title">Pengguna iPhone (Safari)</h2>
-            <p>1. Klik ikon huruf <strong>"aA"</strong> di sebelah kiri kolom alamat website.</p>
-            <p>2. Pilih opsi <strong>"Minta Situs Web Desktop"</strong> (Request Desktop Website).</p>
-            <img src="img panduan/panduan-iphone.jpg" alt="Panduan iPhone" class="guide-img">
+            
+            <p>1. Klik ikon huruf <strong>"aA"</strong> di pojok kiri atas/bawah kolom alamat.</p>
+            <img src="img panduan/panduan-iphone-1.png" alt="Langkah 1 iPhone" class="guide-img" onerror="this.style.display='none'">
+
+            <p style="margin-top: 20px;">2. Menu pengaturan tampilan akan terbuka.</p>
+            <img src="img panduan/panduan-iphone-2.png" alt="Langkah 2 iPhone" class="guide-img" onerror="this.style.display='none'">
+
+            <p style="margin-top: 20px;">3. Pilih opsi <strong>"Minta Situs Web Desktop"</strong>.</p>
+            <img src="img panduan/panduan-iphone-3.png" alt="Langkah 3 iPhone" class="guide-img" onerror="this.style.display='none'">
         </div>
     </main>
 
@@ -275,7 +271,6 @@
     </footer>
 
     <script>
-        // LOADER
         window.addEventListener('load', () => {
             const loader = document.getElementById('loader-wrapper');
             setTimeout(() => { 
@@ -284,7 +279,6 @@
             }, 800);
         });
 
-        // NAVIGASI LOGIC
         const hamburgerBtn = document.getElementById('hamburgerBtn');
         const navMenu = document.getElementById('navMenu');
 
