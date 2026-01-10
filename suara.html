@@ -3,246 +3,303 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suara SMAGA - CHRONICA</title>
-
+    <title>Suara SMAGA & FAQ - CHRONICA</title>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <link rel="stylesheet" href="style.css">
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Playfair+Display:wght@700&display=swap');
+        /* ==========================================
+           1. CSS DASAR & HEADER
+           ========================================== */
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
-        .header-brand-wrapper {
+        header {
+            position: relative;
+            width: 100%;
+            min-height: 50vh;
+            /* Background khusus Suara */
+            background-image: 
+                linear-gradient(to bottom, transparent 60%, #000000 100%), 
+                linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), 
+                url('img/LB_3.gif') !important; 
+            background-size: cover !important;
+            background-position: center;
             display: flex;
-            flex-direction: column;
             align-items: center;
+            justify-content: center;
             text-align: center;
-            padding: 80px 20px;
+            padding: 20px;
         }
 
-        /* FIX UTAMA: Memaksa area ini agar bisa diklik */
-        .back-link-wrapper {
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s ease;
-            pointer-events: auto !important; /* Menembus blokir header */
-            cursor: pointer !important;
-            z-index: 10001 !important; /* Di atas elemen header */
-        }
-
-        .back-link-wrapper:hover {
-            transform: scale(1.02);
-        }
-
-        .text-container {
-            background: rgba(0, 0, 0, 0.4);
-            padding: 30px 50px;
-            border-radius: 15px;
+        /* EFEK GLASS UNTUK JUDUL (SAMA DENGAN PANDUAN) */
+        .header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            pointer-events: none; /* Klik akan diteruskan ke back-link-wrapper */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            width: 90%;
         }
 
-        .back-arrow {
-            color: #C0C0C0;
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            display: block;
-            transition: color 0.3s ease;
-        }
-
-        .back-link-wrapper:hover .back-arrow {
-            color: white;
-        }
-
-        .text-container h1 {
+        .header-content h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            color: white;
-            margin: 0;
-            letter-spacing: 2px;
+            font-size: 2.5rem;
+            color: #FFD700;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
         }
 
-        .text-container p {
-            color: #C0C0C0;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            margin-top: 5px;
+        .header-content p {
+            font-size: 1rem;
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
-        /* FAQ Styling */
-        .faq-item.active .faq-answer {
-            max-height: 800px;
-            padding: 15px 20px;
-            opacity: 1;
+        /* ==========================================
+           2. NAVIGASI (POSISI FIXED & RAPI)
+           ========================================== */
+        .nav-container {
+            position: fixed !important;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+            
+            /* Layout Container */
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            
+            background: rgba(0, 0, 0, 0.8) !important;
+            padding: 10px;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid #C0C0C0 !important;
+            cursor: pointer;
+            outline: none;
+            pointer-events: auto !important;
+            transition: 0.3s;
+            position: relative;
+            z-index: 10002;
+        }
+
+        .hamburger span {
             display: block;
+            width: 22px;
+            height: 2px;
+            background-color: #ffffff !important; 
+            border-radius: 2px;
+            transition: 0.3s ease;
         }
 
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            opacity: 0;
+        .hamburger.active { border-color: #FFD700 !important; }
+        .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* MENU DROPDOWN (HITBOX FIX) */
+        .nav-menu {
+            position: absolute !important;
+            top: 55px !important; 
+            right: 0 !important;
+            
+            bottom: auto !important;
+            min-height: 0 !important;
+            height: fit-content !important; 
+            
+            background: rgba(20, 20, 20, 0.95);
+            backdrop-filter: blur(15px);
+            list-style: none;
+            padding: 10px 0;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            
+            display: none;
+            flex-direction: column;
+            min-width: 180px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            z-index: 10001;
+            
+            transform-origin: top right;
+            animation: menuPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
+
+        @keyframes menuPop {
+            from { opacity: 0; transform: scale(0.8) translateY(-10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .nav-menu.active { display: flex !important; }
+        .nav-menu li { width: 100%; margin: 0; padding: 0; }
+
+        .nav-menu a { 
+            color: #e0e0e0; 
+            text-decoration: none; 
+            padding: 12px 20px; 
+            display: block; 
+            border-bottom: 1px solid rgba(255,255,255,0.05); 
+            font-size: 0.9rem;
+            text-align: right; 
+            transition: 0.2s; 
+        }
+
+        .nav-menu a:last-child { border-bottom: none; }
+        .nav-menu a:hover { background: rgba(255, 215, 0, 0.1); color: #FFD700; }
+
+        /* TOMBOL KEMBALI */
+        .btn-home {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            font-size: 1.2rem;
+            background: rgba(0,0,0,0.6);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 1px solid #C0C0C0;
+            z-index: 1000;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .btn-home:hover { background: #600000; border-color: #FFD700; }
+
+        /* ==========================================
+           3. CSS KONTEN FAQ
+           ========================================== */
+        .faq-section { max-width: 800px; margin: 20px auto; padding: 20px; }
+        .faq-item { background: rgba(255,255,255,0.05); margin-bottom: 15px; border-radius: 10px; overflow: hidden; border: 1px solid #333; }
+        .faq-question { padding: 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: 0.3s; padding: 0 20px; color: #ccc; }
+        .faq-item.active .faq-answer { max-height: 200px; padding: 20px; border-top: 1px solid #333; }
+        .faq-item.active .faq-question { color: #FFD700; }
+
+        /* RESPONSIF */
+        @media (max-width: 850px) {
+            .nav-container { align-items: flex-end; }
+            .header-content h1 { font-size: 1.8rem; }
+        }
+
     </style>
 </head>
-
-<body class="page-suara">
-
-    <div class="nav-container">
-        <div class="nav-wrapper">
-            <button class="hamburger" id="hamburger">
-                <span></span><span></span><span></span>
-            </button>
-            <ul class="nav-menu" id="nav-menu">
-                <li><a href="index.html">Beranda</a></li>
-                <li><a href="berita.html">Berita</a></li>
-                <li><a href="anggota.html">Anggota</a></li>
-            </ul>
-        </div>
-    </div>
+<body>
 
     <div id="loader-wrapper">
         <div class="loader-content">
-            <div class="loader-logo">
-                <img src="Logo_2.png" alt="Logo Chronica">
-                <div class="loader-line"></div>
-            </div>
-            <p>CHRONICA JURNALISTIK</p>
+            <div class="loader-logo"><img src="Logo_2.png" alt="Logo"></div>
+            <div class="loader-line"></div>
+            <p>Loading Suara</p>
         </div>
     </div>
 
+    <a href="index.html" class="btn-home" title="Kembali ke Beranda">
+        <i class="fas fa-home"></i>
+    </a>
+
+    <div class="nav-container">
+        <button class="hamburger" id="hamburgerBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="mading.html">Mading Online</a></li>
+            <li><a href="panduan.html">Panduan Desktop</a></li>
+            <li><a href="anggota.html">Anggota Divisi</a></li>
+            <li><a href="berita.html">Berita</a></li>
+        </ul>
+    </div>
+
     <header>
-        <div class="header-brand-wrapper">
-            <a href="index.html" class="back-link-wrapper">
-                <div class="text-container">
-                    <i class="fas fa-arrow-left back-arrow"></i>
-                    <h1>SUARA SMAGA</h1>
-                    <p>Aspirasi & Pertanyaan Umum</p>
-                </div>
-            </a>
+        <div class="header-content">
+            <h1>SUARA SMAGA</h1>
+            <p>Sampaikan aspirasi dan temukan jawaban di sini.</p>
         </div>
     </header>
 
     <main>
-        <section class="suara-section">
-            <i class="fas fa-bullhorn suara-icon"></i>
-            <h2>Kritik & Saran</h2>
-            <p>Sampaikan kritik, saran, atau ide secara anonim.</p>
-            <a href="https://forms.gle/89w5K1VCMqdtepg59" target="_blank" class="btn-suara">
-                KRITIK & SARAN <i class="fas fa-paper-plane"></i>
-            </a>
-        </section>
+        <div class="faq-section">
+            <h2 style="text-align: center; margin-bottom: 30px; color: #C0C0C0; letter-spacing: 2px;">FREQUENTLY ASKED QUESTIONS</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">Apa itu CHRONICA? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer">CHRONICA adalah media jurnalistik resmi SMAN 3 Banjarbaru yang menjadi wadah informasi dan kreativitas siswa.</div>
+            </div>
 
-        <section class="faq-section">
-    <div class="faq-container">
-        <h2 class="faq-title">Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-question">Bagaimana cara bergabung? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer">Pendaftaran biasanya dibuka setiap awal tahun ajaran baru. Pantau Instagram kami untuk info open recruitment.</div>
+            </div>
 
-        <div class="faq-item">
-            <button class="faq-question">
-                Apa itu CHRONICA?
-                <i class="fas fa-chevron-down"></i>
-            </button>
-            <div class="faq-answer">
-                <p>CHRONICA adalah media jurnalistik resmi SMAN 3 Banjarbaru yang berfungsi sebagai wadah aspirasi, informasi, dan kreativitas siswa.</p>
+            <div class="faq-item">
+                <div class="faq-question">Bolehkah mengirim karya tulis? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer">Tentu! Kami menerima kiriman puisi, cerpen, atau artikel opini dari seluruh warga sekolah.</div>
             </div>
         </div>
-
-        <div class="faq-item">
-            <button class="faq-question">
-                Apakah identitas aman?
-                <i class="fas fa-chevron-down"></i>
-            </button>
-            <div class="faq-answer">
-                <p>Ya, privasi kamu adalah prioritas kami. Identitas pengirim kritik atau saran akan dijaga kerahasiaannya atau bisa dikirimkan secara anonim.</p>
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <button class="faq-question">
-                Apa saja kegiatan utama di ekskul jurnalistik?
-                <i class="fas fa-chevron-down"></i>
-            </button>
-            <div class="faq-answer">
-                <p>Kegiatan kami meliputi liputan acara sekolah, wawancara, fotografi, desain grafis untuk mading digital, hingga pengelolaan website ini.</p>
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <button class="faq-question">
-                Bagaimana cara saya menyampaikan kritik dan saran?
-                <i class="fas fa-chevron-down"></i>
-            </button>
-            <div class="faq-answer">
-                <p>Kamu bisa menggunakan formulir yang tersedia di halaman "Suara Smaga" ini atau melalui kotak saran fisik yang ada di depan ruang redaksi.</p>
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <button class="faq-question">
-                Bolehkah saya memberikan saran secara anonim?
-                <i class="fas fa-chevron-down"></i>
-            </button>
-            <div class="faq-answer">
-                <p>Tentu saja. Kami menyediakan opsi anonim agar kamu bisa menyampaikan pendapat dengan lebih nyaman tanpa perlu khawatir tentang identitas.</p>
-            </div>
-        </div>
-
-    </div>
-</section>
     </main>
 
     <footer>
-        <p>&copy; 2025 CHRONICA Jurnalistik SMAN 3 Banjarbaru</p>
+        <p>&copy; 2025 CHRONICA Jurnalistik SMAN 3 Banjarbaru.</p>
     </footer>
-
-    <script src="script.js"></script>
 
     <script>
         window.addEventListener('load', () => {
             const loader = document.getElementById('loader-wrapper');
-            if (loader) {
-                setTimeout(() => {
-                    loader.classList.add('fade-out');
-                }, 1000);
+            setTimeout(() => { 
+                loader.style.opacity = '0'; 
+                setTimeout(() => { loader.style.display = 'none'; }, 500); 
+            }, 800);
+        });
+
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburgerBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            hamburgerBtn.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+                hamburgerBtn.classList.remove('active');
+                navMenu.classList.remove('active');
             }
         });
 
-        document.querySelectorAll('.faq-question').forEach(btn => {
-            btn.onclick = () => btn.parentElement.classList.toggle('active');
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            item.querySelector('.faq-question').addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
         });
+    </script>
 
-        document.addEventListener('click', e => {
-            const hamburger = document.getElementById('hamburger');
-            const navMenu = document.getElementById('nav-menu');
-            if (hamburger && navMenu) {
-                if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-                    hamburger.classList.remove('active');
-                    navMenu.classList.remove('active');
-                }
-            }
-        });
-    <script>
-    const faqItems = document.querySelectorAll('.faq-item');
-
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-        
-        question.addEventListener('click', () => {
-            // Cek jika item yang diklik sudah aktif
-            const isOpen = item.classList.contains('active');
-
-            // Tutup semua item FAQ lainnya (opsional, jika ingin hanya satu yang terbuka)
-            faqItems.forEach(i => i.classList.remove('active'));
-
-            // Jika sebelumnya tidak terbuka, maka buka sekarang
-            if (!isOpen) {
-                item.classList.add('active');
-            }
-        });
-    });
-</script>
 </body>
 </html>
