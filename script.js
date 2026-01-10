@@ -150,3 +150,43 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     });
 });
+
+/* ==========================================
+   SCRIPT JAM & TANGGAL REAL-TIME (INDONESIA)
+   ========================================== */
+function updateClock() {
+    const now = new Date();
+    
+    // 1. Format Hari & Tanggal (Contoh: Senin, 25 Oktober 2025)
+    const optionsDate = { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+    };
+    const formattedDate = now.toLocaleDateString('id-ID', optionsDate);
+    
+    // 2. Format Jam (Contoh: 14:30:05)
+    // Menggunakan 'en-GB' agar formatnya 24 jam (HH:MM:SS) tapi tetap bersih
+    const formattedTime = now.toLocaleTimeString('en-GB', { 
+        hour: '2-digit', 
+        minute: '2-digit', 
+        second: '2-digit' 
+    });
+
+    // 3. Masukkan ke HTML
+    const dateElement = document.getElementById('clock-day-date');
+    const timeElement = document.getElementById('clock-time');
+
+    if (dateElement && timeElement) {
+        dateElement.textContent = formattedDate;
+        // Tambahkan 'WITA' secara manual jika target audiens adalah SMAN 3 Banjarbaru
+        timeElement.textContent = formattedTime + " WITA"; 
+    }
+}
+
+// Jalankan fungsi setiap 1 detik (1000ms)
+setInterval(updateClock, 1000);
+
+// Jalankan sekali saat halaman pertama kali dimuat agar tidak ada delay 1 detik
+updateClock();
