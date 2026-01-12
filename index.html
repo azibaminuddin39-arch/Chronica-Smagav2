@@ -609,5 +609,77 @@
         });
     </script>
 
+    <style>
+    /* CSS LANGSUNG DI SINI AGAR PRIORITAS TINGGI */
+    #maintenance-layer {
+        position: fixed !important; /* KUNCI: Agar mengambang di atas layar */
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important; /* Lebar penuh layar */
+        height: 100vh !important; /* Tinggi penuh layar */
+        background-color: #000000 !important; /* Hitam Pekat */
+        z-index: 2147483647 !important; /* Angka z-index tertinggi yang mungkin */
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+        overflow: hidden;
+    }
+
+    .m-box-content {
+        background: #111;
+        border: 2px solid #FFD700; /* Emas */
+        border-radius: 20px;
+        padding: 40px;
+        max-width: 600px;
+        width: 90%;
+        box-shadow: 0 0 80px rgba(255, 215, 0, 0.2);
+    }
+
+    .m-box-content i {
+        font-size: 4rem;
+        color: #FFD700;
+        margin-bottom: 25px;
+        display: block;
+    }
+
+    .m-box-content h2 {
+        font-family: 'Playfair Display', serif; /* Pastikan font sesuai */
+        font-size: 2.2rem;
+        color: #FFD700;
+        margin-bottom: 20px;
+        margin-top: 0;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .m-box-content p {
+        font-family: 'Montserrat', sans-serif; /* Pastikan font sesuai */
+        color: #C0C0C0;
+        font-size: 1rem;
+        line-height: 1.8;
+        margin: 0;
+    }
+</style>
+
+<div id="maintenance-layer">
+    <div class="m-box-content">
+        <i class="fas fa-tools"></i> <h2>Website Under Maintenance</h2>
+        <p>
+            Mohon maaf, website <strong>CHRONICA</strong> saat ini sedang dalam perbaikan sistem dan pengembangan fitur baru.
+            <br><br>
+            Akses ditutup sementara. Silakan kembali lagi nanti.
+        </p>
+    </div>
+</div>
+
+<script>
+    // Mematikan Scroll agar user tidak bisa melihat ke bawah
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+</script>
 </body>
 </html>
+
