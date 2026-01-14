@@ -1,1 +1,1 @@
-# Chronica-Smagav2
+# Chronicasmaga.site
