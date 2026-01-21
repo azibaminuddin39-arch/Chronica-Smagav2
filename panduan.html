@@ -11,7 +11,7 @@
 
     <style>
         /* ==========================================
-           1. CSS DASAR & HEADER
+           1. CSS DASAR & PERBAIKAN LOADER
            ========================================== */
         body {
             background-color: #000000;
@@ -21,6 +21,162 @@
             padding: 0;
         }
 
+        /* FIX: Loader Z-Index Tertinggi */
+        #loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            /* Angka Tertinggi agar menutupi tombol menu */
+            z-index: 2147483647 !important; 
+            
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s;
+        }
+
+        /* ==========================================
+           2. NAVIGASI (POSISI ABSOLUTE - IKUT SCROLL)
+           ========================================== */
+        .nav-container {
+            /* PERUBAHAN DI SINI: Absolute agar ikut scroll (tidak nempel di layar) */
+            position: absolute !important; 
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+            
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+
+            /* Animasi Fade-In */
+            opacity: 0; 
+            animation: fadeInNav 1s ease forwards;
+            animation-delay: 1s; /* Muncul setelah loader hilang */
+        }
+
+        @keyframes fadeInNav {
+            to { opacity: 1; }
+        }
+
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            
+            background: rgba(0, 0, 0, 0.8) !important;
+            padding: 10px;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid #C0C0C0 !important;
+            cursor: pointer;
+            outline: none;
+            pointer-events: auto !important;
+            transition: 0.3s;
+            position: relative;
+            z-index: 10002;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background-color: #ffffff !important; 
+            border-radius: 2px;
+            transition: 0.3s ease;
+        }
+
+        /* Efek silang saat aktif */
+        .hamburger.active { border-color: #FFD700 !important; }
+        .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* MENU DROPDOWN */
+        .nav-menu {
+            position: absolute !important;
+            top: 55px !important; 
+            right: 0 !important;
+            
+            bottom: auto !important;
+            min-height: 0 !important;
+            height: fit-content !important; 
+            
+            background: rgba(20, 20, 20, 0.95);
+            backdrop-filter: blur(15px);
+            list-style: none;
+            padding: 10px 0;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            
+            display: none;
+            flex-direction: column;
+            min-width: 180px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            z-index: 10001;
+            
+            transform-origin: top right;
+            animation: menuPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes menuPop {
+            from { opacity: 0; transform: scale(0.8) translateY(-10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .nav-menu.active { display: flex !important; }
+        .nav-menu li { width: 100%; margin: 0; padding: 0; }
+
+        .nav-menu a { 
+            color: #e0e0e0; 
+            text-decoration: none; 
+            padding: 12px 20px; 
+            display: block; 
+            border-bottom: 1px solid rgba(255,255,255,0.05); 
+            font-size: 0.9rem;
+            text-align: right; 
+            transition: 0.2s; 
+        }
+
+        .nav-menu a:last-child { border-bottom: none; }
+        .nav-menu a:hover { background: rgba(255, 215, 0, 0.1); color: #FFD700; }
+
+        /* TOMBOL KEMBALI (Home) */
+        .btn-home {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            font-size: 1.2rem;
+            background: rgba(0,0,0,0.6);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 1px solid #C0C0C0;
+            z-index: 1000;
+            text-decoration: none;
+            transition: 0.3s;
+            
+            /* Animasi Fade In juga */
+            opacity: 0; 
+            animation: fadeInNav 1s ease forwards;
+            animation-delay: 1s;
+        }
+        .btn-home:hover { background: #600000; border-color: #FFD700; }
+
+        /* ==========================================
+           3. KONTEN PANDUAN & HEADER
+           ========================================== */
         header {
             position: relative;
             width: 100%;
@@ -68,110 +224,6 @@
             text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
-        /* ==========================================
-           2. NAVIGASI (FIXED & HITBOX DIPERBAIKI)
-           ========================================== */
-        .nav-container {
-            position: fixed !important;
-            top: 20px;
-            right: 20px;
-            z-index: 10000;
-            
-            /* Layout Container */
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-        }
-
-        .hamburger {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 5px;
-            
-            background: rgba(0, 0, 0, 0.8) !important;
-            padding: 10px;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            border: 2px solid #C0C0C0 !important;
-            cursor: pointer;
-            outline: none;
-            pointer-events: auto !important;
-            transition: 0.3s;
-            position: relative;
-            z-index: 10002;
-        }
-
-        .hamburger span {
-            display: block;
-            width: 22px;
-            height: 2px;
-            background-color: #ffffff !important; 
-            border-radius: 2px;
-            transition: 0.3s ease;
-        }
-
-        /* Efek silang saat aktif */
-        .hamburger.active { border-color: #FFD700 !important; }
-        .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-        .hamburger.active span:nth-child(2) { opacity: 0; }
-        .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-        /* --- PERBAIKAN HITBOX MENU DI SINI --- */
-        .nav-menu {
-            position: absolute !important;
-            top: 55px !important; 
-            right: 0 !important;
-            
-            /* Reset properti yang bikin panjang */
-            bottom: auto !important;
-            min-height: 0 !important;
-            height: fit-content !important; /* KUNCI: Tinggi menyesuaikan isi */
-            
-            background: rgba(20, 20, 20, 0.95);
-            backdrop-filter: blur(15px);
-            list-style: none;
-            padding: 10px 0;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            
-            display: none;
-            flex-direction: column;
-            min-width: 180px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            z-index: 10001;
-            
-            transform-origin: top right;
-            animation: menuPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        @keyframes menuPop {
-            from { opacity: 0; transform: scale(0.8) translateY(-10px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
-        }
-
-        .nav-menu.active { display: flex !important; }
-        .nav-menu li { width: 100%; margin: 0; padding: 0; }
-
-        .nav-menu a { 
-            color: #e0e0e0; 
-            text-decoration: none; 
-            padding: 12px 20px; 
-            display: block; 
-            border-bottom: 1px solid rgba(255,255,255,0.05); 
-            font-size: 0.9rem;
-            text-align: right; 
-            transition: 0.2s; 
-        }
-
-        .nav-menu a:last-child { border-bottom: none; }
-        .nav-menu a:hover { background: rgba(255, 215, 0, 0.1); color: #FFD700; }
-
-        /* ==========================================
-           3. KONTEN PANDUAN
-           ========================================== */
         .guide-container {
             max-width: 900px;
             margin: -50px auto 50px;
@@ -215,32 +267,9 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.5);
         }
 
-        /* TOMBOL KEMBALI */
-        .btn-home {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            color: white;
-            font-size: 1.2rem;
-            background: rgba(0,0,0,0.6);
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            border: 1px solid #C0C0C0;
-            z-index: 1000;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-        .btn-home:hover { background: #600000; border-color: #FFD700; }
-
         /* RESPONSIF */
         @media (max-width: 850px) {
-            .nav-container {
-                align-items: flex-end;
-            }
+            .nav-container { align-items: flex-end; gap: 0px !important; }
             .panduan-header-content h1 { font-size: 1.8rem; }
             .guide-step { padding: 20px; }
         }
@@ -273,7 +302,7 @@
             <li><a href="mading.html">Mading Online</a></li>
             <li><a href="anggota.html">Anggota Divisi</a></li>
             <li><a href="berita.html">Berita</a></li>
-            <li><a href="suara.html">Suara SMAGA & FAQ</a></li> 
+            <li><a href="suara.html">Suara SMAGA & FAQ</a></li>
         </ul>
     </div>
 
@@ -316,6 +345,7 @@
     </footer>
 
     <script>
+        // LOADER
         window.addEventListener('load', () => {
             const loader = document.getElementById('loader-wrapper');
             setTimeout(() => { 
@@ -324,6 +354,7 @@
             }, 800);
         });
 
+        // NAVIGASI
         const hamburgerBtn = document.getElementById('hamburgerBtn');
         const navMenu = document.getElementById('navMenu');
 
