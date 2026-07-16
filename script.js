@@ -1,192 +1,147 @@
-/* ==========================================
-   CHRONICA - Jurnalistik SMAN 3 Banjarbaru
-   Core Scripting - FULL INTEGRATED VERSION (FIXED)
-   ========================================== */
+// =========================================================================
+// 1. ATURAN MUTLAK: PERNYATAAN IMPORT HARUS DI BARIS PALING ATAS
+// =========================================================================
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-document.addEventListener('DOMContentLoaded', () => {
+// =========================================================================
+// 2. KODE CONFIG FIREBASE ASLI KAMU SUDAH DI MASUKKAN DI SINI
+// =========================================================================
+const firebaseConfig = {
+    apiKey: "AIzaSyAtxY-hL14W2s_5_R3YfEshyl5q6wz4WeQ",
+    authDomain: "chronica-web.firebaseapp.com",
+    projectId: "chronica-web",
+    storageBucket: "chronica-web.firebasestorage.app",
+    messagingSenderId: "733301248448",
+    appId: "1:733301248448:web:f113e92a822b2e018c7825",
+    measurementId: "G-5XTQ5Y9L21"
+};
 
-    // --- 0. LOGIKA PRELOADER (DENGAN JEDA TAMBAHAN) ---
-    const loader = document.getElementById('loader-wrapper');
+// Inisialisasi Firebase & Google Auth
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+
+// =========================================================================
+// 3. LOGIKA UTAMA YANG BERJALAN SETELAH HTML SELESAI DIMUAT (DOM READY)
+// =========================================================================
+document.addEventListener("DOMContentLoaded", () => {
     
-    if (loader) {
-        const removeLoader = () => {
-            // Cek agar fungsi hanya berjalan jika class fade-out belum ada
-            if (!loader.classList.contains('fade-out')) {
-                loader.classList.add('fade-out');
-                setTimeout(() => {
-                    loader.style.display = 'none';
-                }, 800); // Harus sama dengan durasi transition di CSS
-            }
-        };
+    // --- Elemen Navigasi & Tab ---
+    const navItems = document.querySelectorAll(".nav-item");
+    const tabContents = document.querySelectorAll(".tab-content");
+    const categoryPills = document.querySelectorAll(".category-pill");
 
-        // Menunggu halaman selesai dimuat sepenuhnya
-        window.addEventListener('load', () => {
-            // Menambah jeda 2000ms (2 detik) sebelum loader menghilang
-            // Kamu bisa mengganti angka 2000 sesuai keinginan (misal: 3000 untuk 3 detik)
-            setTimeout(removeLoader, 2000); 
-        });
+    // --- Elemen Autentikasi/Login ---
+    const loggedOutDiv = document.getElementById("auth-logged-out");
+    const loggedInDiv = document.getElementById("auth-logged-in");
+    const btnLogin = document.getElementById("btn-login-google");
+    const btnLogout = document.getElementById("btn-logout");
 
-        // Failsafe: Jika halaman sangat berat, loader akan dipaksa hilang setelah 5 detik
-        setTimeout(removeLoader, 5000); 
-    }
+    // A. LOGIKA PERPINDAHAN TAB MENU BAWAH
+    navItems.forEach(item => {
+        item.addEventListener("click", () => {
+            navItems.forEach(nav => nav.classList.remove("active"));
+            item.classList.add("active");
 
-    // --- 1. LOGIKA NAVIGASI HAMBURGER ---
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('nav-menu');
-
-    if (hamburger && navMenu) {
-        hamburger.addEventListener('click', (e) => {
-            e.stopPropagation();
-            navMenu.classList.toggle('active');
-            hamburger.classList.toggle('active'); 
-            hamburger.classList.toggle('is-active');
-        });
-
-        document.addEventListener('click', (e) => {
-            if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
-                navMenu.classList.remove('active');
-                hamburger.classList.remove('active'); 
-                hamburger.classList.remove('is-active');
-            }
-        });
-
-        const navLinks = document.querySelectorAll('.nav-menu a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                hamburger.classList.remove('active'); 
-                hamburger.classList.remove('is-active');
+            tabContents.forEach(content => {
+                content.classList.remove("active");
+                content.classList.add("hidden");
             });
-        });
-    }
 
-    // --- 2. LOGIKA TOGGLE ANGGOTA DIVISI ---
-    const toggleButtons = document.querySelectorAll('.toggle-btn, .toggle-anggota');
-    
-    toggleButtons.forEach(btn => {
-        btn.addEventListener('click', function() {
-            const list = this.nextElementSibling; 
-            if (!list) return; 
-
-            list.classList.toggle('active');
-            const isShowing = list.classList.contains('active');
+            const targetTabId = item.getAttribute("data-tab");
+            const targetTabContent = document.getElementById(targetTabId);
             
-            if (isShowing) {
-                list.style.display = 'block';
-                list.style.maxHeight = '1000px'; 
-                this.textContent = 'Sembunyikan Anggota';
-                this.style.backgroundColor = '#C0C0C0';
-                this.style.color = '#000000';
-                this.style.borderColor = '#600000';
-            } else {
-                list.style.display = 'none';
-                list.style.maxHeight = '0';
-                this.textContent = 'Lihat Anggota';
-                this.style.backgroundColor = '#600000';
-                this.style.color = '#ffffff';
-                this.style.borderColor = '#C0C0C0';
+            if (targetTabContent) {
+                targetTabContent.classList.remove("hidden");
+                targetTabContent.classList.add("active");
             }
         });
     });
 
-    // --- 3. LOGIKA SLIDER KEGIATAN ---
-    const wrapper = document.getElementById('slider-wrapper');
-    const slides = document.querySelectorAll('.slider-item');
-    const nextBtn = document.getElementById('nextBtn');
-    const prevBtn = document.getElementById('prevBtn');
+    // B. LOGIKA FILTER KATEGORI KAPSUL
+    categoryPills.forEach(pill => {
+        pill.addEventListener("click", () => {
+            categoryPills.forEach(p => p.classList.remove("active"));
+            pill.classList.add("active");
+        });
+    });
 
-    if (wrapper && slides.length > 0) {
-        let index = 0;
-        const total = slides.length;
-        
-        const updateSlider = () => {
-            wrapper.style.transform = `translateX(${-index * 100}%)`;
-        };
-        
-        const nextSlide = () => {
-            index = (index + 1) % total;
-            updateSlider();
-        };
-        
-        const prevSlide = () => {
-            index = (index - 1 + total) % total;
-            updateSlider();
-        };
+    // C. LOAD POIN PERTAMA KALI SAAT WEB DIBUKA
+    let poinAwal = localStorage.getItem('poinChronica') ? parseInt(localStorage.getItem('poinChronica')) : 120;
+    updatePoinUI(poinAwal);
 
-        if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); resetAutoSlide(); });
-        if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); resetAutoSlide(); });
-
-        let autoSlideInterval = setInterval(nextSlide, 5000);
-        function resetAutoSlide() {
-            clearInterval(autoSlideInterval);
-            autoSlideInterval = setInterval(nextSlide, 5000);
-        }
+    // D. EVENT BINDING: AKSI TOMBOL LOGIN GOOGLE
+    if (btnLogin) {
+        btnLogin.addEventListener("click", () => {
+            signInWithPopup(auth, provider)
+                .then((result) => {
+                    console.log("Berhasil Login:", result.user);
+                }).catch((error) => {
+                    console.error("Gagal Login:", error);
+                    alert("Gagal terhubung ke Google. Silakan coba lagi.");
+                });
+        });
     }
 
-    // --- 4. LOGIKA FAQ ACCORDION ---
-    const faqQuestions = document.querySelectorAll('.faq-question');
-    
-    faqQuestions.forEach(question => {
-        question.onclick = function(e) {
-            e.preventDefault(); 
-            const faqItem = this.parentElement;
-            const isActive = faqItem.classList.contains('active');
+    // E. EVENT BINDING: AKSI TOMBOL LOGOUT
+    if (btnLogout) {
+        btnLogout.addEventListener("click", () => {
+            signOut(auth);
+        });
+    }
+
+    // F. MONITOR STATUS LOGIN PENGGUNA secara Real-time
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            // Jika Pengguna Terdeteksi Login:
+            if (loggedOutDiv) loggedOutDiv.classList.add("hidden");
+            if (loggedInDiv) loggedInDiv.classList.remove("hidden");
             
-            // Menutup semua item lain sebelum membuka yang baru
-            document.querySelectorAll('.faq-item').forEach(item => {
-                item.classList.remove('active');
-                const ans = item.querySelector('.faq-answer');
-                if (ans) {
-                    ans.style.display = 'none';
-                }
-            });
+            // Pasang data Google ke UI Website
+            document.getElementById("user-name").innerText = user.displayName;
+            document.getElementById("user-email").innerText = user.email;
+            document.getElementById("user-photo").src = user.photoURL;
             
-            // Jika item yang diklik tidak aktif, aktifkan
-            if (!isActive) {
-                faqItem.classList.add('active');
-                const ans = faqItem.querySelector('.faq-answer');
-                if (ans) ans.style.display = 'block';
-            }
-        };
+            // Mengubah text greeting di BERANDA sesuai nama panggilan Google user
+            document.querySelector(".greeting").innerText = `Halo, ${user.displayName.split(' ')[0]}! 👋`;
+        } else {
+            // Jika Pengguna Logout / Belum Login:
+            if (loggedOutDiv) loggedOutDiv.classList.remove("hidden");
+            if (loggedInDiv) loggedInDiv.classList.add("hidden");
+            
+            // Kembalikan text greeting beranda ke semula
+            document.querySelector(".greeting").innerText = "Halo, Pembaca Setia!";
+        }
     });
 });
 
-/* ==========================================
-   SCRIPT JAM & TANGGAL REAL-TIME (INDONESIA)
-   ========================================== */
-function updateClock() {
-    const now = new Date();
-    
-    // 1. Format Hari & Tanggal (Contoh: Senin, 25 Oktober 2025)
-    const optionsDate = { 
-        weekday: 'long', 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric' 
-    };
-    const formattedDate = now.toLocaleDateString('id-ID', optionsDate);
-    
-    // 2. Format Jam (Contoh: 14:30:05)
-    // Menggunakan 'en-GB' agar formatnya 24 jam (HH:MM:SS) tapi tetap bersih
-    const formattedTime = now.toLocaleTimeString('en-GB', { 
-        hour: '2-digit', 
-        minute: '2-digit', 
-        second: '2-digit' 
-    });
+// =========================================================================
+// 4. FUNGSI PENDUKUNG
+// =========================================================================
 
-    // 3. Masukkan ke HTML
-    const dateElement = document.getElementById('clock-day-date');
-    const timeElement = document.getElementById('clock-time');
-
-    if (dateElement && timeElement) {
-        dateElement.textContent = formattedDate;
-        // Tambahkan 'WITA' secara manual jika target audiens adalah SMAN 3 Banjarbaru
-        timeElement.textContent = formattedTime + " WITA"; 
-    }
+// Fungsi menambah poin saat artikel diklik
+function tambahPoin() {
+    let poinSekarang = localStorage.getItem('poinChronica') ? parseInt(localStorage.getItem('poinChronica')) : 120;
+    poinSekarang += 10;
+    
+    // Simpan ke storage lokal browser
+    localStorage.setItem('poinChronica', poinSekarang);
+    
+    // Perbarui angka di semua halaman UI langsung
+    updatePoinUI(poinSekarang);
+    
+    alert("🎉 Selamat! Kamu membaca artikel dan berhasil mendapatkan +10 Poin Chronica.");
 }
 
-// Jalankan fungsi setiap 1 detik (1000ms)
-setInterval(updateClock, 1000);
+// Fungsi pembantu memperbarui text poin di Beranda dan Profil sekaligus
+function updatePoinUI(nilaiPoin) {
+    const elPoinBeranda = document.getElementById('display-poin');
+    const elPoinProfil = document.getElementById('profile-poin');
+    
+    if (elPoinBeranda) elPoinBeranda.innerText = nilaiPoin + " Poin";
+    if (elPoinProfil) elPoinProfil.innerText = nilaiPoin + " Poin";
+}
 
-// Jalankan sekali saat halaman pertama kali dimuat agar tidak ada delay 1 detik
-updateClock();
+// EXPOSE GLOBAL ACCESS: Membuka kunci fungsi agar bisa dibaca oleh onclick="..." di HTML
+window.tambahPoin = tambahPoin;
